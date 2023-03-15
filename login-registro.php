@@ -1,6 +1,11 @@
 <?php
 session_start();
 error_reporting(0);
+
+if(isset($_SESSION["Error al registrar"])){
+    echo "<h1>". $_SESSION["Error al registrar"]."</h1>";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +41,7 @@ error_reporting(0);
                         <a href="" class="social"><i class="fab fa-instagram"></i></a>
                         <a href="" class="social"><i class="fab fa-twitter"></i></a>
                     </div>
-                    <p>Digite todos los campos</p>
+                    <p>Rellene todos los campos</p>
                     <input autocomplete="on" onchange="nombre1()" type="text" name="nombre" id="nombre" placeholder="Nombres" required>
                     <input autocomplete="on" onchange="apellido1()" type="text" name="apellido" id="apellido" placeholder="Apellidos" required>
                     <input autocomplete="on" onchange="direccion1()" type="text" name="direccion" id="direccion" placeholder="Dirección" required>
@@ -54,7 +59,7 @@ error_reporting(0);
                 </form>
             </div>
 
-            <!-- iniciar sesion -->
+            <!-- iniciar sesión -->
             <div class="sign-in">
                 <form action="./validaciones/iniciosesion.php" method="post">
                     <h1>Compu start</h1>
@@ -64,7 +69,7 @@ error_reporting(0);
                         <a href="" class="social"><i class="fa fa-instagram"></i></a>
                         <a href="" class="social"><i class="fa fa-twitter"></i></a>
                     </div>
-                    <p>Digite todos los campos</p>
+                    <p>Rellene todos los campos</p>
                     <input type="email" name="email" placeholder="Correo" required>
                     <input type="password" name="clave_inicio" placeholder="Clave" required>
                     <button name="inicio" type="submit">Iniciar Sesión</button>
@@ -116,30 +121,32 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
     } else {
         session_destroy();
     }
+
+    if (isset($_SESSION["Datos_incorrectos"])) {
+        echo ('<script>Swal.fire({
+            title: "Datos incorrectos",
+            text: "Los datos ingresados son incorrectos, por favor verifique",
+            icon: "error" 
+        });
+        </script>');
+        session_destroy();
+    } else {
+        session_destroy();
+    }
+
+    if (isset($_SESSION["emailRepetido"])) {
+        echo ('<script>Swal.fire({
+            title: "Email repetido",
+            text: "El email que intenta ingresar esta repetido",
+            icon: "error" 
+        });
+        </script>');
+        session_destroy();
+    } else {
+        session_destroy();
+    }
     ?>
 
-    <script>
-        function comprobar1() {
-            let nombre = document.getElementById("nombre").value;
-            let apellido = document.getElementById("apellido").value;
-            let direccion = document.getElementById("direccion").value;
-            let telefono = document.getElementById("telefono").value;
-            let correo = document.getElementById("email_registro").value;
-            let contraseña = document.getElementById("clave").value;
-            let contraseña_c = document.getElementById("clave_c").value;
-
-            if ((nombre == "") || (apellido == "") || (direccion == "") || (telefono == "") || (correo == "") || (contraseña == "") || (contraseña_c == "")) {
-                event.preventDefault();
-                Swal.fire({
-                    title: "Por favor",
-                    text: "llene el formulario completamente",
-                    icon: "error"
-                });
-            } else {
-                return
-            }
-        }
-    </script>
 </body>
 
 </html>

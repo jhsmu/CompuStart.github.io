@@ -33,6 +33,8 @@
                     header("location: ../inicio.php");
             }
             else {
+                session_start();
+                $_SESSION["Datos_incorrectos"] = "Datos incorrectos";
                 header("location:../login-registro.php");
                 echo '<script> alert("Inicio de sesión incorrecto, por favor verifique sus datos")</script>';
         }  
