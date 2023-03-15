@@ -4,7 +4,7 @@
     if (isset($_POST['botonAdd'])) {
         switch ($_POST['botonAdd']) {
 
-            //Esto es si la persona oprime el boton agregar al carrito
+            //Esto es si la persona oprime el botón agregar al carrito
             case 'agregar':
                 if (is_numeric($_POST['id'])) {
                     $id_producto=$_POST['id'];

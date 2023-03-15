@@ -36,7 +36,7 @@
     <!-- css cuerpo -->
     <link rel="stylesheet" href="./css/style_cuerpo.css">
     <link rel="stylesheet" href="./css/style.css">
-        <!-- css foote y el header -->
+        <!-- css footer y el header -->
         <link rel="stylesheet" href="./css/footer-header.css">
     <title>Compu Start</title>
 </head>
@@ -74,7 +74,7 @@
         }
       }
       ?>
-<!-- carusel -->
+<!-- carrusel -->
 
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">

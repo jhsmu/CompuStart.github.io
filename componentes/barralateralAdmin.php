@@ -27,7 +27,7 @@
                         <a href="../admin/proveedor.php"
                            class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
                             <i class="fab fa-wpforms float-left mx-2"></i>
-                            Provedor
+                            Proveedor
                             <span><i class="fa fa-angle-right float-right"></i></span>
                         </a>
                     </li>

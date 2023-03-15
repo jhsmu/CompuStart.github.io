@@ -1,3 +1,5 @@
+PONERLE ESTILO A ESTO
+
 <?php
 
 if(!empty($_SESSION['administrador']) or !empty($_SESSION['usuario'])){

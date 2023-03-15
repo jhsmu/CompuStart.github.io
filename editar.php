@@ -15,7 +15,7 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <!-- iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
-<!-- css foote y el header -->
+<!-- css footer y el header -->
     <link rel="stylesheet" href="./css/footer-header.css">
 <!-- css cuerpo -->
     <link rel="stylesheet" href="./css/style_cuerpo.css"> 
@@ -36,7 +36,7 @@ session_start();
 </header>
     <?php
         if(isset($_POST['enviar'])){
-            //entra si le da el boton enviar
+            //entra si le da el botón enviar
             $id=$_POST['id'];
             $nombre=$_POST['nombre'];
             $apellido=$_POST['apellido'];
@@ -74,7 +74,7 @@ session_start();
 
 
         } else{
-            //no le ha dado al boton enviar
+            //no le ha dado al botón enviar
             $id=$_GET['id_cliente'];
             $sql="select *from cliente where id='".$id."'";
             $resultado=mysqli_query($conexion,$sql);
@@ -117,7 +117,7 @@ session_start();
                         <input id="direccion" type="text" name="direccion" value="<?php echo $direccion;?>">
                     </div>                   
                      <div class="input-box">
-                        <label for="telefono">Telefono</label>
+                        <label for="telefono">Teléfono</label>
                         <input id="telefono" type="text" name="telefono" value="<?php echo $telefono;?>">
                     </div>
                     <div class="input-box">

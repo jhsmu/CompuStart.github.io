@@ -100,7 +100,7 @@ session_start();
                                         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                             <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
                                                    for="grid-state">
-                                                Elegir Una Categoria
+                                                Elegir Una Categoría
                                             </label>
                                             <div class="relative">
                                                 <select class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"

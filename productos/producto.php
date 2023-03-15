@@ -68,7 +68,7 @@
         <button type="button" id="agregar_mas">+</button>
         <br>
         <br>
-        <div id="incrementa"> <!-- Aqui agregamos los campos de archivos extra -->
+        <div id="incrementa"> <!-- Aquí agregamos los campos de archivos extra -->
 
         </div>
         <br>

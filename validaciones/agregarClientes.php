@@ -1,3 +1,4 @@
+FALTA ELIMINAR ESTAS VALIDACIONES
 <?php
 error_reporting(~E_NOTICE); // avoid notice
 

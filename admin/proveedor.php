@@ -68,11 +68,11 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                     <thead>
                                         <tr>
                                             <th class="border w-1/7 px-4 py-2">Id_proveedor</th>
-                                            <th class="border w-1/6 px-4 py-2">Provedor</th>
+                                            <th class="border w-1/6 px-4 py-2">Proveedor</th>
                                             <th class="border w-1/6 px-4 py-2">Correo</th>
                                             <th class="border w-1/6 px-4 py-2">Web</th>
-                                            <th class="border w-1/7 px-4 py-2">Direccion</th>
-                                            <th class="border w-1/7 px-4 py-2">Accion</th>
+                                            <th class="border w-1/7 px-4 py-2">Dirección</th>
+                                            <th class="border w-1/7 px-4 py-2">Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>

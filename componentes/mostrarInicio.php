@@ -22,7 +22,7 @@
                     </figure>
                     <div class="card-body">
                         <h5 class="card-title">Combo Teclado + Mouse Gamers</h5>
-                        <p class="text-justify">Combo Teclado+Mouse KY-MK07+KY-M986 JANUS Gamer mecanico Cuatro veces más rápido que los teclados estándar Cada tecla está optimizada para mejorar la experiencia táctil y ofrecer una respuesta superrápida. </p>
+                        <p class="text-justify">Combo Teclado+Mouse KY-MK07+KY-M986 JANUS Gamer mecánico Cuatro veces más rápido que los teclados estándar Cada tecla está optimizada para mejorar la experiencia táctil y ofrecer una respuesta super rápida. </p>
                         <a href="#" class="btn btn-primary">Ver mas</a>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <img src="../img/inicio/Tarjeta-Grafica-ASUS-TUF-RTX-3070-Ti-OC16572985441.png" height="200px" class="card-img-top" alt="...">
                     </figure>
                     <div class="card-body">
-                        <h5 class="card-title">Tarjeta Grafica Asus Rtx 3070</h5>
+                        <h5 class="card-title">Tarjeta Gráfica Asus Rtx 3070</h5>
                         <p class="card-text">Los componentes básicos de las GPU más rápidas y eficientes del mundo, el nuevo Ampere SM ofrece el doble de rendimiento de FP32 y una eficiencia energética mejorada.</p>
                         <a href="#" class="btn btn-primary">Ver mas</a>
                     </div>
@@ -82,7 +82,7 @@
                     <img src="../img/inicio/ryzen5 5600X.jpg" height="200px" class="card-img-top" alt="...">
                     </figure>
                     <div class="card-body">
-                        <h5 class="card-title">Procesador ryazen5 5600</h5>
+                        <h5 class="card-title">Procesador Ryzen5 5600</h5>
                         <p class="card-text">El AMD Ryzen 5 5600X es un procesador de la serie 5000 que dispone de 6 núcleos y 12 subprocesos para que disfrutes de un rendimiento sensacional en un amplio catálogo de juegos y aplicaciones.</p>
                         <a href="#" class="btn btn-primary">Ver mas</a>
                     </div>
@@ -105,7 +105,7 @@
 </div>
 
 <div class="container">
-              <!-- barra con animacion -->
+              <!-- barra con animación -->
             <div class="color">
             <div class="loader">
                 <span></span>

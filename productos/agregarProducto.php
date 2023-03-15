@@ -45,11 +45,11 @@
         }
         else
         {
-            $upload_dir = '../imagenes/'; // carpeta en la cual se pondra el archivo
+            $upload_dir = '../imagenes/'; // carpeta en la cual se pondrá el archivo
     
-            $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // obtemos la extensión de la imagen
+            $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // obtenemos la extensión de la imagen
         
-            // validamos las extenciones de los archivos
+            // validamos las extensiones de los archivos
             $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'webp'); // valid extensions
         
             // nombre de la imagen a cargar

@@ -29,7 +29,7 @@
         <div class="flex flex-1">
             <!--Sidebar-->
             <aside id="sidebar" class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
-<!--Barrra lateral-->
+<!--Barra lateral-->
                 <ul class="list-reset flex flex-col">
                     <?php include("../componentes/barralateralAdmin.php") ?>
                 </ul>
@@ -38,7 +38,7 @@
             <!--/Sidebar-->
             <!--Main-->
             <main class="bg-white-300 flex-1 p-3 overflow-hidden">
-<!-- informacion -->
+<!-- información -->
                 <div class="flex flex-col">
                     
                 </div>

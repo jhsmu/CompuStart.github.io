@@ -90,7 +90,7 @@ $connection = $db->connect(); //Creamos la conexión a la BD
                     <div class="w-full px-3">
                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
                                for="grid-password">
-                            Correo Electronico
+                            Correo Electrónico
                         </label>
                         <input onchange="ValidacionCorreo()" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="email"
                         name="correo" id="correo" value="<?php echo $prove['correo']; ?>" placeholder="<?php echo $prove['correo']; ?>"required>

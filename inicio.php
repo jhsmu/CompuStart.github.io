@@ -24,7 +24,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <!-- iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
-    <!-- css foote y el header -->
+    <!-- css footer y el header -->
     <link rel="stylesheet" href="./css/footer-header.css">
     <!-- css cuerpo -->
     <link rel="stylesheet" href="./css/style_cuerpo.css">
@@ -68,7 +68,7 @@
                         <h5 class="card-title"><?php echo $producto['producto'] ?></h5>
                         <a href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn "style="background-color: orange;">Agregar</a>
                         <a href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
-                        <p>descripcion corta</p>
+                        <p>Descripción corta</p>
                     </div>
                 </div>
             </div>
@@ -129,7 +129,7 @@
                         <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
                         <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn "style="background-color: orange;">Agregar</a>
                         <a href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
-                        <p>descripcion corta</p>
+                        <p>Descripción corta</p>
                     </div>
                 </div>
             </div>
@@ -141,7 +141,7 @@
 </div>
 
 <div class="container">
-            <!-- barra con animacion -->
+            <!-- barra con animación -->
             <div class="color">
                 <div class="loader">
                     <span></span>
@@ -185,7 +185,7 @@
                         <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
                         <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn "style="background-color: orange;">Agregar</a>
                         <a href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
-                        <p>descripcion corta</p>
+                        <p>Descripción corta</p>
                     </div>
                 </div>
             </div>

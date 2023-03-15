@@ -12,7 +12,7 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <!-- iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
-<!-- css foote y el header -->
+<!-- css footer y el header -->
     <link rel="stylesheet" href="./css/footer-header.css">
 <!-- css cuerpo -->
     <link rel="stylesheet" href="./css/style_cuerpo.css">
@@ -76,7 +76,7 @@
                                 <input type="text" name="cliente" id="cliente" class="form-control" value="<?php echo $_SESSION['usuario']; ?>" disabled>
                             </div>
                             <small class="form-text text-muted">
-                                Los productos se le venderan a este cliente
+                                Los productos se le venderán a este cliente
                             </small>
                         </div>
                         <button class="btn btn-primary btn-lg btn-block" type="submit" name="botonAdd" value="proceder">Comprar</button>

@@ -52,7 +52,7 @@
                           <li>
                             <a href="./micuenta.php?id_administrador=<?php echo $_SESSION["id_administrador"];?>" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Mi cuenta</a></li>
                           <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Notifications</a></li>
-                          <li><hr class="border-t mx-2 border-grey-ligght"></li>
+                          <li><hr class="border-t mx-2 border-grey-light"></li>
                           <li><a href="../validaciones/cerrarSesion.php" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Cerrar Sesión</a></li>
                         </ul>
                     </div>
@@ -93,8 +93,8 @@
                                         <th class="border w-1/6 px-4 py-2">Apellidos</th>
                                         <th class="border w-1/6 px-4 py-2">Dirección</th>
                                         <th class="border w-1/7 px-4 py-2">Email</th>
-                                        <th class="border w-1/5 px-4 py-2">Telefono</th>
-                                        <th class="border w-1/5 px-4 py-2">Accion</th>
+                                        <th class="border w-1/5 px-4 py-2">Teléfono</th>
+                                        <th class="border w-1/5 px-4 py-2">Acción</th>
                                       </tr>
                                     </thead>
                                     <tbody>

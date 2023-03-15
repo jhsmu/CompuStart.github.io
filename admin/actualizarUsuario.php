@@ -20,7 +20,7 @@
 <body>
 <?php
         if(isset($_POST['enviar'])){
-            //entra si le da el boton enviar
+            //entra si le da el botón enviar
             $id=$_POST['id'];
             $nombre=$_POST['nombre'];
             $apellido=$_POST['apellido'];
@@ -141,7 +141,7 @@
                     <div class="w-full md:w-1/2 px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
                                for="grid-last-name">
-                            Número Teléfonico
+                            Número Telefónico
                         </label>
                         <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
                         type="text" name="telefono" id="telefono" onchange="telefono1()" required value="<?php echo $telefono; ?>" placeholder="<?php echo $telefono; ?>">

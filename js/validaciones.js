@@ -53,7 +53,7 @@ function apellido1() {
     }
 }
 
-//direccion : direccion
+//dirección : dirección
 function direccion1() {
     let direccion = document.getElementById("direccion").value;
     let regEx = /^[A-Za-z0-9ñÑAÉÍÓÚáéíóúäëïöüÄËÏÖÜ#./(), -]+$/
@@ -81,7 +81,7 @@ function direccion1() {
     }
 }
 
-//telefonos de 7 o 10 digitos : telefono
+//teléfonos de 7 o 10 dígitos : teléfono
 function telefono1() {
     let telefono = document.getElementById("telefono").value;
     let TelLen = telefono.length;
@@ -95,7 +95,7 @@ function telefono1() {
         Swal.fire({
           icon: "error",
           title: "Por Favor",
-          text: "Ingrese números de 10 o 7 digitos",
+          text: "Ingrese números de 10 o 7 dígitos",
         });
         document.getElementById("telefono").value = "";
       }
@@ -104,7 +104,7 @@ function telefono1() {
       Swal.fire({
         icon: "error",
         title: "Por Favor",
-        text: "Ingrese números de 10 o 7 digitos",
+        text: "Ingrese números de 10 o 7 dígitos",
       });
       document.getElementById("telefono").value = "";
     }
@@ -124,7 +124,7 @@ function ValidacionCorreo() {
       Swal.fire({
         icon: "error",
         title: "Por Favor",
-        text: 'Ingrese un correo con menos de 60 digitos',
+        text: 'Ingrese un correo con menos de 60 dígitos',
       });
       document.getElementById("correo").value = ""
     }
@@ -139,7 +139,7 @@ function ValidacionCorreo() {
   }
 }
 
-//Nombres con numeros incluidos : nombre
+//Nombres con números incluidos : nombre
 function NombresNumeros(){
   let nombre = document.getElementById("nombre").value;
   let RegEx = /^[0-9A-ZÑa-zñáéíóúÁÉÍÓÚ'° -]+$/g;
@@ -194,7 +194,7 @@ function PaginaWeb(){
     }
 }
 
-//contraseña con mas de 8 digitos, una mayuscula, minuscula y numeros
+//contraseña con mas de 8 dígitos, una mayúscula, minúscula y números
 // : clave
 function contraseña(){
     let contraseña = document.getElementById("clave").value;
@@ -212,7 +212,7 @@ function contraseña(){
         Swal.fire({
             icon: 'error',
             title: 'Por Favor',
-            text: 'La contraseña tiene que tener al menos una mayuscula'
+            text: 'La contraseña tiene que tener al menos una mayúscula'
             });
             document.getElementById("clave").value = "";
     } else if (/[a-z]+/.test(contraseña) != true){
@@ -220,7 +220,7 @@ function contraseña(){
         Swal.fire({
             icon: 'error',
             title: 'Por Favor',
-            text: 'La contraseña tiene que tener al menos una minuscula'
+            text: 'La contraseña tiene que tener al menos una minúscula'
             });
             document.getElementById("clave").value = "";
     } else if (/[0-9]+/.test(contraseña) != true){
@@ -246,7 +246,7 @@ function verificarContraseña(){
         document.getElementById("clave").style.borderColor = "#008000";
 
     }else{
-        swal.fire({
+        Swal.fire({
             title:'Oops..',
             text: 'Las contraseñas no son iguales',
             icon: 'error'
