@@ -42,7 +42,6 @@ session_start();
 <header>
   <?php include("./componentes/headerinicio.php"); ?>
 </header>
-    
     <div class="container">
     <h2><?php echo $categoria['categoria'] ?></h2>
         <div class="row ">

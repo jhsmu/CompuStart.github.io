@@ -12,20 +12,17 @@
     $consulta2->bindParam(':categoria', $_GET['id']);
     $consulta2->execute();
     $productos=$consulta2->fetchAll(PDO::FETCH_ASSOC);
-  }  
-?>
 
-<?php
-    include "./database/conexion.php"; 
-    $consulta=$DB_con->prepare('SELECT * FROM categoria');
-    $consulta->execute();
-    $categorias=$consulta->fetchAll(PDO::FETCH_ASSOC);
+    $consulta3=$DB_con->prepare('SELECT * FROM imagenes');
+    $consulta3->execute();
+    $imagenes=$consulta3->fetchAll(PDO::FETCH_ASSOC);
+  }  
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- css bootstrap -->
@@ -39,31 +36,35 @@
         <!-- css footer y el header -->
         <link rel="stylesheet" href="./css/footer-header.css">
     <title>Compu Start</title>
-</head>
 <body>
 
-
 <header>
-       <?php
-       include ("./componentes/headerindex.php")
-       ?>
-  </header> 
-
-
-    
+  <?php include("./componentes/headerindex.php"); ?>
+</header>
     <div class="container">
-      <br> <br>
-      <h2><?php echo $categoria['categoria'] ?></h2>
-      <br> <br>
+    <h2><?php echo $categoria['categoria'] ?></h2>
         <div class="row ">
  <!-- card 1 -->
       <?php
+          $ayudante=0;
           foreach ($productos as $key => $producto) {
             if($key<3){
       ?>
             <div class="col-md-4 mt-md-4 mb-md-4">
                 <div class="card">
-                    <img src="./imagenes/memoria1.jpg"  height="250px" width="300px" alt="memoriaRAM4gb">
+                  <?php
+                    foreach ($imagenes as $key => $imagen) {
+                        if(($producto['id_producto']==$imagen['producto_id'])and($producto['id_producto']!=$ayudante)){
+                          $ayudante++;
+                  ?>
+                    <img src="./imagenes/<?php echo $imagen['url'] ?>"  height="250px" width="300px" alt="memoriaRAM4gb">
+
+                  <?php
+                        break;
+                        }
+                        
+                      }
+                  ?>
                     <div class="card-body">
                       <h5 class="card-title"><?php echo $producto['producto'] ?></h5>
                       <a href="./descripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver más</a>
@@ -74,7 +75,7 @@
         }
       }
       ?>
-<!-- carrusel -->
+<!-- carusel -->
 
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -105,7 +106,20 @@
         ?>
             <div class="col-md-4 mt-md-4">
                 <div class="card">
-                    <img src="./imagenes/memoria6.webp" height="350px" width="300px" alt="memoriaRAM4gb1Samsung">
+
+                  <?php
+                    foreach ($imagenes as $key => $imagen) {
+                        if(($producto['id_producto']==$imagen['producto_id'])and($producto['id_producto']!=$ayudante)){
+                          $ayudante++;
+                  ?>
+                    <img src="./imagenes/<?php echo $imagen['url'] ?>" height="350px" width="300px" alt="memoriaRAM4gb1Samsung">
+                    
+                  <?php
+                          break;
+                        }
+                      }
+                  ?>
+                    
                     <div class="card-body">
                       <h5 class="card-title"><?php echo $producto['producto'] ?></h5>
                       <a href="./descripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver más</a>
@@ -120,15 +134,6 @@
         ?>
         </div>
     </div>
-
-    <!--  
-    
-    
-    
-    
-    -->
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
