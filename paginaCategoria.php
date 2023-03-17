@@ -18,7 +18,6 @@
     $imagenes=$consulta3->fetchAll(PDO::FETCH_ASSOC);
   }  
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,8 +56,7 @@
                         if(($producto['id_producto']==$imagen['producto_id'])and($producto['id_producto']!=$ayudante)){
                           $ayudante++;
                   ?>
-                    <img src="./imagenes/<?php echo $imagen['url'] ?>"  height="250px" width="300px" alt="memoriaRAM4gb">
-
+                    <img src="./imagenes/<?php echo $imagen['url'] ?>"  height="250px" width="300px" alt="ImagneDeLosProductos">
                   <?php
                         break;
                         }
@@ -67,6 +65,7 @@
                   ?>
                     <div class="card-body">
                       <h5 class="card-title"><?php echo $producto['producto'] ?></h5>
+                      <p><?php echo $producto['descripcion_breve']?></p>
                       <a href="./descripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver más</a>
                     </div>
                 </div>
@@ -112,7 +111,7 @@
                         if(($producto['id_producto']==$imagen['producto_id'])and($producto['id_producto']!=$ayudante)){
                           $ayudante++;
                   ?>
-                    <img src="./imagenes/<?php echo $imagen['url'] ?>" height="350px" width="300px" alt="memoriaRAM4gb1Samsung">
+                    <img src="./imagenes/<?php echo $imagen['url'] ?>" height="350px" width="300px" alt="ImagenDeLosProductos">
                     
                   <?php
                           break;
@@ -122,6 +121,7 @@
                     
                     <div class="card-body">
                       <h5 class="card-title"><?php echo $producto['producto'] ?></h5>
+                      <p><?php echo $producto['descripcion_breve']?></p>
                       <a href="./descripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver más</a>
                       <div class="col-md-6">
                       </div>

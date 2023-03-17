@@ -29,7 +29,7 @@
     <!-- css cuerpo -->
     <link rel="stylesheet" href="./css/style_cuerpo.css">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Compu_start</title>
+    <title>Compu_Star</title>
 </head>
 
 <body>
@@ -48,7 +48,6 @@
                 $numero=1;
                 foreach ($productos as $key => $producto) {
             ?>
-
             <div class="col-md-4">
                 <div class="card">
                     <figure>
@@ -66,9 +65,8 @@
                     </figure>
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $producto['producto'] ?></h5>
-                        <a href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn "style="background-color: orange;">Agregar</a>
+                        <p><?php echo $producto['descripcion_breve'] ?></p>
                         <a href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
-                        <p>Descripción corta</p>
                     </div>
                 </div>
             </div>
@@ -127,13 +125,11 @@
                     </figure>
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
-                        <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn "style="background-color: orange;">Agregar</a>
-                        <a href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
-                        <p>Descripción corta</p>
+                        <p><?php echo $producto['descripcion_breve'] ?></p>
+                        <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn btn-primary">Ver más</a>
                     </div>
                 </div>
             </div>
-
             <?php
                 }
             ?>
@@ -183,9 +179,8 @@
                     </figure>
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
-                        <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn "style="background-color: orange;">Agregar</a>
-                        <a href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
-                        <p>Descripción corta</p>
+                        <p><?php echo $producto['descripcion_breve'] ?></p>
+                        <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
                     </div>
                 </div>
             </div>
@@ -227,7 +222,6 @@
         <footer>
         <?php include("./componentes/footer.php")?>
         </footer>
-
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
 

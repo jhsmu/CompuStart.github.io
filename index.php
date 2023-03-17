@@ -30,7 +30,7 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
     <!-- css cuerpo -->
     <link rel="stylesheet" href="./css/style_cuerpo.css">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <title>Compu_Star</title>
 </head>
 
 <body>
@@ -48,7 +48,6 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
                 $numero=1;
                 foreach ($productos as $key => $producto) {
             ?>
-
             <div class="col-md-4">
                 <div class="card">
                     <figure>
@@ -66,9 +65,8 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
                     </figure>
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $producto['producto'] ?></h5>
-                        <a href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn "style="background-color: orange;">Agregar</a>
-                        <a href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
-                        <p>descripcion corta</p>
+                        <p><?php echo $producto['descripcion_breve'] ?></p>
+                        <a href="./descripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
                     </div>
                 </div>
             </div>
@@ -127,13 +125,11 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
                     </figure>
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
-                        <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn "style="background-color: orange;">Agregar</a>
-                        <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn btn-primary">Ver más</a>
-                        <p>Descripción corta</p>
+                        <p><?php echo $producto['descripcion_breve'] ?></p>
+                        <a href="./descripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn btn-primary">Ver más</a>
                     </div>
                 </div>
             </div>
-
             <?php
                 }
             ?>
@@ -183,9 +179,8 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
                     </figure>
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
-                        <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn " style="background-color: orange;">Agregar</a>
-                        <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
-                        <p>Descripción corta</p>
+                        <p><?php echo $producto['descripcion_breve'] ?></p>
+                        <a href="./descripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
                     </div>
                 </div>
             </div>
@@ -228,11 +223,9 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
         <?php include("./componentes/footer.php")?>
         </footer>
 
-
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
 
 </body>
-
 </html>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
