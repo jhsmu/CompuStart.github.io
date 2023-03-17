@@ -69,7 +69,7 @@
             <tr>
                 <td colspan="5">
 
-                    <form action="./pagar.php" method="post">
+                    <form action="./Carro/pagar.php" method="post">
                         <div class="alert alert-success">
                             <div class="form-group">
                                 <label for="persona">Cliente</label>
