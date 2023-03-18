@@ -157,6 +157,6 @@ if (isset($_SESSION['proveedor'])) {
         text: 'Proveedor agregado'
         });
     </script>";
-    session_destroy();
+    unset($_SESSION['proveedor']);
 }
 ?>
