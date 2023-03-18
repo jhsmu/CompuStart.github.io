@@ -131,6 +131,6 @@ if (isset($_SESSION['actualizar'])) {
         text: 'Proveedor Actualizado'
         });
     </script>";
-    session_destroy();
+    unset($_SESSION['actualizar']);
 }
 ?>
