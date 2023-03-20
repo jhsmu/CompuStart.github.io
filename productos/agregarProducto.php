@@ -8,9 +8,11 @@
     $producto=$_POST["producto"];
     $descripcion=$_POST["descripcion"];
     $cantidad=$_POST["cantidad"];
-    $precio=$_POST["precio"];
+    $precio=$_POST["precio"]*0.6;
     $id_categoria=$_POST["categoria"];
     $id_marca=$_POST["marca"];
+    $id_proveedor=$_POST["proveedor"];
+    $total=$cantidad*$precio;
 
     //Primero agregamos el producto en la tabla producto
     $agregar=$DB_con->prepare('INSERT INTO producto(serial, producto, descripcion, cantidad, precio, id_categoria, id_marca) VALUES(:serial, :producto, :descripcion, :cantidad, :precio, :categoria, :marca)');
@@ -21,15 +23,28 @@
     $agregar->bindParam(':precio', $precio);
     $agregar->bindParam(':categoria', $id_categoria);
     $agregar->bindParam(':marca', $id_marca);
+    $agregar->execute();
 
-    if ($agregar->execute()) {
+    $idProducto=$DB_con->lastInsertId();
+
+    $compra=$DB_con->prepare('INSERT INTO compra(id_proveedor, id_producto, cantidad, precio, total) VALUES(:proveedor, :producto, :cantidad, :precio, :total)');
+    $compra->bindParam(':proveedor', $id_proveedor);
+    $compra->bindParam(':producto', $idProducto);
+    $compra->bindParam(':cantidad', $cantidad);
+    $compra->bindParam(':precio', $precio);
+    $compra->bindParam(':total', $total);
+
+    if ($compra->execute()) {
         echo '<h2> Registro Correcto </h2>';
+        session_start();
+        $_SESSION["producto"]="Registro correcto";
+        header("location:../admin/productos.php");
     } else {
         echo '<h2> Registro incorrecto </h2>';
     }
 
     //Consultamos el serial para obtener el id del producto nuevo
-    $consulta=$DB_con->prepare('SELECT id_producto FROM producto WHERE serial=:serial');
+    /*$consulta=$DB_con->prepare('SELECT id_producto FROM producto WHERE serial=:serial');
     $consulta->bindParam('serial', $serial);
     $consulta->execute();
     $id=$consulta->fetch(PDO::FETCH_ASSOC);
@@ -79,7 +94,5 @@
             $agregar->bindParam(':ruta', $userpic);
             $agregar->execute();
         }
-    }
-
-    echo "<a href='./producto.php'>Regresar</a>";
+    }*/
     

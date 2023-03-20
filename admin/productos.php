@@ -15,6 +15,10 @@ $consulta2 = $DB_con->prepare('SELECT * FROM marca');
 $consulta2->execute();
 $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
 
+//consultamos para obtener los proveedores
+$consulta3 = $DB_con->prepare('SELECT * FROM proveedor');
+$consulta3->execute();
+$proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +33,7 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
     <!-- iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Productos</title>
 </head>
 
@@ -68,8 +73,10 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                     Agregar Producto
                                 </div>
                                 <div class="p-3">
-                                    <form class="w-full">
+                                    <form class="w-full" method="post" action="../productos/agregarProducto.php">
                                         <div class="flex flex-wrap -mx-3 mb-6">
+
+                                            <!--Campo de serial-->
                                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                                 <label
                                                     class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
@@ -81,6 +88,8 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                                     id="serial" type="text" placeholder="Ingrese el serial"
                                                     name="serial">
                                             </div>
+
+                                            <!--Campo de producto-->
                                             <div class="w-full md:w-1/2 px-3">
                                                 <label
                                                     class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
@@ -94,6 +103,8 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap -mx-3 mb-6">
+
+                                            <!--Campo de descripción-->
                                             <div class="w-full px-3">
                                                 <label
                                                     class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
@@ -106,6 +117,8 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap -mx-3 mb-2">
+
+                                            <!--Campo de cantidad-->
                                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                                 <label
                                                     class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
@@ -117,6 +130,8 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                                     id="cantidad" type="number" name="cantidad"
                                                     placeholder="Cantidad del producto">
                                             </div>
+
+                                            <!--Campo de precio-->
                                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                                 <label
                                                     class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
@@ -128,6 +143,8 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                                     id="precio" type="text" name="precio"
                                                     placeholder="Precio del producto">
                                             </div>
+
+                                            <!--Campo de categoria-->
                                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                                 <label
                                                     class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
@@ -137,7 +154,7 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                                 <div class="relative">
                                                     <select
                                                         class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                        id="grid-state">
+                                                        id="grid-state" name="categoria">
                                                         <option value="">Seleccione una opción</option>
                                                         <?php
                                                         foreach ($categorias as $key => $categoria) { //Agregamos las categorias a la lista desplegable
@@ -162,6 +179,8 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap -mx-3 mb-2">
+
+                                            <!--Campo de marca-->
                                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                                 <label
                                                     class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
@@ -171,13 +190,46 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                                 <div class="relative">
                                                     <select
                                                         class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                        id="grid-state">
+                                                        id="grid-state" name="marca">
                                                         <option value="">Seleccione una opción</option>
                                                         <?php
                                                         foreach ($marcas as $key => $marca) {
                                                         ?>
                                                         <option value="<?php echo $marca["id_marca"] ?>">
                                                             <?php echo $marca["marca"] ?></option>
+
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                    <div
+                                                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
+                                                        <svg class="fill-current h-4 w-4"
+                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                            <path
+                                                                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--Campo de proveedor-->
+                                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                                <label
+                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
+                                                    for="grid-state">
+                                                    Elegir Un proveedor
+                                                </label>
+                                                <div class="relative">
+                                                    <select
+                                                        class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                                                        id="grid-state" name="proveedor">
+                                                        <option value="">Seleccione una opción</option>
+                                                        <?php
+                                                        foreach ($proveedores as $key => $proveedor) {
+                                                        ?>
+                                                        <option value="<?php echo $proveedor["id_proveedor"] ?>">
+                                                            <?php echo $proveedor["proveedor"] ?></option>
 
                                                         <?php
                                                         }
@@ -223,7 +275,8 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                         </label>
                                         <input
                                             class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
-                                            id="grid-first-name" type="file" placeholder="Ingrese el serial">
+                                            id="grid-first-name" type="file" name="imagen[]" accept="image/*" multiple="multiple" placeholder="Ingrese el serial">
+                                            <button type="button" id="agregar_mas">+</button>
                                     </div>
                             </div>
                             </form>
@@ -243,3 +296,15 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
 </body>
 
 </html>
+<?php
+if (isset($_SESSION['producto'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Producto agregado'
+        });
+    </script>";
+    unset($_SESSION['producto']);
+}
+?>
