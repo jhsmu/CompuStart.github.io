@@ -35,6 +35,10 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Productos</title>
+    
+    <script src="../js/validaciones.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
+
 </head>
 
 <body>
@@ -85,7 +89,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 </label>
                                                 <input
                                                     class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
-                                                    id="serial" type="text" placeholder="Ingrese el serial"
+                                                    id="serial" type="text" placeholder="Ingrese el serial" required onchange="Serial1()"
                                                     name="serial">
                                             </div>
 
@@ -98,7 +102,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 </label>
                                                 <input
                                                     class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
-                                                    id="nombre" type="text" name="producto"
+                                                    id="nombre" type="text" name="producto" required onchange="NombresNumeros()"
                                                     placeholder="Ingrese el nombre del producto">
                                             </div>
                                         </div>
@@ -113,7 +117,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 </label>
                                                 <textarea
                                                     class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                    id="descripcion" rows="4" name="descripcion"></textarea>
+                                                    id="descripcion" rows="4" name="descripcion"></textarea required onchange="Descriptions1()">
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap -mx-3 mb-2">
@@ -127,7 +131,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 </label>
                                                 <input
                                                     class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                    id="cantidad" type="number" name="cantidad"
+                                                    id="cantidad" type="number" name="cantidad" required onchange="Cantidad123()"
                                                     placeholder="Cantidad del producto">
                                             </div>
 
@@ -140,7 +144,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 </label>
                                                 <input
                                                     class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                    id="precio" type="text" name="precio"
+                                                    id="precio" type="text" name="precio" required onchange="Valores1234()"
                                                     placeholder="Precio del producto">
                                             </div>
 
@@ -155,7 +159,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                     <select
                                                         class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
                                                         id="grid-state" name="categoria">
-                                                        <option value="">Seleccione una opción</option>
+                                                        <option value="">Seleccione una opción</option required> 
                                                         <?php
                                                         foreach ($categorias as $key => $categoria) { //Agregamos las categorias a la lista desplegable
                                                         ?>
@@ -190,7 +194,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 <div class="relative">
                                                     <select
                                                         class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                        id="grid-state" name="marca">
+                                                        id="grid-state" name="marca" required>
                                                         <option value="">Seleccione una opción</option>
                                                         <?php
                                                         foreach ($marcas as $key => $marca) {
