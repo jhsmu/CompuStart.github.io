@@ -1,36 +1,36 @@
 <?php
-    session_start();
+session_start();
 
-    error_reporting(~E_NOTICE); // avoid notice
+error_reporting(~E_NOTICE); // avoid notice
 
-    require('../database/basededatos.php');
+require('../database/basededatos.php');
 
-    $db = new Database();
-    $connection = $db->connect(); //Creamos la conexión a la BD
+$db = new Database();
+$connection = $db->connect(); //Creamos la conexión a la BD
 
-    // Cuando la conexión está establecida...
-    $query = $connection->prepare("SELECT * FROM producto"); // Traduzco mi petición
-    $query->execute(); //Ejecuto mi petición
+// Cuando la conexión está establecida...
+$query = $connection->prepare("SELECT * FROM producto"); // Traduzco mi petición
+$query->execute(); //Ejecuto mi petición
 
-    $productos = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
+$productos = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
 
 
-    require_once '../database/conexion.php';
+require_once '../database/conexion.php';
 
-    //Consultamos para obtener las categorias
-    $consulta1 = $DB_con->prepare('SELECT * FROM categoria');
-    $consulta1->execute();
-    $categorias = $consulta1->fetchAll(PDO::FETCH_ASSOC);
+//Consultamos para obtener las categorias
+$consulta1 = $DB_con->prepare('SELECT * FROM categoria');
+$consulta1->execute();
+$categorias = $consulta1->fetchAll(PDO::FETCH_ASSOC);
 
-    //consultamos para obtener las marcas
-    $consulta2 = $DB_con->prepare('SELECT * FROM marca');
-    $consulta2->execute();
-    $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
+//consultamos para obtener las marcas
+$consulta2 = $DB_con->prepare('SELECT * FROM marca');
+$consulta2->execute();
+$marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
 
-    //consultamos para obtener los proveedores
-    $consulta3 = $DB_con->prepare('SELECT * FROM proveedor');
-    $consulta3->execute();
-    $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
+//consultamos para obtener los proveedores
+$consulta3 = $DB_con->prepare('SELECT * FROM proveedor');
+$consulta3->execute();
+$proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,32 +48,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Productos</title>
 </head>
-
-<?php
-    include '../database/conexion.php';
-
-    $busqueda = null;
-    if (isset($_POST["busqueda"])) {
-        $busqueda = $_POST["busqueda"];
-        $consulta = "SELECT * FROM producto WHERE id_producto
-        OR producto LIKE '%$busqueda%'
-        OR cantidad LIKE '%$busqueda%'
-        OR precio LIKE '%$busqueda%'";
-        }
-
-
-    $sentencia = $DB_con->prepare($consulta, [
-    PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
-    ]);
-
-    if ($busqueda === null) {
-        $sentencia->execute();
-    } else {
-        $parametros = ["%$busqueda%"];
-        $sentencia->execute();
-    }
-
-?>
 <body>
     <!--Container -->
     <div class="mx-auto bg-grey-lightest">
@@ -173,7 +147,7 @@
                         </div>
                     </div>
                     <!-- Centered With a Form Modal -->
-                    <div id='centeredFormModal' class="modal-wrapper">
+                    <div id='centeredFormModal' class="modal-wrapper w-full md:w1/1">
                         <div class="overlay close-modal"></div>
                             <div class="modal modal-centered">
                                 <div class="modal-content shadow-lg p-5">
@@ -246,11 +220,11 @@
                                                             }
                                                         ?>
                                                     </select>
-                                                </div>
-                                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
+                                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
                                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                                         <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                                     </svg>
+                                                </div>
                                                 </div>
                                             </div>
                                             <div class="w-full md:w-1/2 px-3">
@@ -270,15 +244,16 @@
                                                             }
                                                         ?>
                                                     </select>
-                                                </div>
-                                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
+                                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
                                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                                         <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                                     </svg>
                                                 </div>
+                                                </div>
+
                                             </div>
-                                            <div class="flex flex-wrap -mx-3 mb-2">
-                                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                        
+                                            <div class="w-full md:w-1/1 px-3 mt-5">
                                                 <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-city">
                                                     Elige un Proveedor
                                                 </label>
@@ -293,15 +268,24 @@
                                                         <?php
                                                             }
                                                         ?>
-                                                    </select>                        
+                                                    </select>    
+                                                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
+                                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                                    </svg>
+                                                </div>                    
                                                 </div>
-                                        </div>
-                                        <div class="mt-5">
+                                             </div>
+                                        
+                                        
+                                        <div class="mt-8 ml-32">
                                             <button class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'> Agregar</button>
                                             <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
                                                 Close
                                             </span>
                                         </div>
+                                        
+                                       
                                     </form>
                                 </div>
                             </div>
