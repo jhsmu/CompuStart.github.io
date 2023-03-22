@@ -131,7 +131,7 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
                                 <figure>
                                     <?php //Este script sirve para poner solo la primera imagen
                                         foreach ($imagenes as $key => $imagen) {
-                                            if(($producto['id_producto']==$imagen['producto_id'])and($producto['id_producto']==$ayudante)){
+                                            if(($productos[$i]['id_producto']==$imagen['producto_id'])and($productos[$i]['id_producto']==$ayudante)){
                                                 $ayudante--;
                                     ?>
                                     <img src="../imagenes/<?php echo $imagen['url'] ?>" height="200px" class="card-img-top" alt="...">                                
@@ -142,8 +142,8 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
                                 ?>
                                 </figure>
                                 <div class="contenido">
-                                    <h5 class="card-title"><?php echo $producto['producto'] ?></h5>
-                                    <p><?php echo $producto['descripcion_breve'] ?></p>
+                                    <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
+                                    <p><?php echo $productos[$i]['descripcion_breve'] ?></p>
                                     <a href="">Agregar</a>
                                     <a href="" class="ver">Ver mas</a>
                                 </div>
@@ -190,7 +190,7 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
                                 <figure>
                                     <?php //Este script sirve para poner solo la primera imagen
                                         foreach ($imagenes as $key => $imagen) {
-                                            if(($producto['id_producto']==$imagen['producto_id'])and($producto['id_producto']==$ayudante)){
+                                            if(($productos[$i]['id_producto']==$imagen['producto_id'])and($productos[$i]['id_producto']==$ayudante)){
                                                 $ayudante--;
                                     ?>
                                     <img src="../imagenes/<?php echo $imagen['url'] ?>" height="200px" class="card-img-top" alt="...">                                
@@ -201,8 +201,8 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
                                 ?>
                                 </figure>
                                 <div class="contenido">
-                                    <h5 class="card-title"><?php echo $producto['producto'] ?></h5>
-                                    <p><?php echo $producto['descripcion_breve'] ?></p>
+                                    <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
+                                    <p><?php echo $productos[$i]['descripcion_breve'] ?></p>
                                     <a href="">Agregar</a>
                                     <a href="" class="ver">Ver mas</a>
                                 </div>

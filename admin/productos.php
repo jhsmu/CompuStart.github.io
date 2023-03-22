@@ -1,36 +1,36 @@
 <?php
-session_start();
+    session_start();
 
-error_reporting(~E_NOTICE); // avoid notice
+    error_reporting(~E_NOTICE); // avoid notice
 
-require('../database/basededatos.php');
+    require('../database/basededatos.php');
 
-$db = new Database();
-$connection = $db->connect(); //Creamos la conexión a la BD
+    $db = new Database();
+    $connection = $db->connect(); //Creamos la conexión a la BD
 
-// Cuando la conexión está establecida...
-$query = $connection->prepare("SELECT * FROM producto"); // Traduzco mi petición
-$query->execute(); //Ejecuto mi petición
+    // Cuando la conexión está establecida...
+    $query = $connection->prepare("SELECT * FROM producto"); // Traduzco mi petición
+    $query->execute(); //Ejecuto mi petición
 
-$productos = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
+    $productos = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
 
 
-require_once '../database/conexion.php';
+    require_once '../database/conexion.php';
 
-//Consultamos para obtener las categorias
-$consulta1 = $DB_con->prepare('SELECT * FROM categoria');
-$consulta1->execute();
-$categorias = $consulta1->fetchAll(PDO::FETCH_ASSOC);
+    //Consultamos para obtener las categorias
+    $consulta1 = $DB_con->prepare('SELECT * FROM categoria');
+    $consulta1->execute();
+    $categorias = $consulta1->fetchAll(PDO::FETCH_ASSOC);
 
-//consultamos para obtener las marcas
-$consulta2 = $DB_con->prepare('SELECT * FROM marca');
-$consulta2->execute();
-$marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
+    //consultamos para obtener las marcas
+    $consulta2 = $DB_con->prepare('SELECT * FROM marca');
+    $consulta2->execute();
+    $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
 
-//consultamos para obtener los proveedores
-$consulta3 = $DB_con->prepare('SELECT * FROM proveedor');
-$consulta3->execute();
-$proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
+    //consultamos para obtener los proveedores
+    $consulta3 = $DB_con->prepare('SELECT * FROM proveedor');
+    $consulta3->execute();
+    $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,30 +50,28 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <?php
- include '../database/conexion.php';
+    include '../database/conexion.php';
 
-$busqueda = null;
-if (isset($_POST["busqueda"])) {
-$busqueda = $_POST["busqueda"];
-$consulta = "SELECT * FROM producto WHERE id_producto
- OR producto LIKE '%$busqueda%'
-  OR cantidad LIKE '%$busqueda%'
-  OR precio LIKE '%$busqueda%'";
-}
+    $busqueda = null;
+    if (isset($_POST["busqueda"])) {
+        $busqueda = $_POST["busqueda"];
+        $consulta = "SELECT * FROM producto WHERE id_producto
+        OR producto LIKE '%$busqueda%'
+        OR cantidad LIKE '%$busqueda%'
+        OR precio LIKE '%$busqueda%'";
+        }
 
 
-$sentencia = $DB_con->prepare($consulta, [
-PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
-]);
+    $sentencia = $DB_con->prepare($consulta, [
+    PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
+    ]);
 
-if ($busqueda === null) {
-
-$sentencia->execute();
-} else {
-
-$parametros = ["%$busqueda%"];
-$sentencia->execute();
-}
+    if ($busqueda === null) {
+        $sentencia->execute();
+    } else {
+        $parametros = ["%$busqueda%"];
+        $sentencia->execute();
+    }
 
 ?>
 <body>

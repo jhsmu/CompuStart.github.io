@@ -133,7 +133,7 @@
                     </figure>
                     <div class="card-body">
                         <h5 class="card-title"><strong><?php echo $productos[$i]['producto'] ?></strong></h5>
-                        <p style="text-align: justify;"><?php echo $producto['descripcion_breve'] ?></p>
+                        <p style="text-align: justify;"><?php echo $productos[$i]['descripcion_breve'] ?></p>
                         <a  class="btn btn-warning" style="color:#fff;">Agregar</a>
                         <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn btn-primary">Ver más</a>
                     </div>
@@ -188,7 +188,7 @@
                     </figure>
                     <div class="card-body">
                         <h5 class="card-title"><strong><?php echo $productos[$i]['producto'] ?></strong></h5>
-                        <p style="text-align: justify;"><?php echo $producto['descripcion_breve'] ?></p>
+                        <p style="text-align: justify;"><?php echo $productos[$i]['descripcion_breve'] ?></p>
                         <a  class="btn btn-warning" style="color:#fff;">Agregar</a>
                         <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
                     </div>

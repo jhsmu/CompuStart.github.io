@@ -1,7 +1,7 @@
 <?php
 session_start();
     include("./editar/conexion.php");
-    $id = $_GET["id_cliente"];
+    $id = $_SESSION["id_usuario"];
     error_reporting(0);
     
 ?>
@@ -44,8 +44,42 @@ session_start();
             $telefono=$_POST['telefono'];
             $email=$_POST['email'];
             $contrasena=$_POST['contrasena'];
-            $imagen=$_FILES['imagen'];
-
+            $image=$_POST['img'];
+            
+            $imgFile = $_FILES['imagen']['name'];
+            $tmp_dir = $_FILES['imagen']['tmp_name'];
+            $imgSize = $_FILES['imagen']['size'];
+				
+            if($imgFile)
+            {
+                $upload_dir = 'imagenCliente/'; // upload directory	
+                $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
+                $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+                $userpic = $imgFile;
+                if(in_array($imgExt, $valid_extensions))
+                {			
+                    if($imgSize < 1000000)
+                    {
+                        unlink($upload_dir.$_POST['img']);
+                        move_uploaded_file($tmp_dir,$upload_dir.$userpic);
+                    }
+                    else
+                    {
+                        $errMSG = "Su archivo es demasiado grande mayor a 1MB";
+                    }
+                }
+                else
+                {
+                    $errMSG = "Solo archivos JPG, JPEG, PNG & GIF .";		
+                }	
+            }
+            else
+            {
+                // if no image selected the old image remain as it is.
+                $userpic = $image; // old image from database
+            }	
+					
+	
             //update
             $sql="update cliente set nombre='".$nombre."',
             apellido='".$apellido."',
@@ -53,7 +87,7 @@ session_start();
             telefono='".$telefono."',
             email='".$email."',
             contrasenia='".$contrasena."',
-            imagen='".$imagen."'
+            imagen='".$imgFile."'
             where id='".$id."'";
 
             $resultado=mysqli_query($conexion,$sql);
@@ -75,7 +109,7 @@ session_start();
 
         } else{
             //no le ha dado al botón enviar
-            $id=$_GET['id_cliente'];
+            $id;
             $sql="select *from cliente where id='".$id."'";
             $resultado=mysqli_query($conexion,$sql);
 
@@ -95,7 +129,7 @@ session_start();
 
 <div class="container">
         <div class="form">
-            <form action="<?=$_SERVER["PHP_SELF"]?>" method="post">
+            <form action="<?=$_SERVER["PHP_SELF"]?>" method="post" enctype="multipart/form-data">
                 <div class="form-header">
                     <div class="title">
                         <h1>Editar Perfil</h1>
@@ -132,10 +166,12 @@ session_start();
                     </div>
                     <input type="hidden" name="id" 
                     value="<?php echo $id;?>">
+                    <input type="text" name="img" 
+                    value="<?php echo $imagen;?>">
                 </div>
 
                 <div class="continue-button">
-                    <button type="submit" name="enviar" value="ACTUALIZAR"><a href="#">Actualizar</a></button>
+                    <button type="submit" name="enviar" value="ACTUALIZAR">Actualizar</button>
                     <?php echo "<button class='elimina'><a href='./editar/eliminar_cliente.php?id=".$fila['id']."' onclick='return confirmar()'>Eliminar cuenta</a></button>";?>
                 </div>
             </form>
