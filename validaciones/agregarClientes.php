@@ -12,6 +12,7 @@ if (isset($_POST["crear"])) {
     $apellido = $_POST["apellido"];
     $direccion = htmlentities($_POST["direccion"]);
     $telefono = $_POST["telefono"];
+    $estado=1;
     $contrasena = (htmlentities($_POST["clave"]));
 
     foreach ($emails as $key => $correo) {
@@ -28,13 +29,14 @@ if (isset($_POST["crear"])) {
 
 
     if (isset($contrasena) and isset($email)) {
-        $agregar = $DB_con->prepare('INSERT INTO cliente(apellido, nombre, email, direccion, telefono, contrasenia) VALUES(:apellido, :nombre, :email, :direccion, :telefono, :contrasenia)');
+        $agregar = $DB_con->prepare('INSERT INTO cliente(apellido, nombre, email, direccion, telefono, contrasenia, estado) VALUES(:apellido, :nombre, :email, :direccion, :telefono, :contrasenia, :estado)');
         $agregar->bindParam(':apellido', $apellido);
         $agregar->bindParam(':nombre', $nombre);
         $agregar->bindParam(':email', $email);
         $agregar->bindParam(':direccion', $direccion);
         $agregar->bindParam(':telefono', $telefono);
         $agregar->bindParam(':contrasenia', $contrasena);
+        $agregar->bindParam(':estado', $estado);
 
         try {
             if ($agregar->execute()) {

@@ -17,7 +17,7 @@
     if ($guardar) {
         session_start();
         $_SESSION['proveedor'] = 'registro';
-        header("location: ../admin/actualizaciones.php");
+        header("location: ../admin/proveedor.php");
         
     } else {
         echo "<script> alert 'Error al crear el proveedor' </script>";

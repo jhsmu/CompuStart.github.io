@@ -27,10 +27,16 @@
             $verificacion=$consultar->fetch(PDO::FETCH_ASSOC);
 
             if ($email_i==$verificacion["email"] and $contrasena==$verificacion["contrasenia"] ) {
+                if ($verificacion['estado']==0) {
+                    session_start();
+                    $_SESSION['alerta']="Alerta";
+                    header('location:../login-registro.php');
+                } else {
                     session_start();
                     $_SESSION["usuario"]=$verificacion["nombre"];
                     $_SESSION["id_usuario"]=$verificacion["id"];
                     header("location: ../inicio.php");
+                }
             }
             else {
                 session_start();

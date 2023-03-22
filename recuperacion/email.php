@@ -59,7 +59,7 @@
     <h1>Ingrese su email</h1>
     <br>
     <form action="" method="post">
-        <input type="email" name="email" id="">
+        <input type="email" name="email" id="email">
         <button type="submit" name="enviar">Enviar</button>
     </form>
 </body>
