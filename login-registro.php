@@ -114,7 +114,10 @@ if(isset($_SESSION["Error al registrar"])){
     <script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
 "></script>
-    <?php
+
+</body>
+</html>
+<?php
     if (isset($_SESSION["registro"])) {
         echo ('<script>Swal.fire({
             title: "Registro exitoso",
@@ -162,7 +165,14 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
     } else {
         session_destroy();
     }
-    ?>
 
-</body>
-</html>
+    if (isset($_SESSION["alerta"])) {
+        echo ('<script>Swal.fire({
+            title: "Actualmente tú usuario se encuentra inhabilitado",
+            text: "Para poder ingresar otra vez, hablar con soporte técnico",
+            icon: "info" 
+        });
+        </script>');
+        session_destroy();
+    }
+    ?>
