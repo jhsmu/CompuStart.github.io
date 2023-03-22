@@ -1,6 +1,38 @@
 <?php
 session_start();
-  error_reporting( ~E_NOTICE ); // avoid notice
+error_reporting( ~E_NOTICE ); // avoid notice
+require_once './database/conexion.php';
+    include './Carro/carrito.php';
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- iconos en fontawesome -->
+    <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
+    <!-- css cuerpo -->
+    <link rel="stylesheet" href="./css/style_cuerpo.css">
+    <link rel="stylesheet" href="./css/style.css">
+        <!-- css footer y el header -->
+        <link rel="stylesheet" href="./css/footer-header.css">
+        <style>
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital@1&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@500&family=PT+Sans:ital@1&family=Permanent+Marker&display=swap');
+  </style>
+    <title>Compu Start</title>
+</head>
+<body>
+<header>
+  <?php include("./componentes/headerinicio.php"); ?>
+</header>
+<?php
+
 	
 	require_once './database/conexion.php';
   if(isset($_GET['id'])){
@@ -20,30 +52,11 @@ session_start();
   }  
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- css bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- iconos en fontawesome -->
-    <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
-    <!-- css cuerpo -->
-    <link rel="stylesheet" href="./css/style_cuerpo.css">
-    <link rel="stylesheet" href="./css/style.css">
-        <!-- css footer y el header -->
-        <link rel="stylesheet" href="./css/footer-header.css">
-    <title>Compu Start</title>
-</head>
-<body>
-<header>
-  <?php include("./componentes/headerinicio.php"); ?>
-</header>
 <div class="container">
-    <h2><?php echo $categoria['categoria'] ?></h2>
+  <br>
+<div class="texto">
+    <h2 style="text-align: center;"><?php echo $categoria['categoria'] ?></h2>
+</div>
         <div class="row ">
  <!-- card 1 -->
       <?php
@@ -66,8 +79,9 @@ session_start();
                       }
                   ?>
                     <div class="card-body">
-                      <h5 class="card-title"><?php echo $producto['producto'] ?></h5>
-                      <p><?php echo $producto['descripcion_breve']?></p>
+                      <h5 class="card-title"><strong><?php echo $producto['producto'] ?></strong></h5>
+                      <p style="text-align: justify;"><?php echo $producto['descripcion_breve']?></p>
+                      <a  class="btn btn-warning" style="color:#fff;">Agregar</a>
                       <a href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver más</a>
                     </div>
                 </div>
@@ -105,7 +119,7 @@ session_start();
               if($key>=3){
               
         ?>
-            <div class="col-md-4 mt-md-4">
+            <div class="col-md-4 mt-md-4 mb-md-4">
                 <div class="card">
 
                   <?php
@@ -122,8 +136,9 @@ session_start();
                   ?>
                     
                     <div class="card-body">
-                      <h5 class="card-title"><?php echo $producto['producto'] ?></h5>
-                      <p><?php echo $producto['descripcion_breve']?></p>
+                      <h5 class="card-title"><strong><?php echo $producto['producto'] ?></strong></h5>
+                      <p style="text-align: justify;"><?php echo $producto['descripcion_breve']?></p>
+                      <a  class="btn btn-warning" style="color:#fff;">Agregar</a>
                       <a href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver más</a>
                       <div class="col-md-6">
                       </div>

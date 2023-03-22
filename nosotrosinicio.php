@@ -9,13 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- css bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <!-- iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <!-- css footer y el header -->
     <link rel="stylesheet" href="./css/footer-header.css">
     <!-- css cuerpo -->
-    <link rel="stylesheet" href="./css/style_cuerpo.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/stylecuerpo.css">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital@1&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@500&family=PT+Sans:ital@1&family=Permanent+Marker&display=swap');
+  </style>
+    
     <title>Document</title>
 </head>
 <body>
@@ -62,15 +67,149 @@
             </div>
         </div>
     </div>
+    
+<div class="container mt-4 mb-4">
+  <h3 style="text-align: center; border-top:3px solid #111; ">Desarrolladores</h3>
+</div>
+<div class="container">
 
+      <section class="swiper mySwiper">
+        <!-- desarrollador 1 -->
+      <div class="swiper-wrapper">
+      <div class="card_cont swiper-slide">
+        <div class="card_image ">
+          <img src="./img/desarrolladores/yo.jpeg" alt="">
+        </div>
+        <div class="card_contenido">
+          <span class="card_titulo">Desarrollador Frontend</span>
+          <span class="card_nombre">Jhonatan Mena</span>
+          <p class="card_texto">
+            Estudiante de programación en el centro de servicio y gestión empresarial SENA</p>
+        </div>
+      </div>
+<!-- desarrollador 2 -->
+      <div class="card_cont swiper-slide">
+        <div class="card_image ">
+          <img src="./img/avatar.png" alt="">
+        </div>
+        <div class="card_contenido">
+          <span class="card_titulo">Desarrollador Frontend</span>
+          <span class="card_nombre"> Santiago Naranjo</span>
+          <p class="card_texto">
+          Estudiante de programación en el centro de servicio y gestión empresarial SENA
+        </p>
+        </div>
+      </div>
+<!-- desarrollador 3 -->
+      <div class="card_cont swiper-slide">
+        <div class="card_image ">
+          <img src="./img/avatar.png" alt="">
+        </div>
+        <div class="card_contenido">
+          <span class="card_titulo">Desarrollador Frontend</span>
+          <span class="card_nombre"> Santiago Quiñones</span>
+          <p class="card_texto">
+          Estudiante de programación en el centro de servicio y gestión empresarial SENA
+        </p>
+        </div>
+      </div>
+      <!-- desarrollador 4 -->
+      <div class="card_cont swiper-slide">
+        <div class="card_image ">
+          <img src="./img/desarrolladores/frey.jpeg" alt="">
+        </div>
+        <div class="card_contenido">
+          <span class="card_titulo">Desarrollador Backend</span>
+          <span class="card_nombre"> Freyme Sepulveda</span>
+          <p class="card_texto">
+          Estudiante de programación en el centro de servicio y gestión empresarial SENA
+        </p>
+        </div>
+      </div>
+      <!-- desarrollador 5 -->
+      <div class="card_cont swiper-slide">
+        <div class="card_image ">
+          <img src="./img/desarrolladores/lean.webp" alt="">
+        </div>
+        <div class="card_contenido">
+          <span class="card_titulo">Desarrollador Backend</span>
+          <span class="card_nombre"> Leandro Pastor</span>
+          <p class="card_texto">
+          Estudiante de programación en el centro de servicio y gestión empresarial SENA
+        </p>
+        </div>
+      </div>
+      <!-- desarrollador 6 -->
+      <div class="card_cont swiper-slide">
+        <div class="card_image ">
+          <img src="./img/desarrolladores/zapata.avif" alt="">
+        </div>
+        <div class="card_contenido">
+          <span class="card_titulo">Validaciones</span>
+          <span class="card_nombre"> Miguel Zapata</span>
+          <p class="card_texto">
+          Estudiante de programación en el centro de servicio y gestión empresarial SENA
+        </p>
+        </div>
+      </div>
+      <!-- desarrollador 7 -->
+      <div class="card_cont swiper-slide">
+        <div class="card_image ">
+          <img src="./img/desarrolladores/oswalus.jpeg" alt="">
+        </div>
+        <div class="card_contenido">
+          <span class="card_titulo">Gestor De Base de Datos</span>
+          <span class="card_nombre"> Oswaldo Natera</span>
+          <p class="card_texto">
+          Estudiante de programación en el centro de servicio y gestión empresarial SENA
+        </p>
+        </div>
+      </div>
+      <!-- desarrollador 8 -->
+      <div class="card_cont swiper-slide">
+        <div class="card_image ">
+          <img src="./img/avatar.png" alt="">
+        </div>
+        <div class="card_contenido">
+          <span class="card_titulo">Gestor De Base de Datos</span>
+          <span class="card_nombre"> Miguel Angel Duque Cuervo</span>
+          <p class="card_texto">
+          Estudiante de programación en el centro de servicio y gestión empresarial SENA
+        </p>
+        </div>
+      </div>
 
+      </div>
+        </section>
+</div>
 
     <!-- Pie de pagina -->
     <footer>
         <?php include("./componentes/footer.php")?>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 300,
+      modifier: 1,
+      slideShadows: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
+  });
+</script>
 </body>
 </html>

@@ -29,6 +29,13 @@
     <!-- css cuerpo -->
     <link rel="stylesheet" href="./css/style_cuerpo.css">
     <link rel="stylesheet" href="./css/style.css">
+    <!-- link de Sweetalert -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+  @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital@1&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@500&family=PT+Sans:ital@1&family=Permanent+Marker&display=swap');
+</style>
     <title>Compu_Star</title>
 </head>
 
@@ -64,8 +71,9 @@
                         ?>
                     </figure>
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $producto['producto'] ?></h5>
-                        <p><?php echo $producto['descripcion_breve'] ?></p>
+                        <h5 class="card-title"><strong><?php echo $producto['producto'] ?></strong></h5>
+                        <p style="text-align: justify;"><?php echo $producto['descripcion_breve'] ?></p>
+                        <a  class="btn btn-warning" style="color:#fff;">Agregar</a>
                         <a href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
                     </div>
                 </div>
@@ -124,8 +132,9 @@
                         ?>
                     </figure>
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
-                        <p><?php echo $producto['descripcion_breve'] ?></p>
+                        <h5 class="card-title"><strong><?php echo $productos[$i]['producto'] ?></strong></h5>
+                        <p style="text-align: justify;"><?php echo $producto['descripcion_breve'] ?></p>
+                        <a  class="btn btn-warning" style="color:#fff;">Agregar</a>
                         <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn btn-primary">Ver más</a>
                     </div>
                 </div>
@@ -178,8 +187,9 @@
                         ?>
                     </figure>
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
-                        <p><?php echo $producto['descripcion_breve'] ?></p>
+                        <h5 class="card-title"><strong><?php echo $productos[$i]['producto'] ?></strong></h5>
+                        <p style="text-align: justify;"><?php echo $producto['descripcion_breve'] ?></p>
+                        <a  class="btn btn-warning" style="color:#fff;">Agregar</a>
                         <a href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
                     </div>
                 </div>

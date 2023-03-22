@@ -30,6 +30,11 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
     <!-- css cuerpo -->
     <link rel="stylesheet" href="./css/style_cuerpo.css">
     <link rel="stylesheet" href="./css/style.css">
+    
+    <style>
+  @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital@1&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@500&family=PT+Sans:ital@1&family=Permanent+Marker&display=swap');
+</style>
     <title>Compu_Star</title>
 </head>
 
@@ -64,8 +69,9 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
                         ?>
                     </figure>
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $producto['producto'] ?></h5>
-                        <p><?php echo $producto['descripcion_breve'] ?></p>
+                        <h5 class="card-title"><strong><?php echo $producto['producto'] ?></strong></h5>
+                        <p style="text-align: justify;"><?php echo $producto['descripcion_breve'] ?></p>
+                        <a  class="btn btn-warning" style="color:#fff;">Agregar</a>
                         <a href="./descripcion.php?id=<?php echo $producto['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
                     </div>
                 </div>
@@ -84,13 +90,13 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
             <div id="carouselExampleAutoplaying" class="carousel slide mt-3 mb-3" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/4893391_15899281063797455_origin.jpg" height="250px" class="d-block w-100" alt="...">
+                        <img src="./img/carrusel/1.1.jpg" height="250px" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
                         <img src="https://hardzone.es/app/uploads-hardzone.es/2022/02/Intel-vs-AMD-2022.jpg" height="250px" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/Intel_Xeon_Roadmap_Ice_Lake_Sapphire_Rapids_Granite_Rapids_5_2060x1159.png" height="250px" class="d-block w-100" alt="...">
+                        <img src="./img/carrusel/3.1.png" height="250px" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -124,8 +130,9 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
                         ?>
                     </figure>
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
-                        <p><?php echo $producto['descripcion_breve'] ?></p>
+                        <h5 class="card-title"><strong><?php echo $productos[$i]['producto'] ?></strong></h5>
+                        <p style="text-align: justify;"><?php echo $producto['descripcion_breve'] ?></p>
+                        <a  class="btn btn-warning" style="color:#fff;">Agregar</a>
                         <a href="./descripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn btn-primary">Ver más</a>
                     </div>
                 </div>
@@ -178,8 +185,9 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
                         ?>
                     </figure>
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
-                        <p><?php echo $producto['descripcion_breve'] ?></p>
+                        <h5 class="card-title"><strong><?php echo $productos[$i]['producto'] ?></strong></h5>
+                        <p style="text-align: justify;"><?php echo $producto['descripcion_breve'] ?></p>
+                        <a  class="btn btn-warning" style="color:#fff;">Agregar</a>
                         <a href="./descripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>" class="btn btn-primary">Ver mas</a>
                     </div>
                 </div>

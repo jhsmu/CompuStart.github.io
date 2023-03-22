@@ -48,7 +48,7 @@
                 <td width="40%"><?php echo $producto['producto'] ?></td>
                 <td width="15%" class="text-center"><?php echo number_format($producto['precio'],2) ?></td>
                 <td width="20%" class="text-center"><?php echo $producto['cantidad'] ?></td>
-                <td width="20%" class="text-center"><?php echo number_format($producto['precio']*$producto['cantidad'],2) ?></td>
+                <td width="20%" class="text-center">$ <?php echo number_format($producto['precio']*$producto['cantidad'],2) ?></td>
                 <td width="5%">
                     <form action="" method="post">
                         <input type="text" name="id" value="<?php echo $producto['id']; ?>" hidden>

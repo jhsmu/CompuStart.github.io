@@ -101,13 +101,11 @@ session_start();
                         <h1>Editar Perfil</h1>
                     </div>
                 </div>
-
                 <div class="input-group">
                     <div class="input-box">
                         <label for="">Nombres</label>
                         <input type="text" name="nombre" value="<?php echo $nombre;?>">
                     </div>
-
                     <div class="input-box">
                         <label for="">Apellidos</label>
                         <input  type="text" name="apellido" value="<?php echo $apellido;?>">
@@ -116,7 +114,7 @@ session_start();
                         <label for="direccion">Dirección</label>
                         <input id="direccion" type="text" name="direccion" value="<?php echo $direccion;?>">
                     </div>                   
-                     <div class="input-box">
+                    <div class="input-box">
                         <label for="telefono">Teléfono</label>
                         <input id="telefono" type="text" name="telefono" value="<?php echo $telefono;?>">
                     </div>
@@ -124,12 +122,10 @@ session_start();
                         <label for="email">Email</label>
                         <input id="email" type="email" name="email" value="<?php echo $email;?>"">
                     </div>
-
                     <div class="input-box">
                         <label for="password">Contraseña</label>
                         <input id="password" type="password" name="contrasena"value="<?php echo $contrasena;?>">
                     </div>
-
                     <div class="input-box">
                         <label for="">Cambiar Avatar</label>
                         <input type="file" name="imagen">
@@ -139,15 +135,9 @@ session_start();
                 </div>
 
                 <div class="continue-button">
-
                     <button type="submit" name="enviar" value="ACTUALIZAR"><a href="#">Actualizar</a></button>
-
                     <?php echo "<button class='elimina'><a href='./editar/eliminar_cliente.php?id=".$fila['id']."' onclick='return confirmar()'>Eliminar cuenta</a></button>";?>
                 </div>
-            
-        
-        
-
             </form>
         </div>
     </div>  
@@ -156,12 +146,6 @@ session_start();
     }
 ?>
 
-
-
-
-
-
-    
 <footer>
     <?php include("./componentes/footer.php")?>
 </footer>

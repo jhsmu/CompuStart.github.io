@@ -43,6 +43,9 @@ session_start();
     <link rel="stylesheet" href="./css/style_cuerpo.css">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- link de Sweetalert -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Compu_start</title>
 </head>
 
@@ -100,7 +103,7 @@ session_start();
                         <p class="card-text">
                         <h3>Marca </h3><?php echo $marca['marca'] ?></p>
                         <h3>Características</h3>
-                        <p class="card-text"><?php echo $producto['descripcion'] ?></p>
+                        <p class="card-text" style="text-align: justify;"><?php echo $producto['descripcion'] ?></p>
                         <h3 name="precio" id="precio"><?php echo '$'.$producto['precio'] ?></h3>
                         <br>
                         <form action="" method="post">
@@ -146,9 +149,7 @@ session_start();
                                             ;>Atras</a>
                                     </div>
                                     <div class="col-auto">
-
-                                        <p style="color:gray;"><?php echo $producto['cantidad'] ?> Unidades disponibles
-                                        </p>
+                                        <p style="color:gray;"><?php echo $producto['cantidad'] ?> Unidades disponibles</p>
                                     </div>
                                     <?php
                         }

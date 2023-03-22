@@ -5,7 +5,6 @@ error_reporting(0);
 if(isset($_SESSION["Error al registrar"])){
     echo "<h1>". $_SESSION["Error al registrar"]."</h1>";
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +55,7 @@ if(isset($_SESSION["Error al registrar"])){
                         </label>
                     </div>
                     <button name="crear" type="submit" onclick="comprobar1()">Crear</button>
+                    <br><br>
                 </form>
             </div>
 
@@ -73,7 +73,12 @@ if(isset($_SESSION["Error al registrar"])){
                     <input type="email" name="email" placeholder="Correo" required>
                     <input type="password" name="clave_inicio" placeholder="Clave" required>
                     <button name="inicio" type="submit">Iniciar Sesión</button>
-                    <a href="./index.php" class="sesion">Iniciar Sin Cuenta</a>
+                    <div class="iniciar">
+                    <a href="./index.php" >Iniciar Sin Cuenta</a>
+                    </div>
+                    <div class="olvidar">
+                    <a href="./recuperacion/cambio.php">¿Olvidaste tu contraseña?</a>
+                    </div>
                 </form>
             </div>
 
@@ -145,8 +150,19 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
     } else {
         session_destroy();
     }
+
+    if (isset($_SESSION["Sesion_no_ini"])) {
+        echo ('<script>Swal.fire({
+            title: "No has iniciado sesion",
+            text: "Para poder ingresar al carrito, porfavor inicie sesion",
+            icon: "info" 
+        });
+        </script>');
+        session_destroy();
+    } else {
+        session_destroy();
+    }
     ?>
 
 </body>
-
 </html>

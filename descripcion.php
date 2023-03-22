@@ -90,7 +90,7 @@
               <h2 class="card-title" style="margin: 70px 10px ;" name="monitorAOC24" id="nombre"><?php echo $producto['producto'] ?></h2>
               <h3 class="card-text"><?php echo 'Marca: '.$marca['marca'] ?></h3>
               <h3>Características</h3>
-              <p class="card-text"><?php echo $producto['descripcion'] ?></p>
+              <p class="card-text" style="text-align: justify;"><?php echo $producto['descripcion'] ?></p>
               <h3 name="precio" id="precio"><?php echo '$'.$producto['precio'] ?></h3>
               <div class="row">
                     <div class="col-2">
