@@ -1,7 +1,8 @@
 .container {
-    width: 64%;
-    height: 68vh;
+    width: 500%;
+    height: 100vh;
     display: flex;
+    
 }
 
 .form {
@@ -9,7 +10,7 @@
     flex-direction: column;
     justify-content: center;
     background-color: #fff;
-    padding: 2rem;
+    padding: 1rem 3rem ;
 }
 
 .form-header {
@@ -119,12 +120,13 @@
 
 .continue-button button {
     width: 45%;
-    margin-top: 2.5rem;
+    margin-top: 1px;
     border: none;
     background-color: #00235B;
     padding: 0.62rem;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 .continue-button .elimina{
     background: #DF2E38
@@ -166,7 +168,7 @@
         z-index: 5;
         padding-right: 5rem;
         max-height: 10rem;
-        overflow-y: scroll;
+        overflow: auto;
         flex-wrap: nowrap;
     }
     .gender-inputs {

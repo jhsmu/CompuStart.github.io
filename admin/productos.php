@@ -3,6 +3,18 @@ session_start();
 
 error_reporting(~E_NOTICE); // avoid notice
 
+require('../database/basededatos.php');
+
+$db = new Database();
+$connection = $db->connect(); //Creamos la conexión a la BD
+
+// Cuando la conexión está establecida...
+$query = $connection->prepare("SELECT * FROM producto"); // Traduzco mi petición
+$query->execute(); //Ejecuto mi petición
+
+$productos = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
+
+
 require_once '../database/conexion.php';
 
 //Consultamos para obtener las categorias
@@ -35,12 +47,35 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Productos</title>
-    
-    <script src="../js/validaciones.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
-
 </head>
 
+<?php
+ include '../database/conexion.php';
+
+$busqueda = null;
+if (isset($_POST["busqueda"])) {
+$busqueda = $_POST["busqueda"];
+$consulta = "SELECT * FROM producto WHERE id_producto
+ OR producto LIKE '%$busqueda%'
+  OR cantidad LIKE '%$busqueda%'
+  OR precio LIKE '%$busqueda%'";
+}
+
+
+$sentencia = $DB_con->prepare($consulta, [
+PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
+]);
+
+if ($busqueda === null) {
+
+$sentencia->execute();
+} else {
+
+$parametros = ["%$busqueda%"];
+$sentencia->execute();
+}
+
+?>
 <body>
     <!--Container -->
     <div class="mx-auto bg-grey-lightest">
@@ -72,228 +107,213 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                         <!--Grid Form-->
 
                         <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
-                            <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
-                                <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
-                                    Agregar Producto
+                        <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                            <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+                                Lista de Productos
+                                <label class="flex justify-end">
+                                    <button data-modal='centeredFormModal'
+                                                    class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
+                                                    href="">
+                                                    <i class="fa fa-user-plus"></i>
+                                                    </button>
+                                        Agregar Producto
+                                </label>
+                            </div>
+                            <form class="flex items-center" method="POST">   
+                                <label for="simple-search" class="sr-only">Search</label>
+                                <div class="relative w-full mt-5 ml-4">
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                        <svg aria-hidden="true" class="w-5 h-6 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                                    </div>
+                                    <input type="text" name="busqueda" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-10" placeholder="Search" required>
                                 </div>
-                                <div class="p-3">
-                                    <form class="w-full" method="post" action="../productos/agregarProducto.php">
+                                <div class="mt-5 mr-4">
+                                <button type="submit" class="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                    <span class="sr-only">Search</span>
+                                </button>
+                                </div>
+                            </form>
+                            <div class="p-3">
+                                <table class="table-responsive w-full rounded">
+                                    <thead>
+                                        <tr>
+                                            <th class="border w-1/1 px-4 py-2" hidden>Id</th>
+                                            <th class="border w-1/1 px-4 py-2">Serial</th>
+                                            <th class="border w-1/1 px-4 py-1">Producto</th>
+                                            <th class="border w-1/1 px-4 py-2">Cantidad</th>
+                                            <th class="border w-1/1 px-4 py-2">Precio</th>
+                                            <th class="border w-1/1 px-4 py-2">ID_categoria</th>
+                                            <th class="border w-1/1 px-4 py-2">ID_marca</th>
+                                            <th class="border w-1/1 px-4 py-2">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        foreach ($productos as $key => $producto) {
+                                        ?>
+                                            <tr>
+                                                <td class="border px-4 py-2" hidden><?php echo $producto["id_producto"] . "<br>"; ?></td>
+                                                <td class="border px-4 py-2"><?php echo $producto["serial"] . "<br>"; ?></td>
+                                                <td class="border px-4 py-2"><?php echo $producto["producto"] . "<br>"; ?></td>
+                                                <td class="border  px-4 py-2"><?php echo $producto["cantidad"] . "<br>"; ?></td>
+                                                <td class="border w-1/6 px-4 py-2"><?php echo $producto["precio"] . "<br>"; ?></td>
+                                                <td class="border w-1/6 px-4 py-2"><?php echo $producto["id_categoria"] . "<br>"; ?></td>
+                                                <td class="border w-1/6 px-4 py-2"><?php echo $producto["id_marca"] . "<br>"; ?></td>
+                                                <td class="border px-4 py-2">
+                                                    <a class="bg-red-500 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarProducto.php?id=<?php echo $producto["id_producto"]; ?>">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Centered With a Form Modal -->
+                    <div id='centeredFormModal' class="modal-wrapper">
+                        <div class="overlay close-modal"></div>
+                            <div class="modal modal-centered">
+                                <div class="modal-content shadow-lg p-5">
+                                    <div class="border-b p-2 pb-3 pt-0 mb-4">
+                                        <div class="flex justify-between items-center">
+                                            Agregar Producto
+                                            <span class='close-modal cursor-pointer px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200'>
+                                                <i class="fas fa-times text-gray-700"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- Modal content -->
+                                    <form class="w-full" action="../productos/agregarProducto.php" method="post">
                                         <div class="flex flex-wrap -mx-3 mb-6">
-
-                                            <!--Campo de serial-->
                                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                                <label
-                                                    class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
-                                                    for="serial">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
                                                     Serial
                                                 </label>
-                                                <input
-                                                    class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
-                                                    id="serial" type="text" placeholder="Ingrese el serial" required onchange="Serial1()"
-                                                    name="serial">
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="serial" id="serial" type="text" placeholder="Ingrese el serial" required>
                                             </div>
-
-                                            <!--Campo de producto-->
                                             <div class="w-full md:w-1/2 px-3">
-                                                <label
-                                                    class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
-                                                    for="nombre">
-                                                    Nombre del producto
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                                    Nombre del Producto
                                                 </label>
-                                                <input
-                                                    class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
-                                                    id="nombre" type="text" name="producto" required onchange="NombresNumeros()"
-                                                    placeholder="Ingrese el nombre del producto">
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="producto" id="producto" type="text" placeholder="Ingrese el nombre del producto" required>
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap -mx-3 mb-6">
-
-                                            <!--Campo de descripción-->
-                                            <div class="w-full px-3">
-                                                <label
-                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
-                                                    for="descripcion">
-                                                    Descripción
+                                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                    Descripción Breve
                                                 </label>
-                                                <textarea
-                                                    class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                    id="descripcion" rows="4" name="descripcion"></textarea required onchange="Descriptions1()">
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="descripcion_breve" id="descripcion_breve" type="text" placeholder="Ingrese una descripción breve" required>
+                                            </div>
+                                            <div class="w-full md:w-1/2 px-3">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                                Descripción
+                                                </label>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="descripcion" id="descripcion" type="text" placeholder="Ingrese una descripción" required>
                                             </div>
                                         </div>
-                                        <div class="flex flex-wrap -mx-3 mb-2">
-
-                                            <!--Campo de cantidad-->
-                                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                                                <label
-                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
-                                                    for="cantidad">
+                                        <div class="flex flex-wrap -mx-3 mb-6">
+                                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
                                                     Cantidad
                                                 </label>
-                                                <input
-                                                    class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                    id="cantidad" type="number" name="cantidad" required onchange="Cantidad123()"
-                                                    placeholder="Cantidad del producto">
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="cantidad" id="cantidad" type="text" placeholder="Ingrese la cantidad" required>
                                             </div>
-
-                                            <!--Campo de precio-->
-                                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                                                <label
-                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
-                                                    for="precio">
-                                                    Precio
+                                            <div class="w-full md:w-1/2 px-3">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                                Precio
                                                 </label>
-                                                <input
-                                                    class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                    id="precio" type="text" name="precio" required onchange="Valores1234()"
-                                                    placeholder="Precio del producto">
-                                            </div>
-
-                                            <!--Campo de categoria-->
-                                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                                                <label
-                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
-                                                    for="grid-state">
-                                                    Elegir Una Categoría
-                                                </label>
-                                                <div class="relative">
-                                                    <select
-                                                        class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                        id="grid-state" name="categoria">
-                                                        <option value="">Seleccione una opción</option required> 
-                                                        <?php
-                                                        foreach ($categorias as $key => $categoria) { //Agregamos las categorias a la lista desplegable
-                                                        ?>
-
-                                                        <option value="<?php echo $categoria["id_categoria"] ?>">
-                                                            <?php echo $categoria["categoria"] ?></option>
-
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    <div
-                                                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
-                                                        <svg class="fill-current h-4 w-4"
-                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                            <path
-                                                                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                        </svg>
-                                                    </div>
-                                                </div>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="precio" id="precio" type="text" placeholder="Ingrese un precio" required>
                                             </div>
                                         </div>
-                                        <div class="flex flex-wrap -mx-3 mb-2">
-
-                                            <!--Campo de marca-->
-                                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                                                <label
-                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
-                                                    for="grid-state">
-                                                    Elegir Una Marca
+                                        <div class="flex flex-wrap -mx-3 mb-6">
+                                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                    Categoría
+                                                </label>
+                                                <div class="relative">
+                                                    <select class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey" id="grid-state" name="categoria">
+                                                        <option value="">Seleccione una opción</option>
+                                                            <?php
+                                                                foreach ($categorias as $key => $categoria) { //Agregamos las categorias a la lista desplegable
+                                                            ?>
+                                                            <option value="<?php echo $categoria["id_categoria"] ?>">
+                                                            <?php echo $categoria["categoria"] ?></option>
+                                                        <?php
+                                                            }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
+                                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="w-full md:w-1/2 px-3">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                                Marca
                                                 </label>
                                                 <div class="relative">
                                                     <select
-                                                        class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                        id="grid-state" name="marca" required>
+                                                        class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey" id="grid-state" name="marca">
                                                         <option value="">Seleccione una opción</option>
-                                                        <?php
-                                                        foreach ($marcas as $key => $marca) {
-                                                        ?>
+                                                            <?php
+                                                                foreach ($marcas as $key => $marca) {
+                                                            ?>
                                                         <option value="<?php echo $marca["id_marca"] ?>">
                                                             <?php echo $marca["marca"] ?></option>
-
                                                         <?php
-                                                        }
+                                                            }
                                                         ?>
                                                     </select>
-                                                    <div
-                                                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
-                                                        <svg class="fill-current h-4 w-4"
-                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                            <path
-                                                                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                        </svg>
-                                                    </div>
+                                                </div>
+                                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
+                                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                                    </svg>
                                                 </div>
                                             </div>
-
-                                            <!--Campo de proveedor-->
+                                            <div class="flex flex-wrap -mx-3 mb-2">
                                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                                                <label
-                                                    class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
-                                                    for="grid-state">
-                                                    Elegir Un proveedor
+                                                <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-city">
+                                                    Elige un Proveedor
                                                 </label>
                                                 <div class="relative">
-                                                    <select
-                                                        class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                        id="grid-state" name="proveedor">
+                                                    <select class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey" id="grid-state" name="proveedor">
                                                         <option value="">Seleccione una opción</option>
-                                                        <?php
-                                                        foreach ($proveedores as $key => $proveedor) {
-                                                        ?>
+                                                            <?php
+                                                                foreach ($proveedores as $key => $proveedor) {
+                                                            ?>
                                                         <option value="<?php echo $proveedor["id_proveedor"] ?>">
-                                                            <?php echo $proveedor["proveedor"] ?></option>
-
+                                                        <?php echo $proveedor["proveedor"] ?></option>
                                                         <?php
-                                                        }
+                                                            }
                                                         ?>
-                                                    </select>
-                                                    <div
-                                                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
-                                                        <svg class="fill-current h-4 w-4"
-                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                            <path
-                                                                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                        </svg>
-                                                    </div>
+                                                    </select>                        
                                                 </div>
-                                            </div>
                                         </div>
-                                        <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
-                                            <div class="mb-2  rounded shadow-sm w-full md:w-1/1 lg:w-1/3"></div>
-                                            <button
-                                                class="bg-transparent hover:bg-green-500 text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent  rounded-full">
-                                                Agregar
-                                            </button>
+                                        <div class="mt-5">
+                                            <button class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'> Agregar</button>
+                                            <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
+                                                Close
+                                            </span>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <!--/Grid Form-->
                     </div>
-                    <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
-                        <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
-                            <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
-                                Agregar imagen
-                            </div>
-                            <div class="p-3">
-                                <form class="w-full" action="">
-                                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                        <label
-                                            class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
-                                            for="grid-first-name">
-                                            Imagen
-                                        </label>
-                                        <input
-                                            class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
-                                            id="grid-first-name" type="file" name="imagen[]" accept="image/*" multiple="multiple" placeholder="Ingrese el serial">
-                                            <button type="button" id="agregar_mas">+</button>
-                                    </div>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
+                </main>
             </div>
-            </main>
-            <!--/Main-->
         </div>
-
     </div>
-
-    </div>
+</div>
 
     <script src="../js/main.js"></script>
 
@@ -310,5 +330,16 @@ if (isset($_SESSION['producto'])) {
         });
     </script>";
     unset($_SESSION['producto']);
+}
+
+if (isset($_SESSION['actualizar_producto'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Producto Actualizado'
+        });
+    </script>";
+    unset($_SESSION['actualizar_producto']);
 }
 ?>

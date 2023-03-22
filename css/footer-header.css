@@ -66,11 +66,11 @@ body{
 }
 
 .pie-pagina .grupo1 .box figure img {
-    width: 200px;
+    width: 300px;
     border-radius: 100px;
 }
 .box figure img{
-
+width: 250px;
 object-fit: cover;
 }
 .pie-pagina .grupo1 .box h2 {

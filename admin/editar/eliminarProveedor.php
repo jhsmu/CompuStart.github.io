@@ -9,9 +9,9 @@
     $resultado = $consulta->execute([$codigo]);
 
     if ($resultado) {
-        echo "<script languaje='JavaScript'>
-            alert('Los datos fueron eliminados exitosamente');
-            location.assign('../proveedor.php');</script>";
+        session_start();
+        $_SESSION['eliminar_proveedor'] = 'registro';
+        header("location: ../proveedor.php");
     } else {
         echo "<script languaje='JavaScript'>
             alert('Los datos fueron NO se eliminaron');

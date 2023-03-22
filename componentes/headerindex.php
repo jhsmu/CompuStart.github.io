@@ -6,14 +6,14 @@
 ?>
 
 <header>
-        <nav class="navbar navbar-expand-md border-bottom border-primary">
+    <nav class="navbar navbar-expand-md border-bottom border-primary">
         <div class="container-fluid">
             <a href="./index.php" class="navbar-brand">Compu Start</a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target ="#MenuNavegacion">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="MenuNavegacion" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto" id="nav1">
+                <ul class="navbar-nav ms-auto" id="nav1">
                     <li class="nav-item"><a href="./index.php" class="nav-link">Inicio</a></li>
                     <li class="nav-item"><a href="./nosotros.php" class="nav-link">Nosotros</a></li>
                     <li class="nav-item dropdown">
@@ -37,7 +37,7 @@
                             </div> 
                             </div>
                     </li>
-                    <li class="nav-item"><a href="./login-registro.php" class="nav-link">Carrito</a></li>
+                    <li class="nav-item"><a href="./carro/carro.php" class="nav-link">Carrito</a></li>
 
                 </ul>
                 <ul class="navbar-nav ms-auto">
@@ -47,5 +47,12 @@
                 </ul>
             </div>
         </div>
-        </nav>
-        </header> 
+    </nav>
+    <script>
+        function Alerta1(){
+            <?php 
+            ?>
+        }
+    </script>
+</header> 
+

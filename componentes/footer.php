@@ -2,7 +2,7 @@
 <div class="grupo1">
             <div class="box">
                 <figure>
-                    <a href=""><img src="./img/logo/logo.jfif"  alt="Logo Techno Solutions"></a>
+                    <a href=""><img src="./img/logo/3-2.png"  alt="Logo Techno Solutions"></a>
                 </figure>
             </div>
             <div class="box mt-5 pt-5">

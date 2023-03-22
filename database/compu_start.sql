@@ -13,7 +13,8 @@ CREATE TABLE cliente(
     telefono INT(50) NOT NULL,
     email VARCHAR(60) NOT NULL,
     contrasenia VARCHAR(50) NOT NULL,
-    token VARCHAR(45) NULL
+    token VARCHAR(45) NULL,
+    estado BOOLEAN NOT NULL
 );
 
 CREATE TABLE administrador(

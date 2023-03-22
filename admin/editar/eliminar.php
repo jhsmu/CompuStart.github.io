@@ -2,7 +2,7 @@
     $id=$_GET['id'];
     include("conexion.php");
 
-    $sql="delete from cliente where id='".$id."'";
+    $sql="delete from administrador where id='".$id."'";
     $resultado=mysqli_query($conexion,$sql);
 
     if($resultado){

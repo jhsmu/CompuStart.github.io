@@ -16,6 +16,8 @@
             <!-- iconos en fontawesome -->
             <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Editar perfil administrador</title>   
 </head>
 <header class="bg-nav">
@@ -54,15 +56,16 @@
             $resultado=mysqli_query($conexion,$sql);
 
             if($resultado){
-                echo "<script language='JavaScript'>
-                alert('Los datos se actualizaron correctamente');
-                location.assign('./micuenta.php');</script>";
+                session_start();
+                $_SESSION['actualizar_datos'] = 'actualizar';
+                header("location: ./indexadmin.php");
                 error_reporting(0);
 
             }else{
-                echo "<script language='JavaScript'>
-                alert('Los datos NO se actualizaron :(');
-                location.assign('../inicio.php');</script>";
+                session_start();
+                $_SESSION['error'] = 'actualizar';
+                header("location: ./micuenta.php");
+                error_reporting(0);
             }
             mysqli_close($conexion);
 
@@ -194,3 +197,15 @@
 </body>
 
 </html>
+<?php
+if (isset($_SESSION['error'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Datos Actualizados'
+        });
+    </script>";
+    unset($_SESSION['error']);
+}
+?>

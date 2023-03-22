@@ -1,3 +1,12 @@
+.texto{
+  background: linear-gradient(to right, #2192FF, #144272);
+   height: 100px;
+   padding: 30px;
+   color: #fff;
+   border-radius: 15px;
+}
+
+
 /* cargando */
 .color {
     height: 300px;
@@ -159,4 +168,15 @@
   height: 100px;
   padding: 35px;
   border-radius: 15px;
+}
+
+p{
+  font-size: 20px;
+  font-family: 'PT Sans', sans-serif;
+  
+}
+h5{
+  font-size: 25px;
+  font-family: 'Edu NSW ACT Foundation', cursive;
+
 }

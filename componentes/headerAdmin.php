@@ -21,7 +21,6 @@
                             <a href="./micuenta.php?id_administrador=<?php echo $_SESSION["id_administrador"];?>" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Mi cuenta</a></li>
                             <?php
                                 } mysqli_free_result($resultado);?>
-                          <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Notifications</a></li>
                           <li><hr class="border-t mx-2 border-grey-ligght"></li>
                           <li><a href="../validaciones/cerrarSesion.php" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Cerrar Sesión</a></li>
                         </ul>

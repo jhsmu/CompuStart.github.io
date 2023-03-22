@@ -40,11 +40,19 @@
                     $_SESSION['carrito'][0]=$carro_pro;
                     $mensaje="Producto agregado al carrito";
                 }else {
+                    $carro_pro=array(
+                        'id'=>$id_producto,
+                        'producto'=>$nombre_producto,
+                        'precio'=>$precio_producto,
+                        'cantidad'=>$cantidad
+                    );
                     $idsProductos=array_column($_SESSION['carrito'], 'id');
-
                     if (in_array($id_producto, $idsProductos)) {
-                        echo '<script> alert("Este producto ya ha sido seleccionado.."); </script>';
-                    } else{
+                        $carro_pro = array_replace($carro_pro, $carro_pro);
+                        $_SESSION['carrito'][0]=$carro_pro;
+                        $mensaje="Producto actualizado al carrito";
+                    }
+                    else{
 
                         $numero_productos=count($_SESSION['carrito']);
                         $carro_pro=array(

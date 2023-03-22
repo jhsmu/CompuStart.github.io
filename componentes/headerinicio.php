@@ -13,7 +13,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="MenuNavegacion" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto" id="nav1">
+                <ul class="navbar-nav ms-auto" id="nav1">
                     <li class="nav-item"><a href="./inicio.php" class="nav-link">Inicio</a></li>
                     <li class="nav-item"><a href="./nosotrosinicio.php" class="nav-link">Nosotros</a></li>
                     <li class="nav-item dropdown">
@@ -37,7 +37,7 @@
                             </div> 
                             </div>
                     </li>
-                    <li class="nav-item"><a href="./mostrarCarrito.php" class="nav-link">Carrito</a></li>
+                    <li class="nav-item"><a href="./mostrarCarrito.php" class="nav-link">Carrito(<?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']); ?>)</a></li>
 
                 </ul>
                 <ul class="navbar-nav ms-auto">
@@ -50,7 +50,9 @@
                             <li class="nav-item">
                                 <a class="nav-link dropdown-item" href="./editar.php?id_cliente=<?php echo $_SESSION["id_usuario"];?>"><i class="fas fa-edit"></i>Editar Perfil</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link dropdown-item" href="./mostrarCarrito.php"><i class="bi bi-cart"></i>Mis Compras</a></li>
+                            <li class="nav-item"><a class="nav-link dropdown-item" href="./mostrarCarrito.php">
+                            <i class="fa-duotone fa-cart-shopping"></i>
+                            Mi Carrito(<?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']); ?>)</a></li>
                             <li class="nav-item"><a class="nav-link dropdown-item" href="./validaciones/cerrarSesion.php"><i class="fa fa-door-open"></i>Cerrar sesión</a></li>
                         </ul>
                         </div>
