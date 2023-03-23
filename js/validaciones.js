@@ -335,3 +335,20 @@ function Cantidad123(){
     document.getElementById("cantidad").value = "";
   }
 }
+
+function Descripciones2(){
+  regex = /^[0-9A-ZÑa-zñáéíóúÁÉÍÓÚ'°,." -]+$/;
+  description = document.getElementById("descripcion_breve").value;
+
+  if(regex.test(description)){
+    document.getElementById("descripcion_breve").style.borderColor = "#008000";
+  }else{
+    document.getElementById("descripcion_breve").style.borderColor = "#FF0000";
+    Swal.fire({
+      icon: "error",
+      title: "Por Favor",
+      text: "La descripción tiene caracteres invalidos o es muy larga",
+    });
+    document.getElementById("descripcion_breve").value = "";
+  }
+}
