@@ -80,5 +80,37 @@
                     $mensaje="El id esta mal";
                 }
             break;
+
+            case 'aumentar':
+                if (is_numeric($_POST['id'])) {
+                    $id_producto=$_POST['id'];
+                    foreach ($_SESSION['carrito'] as $indice => $producto) {
+                        if ($producto['id']==$id_producto) {
+                            $_SESSION['carrito'][$indice]['cantidad']++;
+                            break;
+                        }
+                    }
+                }else {
+                    $mensaje="El aumento esta mal";
+                }
+            break;
+
+            case 'disminuir':
+                if (is_numeric($_POST['id'])) {
+                    $id_producto=$_POST['id'];
+                    foreach ($_SESSION['carrito'] as $indice => $producto) {
+                        if ($producto['id']==$id_producto) {
+                            if ($_SESSION['carrito'][$indice]['cantidad']==1) {
+                                $_SESSION['carrito'][$indice]['cantidad']=1;
+                            }else {
+                                $_SESSION['carrito'][$indice]['cantidad']--; 
+                            }
+                            break;  
+                        }
+                    }
+                }else {
+                    $mensaje="El aumento esta mal";
+                }
+            break;
         }
     }

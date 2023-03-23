@@ -37,7 +37,7 @@
                             </div> 
                             </div>
                     </li>
-                    <li class="nav-item"><a href="./carro/carro.php" class="nav-link">Carrito</a></li>
+                    <li class="nav-item"><a href="./mostrarCarritoIndex.php" class="nav-link">Carrito(<?php echo (empty($CarroCompra))?0:count($CarroCompra); ?>)</a></li>
 
                 </ul>
                 <ul class="navbar-nav ms-auto">

@@ -47,7 +47,26 @@
             <tr>
                 <td width="40%"><?php echo $producto['producto'] ?></td>
                 <td width="15%" class="text-center"><?php echo number_format($producto['precio'],2) ?></td>
-                <td width="20%" class="text-center"><?php echo $producto['cantidad'] ?></td>
+                <td width="20%" class="text-center">
+
+                    <form action="" method="post">
+                        <input type="text" name="id" value="<?php echo $producto['id']; ?>" hidden>
+                        <div class="input-group mb-3" style="max-width: 120px;">
+                            <div class="input-group-prepend">
+                            <button class="btn btn-outline-primary js-btn-minus btnIncrementar" type="submit" name="botonAdd" value="disminuir">&minus;</button>
+                            </div>
+                            <input type="text" class="form-control text-center txtCantidad" 
+                                data-precio=""
+                                data-id=""
+                                value="<?php echo $producto['cantidad'] ?>" 
+                                placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                            <div class="input-group-append">
+                            <button class="btn btn-outline-primary js-btn-plus btnIncrementar" type="submit" name="botonAdd" value="aumentar">&plus;</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </td>
                 <td width="20%" class="text-center">$ <?php echo number_format($producto['precio']*$producto['cantidad'],2) ?></td>
                 <td width="5%">
                     <form action="" method="post">
