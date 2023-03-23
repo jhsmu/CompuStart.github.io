@@ -9,7 +9,7 @@ $db = new Database();
 $connection = $db->connect(); //Creamos la conexión a la BD
 
 // Cuando la conexión está establecida...
-$query = $connection->prepare("SELECT * FROM producto"); // Traduzco mi petición
+$query = $connection->prepare("SELECT * FROM producto LIMIT 10;"); // Traduzco mi petición
 $query->execute(); //Ejecuto mi petición
 
 $productos = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
@@ -45,6 +45,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
     <!-- iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
+    <script src="../js/validaciones.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Productos</title>
 </head>
@@ -166,13 +167,13 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
                                                     Serial
                                                 </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="serial" id="serial" type="text" placeholder="Ingrese el serial" required>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="serial" id="serial" type="text" placeholder="Ingrese el serial" required onchange="Serial1()">
                                             </div>
                                             <div class="w-full md:w-1/2 px-3">
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                     Nombre del Producto
                                                 </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="producto" id="producto" type="text" placeholder="Ingrese el nombre del producto" required>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="producto" id="nombre" type="text" placeholder="Ingrese el nombre del producto" required onchange="NombresNumeros()">
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -180,13 +181,13 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
                                                     Descripción Breve
                                                 </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="descripcion_breve" id="descripcion_breve" type="text" placeholder="Ingrese una descripción breve" required>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="descripcion_breve" id="descripcion_breve" type="text" placeholder="Ingrese una descripción breve" required onchange="Descripciones2()">
                                             </div>
                                             <div class="w-full md:w-1/2 px-3">
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                 Descripción
                                                 </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="descripcion" id="descripcion" type="text" placeholder="Ingrese una descripción" required>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="descripcion" id="descripcion" type="text" placeholder="Ingrese una descripción" required onchange="Descripciones1()">
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -194,13 +195,13 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
                                                     Cantidad
                                                 </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="cantidad" id="cantidad" type="text" placeholder="Ingrese la cantidad" required>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="cantidad" id="cantidad" type="text" placeholder="Ingrese la cantidad" required onchange="Cantidad123()">
                                             </div>
                                             <div class="w-full md:w-1/2 px-3">
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                 Precio
                                                 </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="precio" id="precio" type="text" placeholder="Ingrese un precio" required>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="precio" id="precio" type="text" placeholder="Ingrese un precio" required onchange="Valores1234()">
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -298,7 +299,24 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
     <script src="../js/main.js"></script>
+    <<script>
+        function Descripciones2(){
+  regex = /^[0-9A-ZÑa-zñáéíóúÁÉÍÓÚ'°,." -]+$/;
+  description = document.getElementById("descripcion_breve").value;
 
+  if(regex.test(description)){
+    document.getElementById("descripcion_breve").style.borderColor = "#008000";
+  }else{
+    document.getElementById("descripcion_breve").style.borderColor = "#FF0000";
+    Swal.fire({
+      icon: "error",
+      title: "Por Favor",
+      text: "La descripción tiene caracteres invalidos o es muy larga",
+    });
+    document.getElementById("descripcion_breve").value = "";
+  }
+}
+    </script>
 </body>
 
 </html>

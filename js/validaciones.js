@@ -259,10 +259,79 @@ function verificarContraseña(){
     }
 }
 
-function Precios (){
-  let 
+function Valores1234(){
+  let precio = document.getElementById("precio").value;
+
+  if(/^[0-9.]+$/.test(precio) != true){
+    document.getElementById("precio").style.borderColor = "#FF0000";
+        Swal.fire({
+            icon: 'error',
+            title: 'Por Favor',
+            text: 'El precio debe tener un formato valido, para decimales usar "." '
+            });
+            document.getElementById("precio").value = "";
+  }else{
+    document.getElementById("precio").style.borderColor = "#008000";
+  }
 }
 
-function Serial(){
-  
+function Serial1(){
+  let serial = document.getElementById("serial").value;
+  let RegEx = /^[0-9A-Za-z]+$/g;
+
+  if(serial.length < 30)
+    if (RegEx.test(serial) == true) {
+      document.getElementById("serial").style.borderColor = "#008000";
+    } else {
+      document.getElementById("serial").style.borderColor = "#FF0000";
+      Swal.fire({
+        icon: 'error',
+        title: 'Por Favor',
+        text: 'Evite el uso de caracteres especiales(" , . ; { } [ ] ")',
+        });
+      document.getElementById("serial").value = "";
+      return false;
+  } else {
+    document.getElementById("serial").style.borderColor = "#FF0000";
+    Swal.fire({
+      icon: "error",
+      title: "Por Favor",
+      text: "El serial es muy largo",
+    });
+    document.getElementById("serial").value = "";
+  }
+}
+
+function Descripciones1(){
+  regex = /^[0-9A-ZÑa-zñáéíóúÁÉÍÓÚ'°,." -]+$/;
+  description = document.getElementById("descripcion").value;
+
+  if(regex.test(description)){
+    document.getElementById("descripcion").style.borderColor = "#008000";
+  }else{
+    document.getElementById("descripcion").style.borderColor = "#FF0000";
+    Swal.fire({
+      icon: "error",
+      title: "Por Favor",
+      text: "La descripción tiene caracteres invalidos o es muy larga",
+    });
+    document.getElementById("descripcion").value = "";
+  }
+}
+
+function Cantidad123(){
+  regex = /^[0-9]+$/g;
+  cantidad= document.getElementById("cantidad").value;
+
+  if (regex.test(cantidad)){
+    document.getElementById("cantidad").style.borderColor = "#008000";
+  }else{
+    document.getElementById("cantidad").style.borderColor = "#FF0000";
+    Swal.fire({
+      icon: "error",
+      title: "Por Favor",
+      text: "La cantidad solo acepta números",
+    });
+    document.getElementById("cantidad").value = "";
+  }
 }
