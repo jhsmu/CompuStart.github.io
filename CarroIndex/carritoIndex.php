@@ -36,9 +36,10 @@
                         'precio'=>$precio_producto,
                         'cantidad'=>$cantidad
                     );
+                    $CarroCompra=array();
                     $CarroCompra[0]=$carro_pro;
                     $mensaje="Producto agregado al carrito";
-                }else {
+                } else {
                     $carro_pro=array(
                         'id'=>$id_producto,
                         'producto'=>$nombre_producto,
