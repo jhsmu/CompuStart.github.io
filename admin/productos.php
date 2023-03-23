@@ -9,7 +9,7 @@ $db = new Database();
 $connection = $db->connect(); //Creamos la conexión a la BD
 
 // Cuando la conexión está establecida...
-$query = $connection->prepare("SELECT * FROM producto"); // Traduzco mi petición
+$query = $connection->prepare("SELECT * FROM producto LIMIT 10;"); // Traduzco mi petición
 $query->execute(); //Ejecuto mi petición
 
 $productos = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
