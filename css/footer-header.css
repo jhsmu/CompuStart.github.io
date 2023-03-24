@@ -1,7 +1,14 @@
 body{
     font-family: 'Shantell Sans', cursive;
 }
-
+.avatar{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    margin: 9px 0 9px;
+    left: calc(50% - 105px);
+}
 /* Encabezado */
 
 .navbar {
@@ -31,10 +38,13 @@ body{
     font-size: 1.1rem;
     text-decoration: none;
 }
+.transparentes {
+    margin: 0 9.9rem 0 0;
+}
 #menu a{
     color: #111;
     background-color: white;
-    font-size: 12px;
+    font-size: 18px;
 }
 #menu a:hover{
     color: #00235B;
