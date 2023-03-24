@@ -42,6 +42,7 @@
                 </ul>
                 <ul class="navbar-nav ms-auto">
                 <li class="dropdown">
+                <img class="avatar" src="./img/logo/avatar.png" alt="logo">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <label for="" class="centro"><?php echo $_SESSION["usuario"] ?></label>
                          </a>
@@ -53,6 +54,9 @@
                             <li class="nav-item"><a class="nav-link dropdown-item" href="./mostrarCarrito.php">
                             <i class="fa-duotone fa-cart-shopping"></i>
                             Mi Carrito(<?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']); ?>)</a></li>
+                            <li class="nav-item"><a class="nav-link dropdown-item" href="./pedidos.php">
+                            <i class="fa-duotone fa-cart-shopping"></i>
+                            Mis Pedidos(<?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']); ?>)</a></li>
                             <li class="nav-item"><a class="nav-link dropdown-item" href="./validaciones/cerrarSesion.php"><i class="fa fa-door-open"></i>Cerrar sesión</a></li>
                         </ul>
                         </div>
