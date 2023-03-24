@@ -1,17 +1,19 @@
 <?php
-if (isset($_POST["sesion"])) {
-    header('location:login-registro.php');
-}
+    session_start();
 
-require_once './database/conexion.php';
+    if (isset($_POST["sesion"])) {
+        header('location:login-registro.php');
+    }
 
-$consulta1 = $DB_con->prepare('SELECT * FROM producto ORDER BY id_producto DESC');
-$consulta1->execute();
-$productos = $consulta1->fetchAll(PDO::FETCH_ASSOC);
+    require_once './database/conexion.php';
 
-$consulta2 = $DB_con->prepare('SELECT * FROM imagenes');
-$consulta2->execute();
-$imagenes = $consulta2->fetchAll(PDO::FETCH_ASSOC);
+    $consulta1 = $DB_con->prepare('SELECT * FROM producto ORDER BY id_producto DESC');
+    $consulta1->execute();
+    $productos = $consulta1->fetchAll(PDO::FETCH_ASSOC);
+
+    $consulta2 = $DB_con->prepare('SELECT * FROM imagenes');
+    $consulta2->execute();
+    $imagenes = $consulta2->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>

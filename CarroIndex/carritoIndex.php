@@ -1,4 +1,5 @@
 <?php
+    session_start();
 
     if (isset($_POST['botonAdd'])) {
         switch ($_POST['botonAdd']) {
@@ -29,15 +30,14 @@
                     $mensaje="La cantidad esta mal";
                 }
 
-                if (!isset($CarroCompra)) {
+                if (!isset($_SESSION['carritoIndex'])) {
                     $carro_pro=array(
                         'id'=>$id_producto,
                         'producto'=>$nombre_producto,
                         'precio'=>$precio_producto,
                         'cantidad'=>$cantidad
                     );
-                    $CarroCompra=array();
-                    $CarroCompra[0]=$carro_pro;
+                    $_SESSION['carritoIndex'][0]=$carro_pro;
                     $mensaje="Producto agregado al carrito";
                 } else {
                     $carro_pro=array(
@@ -46,22 +46,22 @@
                         'precio'=>$precio_producto,
                         'cantidad'=>$cantidad
                     );
-                    $idsProductos=array_column($CarroCompra, 'id');
+                    $idsProductos=array_column($_SESSION['carritoIndex'], 'id');
                     if (in_array($id_producto, $idsProductos)) {
                         $carro_pro = array_replace($carro_pro, $carro_pro);
-                        $CarroCompra[0]=$carro_pro;
+                        $_SESSION['carritoIndex'][0]=$carro_pro;
                         $mensaje="Producto actualizado al carrito";
                     }
                     else{
 
-                        $numero_productos=count($CarroCompra);
+                        $numero_productos=count($_SESSION['carritoIndex']);
                         $carro_pro=array(
                             'id'=>$id_producto,
                             'producto'=>$nombre_producto,
                             'precio'=>$precio_producto,
                             'cantidad'=>$cantidad
                         );
-                        $CarroCompra[$numero_productos]=$carro_pro;
+                        $_SESSION['carritoIndex'][$numero_productos]=$carro_pro;
                         $mensaje="Producto agregado al carrito";
                     }
                 }
@@ -70,9 +70,9 @@
             case 'eliminar':
                 if (is_numeric($_POST['id'])) {
                     $id_producto=$_POST['id'];
-                    foreach ($CarroCompra as $indice => $producto) {
+                    foreach ($_SESSION['carritoIndex'] as $indice => $producto) {
                         if ($producto['id']==$id_producto) {
-                            unset($CarroCompra[$indice]);
+                            unset($_SESSION['carritoIndex'][$indice]);
                             echo '<script> alert("Producto borrado.."); </script>';
                         }
                     }
@@ -84,9 +84,9 @@
             case 'aumentar':
                 if (is_numeric($_POST['id'])) {
                     $id_producto=$_POST['id'];
-                    foreach ($CarroCompra as $indice => $producto) {
+                    foreach ($_SESSION['carritoIndex'] as $indice => $producto) {
                         if ($producto['id']==$id_producto) {
-                            $CarroCompra[$indice]['cantidad']++;
+                            $_SESSION['carritoIndex'][$indice]['cantidad']++;
                             break;
                         }
                     }
@@ -98,12 +98,12 @@
             case 'disminuir':
                 if (is_numeric($_POST['id'])) {
                     $id_producto=$_POST['id'];
-                    foreach ($CarroCompra as $indice => $producto) {
+                    foreach ($_SESSION['carritoIndex'] as $indice => $producto) {
                         if ($producto['id']==$id_producto) {
-                            if ($CarroCompra[$indice]['cantidad']==1) {
-                                $CarroCompra[$indice]['cantidad']=1;
+                            if ($_SESSION['carritoIndex'][$indice]['cantidad']==1) {
+                                $_SESSION['carritoIndex'][$indice]['cantidad']=1;
                             }else {
-                                $CarroCompra[$indice]['cantidad']--; 
+                                $_SESSION['carritoIndex'][$indice]['cantidad']--; 
                             }
                             break;  
                         }
@@ -114,7 +114,6 @@
             break;
 
             case 'proceder':
-                unset($CarroCompra);
-                header('location:../login-registro.php');
+                header('location:./destruyeSesion.php');
         }
     }

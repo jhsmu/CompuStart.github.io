@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     error_reporting( ~E_NOTICE ); // avoid notice
 	
     require_once './database/conexion.php';

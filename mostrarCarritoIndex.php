@@ -40,9 +40,9 @@
                 <th width="5%">Acción</th>
             </tr>
             <?php
-            if(!empty($CarroCompra)){ 
+            if(!empty($_SESSION['carritoIndex'])){ 
                 $total=0;
-                foreach ($CarroCompra as $indice => $producto) {
+                foreach ($_SESSION['carritoIndex'] as $indice => $producto) {
             ?>
             <tr>
                 <td width="40%"><?php echo $producto['producto'] ?></td>
