@@ -87,6 +87,22 @@ CREATE TABLE detalle_venta(
     monto_total FLOAT(12,2) NOT NULL
 );
 
+CREATE TABLE orden(
+    id_orden INT(11) PRIMARY KEY AUTO_INCREMENT,
+    cliente INT(11) NOT NULL,
+    total FLOAT(12,2) NOT NULL,
+    fecha timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+);
+
+CREATE TABLE detalle_orden(
+    id_detalle_orden INT(11) PRIMARY KEY AUTO_INCREMENT,
+    id_orden INT(11) NOT NULL,
+    id_producto INT(11) NOT NULL,
+    cantidad_venta INT(11) NOT NULL,
+    precio_producto  FLOAT(12,2),
+    monto_total FLOAT(12,2) NOT NULL
+);
+
 ALTER TABLE producto ADD FOREIGN KEY(id_categoria)
 REFERENCES categoria(id_categoria);
 
@@ -111,8 +127,17 @@ REFERENCES venta(id_venta);
 ALTER TABLE detalle_venta ADD FOREIGN KEY(id_producto)
 REFERENCES producto(id_producto);
 
-INSERT INTO cliente (nombre, apellido, direccion, telefono, email, contrasenia) VALUES
-('Usuario', 'Prueba', 'Torre Norte SENA', 3001234567, 'usuario@gmail.com', 'Usuario12345');
+ALTER TABLE orden ADD FOREIGN KEY(cliente)
+REFERENCES cliente(id);
+
+ALTER TABLE detalle_orden ADD FOREIGN KEY(id_orden)
+REFERENCES orden(id_orden);
+
+ALTER TABLE detalle_orden ADD FOREIGN KEY(id_producto)
+REFERENCES producto(id_producto);
+
+INSERT INTO cliente (nombre, apellido, direccion, telefono, email, contrasenia, estado) VALUES
+('Usuario', 'Prueba', 'Torre Norte SENA', 3001234567, 'usuario@gmail.com', 'Usuario12345', 1);
 
 INSERT INTO administrador (nombre, apellido, email, contrasenia) VALUES
 ('Freymer', 'Sepulveda', 'administrador1@gmail.com', 'Administrador12345'),
