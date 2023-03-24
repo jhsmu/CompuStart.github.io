@@ -186,11 +186,6 @@
                                                 <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
                                                     href="./actualizarUsuario.php?id=<?php echo $filas['id']; ?>">
                                                     <i class="fas fa-edit"></i></a>
-                                                <a class="bg-red-500 cursor-pointer rounded p-1 mx-1 text-white"
-                                                    href="./editar/eliminar.php?id=<?php echo $filas['id']; ?>"
-                                                    onclick='return confirmar()'>
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
                                             </td>
                                         </tr>
                                 <?php
@@ -231,11 +226,6 @@
                                                 <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
                                                     href="./actualizarUsuario.php?id=<?php echo $filas['id']; ?>">
                                                     <i class="fas fa-edit"></i></a>
-                                                <a class="bg-red-500 cursor-pointer rounded p-1 mx-1 text-white"
-                                                    href="./editar/eliminar.php?id=<?php echo $filas['id']; ?>"
-                                                    onclick='return confirmar()'>
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
                                             </td>
                                         </tr>
                                 <?php
@@ -274,11 +264,6 @@
                                                 <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
                                                     href="./actualizarUsuario.php?id=<?php echo $filas['id']; ?>">
                                                     <i class="fas fa-edit"></i></a>
-                                                <a class="bg-red-500 cursor-pointer rounded p-1 mx-1 text-white"
-                                                    href="./editar/eliminar.php?id=<?php echo $filas['id']; ?>"
-                                                    onclick='return confirmar()'>
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
                                             </td>
                                         </tr>
                                 <?php
