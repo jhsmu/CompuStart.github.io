@@ -10,7 +10,7 @@ $connection = $db->connect(); //Creamos la conexión a la BD
 $consulta = $connection->prepare("SELECT SUM(total) FROM venta"); // Traduzco mi petición
 $consulta->execute(); //Ejecuto mi petición
 
-$ventas = $consulta->fetch(PDO::FETCH_NUM); //Me traigo los datos que necesito
+$total = $consulta->fetch(PDO::FETCH_NUM); //Me traigo los datos que necesito
 
 $consulta2 = $connection->prepare("SELECT COUNT(*) FROM cliente"); // Traduzco mi petición
 $consulta2->execute(); //Ejecuto mi petición
@@ -27,10 +27,15 @@ $consulta4 ->execute(); //Ejecuto mi petición
 
 $compras = $consulta4->fetch(PDO::FETCH_NUM); //Me traigo los datos que necesito
 
-$query = $connection->prepare("SELECT * FROM detalle_venta"); // Traduzco mi petición
-$query->execute(); //Ejecuto mi petición
+$consulta5 = $connection->prepare("SELECT id_venta, CONCAT(CLIENTE.nombre, ' ', CLIENTE.apellido) AS nombre_cliente, total, fecha FROM VENTA INNER JOIN CLIENTE ON VENTA.cliente =  CLIENTE.id;"); // Traduzco mi petición
+$consulta5->execute(); //Ejecuto mi petición
 
-$detalle_venta = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
+$ventas = $consulta5->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
+
+$consulta5 = $connection->prepare("SELECT id_detalle_venta, id_venta, PRODUCTO.producto AS NombreProducto, cantidad_venta, precio_producto, monto_total FROM DETALLE_VENTA INNER JOIN PRODUCTO ON DETALLE_VENTA.id_producto = PRODUCTO.id_producto"); // Traduzco mi petición
+$consulta5->execute(); //Ejecuto mi petición
+
+$detalles = $consulta5->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +44,7 @@ $detalle_venta = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que n
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie'=edge">
     <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter template,free template,admin templates, admin template, admin dashboard, free tailwind templates, tailwind example">
     <!-- Css -->
     <link rel="stylesheet" href="../css/styles.css">
@@ -86,10 +91,10 @@ $detalle_venta = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que n
                                     Total de Ventas:
                                 </p>
                                 <p class="no-underline text-white text-2xl">
-                                $ <?php if ($total_ventas = $ventas[0] == null ) {
+                                $ <?php if ($total_ventas = $total[0] == null ) {
                                         echo "0";
                                     }else {
-                                        echo $total_ventas = $ventas[0]; 
+                                        echo $total_ventas = $total[0]; 
                                     } ?>
                                 </p>
                             </div>
@@ -149,45 +154,33 @@ $detalle_venta = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que n
                                 <table class="table text-grey-darkest">
                                     <thead class="bg-grey-dark text-white text-normal">
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">ID_Venta</th>
-                                            <th scope="col">ID_Producto</th>
-                                            <th scope="col">Cantidad</th>
-                                            <th scope="col">Valor Unitario</th>
-                                            <th scope="col">Valor Total</th>
+                                            <th scope="col">Número de Orden #</th>
+                                            <th scope="col">Nombre del Cliente</th>
+                                            <th scope="col">Total</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Mas detalles</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                            foreach ($detalle_venta as $key => $detalle) {
+                                            foreach ($ventas as $key => $venta) {
                                         ?>
                                         <tr>
-                                            <th scope="row">                                                    
-                                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                    <?php echo $detalle["id_detalle_venta"] . "<br>"; ?>
-                                                </button></th>
-                                            <td>
-                                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                    <?php echo $detalle["id_venta"] . "<br>"; ?></td>
-                                                </button>
-                                            <td>
-                                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                    <?php echo $detalle["id_producto"] . "<br>"; ?></td>
-                                                </button>
-                                            <td>
-                                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                    <?php echo $detalle["cantidad_venta"] . "<br>"; ?>
-                                                </button>
+                                            <td scope="row">                                                    
+                                                    <?php echo $venta["id_venta"] . "<br>"; ?>
                                             </td>
                                             <td>
-                                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                    $ <?php echo $detalle["precio_producto"] . "<br>"; ?>
-                                                </button>
+                                                <?php echo $venta["nombre_cliente"] . "<br>"; ?>                                                
                                             </td>
                                             <td>
-                                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                    $ <?php echo $detalle["monto_total"] . "<br>"; ?>
-                                                </button>
+                                                <?php echo $venta["total"] . "<br>"; ?></td>
+                                            <td>
+                                                <?php echo $venta["fecha"] . "<br>"; ?>
+                                            </td>
+                                            <td>
+                                            <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./detalleVenta.php?id=<?php echo $venta["id_venta"]; ?>">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
                                             </td>
                                         </tr>
                                         <?php
@@ -203,8 +196,8 @@ $detalle_venta = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que n
             <!--/Main-->
         </div>
     </div>
-
 </div>
+
 <script src="../js/main.js"></script>
 </body>
 
