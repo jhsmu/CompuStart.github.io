@@ -114,6 +114,6 @@
             break;
 
             case 'proceder':
-                header('location:./destruyeSesion.php');
+                header('location:./CarroIndex/destruyeSesion.php');
         }
     }
