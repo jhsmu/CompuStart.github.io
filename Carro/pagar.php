@@ -4,22 +4,24 @@
 
     if ($_POST) {
         $total=0;
+        $estado=1;
         foreach ($_SESSION['carrito'] as $indice => $producto) {
             $total+=$producto['precio']*$producto['cantidad'];
         } 
 
-        $insertar=$DB_con->prepare('INSERT INTO venta(cliente,total) VALUES(:cliente, :total) ');
+        $insertar=$DB_con->prepare('INSERT INTO orden(cliente,total,estado) VALUES(:cliente, :total, :estado) ');
         $insertar->bindParam(':cliente', $_SESSION["id_usuario"]);
         $insertar->bindParam(':total', $total);
+        $insertar->bindParam(':estado', $estado);
         $insertar->execute();
 
-        $idVenta=$DB_con->lastInsertId();
+        $idOrden=$DB_con->lastInsertId();
 
         foreach ($_SESSION['carrito'] as $indice => $producto) {
             $total_producto=$producto['precio']*$producto['cantidad'];
-            $insertar=$DB_con->prepare('INSERT INTO detalle_venta(id_venta,id_producto,cantidad_venta,precio_producto,monto_total)
-                                        VALUES(:id_venta, :id_producto, :cantidad, :precio, :total)');
-            $insertar->bindParam(':id_venta', $idVenta);
+            $insertar=$DB_con->prepare('INSERT INTO detalle_orden(id_orden,id_producto,cantidad_venta,precio_producto,monto_total)
+                                        VALUES(:id_orden, :id_producto, :cantidad, :precio, :total)');
+            $insertar->bindParam(':id_orden', $idOrden);
             $insertar->bindParam(':id_producto', $producto['id']);
             $insertar->bindParam(':cantidad', $producto['cantidad']);
             $insertar->bindParam(':precio', $producto['precio']);
