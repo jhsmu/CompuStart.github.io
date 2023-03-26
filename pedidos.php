@@ -9,7 +9,7 @@
     $id = $_SESSION["id_usuario"];
 
     // Cuando la conexión está establecida...
-    $consulta = $connection->prepare("SELECT id_orden, cliente, total, estado FROM orden WHERE cliente=:id_usuario"); // Traduzco mi petición
+    $consulta = $connection->prepare("SELECT cliente, id_orden, producto.producto AS producto, cantidad_venta, precio_producto, monto_total, detalle_orden.estado FROM detalle_orden INNER JOIN producto ON detalle_orden.id_producto = producto.id_producto WHERE cliente=:id_usuario"); // Traduzco mi petición
     $consulta->execute(['id_usuario' => $id]); //Ejecuto mi petición
 
     $ordenes = $consulta->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="./css/style_cuerpo.css">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <title>Document</title>
+    <title>Compu_Star</title>
 </head>
 <body>
     <header>
@@ -41,14 +41,17 @@
     </header>
 <div class="container">
     <br><br>
-    <h2>Lista de Ordenes</h2>
+    <h2>Lista de mis Pedidos</h2>
     <br>
     <table class="table table-light table-bordered">
         <thead>
         <tr>
-            <th width="40%">Número de Orden</th>
-            <th width="15%" class="text-center">Total</th>
-            <th width="20%" class="text-center">estado</th>
+            <th width="15%" class="text-center">Número de Orden</th>
+            <th width="20%" class="text-center">Producto</th>
+            <th width="10%" class="text-center">Cantidad</th>
+            <th width="15%" class="text-center">Valor Unitario</th>
+            <th width="20%" class="text-center">ValorTotal</th>
+            <th width="30%" class="text-center">Estado</th>
         </tr>
         </thead>
         <tbody >
@@ -57,9 +60,12 @@
                 foreach ($ordenes as $key => $orden) {
             ?>
             <tr>
-                <td width="15%"><?php echo $orden['id_orden'] ?></td>
-                <td width="15%" class="text-center"><?php echo number_format($orden['total'],2) ?></td>
-                <td width="20%" class="text-center">
+                <td width="15%" class="text-center"><?php echo $orden['id_orden'] ?></td>
+                <td width="20%" class="text-center"><?php echo $orden['producto'] ?></td>
+                <td width="10%" class="text-center"><?php echo $orden['cantidad_venta'] ?></td>
+                <td width="15%" class="text-center">$ <?php echo number_format($orden['precio_producto'],2) ?></td>
+                <td width="20%" class="text-center">$ <?php echo number_format($orden['monto_total'],2) ?></td>
+                <td width="30%" class="text-center">
                     <?php 
                     if ($orden['estado'] == 1){
                         echo "En Proceso de aprobación";
