@@ -103,11 +103,13 @@ CREATE TABLE orden(
 
 CREATE TABLE detalle_orden(
     id_detalle_orden INT(11) PRIMARY KEY AUTO_INCREMENT,
+    cliente INT(11) NOT NULL,
     id_orden INT(11) NOT NULL,
     id_producto INT(11) NOT NULL,
     cantidad_venta INT(11) NOT NULL,
     precio_producto  FLOAT(12,2),
-    monto_total FLOAT(12,2) NOT NULL
+    monto_total FLOAT(12,2) NOT NULL,
+    estado BOOLEAN NOT NULL
 );
 
 ALTER TABLE producto ADD FOREIGN KEY(id_categoria)
@@ -135,6 +137,9 @@ ALTER TABLE detalle_venta ADD FOREIGN KEY(id_producto)
 REFERENCES producto(id_producto);
 
 ALTER TABLE orden ADD FOREIGN KEY(cliente)
+REFERENCES cliente(id);
+
+ALTER TABLE detalle_orden ADD FOREIGN KEY(cliente)
 REFERENCES cliente(id);
 
 ALTER TABLE detalle_orden ADD FOREIGN KEY(id_orden)
