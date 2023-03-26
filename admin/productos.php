@@ -143,6 +143,8 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                             </div>
                         </div>
+
+                        <!--Modal para agregar productos-->
                         <!-- Centered With a Form Modal -->
                         <div id='centeredFormModal' class="modal-wrapper w-full md:w1/1">
                             <div class="overlay close-modal"></div>
@@ -157,7 +159,8 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                         </div>
                                     </div>
                                     <!-- Modal content -->
-                                    <form class="w-full" action="../productos/agregarProducto.php" method="post">
+                                <form action="../productos/agregarProducto.php" method="post" enctype="multipart/form-data">
+                                    <div class="w-full">
                                         <div class="flex flex-wrap -mx-3 mb-6">
                                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
@@ -191,7 +194,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
                                                     Cantidad
                                                 </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="cantidad" id="cantidad" type="text" placeholder="Ingrese la cantidad" required onchange="Cantidad123()">
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="cantidad" id="cantidad" type="number" placeholder="Ingrese la cantidad" required onchange="Cantidad123()">
                                             </div>
                                             <div class="w-full md:w-1/2 px-3">
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
@@ -272,22 +275,43 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="w-full md:w-1/2 px-3 mt-5">
+                                            <!--<div class="w-full md:w-1/2 px-3 mt-5">
                                                 <div class="relative">
                                                     <button data-modal='centeredFormModal1' class='modal-trigger bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded w-full mt-5 h-12'>
                                                         Agregar imagen</button>
                                                 </div>
+                                            </div>-->
+
+                                            
+
+                                            
+                                        
+
+                                    </div>
+
+                                    <div class="border-b p-2 pb-3 pt-0 mb-4">
+                                        <div class="flex justify-between items-center">
+                                            Agregar Imagen
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <div class="flex flex-wrap -mx-3 mb-6" id="incrementa">
+
+                                            <div class="w-full1 md:w-1/2 px-3 mb-6 md:mb-0">
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="imagen[]" type="file" required>
+                                                <button class="rounded-full bg-green-800 hover:bg-green-500 w-32 h-8 text-white " type="button" id="agregar_mas">Agregar</button>
                                             </div>
-                                            <div class="mt-8 ml-32">
-                                                <button class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'>
+
+                                        </div>
+                                        <div class="mt-8 ml-32">
+                                                <button class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded' type="submit">
                                                     Agregar</button>
                                                 <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
                                                     Close
                                                 </span>
                                             </div>
-
-
-                                    </form>
+                                    </div>
+                                </form>
                                 </div>
                             </div>
                         </div>
@@ -297,6 +321,8 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
     </div>
+
+
     <!-- modal agregar imagen -->
     <!-- Centered With a Form Modal -->
     <div id='centeredFormModal1' class="modal-wrapper w-full md:w1/1">
@@ -305,28 +331,54 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
             <div class="modal-content shadow-lg p-5">
                 <div class="border-b p-2 pb-3 pt-0 mb-4">
                     <div class="flex justify-between items-center">
-                        Agregar imagen
+                        Seleccione la imagen
                         <span class='close-modal cursor-pointer px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200'>
                             <i class="fas fa-times text-gray-700"></i>
                         </span>
                     </div>
-                    <form class="w-full" action="../productos/agregarProducto.php" method="post">
-                        <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full">
+                        <div class="flex flex-wrap -mx-3 mb-6" id="incrementa">
 
-                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
-                                    Seleccione su imagen
-                                </label>
-                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="serial" id="serial" type="file" placeholder="Ingrese el serial" required>
+                            <div class="w-full1 md:w-1/2 px-3 mb-6 md:mb-0">
+                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="imagen[]" type="file" required>
+                                <button type="button" id="agregar_mas">+</button>
                             </div>
 
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
+<!--</form>-->
+
+            
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
             < <script>
                 $(document).ready(function() {
                 $('#dataTable').DataTable();
+
+                });
+
+                $(function() {
+                    var i = 1;
+                    $('#agregar_mas').click(function() {
+                        var div = '<div class="w-full'+(i+1)+' md:w-1/2 px-3 mb-6 md:mb-0">';
+                        var inputCode = '<input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="imagen[]" type="file" required>';
+                        i++;
+                        //Importante esta variable debe ir debajo del autoincrementable
+                        var btnDelete = '<button class="rounded-full bg-red-800 hover:bg-red-500 w-32 h-8 text-white" id="'+i+'">Eliminar</button>';
+                        $('#incrementa').append( div + inputCode + btnDelete +
+                            ' </div>');
+                    });
+
+
+                    $(document).on('click', '.rounded-full', function() {
+                        var button_id = $(this).attr("id");
+                        console.log(button_id);
+                        $('.w-full' + button_id).remove();
+                    });
+
 
                 });
                 </script>

@@ -48,11 +48,11 @@
 			// if no error occured, continue ....
 			if(!isset($errMSG))
 			{
-				$agregar=$DB_con->prepare('INSERT INTO imagenes(id_producto, url) VALUES(:producto, :ruta)');
+				$agregar=$DB_con->prepare('INSERT INTO imagenes(producto_id, url) VALUES(:producto, :ruta)');
 				$agregar->bindParam(':producto', $id_producto);
 				$agregar->bindParam(':ruta', $userpic);
 				$agregar->execute();
 			}
 		}
-	header("location:imagen.php"); // redirects image view page after 5 seconds.
+	header("location:imgane.php"); // redirects image view page after 5 seconds.
 	}

@@ -20,7 +20,7 @@
 
 <body>
     <h2>Agregar Imagen</h2>
-    <form action="./agregar_imagen.php" method="post" enctype="multipart/form-data">
+    <form action="./agregarImagen.php" method="post" enctype="multipart/form-data">
         <select name="producto">
             <option selected>Elige un producto</option>
             <?php
@@ -67,7 +67,7 @@
 
         $(document).on('click', '.btn_remove', function() {
             var button_id = $(this).attr("id");
-            console.log(button_id);
+            //console.log(button_id);
             $('.row-fluid' + button_id + '').remove();
         });
 
