@@ -1,5 +1,18 @@
 <?php
-    include './carro/carrito.php';
+    session_start();
+    require('./database/basededatos.php');
+    error_reporting(0);
+
+    $db = new Database();
+    $connection = $db->connect(); //Creamos la conexión a la BD
+
+    $id = $_SESSION["id_usuario"];
+
+    // Cuando la conexión está establecida...
+    $consulta = $connection->prepare("SELECT cliente, id_orden, producto.producto AS producto, cantidad_venta, precio_producto, monto_total, detalle_orden.estado FROM detalle_orden INNER JOIN producto ON detalle_orden.id_producto = producto.id_producto WHERE cliente=:id_usuario"); // Traduzco mi petición
+    $consulta->execute(['id_usuario' => $id]); //Ejecuto mi petición
+
+    $ordenes = $consulta->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +31,7 @@
     <link rel="stylesheet" href="./css/style_cuerpo.css">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <title>Document</title>
+    <title>Compu_Star</title>
 </head>
 <body>
     <header>
@@ -28,99 +41,54 @@
     </header>
 <div class="container">
     <br><br>
-    <h2>Lista de pedidos</h2>
+    <h2>Lista de mis Pedidos</h2>
     <br>
     <table class="table table-light table-bordered">
+        <thead>
+        <tr>
+            <th width="15%" class="text-center">Número de Orden</th>
+            <th width="20%" class="text-center">Producto</th>
+            <th width="10%" class="text-center">Cantidad</th>
+            <th width="15%" class="text-center">Valor Unitario</th>
+            <th width="20%" class="text-center">ValorTotal</th>
+            <th width="30%" class="text-center">Estado</th>
+        </tr>
+        </thead>
         <tbody >
-            <tr>
-                <th width="40%">Producto</th>
-                <th width="15%" class="text-center">Precio</th>
-                <th width="20%" class="text-center">Cantidad</th>
-                <th width="20%" class="text-center">Total</th>
-                <th width="5%">Acción</th>
-            </tr>
             <?php
-            if(!empty($_SESSION['carrito'])){ 
-                $total=0;
-                foreach ($_SESSION['carrito'] as $indice => $producto) {
+            if(!empty($ordenes)){ 
+                foreach ($ordenes as $key => $orden) {
             ?>
             <tr>
-                <td width="40%"><?php echo $producto['producto'] ?></td>
-                <td width="15%" class="text-center"><?php echo number_format($producto['precio'],2) ?></td>
-                <td width="20%" class="text-center">
-
-                    <form action="" method="post">
-                        <input type="text" name="id" value="<?php echo $producto['id']; ?>" hidden>
-                        <div class="input-group mb-3" style="max-width: 120px;">
-                            <div class="input-group-prepend">
-                            <button class="btn btn-outline-primary js-btn-minus btnIncrementar" type="submit" name="botonAdd" value="disminuir">&minus;</button>
-                            </div>
-                            <input type="text" class="form-control text-center txtCantidad" 
-                                data-precio=""
-                                data-id=""
-                                value="<?php echo $producto['cantidad'] ?>" 
-                                placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                            <div class="input-group-append">
-                            <button class="btn btn-outline-primary js-btn-plus btnIncrementar" type="submit" name="botonAdd" value="aumentar">&plus;</button>
-                            </div>
-                        </div>
-                    </form>
-
+                <td width="15%" class="text-center"><?php echo $orden['id_orden'] ?></td>
+                <td width="20%" class="text-center"><?php echo $orden['producto'] ?></td>
+                <td width="10%" class="text-center"><?php echo $orden['cantidad_venta'] ?></td>
+                <td width="15%" class="text-center">$ <?php echo number_format($orden['precio_producto'],2) ?></td>
+                <td width="20%" class="text-center">$ <?php echo number_format($orden['monto_total'],2) ?></td>
+                <td width="30%" class="text-center">
+                    <?php 
+                    if ($orden['estado'] == 1){
+                        echo "En Proceso de aprobación";
+                    } else{
+                        echo "Comprado";
+                    }
+                    ?>
                 </td>
-                <td width="20%" class="text-center">$ <?php echo number_format($producto['precio']*$producto['cantidad'],2) ?></td>
-                <!-- <td width="5%">
-                    <form action="" method="post">
-                        <input type="text" name="id" value="<php echo $producto['id']; ?>" hidden>
-                        <button class="btn btn-danger" type="submit" name="botonAdd" value="eliminar">
-                            Eliminar
-                        </button>
-                    </form>
-                </td> -->
+            <?php
+                }
+            } else{
+            ?>
+            <tr>
+                <td colspan="5">
+                    <div class="alert alert-success">No hay pedidos pendientes</div> 
+                </td>
             </tr>
             <?php
-                $total+=$producto['precio']*$producto['cantidad'];
                 }
             ?>
-            <tr>
-                <td colspan="3" align="right"><h3>Total</h3></td>
-                <td align="right"><h3>$<?php echo number_format($total,2); ?></h3></td>
-            </tr>
-            <tr>
-                <!-- <td colspan="5">
-
-                     <form action="./Carro/pagar.php" method="post">
-                        <div class="alert alert-success">
-                            <div class="form-group">
-                                <label for="persona">Cliente</label>
-                                <input type="text" name="cliente" id="cliente" class="form-control" value="<php echo $_SESSION['usuario']; ?>" disabled>
-                            </div>
-                            <small class="form-text text-muted">
-                                Los productos se le venderán a este cliente
-                            </small>
-                        </div>
-                        <button class="btn btn-primary btn-lg btn-block" type="submit" name="botonAdd" value="proceder">Comprar</button>
-                    </form> 
-
-                </td>-->
-            </tr>
-            <?php
-                } else {
-                    ?>
-                    <tr>
-                        <td colspan="5">
-                            <div class="alert alert-success">
-                                No hay pedidos pendientes
-                            </div> 
-                        </td>
-                    </tr>
-                    
-                    <?php
-                        }
-                    ?>
         </tbody>
     </table>
     </div>
-
 </body>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

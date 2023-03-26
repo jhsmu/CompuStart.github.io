@@ -256,9 +256,9 @@ $imagenes = $consulta2->fetchAll(PDO::FETCH_ASSOC);
     <?php
     if (isset($_SESSION['compra'])) {
         if ($_SESSION['compra'] == true) {
-            echo '<script>Swal.fire({
-                title: "Compra exitosa",
-                text: "Tus productos han sido comprados",
+            echo'<script>Swal.fire({
+                title: "Tú Orden fue creada",
+                text: "Revisa Mis Pedidos para más información",
                 icon: "success" 
                 });
                 </script>';

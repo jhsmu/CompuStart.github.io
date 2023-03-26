@@ -3,6 +3,7 @@
     $consulta=$DB_con->prepare('SELECT * FROM categoria');
     $consulta->execute();
     $categorias=$consulta->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <header>
@@ -54,9 +55,9 @@
                             <li class="nav-item"><a class="nav-link dropdown-item" href="./mostrarCarrito.php">
                             <i class="fa-duotone fa-cart-shopping"></i>
                             Mi Carrito(<?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']); ?>)</a></li>
-                            <li class="nav-item"><a class="nav-link dropdown-item" href="./pedidos.php">
+                            <li class="nav-item"><a class="nav-link dropdown-item" href="./pedidos.php?id_cliente=<?php echo $_SESSION["id_usuario"];?>">
                             <i class="fa-duotone fa-cart-shopping"></i>
-                            Mis Pedidos(<?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']); ?>)</a></li>
+                            Mis Pedidos</a></li>
                             <li class="nav-item"><a class="nav-link dropdown-item" href="./validaciones/cerrarSesion.php"><i class="fa fa-door-open"></i>Cerrar sesión</a></li>
                         </ul>
                         </div>
