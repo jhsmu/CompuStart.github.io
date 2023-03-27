@@ -77,7 +77,8 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                                     <thead>
                                         <tr>
                                             <th class="border w-1/1 px-4 py-2">Id</th>
-                                            <th class="border w-1/1 px-4 py-2">marca</th>
+                                            <th class="border w-1/1 px-4 py-2">Marca</th>
+                                            <th class="border w-1/1 px-4 py-2">Estado</th>
 
                                         </tr>
                                     </thead>
@@ -90,6 +91,11 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                                             <tr>
                                                 <td class="border px-4 py-2"><?php echo $marca["id_marca"] . "<br>"; ?></td>
                                                 <td class="border px-4 py-2"><?php echo $marca["marca"] . "<br>"; ?></td>
+                                                <td class="border px-4 py-2"><?php if ($marca["estado_marca"]== 1 ){
+                                                    echo ("Activo");
+                                                }else{
+                                                    echo("Inactivo");
+                                                }  "<br>"; ?></td>
                                                 <td class="border px-4 py-2">
                                                     <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarMarca.php?id=<?php echo $marca["id_marca"]; ?>">
                                                         <i class="fas fa-edit"></i></a>

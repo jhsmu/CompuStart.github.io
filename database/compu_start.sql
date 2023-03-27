@@ -4,12 +4,6 @@ CREATE DATABASE compu_start;
 
 ----Creación de las tablas
 
---Creación de la Data Base
-
-CREATE DATABASE compu_start;
-
-----Creación de las tablas
-
 CREATE TABLE cliente(
     id INT(11) PRIMARY KEY AUTO_INCREMENT,
     imagen VARCHAR(50) NULL,
