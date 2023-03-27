@@ -270,6 +270,14 @@ function Valores1234(){
             text: 'El precio debe tener un formato valido, para decimales usar "." '
             });
             document.getElementById("precio").value = "";
+  /* }else if(Math.sign(precio) == 1){
+    document.getElementById("precio").style.borderColor = "#FF0000";
+        Swal.fire({
+            icon: 'error',
+            title: 'Por Favor',
+            text: 'El precio no puede ser negativo'
+            });
+            document.getElementById("precio").value = ""; */
   }else{
     document.getElementById("precio").style.borderColor = "#008000";
   }
