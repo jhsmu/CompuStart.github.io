@@ -2,35 +2,15 @@
     session_start();
     require('../database/basededatos.php');
 
-//Creamos un objeto del tipo Database
-$db = new Database();
-$connection = $db->connect(); //Creamos la conexión a la BD
+    //Creamos un objeto del tipo Database
+    $db = new Database();
+    $connection = $db->connect(); //Creamos la conexión a la BD
 
-// Cuando la conexión está establecida...
-$consulta = $connection->prepare("SELECT SUM(total) FROM venta"); // Traduzco mi petición
-$consulta->execute(); //Ejecuto mi petición
+    // Cuando la conexión está establecida...
+    $consulta = $connection->prepare("SELECT CONCAT(cliente.nombre, ' ', cliente.apellido) AS cliente , id_orden, producto.producto AS producto, cantidad_venta, precio_producto, monto_total, detalle_orden.estado FROM detalle_orden INNER JOIN producto ON detalle_orden.id_producto = producto.id_producto INNER JOIN cliente ON detalle_orden.cliente = cliente.id"); // Traduzco mi petición
+    $consulta->execute(); //Ejecuto mi petición
 
-$ventas = $consulta->fetch(PDO::FETCH_NUM); //Me traigo los datos que necesito
-
-$consulta2 = $connection->prepare("SELECT COUNT(*) FROM cliente"); // Traduzco mi petición
-$consulta2->execute(); //Ejecuto mi petición
-
-$usuarios = $consulta2->fetch(PDO::FETCH_NUM); //Me traigo los datos que necesito
-
-$consulta3 = $connection->prepare("SELECT COUNT(*) FROM producto"); // Traduzco mi petición
-$consulta3->execute(); //Ejecuto mi petición
-
-$productos = $consulta3->fetch(PDO::FETCH_NUM); //Me traigo los datos que necesito
-
-$consulta4 = $connection->prepare("SELECT SUM(total) FROM compra"); // Traduzco mi petición
-$consulta4 ->execute(); //Ejecuto mi petición
-
-$compras = $consulta4->fetch(PDO::FETCH_NUM); //Me traigo los datos que necesito
-
-$query = $connection->prepare("SELECT * FROM detalle_venta"); // Traduzco mi petición
-$query->execute(); //Ejecuto mi petición
-
-$detalle_venta = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
+    $ordenes = $consulta->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +29,7 @@ $detalle_venta = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que n
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Ventas</title>
+    <title>Pedidos</title>
 </head>
 
 <body>
@@ -91,54 +71,61 @@ $detalle_venta = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que n
                                 <div class="font-bold text-xl">Pedidos</div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table text-grey-darkest">
+                            <table class="table text-grey-darkest">
                                     <thead class="bg-grey-dark text-white text-normal">
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">ID_Venta</th>
-                                            <th scope="col">ID_Producto</th>
-                                            <th scope="col">Cantidad</th>
-                                            <th scope="col">Valor Unitario</th>
-                                            <th scope="col">Valor Total</th>
+                                            <th scope="col" class="text-align: center"># de Orden</th>
+                                            <th scope="col" class="text-align: center">Nombre del Cliente</th>
+                                            <th scope="col" class="text-center">Producto</th>
+                                            <th scope="col" class="ttext-center">Cantidad</th>
+                                            <th scope="col" class="text-align: center">Valor Unitario</th>
+                                            <th scope="col" class="text-align: center">Valor Total</th>
+                                            <th scope="col" class="text-align: center">Estado</th>
+                                            <th scope="col" class="text-align: center">Acción</th>
                                         </tr>
                                     </thead>
+                                    <?php
+                                        foreach ($ordenes as $key => $orden) {
+                                            if ($orden['estado'] == 1){
+                                    ?>
                                     <tbody>
-                                        <?php
-                                            foreach ($detalle_venta as $key => $detalle) {
-                                        ?>
                                         <tr>
-                                            <th scope="row">                                                    
-                                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                    <?php echo $detalle["id_detalle_venta"] . "<br>"; ?>
-                                                </button></th>
-                                            <td>
-                                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                    <?php echo $detalle["id_venta"] . "<br>"; ?></td>
-                                                </button>
-                                            <td>
-                                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                    <?php echo $detalle["id_producto"] . "<br>"; ?></td>
-                                                </button>
-                                            <td>
-                                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                    <?php echo $detalle["cantidad_venta"] . "<br>"; ?>
-                                                </button>
+                                            <th scope="row" class="text-center">
+                                                <?php echo $orden["id_orden"] . "<br>"; ?>
+                                            </th>
+                                            <td class="text-align: center">
+                                                <?php echo $orden["cliente"] . "<br>"; ?>
                                             </td>
-                                            <td>
-                                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                    $ <?php echo $detalle["precio_producto"] . "<br>"; ?>
-                                                </button>
+                                            <td class="text-align: center">
+                                                <?php echo $orden["producto"] . "<br>"; ?>
                                             </td>
-                                            <td>
-                                                <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                    $ <?php echo $detalle["monto_total"] . "<br>"; ?>
-                                                </button>
+                                            <td class="text-center">
+                                                <?php echo $orden["cantidad_venta"] . "<br>"; ?>
+                                            </td>
+                                            <td class="text-align: center">
+                                                $ <?php echo $orden["precio_producto"] . "<br>"; ?>
+                                            </td>
+                                            <td class="text-align: center">
+                                                $ <?php echo $orden["monto_total"] . "<br>"; ?>
+                                            </td>
+                                            <td class="text-align: center">
+                                                <?php 
+                                                    if ($orden['estado'] == 1){
+                                                        echo "En proceso <br>"; 
+                                                    }
+                                                ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarProveedor.php?id=<?php echo $proveedor["id_proveedor"]; ?>">
+                                                        <i class="fas fa-edit"></i></a>
                                             </td>
                                         </tr>
-                                        <?php
-                                            }
-                                        ?>
                                     </tbody>
+                                    <?php
+                                        } else{
+                                        }
+                                    }
+                                ?>
                                 </table>
                             </div>
                         </div>
@@ -154,16 +141,3 @@ $detalle_venta = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que n
 </body>
 
 </html>
-
-<?php
-if (isset($_SESSION['actualizar_datos'])) {
-    echo "<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Éxito',
-        text: 'Datos Actualizados'
-        });
-    </script>";
-    unset($_SESSION['actualizar_datos']);
-}
-?>
