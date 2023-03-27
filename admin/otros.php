@@ -7,7 +7,7 @@
     $connection = $db->connect(); //Creamos la conexión a la BD
 
     // Cuando la conexión está establecida...
-    $consulta = $connection->prepare("SELECT CONCAT(cliente.nombre, ' ', cliente.apellido) AS cliente , id_orden, producto.producto AS producto, cantidad_venta, precio_producto, monto_total, detalle_orden.estado FROM detalle_orden INNER JOIN producto ON detalle_orden.id_producto = producto.id_producto INNER JOIN cliente ON detalle_orden.cliente = cliente.id"); // Traduzco mi petición
+    $consulta = $connection->prepare("SELECT id_orden, CONCAT(cliente.nombre, ' ', cliente.apellido) AS nombre, total, orden.estado FROM orden INNER JOIN cliente ON orden.cliente = cliente.id"); // Traduzco mi petición
     $consulta->execute(); //Ejecuto mi petición
 
     $ordenes = $consulta->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
@@ -76,9 +76,6 @@
                                         <tr>
                                             <th scope="col" class="text-align: center"># de Orden</th>
                                             <th scope="col" class="text-align: center">Nombre del Cliente</th>
-                                            <th scope="col" class="text-center">Producto</th>
-                                            <th scope="col" class="ttext-center">Cantidad</th>
-                                            <th scope="col" class="text-align: center">Valor Unitario</th>
                                             <th scope="col" class="text-align: center">Valor Total</th>
                                             <th scope="col" class="text-align: center">Estado</th>
                                             <th scope="col" class="text-align: center">Acción</th>
@@ -94,19 +91,10 @@
                                                 <?php echo $orden["id_orden"] . "<br>"; ?>
                                             </th>
                                             <td class="text-align: center">
-                                                <?php echo $orden["cliente"] . "<br>"; ?>
+                                                <?php echo $orden["nombre"] . "<br>"; ?>
                                             </td>
                                             <td class="text-align: center">
-                                                <?php echo $orden["producto"] . "<br>"; ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?php echo $orden["cantidad_venta"] . "<br>"; ?>
-                                            </td>
-                                            <td class="text-align: center">
-                                                $ <?php echo $orden["precio_producto"] . "<br>"; ?>
-                                            </td>
-                                            <td class="text-align: center">
-                                                $ <?php echo $orden["monto_total"] . "<br>"; ?>
+                                                $ <?php echo number_format($orden["total"],2) . "<br>"; ?>
                                             </td>
                                             <td class="text-align: center">
                                                 <?php 
@@ -116,7 +104,7 @@
                                                 ?>
                                             </td>
                                             <td class="text-center">
-                                                <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarProveedor.php?id=<?php echo $proveedor["id_proveedor"]; ?>">
+                                                <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./detalleOrden.php?id=<?php echo $orden["id_orden"]; ?>">
                                                         <i class="fas fa-edit"></i></a>
                                             </td>
                                         </tr>
