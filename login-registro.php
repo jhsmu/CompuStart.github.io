@@ -63,7 +63,7 @@ if(isset($_SESSION["Error al registrar"])){
                             Acepto Términos Y Condiciones
                         </label>
                     </div>
-                    <button name="crear" type="submit" onclick="comprobar1()">Crear</button>
+                    <button name="crear" type="submit" >Crear</button>
                     <br><br>
                 </form>
             </div>

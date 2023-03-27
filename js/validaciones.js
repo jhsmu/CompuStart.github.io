@@ -352,3 +352,26 @@ function Descripciones2(){
     document.getElementById("descripcion_breve").value = "";
   }
 }
+
+function NIT123(){
+  regex = /[0-9]+$/;
+  numero = document.getElementById("nit").value;
+
+  if(regex.test(numero)){
+    if(numero.length == 10){
+      document.getElementById("nit").style.borderColor = "#008000";
+    }else{document.getElementById("nit").style.borderColor = "#FF0000";
+    Swal.fire({
+      icon: "error",
+      title: "Por Favor",
+      text: "El nit no tiene el tamaño correcto (10 dígitos)",
+    });
+    document.getElementById("nit").value = "";}
+  }else {
+    Swal.fire({
+    icon: "error",
+    title: "Por Favor",
+    text: "El nit solo acepta numeros",
+  });
+  document.getElementById("nit").value = "";}
+}

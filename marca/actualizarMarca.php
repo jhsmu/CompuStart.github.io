@@ -9,9 +9,10 @@
     if (isset($_POST['id'])) {
         $id = $_POST['id'];
         $marca = $_POST['marca'];
+        $estado = $_POST["estado_marca"];
 
-        $query = $connection->prepare("UPDATE marca SET marca=? WHERE id_marca=?");// Traduzco mi petición
-        $actualizar = $query->execute([$marca, $id]); //Ejecuto mi petición
+        $query = $connection->prepare("UPDATE marca SET marca=?, estado_marca=? WHERE id_marca=?");// Traduzco mi petición
+        $actualizar = $query->execute([$marca, $estado, $id]); //Ejecuto mi petición
 
         if ($actualizar) {
             session_start();

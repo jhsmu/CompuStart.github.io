@@ -85,6 +85,22 @@ $connection = $db->connect(); //Creamos la conexión a la BD
                         <input onchange="NombresNumeros()" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
                         type="text" name="marca" id="nombre" value="<?php echo $marca['marca']; ?>" placeholder="<?php echo $marca['marca']; ?>" required>
                     </div>
+                    <div class="relative">
+                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="estado_marca">
+                            Estado   
+                        </label>
+                        <select class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey" id="estado_marca" name="estado_marca" required>
+                        <?php 
+                            if($marca["estado_marca"]== 1){
+                                echo('<option value="1" selected>Activo</option>');
+                                echo('<option value="0" >Inactivo</option>');
+                            }else{
+                                echo('<option value="1" >Activo</option>');
+                                echo('<option value="0" selected>Inactivo</option>');
+                            }
+                        ?>
+                        </select>
+                    </div>
                 </div>
                 <div class="mt-5">
                     <button class='bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-4 rounded'> Actualizar</button>
