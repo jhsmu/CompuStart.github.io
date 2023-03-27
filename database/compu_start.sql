@@ -109,6 +109,7 @@ CREATE TABLE orden(
 
 CREATE TABLE detalle_orden(
     id_detalle_orden INT(11) PRIMARY KEY AUTO_INCREMENT,
+    cliente INT(11) NOT NULL,
     id_orden INT(11) NOT NULL,
     id_producto INT(11) NOT NULL,
     cantidad_venta INT(11) NOT NULL,
@@ -142,6 +143,9 @@ ALTER TABLE detalle_venta ADD FOREIGN KEY(id_producto)
 REFERENCES producto(id_producto);
 
 ALTER TABLE orden ADD FOREIGN KEY(cliente)
+REFERENCES cliente(id);
+
+ALTER TABLE detalle_orden ADD FOREIGN KEY(cliente)
 REFERENCES cliente(id);
 
 ALTER TABLE detalle_orden ADD FOREIGN KEY(id_orden)
