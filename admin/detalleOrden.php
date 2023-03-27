@@ -120,71 +120,71 @@
                         <div class="p-3">
                             <form class="w-full" action="./cambiodeestadodepedidos.php" method="post">
                                 <div class="flex flex-wrap -mx-3 mb-2">
-                                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0" hidden>
                                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
-                                            ID der la Orden
+                                            ID de la Orden
                                         </label>
                                         <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
-                                        type="text" name="id" id="id" value="<?php echo $orden['id_orden']; ?>" >
+                                        type="text" name="id" id="id" value="<?php echo $orden['id_orden']; ?>">
                                     </div>
-                                    <div class="w-full md:w-1/2 px-3">
+                                    <div class="w-full md:w-1/2 px-3" hidden>
                                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                             Cliente
                                         </label>
                                         <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
-                                        type="text" name="proveedor" id="nombre" value="<?php echo $orden['cliente']; ?>" placeholder="<?php echo $orden['cliente']; ?>" required>
+                                        type="text" name="cliente" id="cliente" value="<?php echo $orden['cliente']; ?>" placeholder="<?php echo $orden['cliente']; ?>" >
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap -mx-3 mb-2">
-                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0" hidden>
                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
                                             Total
                                         </label>
-                                        <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="email"
-                                        name="correo" id="correo" value="<?php echo $orden['total']; ?>" placeholder="<?php echo $orden['total']; ?>"required>
+                                        <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text"
+                                        name="total" id="total" value="<?php echo $orden['total']; ?>" placeholder="<?php echo $orden['total']; ?>">
                                     </div>
                                 </div>
                                 <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
-                                    Parte Dos
+                                    Verifica los Productos antes de aprobar la orden
                                 </div>
                                 <?php
                                     foreach ($informacion as $key => $info) {
                                 ?>
                                 <div class="flex flex-wrap -mx-3 mb-2">
-                                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0" >
+                                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0" hidden>
                                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
                                             ID del Producto
                                         </label>
                                         <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
-                                        type="text" name="id" id="id" value="<?php echo $info['id_producto']; ?>" >
+                                        type="text" name="id_producto" id="id_producto" value="<?php echo $info['id_producto']; ?>" >
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap -mx-3 mb-2">
-                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0" hidden>
                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
                                             Cantidad
                                         </label>
-                                        <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="email"
-                                        name="correo" id="correo" value="<?php echo $info['cantidad_venta']; ?>" placeholder="<?php echo $info['cantidad_venta']; ?>"required>
+                                        <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text"
+                                        name="cantidad_venta" id="cantidad_venta" value="<?php echo $info['cantidad_venta']; ?>" placeholder="<?php echo $info['cantidad_venta']; ?>">
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap -mx-3 mb-2">
-                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0" hidden>
                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
                                             Precio unitario
                                         </label>
                                         <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="email"
-                                        name="correo" id="correo" value="<?php echo $info['precio_producto']; ?>" placeholder="<?php echo $info['precio_producto']; ?>"required>
+                                        name="precio_producto" id="precio_producto" value="<?php echo $info['precio_producto']; ?>" placeholder="<?php echo $info['precio_producto']; ?>">
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap -mx-3 mb-2">
-                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0" hidden>
                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
                                             for="grid-city">
                                         Monto Total
                                         </label>
                                         <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                        type="text" name="direccion_web" id="direccion_web"  value="<?php echo $info['monto_total']; ?>" placeholder="<?php echo $info['monto_total']; ?>" required>
+                                        type="text" name="monto_total" id="monto_total"  value="<?php echo $info['monto_total']; ?>" placeholder="<?php echo $info['monto_total']; ?>" >
                                     </div>
                                 </div>
                                 <?php
@@ -201,11 +201,6 @@
                                                 <option value="0">Aprobado</option>
                                                 <option value="1">Esperando</option>
                                             </select>
-                                        </div>
-                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
-                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                            </svg>
                                         </div>
                                     </div>
                                 </div>
