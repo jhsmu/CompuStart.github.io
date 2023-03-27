@@ -85,10 +85,10 @@ $detalles = $consulta5->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que ne
                                                 <td>
                                                     <?php echo $detalle["cantidad_venta"] . "<br>"; ?></td>
                                                 <td>
-                                                    <?php echo $detalle["precio_producto"] . "<br>"; ?>
+                                                    <?php echo number_format($detalle["precio_producto"],2) . "<br>"; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $detalle["monto_total"] . "<br>"; ?>
+                                                    <?php echo number_format($detalle["monto_total"],2) . "<br>"; ?>
                                                 </td>
                                             </tr>
                                             <?php
