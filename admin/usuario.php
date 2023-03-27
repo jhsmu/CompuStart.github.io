@@ -347,4 +347,14 @@ if (isset($_SESSION['error'])) {
     unset($_SESSION['error']);
 }
 
+if (isset($_SESSION['eliminar_admi'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Administrador Eliminado'
+        });
+    </script>";
+    unset($_SESSION['eliminar_admi']);
+}
 ?>
