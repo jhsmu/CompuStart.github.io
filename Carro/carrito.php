@@ -86,7 +86,7 @@
                     $id_producto=$_POST['id'];
                     foreach ($_SESSION['carrito'] as $indice => $producto) {
                         if ($producto['id']==$id_producto) {
-                            $_SESSION['carrito'][$indice]['cantidad']++;
+                                $_SESSION['carrito'][$indice]['cantidad']++;                          
                             break;
                         }
                     }
