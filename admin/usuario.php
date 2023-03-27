@@ -59,6 +59,7 @@
         <!--Screen-->
         <div class="min-h-screen flex flex-col">
             <!--Header Section Starts Here-->
+            
             <header class="bg-nav">
                 <?php
                 include("./editar/conexion.php");
@@ -141,6 +142,7 @@
                                                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                                 </svg>
                                             </div>
+                                            
                                            
                                         </div>
                                         <br>
@@ -186,6 +188,11 @@
                                                 <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
                                                     href="./actualizarUsuario.php?id=<?php echo $filas['id']; ?>">
                                                     <i class="fas fa-edit"></i></a>
+                                                <a class="bg-red-500 cursor-pointer rounded p-1 mx-1 text-white"
+                                                    href="./editar/eliminar.php?id=<?php echo $filas['id']; ?>"
+                                                    onclick='return confirmar()'>
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                 <?php
@@ -226,6 +233,11 @@
                                                 <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
                                                     href="./actualizarUsuario.php?id=<?php echo $filas['id']; ?>">
                                                     <i class="fas fa-edit"></i></a>
+                                                <a class="bg-red-500 cursor-pointer rounded p-1 mx-1 text-white"
+                                                    href="./editar/eliminar.php?id=<?php echo $filas['id']; ?>"
+                                                    onclick='return confirmar()'>
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                 <?php
@@ -264,6 +276,11 @@
                                                 <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
                                                     href="./actualizarUsuario.php?id=<?php echo $filas['id']; ?>">
                                                     <i class="fas fa-edit"></i></a>
+                                                <a class="bg-red-500 cursor-pointer rounded p-1 mx-1 text-white"
+                                                    href="./editar/eliminar.php?id=<?php echo $filas['id']; ?>"
+                                                    onclick='return confirmar()'>
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                 <?php
@@ -271,8 +288,17 @@
                                 ?>
                                 <?php
                                 } elseif ($rol == 'administrador') {
-                                    echo "Está visualizando el rol de administrador"
+                                    echo "Está visualizando los administradores";
                                 ?>
+                                <label class="flex justify-end">
+                                    <button data-modal='centeredFormModal'
+                                                    class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
+                                                    href="">
+                                                    <i class="fa fa-user-plus"></i>
+                                                    </button>
+                                        Agregar Administrador
+                                </label>
+                                <script src="../js/main.js"></script>
                                 <table class="table-responsive w-full rounded">
                                     <thead>
                                         <tr>
@@ -307,6 +333,57 @@
                                 <?php
                                 }
                                 ?>
+                        <div id='centeredFormModal' class="modal-wrapper w-full md:w1/1">
+                        <div class="overlay close-modal"></div>
+                            <div class="modal modal-centered">
+                                <div class="modal-content shadow-lg p-5">
+                                    <div class="border-b p-2 pb-3 pt-0 mb-4">
+                                        <div class="flex justify-between items-center">
+                                            Agregar Administrador
+                                            <span class='close-modal cursor-pointer px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200'>
+                                                <i class="fas fa-times text-gray-700"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <form class="w-full" action="../admin/agregarAdministrador.php" method="post">
+                                        <div class="flex flex-wrap -mx-3 mb-6">
+                                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                    Nombre Administrador
+                                                </label>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="nombre" id="nombre" type="text" placeholder="Ingrese el nombre administrador" required>
+                                            </div>
+                                            <div class="w-full md:w-1/2 px-3">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                                    Apellido Administrador
+                                                </label>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="apellido" id="apellido" type="text" placeholder="Ingrese el apellido administrador" required>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap -mx-3 mb-6">
+                                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                    Email Administrador
+                                                </label>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="email" id="email" type="text" placeholder="Ingrese el email administrador" required>
+                                            </div>
+                                            <div class="w-full md:w-1/2 px-3">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                                Contraseña
+                                                </label>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="contrasena" id="contrasena" type="password" placeholder="Ingrese la contraseña administrador" required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-8 ml-32">
+                                            <button class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'> 
+                                                Agregar</button>
+                                            <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
+                                                Cerrar
+                                            </span>
+                                        </div>
+                                        
+                                       
+                                    </form>
                             </div>
                         </div>
                     </div>
@@ -347,14 +424,4 @@ if (isset($_SESSION['error'])) {
     unset($_SESSION['error']);
 }
 
-if (isset($_SESSION['eliminar_admi'])) {
-    echo "<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Éxito',
-        text: 'Administrador Eliminado'
-        });
-    </script>";
-    unset($_SESSION['eliminar_admi']);
-}
 ?>
