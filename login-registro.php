@@ -9,14 +9,16 @@ if(isset($_SESSION["Error al registrar"])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Link de iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <!-- link de bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <!-- estilos de login y registro -->
     <link rel="stylesheet" type="text/css" href="./css/login-registrate.css">
     <!-- validaciones de java script -->
@@ -41,13 +43,20 @@ if(isset($_SESSION["Error al registrar"])){
                         <a href="" class="social"><i class="fab fa-twitter"></i></a>
                     </div>
                     <p>Rellene todos los campos</p>
-                    <input autocomplete="on" onchange="nombre1()" type="text" name="nombre" id="nombre" placeholder="Nombres" required>
-                    <input autocomplete="on" onchange="apellido1()" type="text" name="apellido" id="apellido" placeholder="Apellidos" required>
-                    <input autocomplete="on" onchange="direccion1()" type="text" name="direccion" id="direccion" placeholder="Dirección" required>
-                    <input autocomplete="on" onchange="telefono1()" type="number" name="telefono" id="telefono" inputmode="tel" placeholder="Numero Telefónico" required>
-                    <input autocomplete="on" onchange="ValidacionCorreo()" type="email" name="email_registro" id="correo" placeholder="Correo" required>
-                    <input onchange="contraseña()" type="password" name="clave" id="clave" placeholder="Ingresar una clave clave mayor a 8 dígitos" required>
-                    <input onchange="verificarContraseña()" type="password" name="clave_c" id="clave_c" placeholder="Ingresar la clave nuevamente" required>
+                    <input autocomplete="on" onchange="nombre1()" type="text" name="nombre" id="nombre"
+                        placeholder="Nombres" required>
+                    <input autocomplete="on" onchange="apellido1()" type="text" name="apellido" id="apellido"
+                        placeholder="Apellidos" required>
+                    <input autocomplete="on" onchange="direccion1()" type="text" name="direccion" id="direccion"
+                        placeholder="Dirección" required>
+                    <input autocomplete="on" onchange="telefono1()" type="number" name="telefono" id="telefono"
+                        inputmode="tel" placeholder="Numero Telefónico" required>
+                    <input autocomplete="on" onchange="ValidacionCorreo()" type="email" name="email_registro"
+                        id="correo" placeholder="Correo" required>
+                    <input onchange="contraseña()" type="password" name="clave" id="clave"
+                        placeholder="Ingresar una clave clave mayor a 8 dígitos" required>
+                    <input onchange="verificarContraseña()" type="password" name="clave_c" id="clave_c"
+                        placeholder="Ingresar la clave nuevamente" required>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                         <label class="form-check-label" for="flexCheckDefault">
@@ -74,10 +83,10 @@ if(isset($_SESSION["Error al registrar"])){
                     <input type="password" name="clave_inicio" placeholder="Clave" required>
                     <button name="inicio" type="submit">Iniciar Sesión</button>
                     <div class="iniciar">
-                    <a href="./index.php" >Iniciar Sin Cuenta</a>
+                        <a href="./index.php">Iniciar Sin Cuenta</a>
                     </div>
                     <div class="olvidar">
-                    <a href="./recuperacion/cambio.php">¿Olvidaste tu contraseña?</a>
+                        <a href="./recuperacion/email.php">¿Olvidaste tu contraseña?</a>
                     </div>
                 </form>
             </div>
@@ -99,23 +108,26 @@ if(isset($_SESSION["Error al registrar"])){
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
     <script type="text/javascript">
-        const signUpButton = document.getElementById('signUp');
-        const signInButton = document.getElementById('signIn');
-        const main = document.getElementById('main');
-        signUpButton.addEventListener('click', () => {
-            main.classList.add("right-panel-active");
-        });
-        signInButton.addEventListener('click', () => {
-            main.classList.remove("right-panel-active");
-        });
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const main = document.getElementById('main');
+    signUpButton.addEventListener('click', () => {
+        main.classList.add("right-panel-active");
+    });
+    signInButton.addEventListener('click', () => {
+        main.classList.remove("right-panel-active");
+    });
     </script>
     <script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
 "></script>
 
 </body>
+
 </html>
 <?php
     if (isset($_SESSION["registro"])) {

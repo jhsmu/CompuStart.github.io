@@ -18,6 +18,7 @@
             }
         } else {
             echo '<script> alert("la contrasena no es la misma")</script>';
+            header("location:./cambio.php");
         }
     } else {
         echo '<script> alert("el boton")</script>';
