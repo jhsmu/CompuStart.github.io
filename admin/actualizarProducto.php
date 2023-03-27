@@ -141,10 +141,17 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                                         <option value="">Seleccione una opción</option>
                                                         <?php
                                                         foreach ($categorias as $key => $categoria) { //Agregamos las categorias a la lista desplegable
+                                                            if ($producto["id_categoria"]==$categoria["id_categoria"]){
+                                                        ?>
+                                                                <option value="<?php echo $categoria["id_categoria"] ?>" selected>
+                                                                <?php echo $categoria["categoria"] ?></option>
+                                                        <?php
+                                                            } else {
                                                         ?>
                                                             <option value="<?php echo $categoria["id_categoria"] ?>">
                                                                 <?php echo $categoria["categoria"] ?></option>
                                                         <?php
+                                                            }
                                                         }
                                                         ?>
                                                     </select>
@@ -159,11 +166,47 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                                         <option value="">Seleccione una opción</option>
                                                         <?php
                                                         foreach ($marcas as $key => $marca) {
+                                                            if ($producto["id_marca"]==$marca["id_marca"]){
                                                         ?>
-                                                            <option value="<?php echo $marca["id_marca"] ?>">
-                                                                <?php echo $marca["marca"] ?></option>
+                                                                <option value="<?php echo $marca["id_marca"] ?>" selected>
+                                                                    <?php echo $marca["marca"] ?></option>
                                                         <?php
+                                                            } else {
+                                                        ?>
+                                                                <option value="<?php echo $marca["id_marca"] ?>">
+                                                                    <?php echo $marca["marca"] ?></option>
+                                                        <?php
+                                                            }
                                                         }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap -mx-3 mb-2">
+                                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                                <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-city">
+                                                    Estado
+                                                </label>
+                                                <div class="relative">
+                                                    <select class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey" id="grid-state" name="estado" required>
+                                                        <option value="">Seleccione una opción</option>
+                                                        <?php
+                                                            if ($producto["estado_producto"]== 1){
+                                                        ?>
+                                                                <option value="<?php echo $producto["estado_producto"] ?>" selected>
+                                                                Habilitado</option>
+                                                                <option value="<?php echo $producto["estado_producto"] ?>">
+                                                                Inhabilitado</option>
+                                                        <?php
+                                                            } else {
+                                                        ?>
+                                                                <option value="<?php echo $producto["estado_producto"] ?>">
+                                                                Habilitado</option>
+                                                                <option value="<?php echo $producto["estado_producto"] ?>" selected>
+                                                                Inhabilitado</option>
+                                                        <?php
+                                                            }
                                                         ?>
                                                     </select>
                                                 </div>

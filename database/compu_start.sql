@@ -35,7 +35,7 @@ CREATE TABLE producto(
     precio FLOAT(12,2),
     id_categoria INT(11) NOT NULL,
     id_marca INT(11) NOT NULL,
-    estado BOOLEAN NOT NULL
+    estado_producto BOOLEAN NOT NULL
 );
 
 CREATE TABLE proveedor(
@@ -46,7 +46,7 @@ CREATE TABLE proveedor(
     telefono INT(12) NOT NULL,
     direccion_web VARCHAR(60) NOT NULL,
     direccion VARCHAR(60) NOT NULL,
-    estado BOOLEAN NOT NULL
+    estado_proveedor BOOLEAN NOT NULL
 );
 
 CREATE TABLE imagenes(
@@ -58,13 +58,13 @@ CREATE TABLE imagenes(
 CREATE TABLE categoria(
     id_categoria INT(11) PRIMARY KEY AUTO_INCREMENT,
     categoria VARCHAR(50) NOT NULL,
-    estado BOOLEAN NOT NULL
+    estado_categoria BOOLEAN NOT NULL
 );
 
 CREATE TABLE marca(
     id_marca INT(11) PRIMARY KEY AUTO_INCREMENT,
     marca VARCHAR(50) NOT NULL,
-    estado BOOLEAN NOT NULL
+    estado_marca BOOLEAN NOT NULL
 );
 
 CREATE TABLE compra(
@@ -97,19 +97,17 @@ CREATE TABLE orden(
     id_orden INT(11) PRIMARY KEY AUTO_INCREMENT,
     cliente INT(11) NOT NULL,
     total FLOAT(12,2) NOT NULL,
-    estado BOOLEAN NOT NULL,
+    estado_orden BOOLEAN NOT NULL,
     fecha timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 );
 
 CREATE TABLE detalle_orden(
     id_detalle_orden INT(11) PRIMARY KEY AUTO_INCREMENT,
-    cliente INT(11) NOT NULL,
     id_orden INT(11) NOT NULL,
     id_producto INT(11) NOT NULL,
     cantidad_venta INT(11) NOT NULL,
     precio_producto  FLOAT(12,2),
-    monto_total FLOAT(12,2) NOT NULL,
-    estado BOOLEAN NOT NULL
+    monto_total FLOAT(12,2) NOT NULL
 );
 
 ALTER TABLE producto ADD FOREIGN KEY(id_categoria)
@@ -139,9 +137,6 @@ REFERENCES producto(id_producto);
 ALTER TABLE orden ADD FOREIGN KEY(cliente)
 REFERENCES cliente(id);
 
-ALTER TABLE detalle_orden ADD FOREIGN KEY(cliente)
-REFERENCES cliente(id);
-
 ALTER TABLE detalle_orden ADD FOREIGN KEY(id_orden)
 REFERENCES orden(id_orden);
 
@@ -161,12 +156,12 @@ INSERT INTO administrador (nombre, apellido, email, contrasenia) VALUES
 ('Oswaldo', 'Natera', 'administrador6@gmail.com', 'Administrador12345'),
 ('Diego', 'Montoya', 'administrador8@gmail.com', 'Administrador12345');
 
-INSERT INTO proveedor (proveedor, nit, correo, telefono, direccion_web, direccion, estado) VALUES
+INSERT INTO proveedor (proveedor, nit, correo, telefono, direccion_web, direccion, estado_proveedor) VALUES
 ('Intel®', '9010914222', 'investor.relations@intel.com', '6042991366', 'https://www.intel.la/', 'Calle 6 Sur 70-215 AP 803 Antioquia, Medellín', '1'),
 ('AMD', '9011344702', 'contactanos@compumax.info', '3202429095', 'https://www.amd.com/', 'Carrera 106 N 15-25 Bodega 99 Manzana 15 - Bogotá,Cundinamarca', '1'),
 ('NVIDIA GeForce', '901055239', 'contacto@clonesyperifericos.com', '3044544169', 'https://www.nvidia.com/', 'Calle 35 #80D-65 Edf. INTEL', '1');
 
-INSERT INTO marca (marca, estado) VALUES
+INSERT INTO marca (marca, estado_marca) VALUES
 ('LG', '1'), 
 ('AOC', '1'),
 ('HyperX', '1'), 
@@ -187,7 +182,7 @@ INSERT INTO marca (marca, estado) VALUES
 ('GameMax ', '1'),
 ('ATX', '1');
 
-INSERT INTO categoria (categoria, estado) VALUES
+INSERT INTO categoria (categoria, estado_categoria) VALUES
 ('Perifericos', '1'),
 ('Gabinetes', '1'),
 ('Disipadores de Calor', '1'),
@@ -197,7 +192,7 @@ INSERT INTO categoria (categoria, estado) VALUES
 ('Fuentes de Poder', '1'), 
 ('Tarjetas Madre', '1');
 
-INSERT INTO producto (serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca, estado) VALUES
+INSERT INTO producto (serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca, estado_producto) VALUES
 ('A123456789', 'Monitor LG de 27 pulgadas', 'Monitor con tecnología LG para un alto rendimiento y mejor calidad visual y auditiva.', 'Pantalla led de 27\".\r\nTiene una resolución de 1920px-1080px.\r\nRelación de aspecto de 16:9.\r\nPanel IPS.\r\nSu brillo es de 250cd/m².\r\nTipos de conexión: 2 HDMI 1.4, DisplayPort 1.2, VGA, Jack 3.5 mm.\r\nEs giratorio y reclinable.\r\nComodidad visual en todo momento.', 50, '1455000', 1, 1, '1'),
 ('A123456788', 'Monitor AOC 24 pulgadas', 'Monitor AOC Full HD sin marco y con control de sonido envolvente y con dos puertos HDMI y 1 USB.', 'Pantalla LCD de 23.8\".\r\nTiene una resolución de 1920px-1080px.\r\nRelación de aspecto de 16:9.\r\nPanel IPS.\r\nSu brillo es de 250cd/m².\r\nTipos de conexión: HDMI 1.4, VGA/D-Sub, Jack 3.5 mm.', 50, '871900', 1, 2, '1'),
 ('A123456787', 'Teclado Mecanico HyperX Alloy Origins 65', 'Teclado Gamer con retroalimentación compatible con consolas.', 'Consolas de juegos compatibles: ps5 y ps4 y xbox series x|s y xbox one.\r\nFunción antighosting incorporada.\r\nTipo de teclado: mecánico.\r\nTecla cilíndrica.\r\nCon conector USB.\r\nCon cable removible.\r\nMedidas: 315.06mm de ancho, 105.5mm de alto y 36.94mm de profundidad.\r\nIndispensable para tus actividades.\r\nLas imágenes pueden ser ilustrativas.', 50, '455000', 1, 3, '1'),
@@ -211,7 +206,7 @@ INSERT INTO producto (serial, producto, descripcion_breve, descripcion, cantidad
 ('B002396154', 'Gabinete Caja Gamer Iceberg Gear V5 Ventilador 120mm', 'Gabinete Gamer con Vidrio templado y sin luces con 3 ventiladores.', 'Marca: Iceberg.\r\nLínea: Gear.\r\nModelo: V5.\r\nIncluye fuente de alimentación: No.\r\nTipo de estructura: Mid tower.\r\nPuertos: USB 3.0.\r\nBahías: 3.5 in.\r\nAltura x Ancho x Largo: 420 mm x 185 mm x 390 mm.\r\nEs gamer: Sí', 30, '170000', 2, 16, '1'),
 ('B326519801', 'Gabinete Atx Iceberg Glacius V2 Negra Vidrio Templado', 'Gabinete Gamer con Vidrio templado con capacidad de un ventilador.', 'Marca: Iceberg.\r\nLínea: Glacius.\r\nModelo: Glacius V2 Negro.\r\nIncluye fuente de alimentación: No.\r\nTipo de estructura: Mid tower.\r\nPuertos: USB 2.0 x 2 + USB 3.0 x 1 + HD Audio.\r\nBahías: 3 x 2.5” / 1 x 3.5”.\r\nPotencia de la fuente de alimentación: 0 W.\r\nAltura x Ancho x Largo: 410 mm x 192 mm x 405 mm.\r\nEs gamer: Sí', 30, '250000', 2, 16, '1');
 
-INSERT INTO producto (serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca, estado) VALUES
+INSERT INTO producto (serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca, estado_producto) VALUES
 ('C210364259', 'Disipador Por Aire Cpu Intel Amd - Jonsbo Cr1400 92mm 130w', 'Enfriador de aire de CPU en forma de torre con retroalimentación con alta capcadidad de enfriamiento.', 'Marca: Jonsbo.\r\nLínea: JonsboDesign.\r\nModelo: CR-1400.\r\nTipo de cooler: Air cooling.\r\nTamaño del ventilador: 92 mm.\r\nEs gamer: Sí.\r\nComponente compatible: CPU.', 30, '170000', 3, 13, '1'),
 ('C412657841', 'Disipador Para Intel Y Amd 120 Alseye H120d', 'Refrigeracion liquida ALSEYE H120 con retroalimentación y con enfriador a base de líquidos.', 'Marca: Alseye.\r\nLínea: Reactor.\r\nModelo: 120.\r\nTipo de cooler: Air cooling.\r\nTamaño del ventilador: 120 mm.\r\nEs gamer: Sí', 30, '220000', 3, 13, '1'),
 ('C523610023', 'Disipador Para Procesador H120d Blanco', 'CPU cooler de gran rendimiento, bonito a la vista y silencioso. Incluye 1g de pasta térmica. 6 Heat Pipes', 'Marca: Alseye.\r\nLínea: Halo.\r\nModelo: H120D White.\r\nTipo de cooler: Air cooling.\r\nTamaño del ventilador: 120 mm.\r\nEs gamer: Sí', 30, '175000', 3, 14, '1'),
@@ -225,7 +220,7 @@ INSERT INTO producto (serial, producto, descripcion_breve, descripcion, cantidad
 ('D205316248', 'Disco Duro interno Western Digital WD Purple WD20PURZ 2TB', 'Este producto posee una interfaz SATA III que se encarga de transferir datos con la placa madre de tu computadora.', 'Útil para guardar programas y documentos con su capacidad de2 TB.\r\nTamaño de 3.5 ".\r\nEs compatible con Windows, MacOS.\r\nInterfaz de conexión: SATA III.\r\nApto para DVR y NVR.\r\nIncrementa el rendimiento de tu equipo.', 40, '300000', 4, 9, '1'),
 ('D320564125', 'Disco Duro interno Western Digital WD Purple WD10PURZ 1TB púrpura', 'Es de gran importancia y con su velocidad de envío de información mejora el rendimiento.', 'Útil para guardar programas y documentos con su capacidad de 1 TB.\r\nTamaño de 3.5 ".\r\nInterfaz de conexión: SATA III.\r\nApto para NVR y PC y DVR.\r\nIncrementa el rendimiento de tu equipo.', 40, '210000', 4, 9, '1');
 
-INSERT INTO producto (serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca, estado) VALUES
+INSERT INTO producto (serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca, estado_producto) VALUES
 ('E258852013', 'Disco sólido SSD interno Kingston NV1 SNVS/250G 250GB', 'Este disco transfiere datos a través de una interfaz NVMe Gen 3.0, PCIe, lo que te brindará trasmitir una mayor cantidad de información de una sola vez.', 'Útil para guardar programas y documentos con su capacidad de 250 GB.\r\nMás espacio en tu PC con su factor de forma M.2 2280.\r\nInterfaces de conexión: NVMe Gen 3.0 y PCIe.\r\nApto para PC y Notebook.\r\nIncrementa el rendimiento de tu equipo.', 50, '145000', 5, 8, '1'),
 ('E203614520', 'Disco sólido SSD interno Samsung 980 MZ-V8V500BW 500GB', 'Ha llegado el momento de maximizar el potencial de tu PC con el nuevo 980. Tanto como si necesitas un impulso en tus juegos como un un flujo de trabajo fluido.', 'Disipador de calor integrado.\r\nÚtil para guardar programas y documentos con su capacidad de 500 GB.\r\nMás espacio en tu PC con su factor de forma M.2 2280.\r\nInterfaces de conexión: NVMe 1.4 y PCIe Gen3x4.\r\nApto para PC.\r\nIncrementa el rendimiento de tu equipo.', 50, '300000', 5, 12, '1'),
 ('E951852465', 'Disco sólido SSD interno Crucial CT500P2SSD8 500GB', 'Con la unidad en estado sólido Crucial incrementarás la capacidad de respuesta de tu equipo. Gracias a esta tecnología podrás invertir en velocidad y eficiencia.', 'Útil para guardar programas y documentos con su capacidad de 500 GB.\r\nMás espacio en tu PC con su factor de forma M.2 2280.\r\nInterfaz de conexión: PCIe 3.0.\r\nApto para PC y Notebook.\r\nIncrementa el rendimiento de tu equipo.', 50, '245000', 5, 10, '1'),
@@ -239,7 +234,7 @@ INSERT INTO producto (serial, producto, descripcion_breve, descripcion, cantidad
 ('F123456785', 'Memoria RAM 4gb', '4 GB de RAM con tecnología DDR3L para trabajar.', 'Optimiza el rendimiento de tu máquina con la tecnología DDR3L.\r\nMemoria con formato SODIMM.\r\nAlcanza una velocidad de 1600 MHz.\r\nApta para notebooks.\r\nCuenta con una tasa de transferencia de 12800 MB/s.', 100, '56000', 6, 12, '1'),
 ('F123456784', 'Memoria RAM 4gb', '4 GB de RAM para realizar trabajos en la PC.', 'Marca: Samsung.\r\nCapacidad total: 4 GB.\r\nVelocidad: 600 MHz.\r\nTeconología: DDR3.\r\nFormato: SODIMM.', 100, '65000', 6, 12, '1');
 
-INSERT INTO producto (serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca, estado) VALUES
+INSERT INTO producto (serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca, estado_producto) VALUES
 ('G621952154', 'Fuente De Poder Pc 500w Thermaltake Smart 80 Plus White Negro', '¡Dale potencia a tu sistema con la fuente de alimentación de 500 W y 80+ de Thermaltake!', 'Línea: Smart Series.\r\nModelo: PS-SPD-0500NPCWUS-W.\r\nPotencia de salida: 500 W.\r\nColor Negro.\r\nVoltaje 110V/220V.\r\nTipo de fuente de alimentación para PC: ATX.\r\nTipo de refrigeración: Por aire', 30, '243000', 7, 17, '1'),
 ('G361251054', 'Fuente de poder para PC GameMax VP Series VP-800 800W negra 100V/240V', 'Con la fuente de poder GameMax VP-800 podrás asegurar la corriente continua y estable de tu computadora.', 'Marca: GameMax.\r\nLínea: VP Series.\r\nModelo: VP-800.\r\nPotencia de salida de 800 W.\r\nColor Negro.\r\nVoltaje 100V/240V.\r\nTipo de fuente de alimentación para PC: ATX.\r\nTipo de refrigeración: Hidráulica.\r\nCon protección de bajo voltaje: Sí', 30, '335000', 7, 18, '1'),
 ('G875245610', 'Fuente de poder para PC GameMax VP Series VP-600-RGB 600W negra 100V/240V', 'Debido a su funcionamiento silencioso, tu equipo operará minimizando el nivel de ruido.', 'Marca: GameMax.\r\nLínea: VP Series.\r\nModelo: VP-600-RGB.\r\nPotencia de salida de 600 W.\r\nColor Negro.\r\nVoltaje 100V/240V.\r\nTipo de fuente de alimentación para PC: ATX.\r\nCon iluminación RGB: Sí', 30, '303000', 7, 18, '1'),

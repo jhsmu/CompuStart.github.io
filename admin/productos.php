@@ -9,7 +9,7 @@ $db = new Database();
 $connection = $db->connect(); //Creamos la conexión a la BD
 
 // Cuando la conexión está establecida...
-$query = $connection->prepare("SELECT id_producto, serial, producto, cantidad, precio, marca.marca AS nombre_marca, categoria.categoria AS nombre_categoria
+$query = $connection->prepare("SELECT id_producto, serial, producto, cantidad, precio, estado_producto, marca.marca AS nombre_marca, categoria.categoria AS nombre_categoria
 FROM producto
 INNER JOIN marca ON producto.id_marca =  marca.id_marca
 INNER JOIN categoria ON producto.id_categoria = categoria.id_categoria"); // Traduzco mi petición
@@ -107,6 +107,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 <th class="border w-1/1 px-4 py-2">Precio</th>
                                                 <th class="border w-1/1 px-4 py-2">Categoría</th>
                                                 <th class="border w-1/1 px-4 py-2">Marca</th>
+                                                <th class="border w-1/1 px-4 py-2">Estado</th>
                                                 <th class="border w-1/1 px-4 py-2">Acción</th>
                                             </tr>
                                         </thead>
@@ -129,6 +130,13 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                         <?php echo $producto["nombre_categoria"] . "<br>"; ?></td>
                                                     <td class="border w-1/6 px-4 py-2">
                                                         <?php echo $producto["nombre_marca"] . "<br>"; ?></td>
+                                                    <td class="border w-1/6 px-4 py-2">
+                                                        <?php   if ($producto["estado_producto"]=="1"){
+                                                            echo "Habilitado <br>";
+                                                        } else {
+                                                            echo "Inhabilitado <br>";
+                                                        }
+                                                        ?></td>
                                                     <td class="border px-4 py-2">
                                                         <a class="bg-red-500 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarProducto.php?id=<?php echo $producto["id_producto"]; ?>">
                                                             <i class="fas fa-edit"></i>

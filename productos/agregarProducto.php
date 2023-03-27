@@ -17,7 +17,7 @@
     $total=$cantidad*$precio;
 
     //Primero agregamos el producto en la tabla producto
-    $agregar=$DB_con->prepare('INSERT INTO producto(serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca) VALUES(:serial, :producto, :descripcion_breve, :descripcion, :cantidad, :precio, :categoria, :marca)');
+    $agregar=$DB_con->prepare('INSERT INTO producto(serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca, estado_producto) VALUES(:serial, :producto, :descripcion_breve, :descripcion, :cantidad, :precio, :categoria, :marca. :estado)');
     $agregar->bindParam(':serial', $serial);
     $agregar->bindParam(':producto', $producto);
     $agregar->bindParam(':descripcion_breve', $descripcion_breve);
@@ -26,6 +26,7 @@
     $agregar->bindParam(':precio', $precio);
     $agregar->bindParam(':categoria', $id_categoria);
     $agregar->bindParam(':marca', $id_marca);
+    $agregar->bindParam(':estado', 1);
     $agregar->execute();
 
     $idProducto=$DB_con->lastInsertId();
@@ -50,7 +51,7 @@
             $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'webp'); // valid extensions
         
             // rename uploading image
-            $userpic = rand(1000,1000000).".".$imgExt;
+            $userpic = $imgFile;
                 
             // allow valid image file formats
             if(in_array($imgExt, $valid_extensions)){			

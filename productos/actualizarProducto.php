@@ -16,9 +16,10 @@
         $precio=$_POST["precio"]*0.6;
         $id_categoria=$_POST["categoria"];
         $id_marca=$_POST["marca"];
+        $estado=$_POST["estado"];
 
-        $query = $connection->prepare("UPDATE producto SET serial=?, producto=?, descripcion_breve=?, descripcion=?, cantidad=?, precio=?, id_categoria=?, id_marca=? WHERE id_producto=?");// Traduzco mi petición
-        $actualizar = $query->execute([$serial, $producto, $descripcion_breve, $descripcion, $cantidad, $precio, $id_categoria, $id_marca, $id ]); //Ejecuto mi petición
+        $query = $connection->prepare("UPDATE producto SET serial=?, producto=?, descripcion_breve=?, descripcion=?, cantidad=?, precio=?, id_categoria=?, id_marca=?, estado_producto=? WHERE id_producto=?");// Traduzco mi petición
+        $actualizar = $query->execute([$serial, $producto, $descripcion_breve, $descripcion, $cantidad, $precio, $id_categoria, $id_marca, $estado, $id ]); //Ejecuto mi petición
 
         if ($actualizar) {
             session_start();

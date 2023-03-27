@@ -3,7 +3,7 @@
 
     $cantidad=$_POST['cantidad'];
     $id=$_POST['id'];
-    $precio=$_POST['precio'];
+    $precio=$_POST['precio']*0.6;
     $total=$cantidad*$precio;
     $idProveedor=$_POST['proveedor'];
 
