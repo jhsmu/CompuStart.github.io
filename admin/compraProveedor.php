@@ -18,8 +18,8 @@ $query2->execute();
 $categorias = $query2->fetchAll(PDO::FETCH_ASSOC);
 
 if (isset($_POST["categoria"])) {
-    $_SESSION["id_categoria"] = $_POST["categoria"];
-    $_SESSION["id_proveedor"] = $_POST["proveedor"];
+    $_SESSION["id_categoria"]=$_POST["categoria"];
+    $_SESSION["id_proveedor"]=$_POST["proveedor"];
     $query3 = $connection->prepare("SELECT * FROM producto
     INNER JOIN marca ON producto.id_marca =  marca.id_marca
     WHERE id_categoria=:categoria");
@@ -30,12 +30,12 @@ if (isset($_POST["categoria"])) {
 }
 
 if (isset($_POST["producto"])) {
-    $_SESSION["id_producto"] = $_POST["producto"];
+    $_SESSION["id_producto"]=$_POST["producto"];
     $query4 = $connection->prepare("SELECT id_producto, serial, producto, cantidad, precio, estado_producto, marca.marca AS nombre_marca, id_categoria
     FROM producto
     INNER JOIN marca ON producto.id_marca =  marca.id_marca
     WHERE id_producto=:producto");
-    $query4->bindParam(":producto", $_SESSION["id_producto"]);
+    $query4->bindParam(":producto", $_SESSION["id_producto"]); 
     $query4->execute();
 
     $product = $query4->fetch(PDO::FETCH_ASSOC);
@@ -117,20 +117,20 @@ if (isset($_POST["producto"])) {
                                                         <option value="" selected type="hidden">Selecciona un proveedor
                                                         </option>
                                                         <?php
-                                                        foreach ($proveedores as $key => $proveedor) {
-                                                            if (isset($_SESSION["id_proveedor"]) && $_SESSION["id_proveedor"] == $proveedor["id_proveedor"]) {
-                                                        ?>
+                                                    foreach ($proveedores as $key => $proveedor) {
+                                                        if (isset($_SESSION["id_proveedor"]) && $_SESSION["id_proveedor"]==$proveedor["id_proveedor"]){
+                                                ?>
                                                         <option value="<?php echo $proveedor["id_proveedor"] ?>"
                                                             selected><?php echo $proveedor["proveedor"] ?></option>
                                                         <?php
-                                                            } else {
-                                                            ?>
+                                                    } else {
+                                                ?>
                                                         <option value="<?php echo $proveedor["id_proveedor"] ?>">
                                                             <?php echo $proveedor["proveedor"] ?></option>
                                                         <?php
-                                                            }
-                                                        }
-                                                        ?>
+                                                    }
+                                                    }
+                                                ?>
                                                     </select>
                                                     <div
                                                         class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker ">
@@ -156,20 +156,20 @@ if (isset($_POST["producto"])) {
                                                         <option value="" selected type="hidden">Selecciona una categoria
                                                         </option>
                                                         <?php
-                                                        foreach ($categorias as $key => $categoria) {
-                                                            if (isset($_SESSION["id_categoria"]) && $_SESSION["id_categoria"] == $categoria["id_categoria"]) {
-                                                        ?>
+                                                    foreach ($categorias as $key => $categoria) {
+                                                        if (isset($_SESSION["id_categoria"]) && $_SESSION["id_categoria"]==$categoria["id_categoria"]){
+                                                            ?>
                                                         <option value="<?php echo $categoria["id_categoria"] ?>"
                                                             selected><?php echo $categoria["categoria"] ?></option>
                                                         <?php
-                                                            } else {
+                                                                } else {
                                                             ?>
                                                         <option value="<?php echo $categoria["id_categoria"] ?>">
                                                             <?php echo $categoria["categoria"] ?></option>
                                                         <?php
-                                                            }
-                                                        }
-                                                        ?>
+                                                                }
+                                                                }
+                                                            ?>
                                                     </select>
                                                     <button type="submit" id="boton" hidden>enviar</button>
                                                     <div
@@ -200,19 +200,19 @@ if (isset($_POST["producto"])) {
                                                     </option>
                                                     <?php
                                                     foreach ($_SESSION["productos"] as $key => $producto) {
-                                                        if (isset($_SESSION["id_producto"]) && $_SESSION["id_producto"] == $producto["id_producto"]) {
-                                                    ?>
+                                                        if (isset($_SESSION["id_producto"]) && $_SESSION["id_producto"]==$producto["id_producto"]){
+                                                ?>
                                                     <option value="<?php echo $producto["id_producto"] ?>" selected>
                                                         <?php echo $producto["producto"] ?></option>
                                                     <?php
                                                         } else {
-                                                        ?>
+                                                ?>
                                                     <option value="<?php echo $producto["id_producto"] ?>">
                                                         <?php echo $producto["producto"] ?></option>
                                                     <?php
                                                         }
                                                     }
-                                                    ?>
+                                                ?>
                                                 </select>
                                                 <button type="submit" id="boton2"></button>
                                                 <div
@@ -252,14 +252,13 @@ if (isset($_POST["producto"])) {
                                 <form action="../compra/pagarCompraProveedor.php" method="post" class="w-full">
 
                                     <?php
-                                    if (isset($product)) {
-                                    ?>
+                                    if (isset($product)){
+                                ?>
 
                                     <div class="max-w-screen-lg w-full lg:flex mx-5">
                                         <div class="w-1/1 h-96">
 
-                                            <img src="../imagenes/<?php echo $imagenes[0]["url"] ?>" alt=""
-                                                class="object-cover lg:max-h-96 md:max-h-48">
+                                            <img src="../imagenes/<?php echo $imagenes[0]["url"] ?>" alt="" class="object-cover lg:max-h-96 md:max-h-48">
 
                                         </div>
                                         <div
@@ -268,9 +267,9 @@ if (isset($_POST["producto"])) {
                                                 <h3 class="text-black-500 font-bold text-lg mb-2">
                                                     <?php echo $product["producto"] ?></h3>
                                                 <p class="text-gray-700 text-base">
-                                                    Marca:<?php echo " " . $product["nombre_marca"] ?></p>
+                                                    Marca:<?php echo " ".$product["nombre_marca"] ?></p>
                                                 <p class="text-gray-700 text-base">
-                                                    Precio:<?php echo " " . $product["precio"] * 0.6 ?></p>
+                                                    Precio:<?php echo " ".$product["precio"]*0.6 ?></p>
                                                 <input type="number" class="bg-gray-200" name="cantidadCompra"
                                                     placeholder="Ingrese la cantidad">
                                                 <input type="number" name="precioCompra" id=""
@@ -286,7 +285,7 @@ if (isset($_POST["producto"])) {
 
                                     <?php
                                     }
-                                    ?>
+                                ?>
 
                                 </form>
 
@@ -322,19 +321,19 @@ if (isset($_POST["producto"])) {
     }
     </script>
     <?php
-    if (isset($_SESSION["comprobante"])) {
-        echo ('<script>Swal.fire({
+        if (isset($_SESSION["comprobante"])) {
+            echo ('<script>Swal.fire({
                 title: "Compra exitosa",
                 text: "Tus productos estan en tu inventario",
                 icon: "success" 
             });
             </script>');
-        unset($_SESSION["comprobante"]);
-        unset($_SESSION["id_categoria"]);
-        unset($_SESSION["id_proveedor"]);
-        unset($_SESSION["id_producto"]);
-        unset($_SESSION["productos"]);
-    }
+            unset($_SESSION["comprobante"]);
+            unset($_SESSION["id_categoria"]);
+            unset($_SESSION["id_proveedor"]);
+            unset($_SESSION["id_producto"]);
+            unset($_SESSION["productos"]);
+        }
     ?>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
