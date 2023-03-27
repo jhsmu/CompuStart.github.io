@@ -4,6 +4,12 @@ CREATE DATABASE compu_start;
 
 ----Creación de las tablas
 
+--Creación de la Data Base
+
+CREATE DATABASE compu_start;
+
+----Creación de las tablas
+
 CREATE TABLE cliente(
     id INT(11) PRIMARY KEY AUTO_INCREMENT,
     imagen VARCHAR(50) NULL,
@@ -97,7 +103,7 @@ CREATE TABLE orden(
     id_orden INT(11) PRIMARY KEY AUTO_INCREMENT,
     cliente INT(11) NOT NULL,
     total FLOAT(12,2) NOT NULL,
-    estado_orden BOOLEAN NOT NULL,
+    estado BOOLEAN NOT NULL,
     fecha timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 );
 
@@ -107,7 +113,8 @@ CREATE TABLE detalle_orden(
     id_producto INT(11) NOT NULL,
     cantidad_venta INT(11) NOT NULL,
     precio_producto  FLOAT(12,2),
-    monto_total FLOAT(12,2) NOT NULL
+    monto_total FLOAT(12,2) NOT NULL,
+    estado BOOLEAN NOT NULL
 );
 
 ALTER TABLE producto ADD FOREIGN KEY(id_categoria)
