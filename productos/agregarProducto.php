@@ -1,10 +1,10 @@
-
 <?php
     error_reporting( ~E_NOTICE ); // avoid notice
 	
 	include '../database/conexion.php';
 
     //Definimos las variables
+    $estado=1;
     $serial=$_POST["serial"];
     $producto=$_POST["producto"];
     $descripcion_breve=$_POST["descripcion_breve"];
@@ -17,7 +17,7 @@
     $total=$cantidad*$precio;
 
     //Primero agregamos el producto en la tabla producto
-    $agregar=$DB_con->prepare('INSERT INTO producto(serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca, estado_producto) VALUES(:serial, :producto, :descripcion_breve, :descripcion, :cantidad, :precio, :categoria, :marca. :estado)');
+    $agregar=$DB_con->prepare('INSERT INTO producto(serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca, estado_producto) VALUES(:serial, :producto, :descripcion_breve, :descripcion, :cantidad, :precio, :categoria, :marca, :estado_producto)');
     $agregar->bindParam(':serial', $serial);
     $agregar->bindParam(':producto', $producto);
     $agregar->bindParam(':descripcion_breve', $descripcion_breve);
@@ -26,7 +26,7 @@
     $agregar->bindParam(':precio', $precio);
     $agregar->bindParam(':categoria', $id_categoria);
     $agregar->bindParam(':marca', $id_marca);
-    $agregar->bindParam(':estado', 1);
+    $agregar->bindParam(':estado_producto', $estado);
     $agregar->execute();
 
     $idProducto=$DB_con->lastInsertId();
