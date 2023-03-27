@@ -2,6 +2,7 @@
     session_start();
 
     require('../database/basededatos.php');
+    error_reporting();
 
     //Creamos un objeto del tipo Database
     $db = new Database();
@@ -60,7 +61,7 @@
 
         <div class="flex flex-1">
             <!--Sidebar-->
-            <aside id="sidebar" class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
+            <aside id="sidebar" class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav md:block lg:block">
 <!--Barra lateral-->
                 <ul class="list-reset flex flex-col">
                     <?php include("../componentes/barralateralAdmin.php") ?>
@@ -120,14 +121,14 @@
                         <div class="p-3">
                             <form class="w-full" action="./cambiodeestadodepedidos.php" method="post">
                                 <div class="flex flex-wrap -mx-3 mb-2">
-                                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0" hidden>
+                                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
                                             ID de la Orden
                                         </label>
                                         <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
-                                        type="text" name="id" id="id" value="<?php echo $orden['id_orden']; ?>">
+                                        type="text" name="id_orden" id="id_orden" value="<?php echo $orden['id_orden']; ?>">
                                     </div>
-                                    <div class="w-full md:w-1/2 px-3" hidden>
+                                    <div class="w-full md:w-1/2 px-3">
                                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                             Cliente
                                         </label>
@@ -136,7 +137,7 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap -mx-3 mb-2">
-                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0" hidden>
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
                                             Total
                                         </label>
@@ -144,14 +145,11 @@
                                         name="total" id="total" value="<?php echo $orden['total']; ?>" placeholder="<?php echo $orden['total']; ?>">
                                     </div>
                                 </div>
-                                <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
-                                    Verifica los Productos antes de aprobar la orden
-                                </div>
                                 <?php
                                     foreach ($informacion as $key => $info) {
                                 ?>
                                 <div class="flex flex-wrap -mx-3 mb-2">
-                                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0" hidden>
+                                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
                                             ID del Producto
                                         </label>
@@ -160,7 +158,16 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap -mx-3 mb-2">
-                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0" hidden>
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
+                                            Nombre del Producto
+                                        </label>
+                                        <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text"
+                                        name="nombreProducto" id="nombreProducto" value="<?php echo $info['nombreProducto']; ?>" placeholder="<?php echo $info['nombreProducto']; ?>">
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap -mx-3 mb-2">
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
                                             Cantidad
                                         </label>
@@ -169,16 +176,16 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap -mx-3 mb-2">
-                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0" hidden>
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
                                             Precio unitario
                                         </label>
-                                        <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="email"
+                                        <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text"
                                         name="precio_producto" id="precio_producto" value="<?php echo $info['precio_producto']; ?>" placeholder="<?php echo $info['precio_producto']; ?>">
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap -mx-3 mb-2">
-                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0" hidden>
+                                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
                                             for="grid-city">
                                         Monto Total
@@ -209,7 +216,7 @@
                                     <button class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded' type="button"> <a href="./otros.php">Volver</a>
                                     </button>
                                 </div>
-                            </form>
+                    </form>
                         </div>
                     </div>
                 </div>
@@ -222,3 +229,16 @@
 </body>
 
 </html>
+
+<?php 
+if (isset($_SESSION['errorDeAprobar'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Error al aceptar la orden'
+        });
+    </script>";
+    unset($_SESSION['errorDeAprobar']);
+}
+?>

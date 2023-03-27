@@ -129,3 +129,15 @@
 </body>
 
 </html>
+<?php 
+if (isset($_SESSION['Aprobado'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Orden Aprobada'
+        });
+    </script>";
+    unset($_SESSION['Aprobado']);
+}
+?>
