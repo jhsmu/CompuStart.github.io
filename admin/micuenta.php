@@ -28,7 +28,7 @@
                     <h1 class="text-white p-2">Compu Start</h1>
                 </div>
                 <div class="p-1 flex flex-row items-center">
-                    <a href="#" onclick="profileToggle()" class="text-white p-2 no-underline hidden md:block lg:block"><?php echo $_SESSION["admin"] ?></a>
+                <a href="#" onclick="profileToggle()" class="text-white p-2 no-underline hidden md:block lg:block"><?php echo $_SESSION["admin"] ?></a>
                     <img onclick="profileToggle()" class="inline-block h-8 w-8 rounded-full" src="../img/logo/avatar.png" alt="">
                     <div id="ProfileDropDown" class="rounded hidden shadow-md bg-white absolute pin-t mt-12 mr-1 pin-r">
                     </div>
@@ -155,6 +155,17 @@
         <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
         type="password" name="contrasena" id="clave" onchange="contraseña()" required value="<?php echo $contrasena; ?>" >
     </div>
+    <span >
+     <i class="fa fa-eye" 
+     style="color:#D8D8D8;
+    position: absolute;
+    right: 40rem;
+    transform: translate(0, -50%);
+    top: 30%;
+    cursor: pointer; 
+    font-size:20px;
+     " id="eye" ></i>
+     </span>
 
 </div>
 <div class="mt-5">
@@ -182,7 +193,22 @@
 <!-- VALIDACIONES Y ALERTAS -->
 <script src="../js/validaciones.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
+<script>
+var eye = document.getElementById('eye');
+var input = document.getElementById('clave');
 
+eye.addEventListener('click',mostrar);
+
+function mostrar(){
+    if(input.type == "password"){
+        input.type = "text"
+        eye.style.color="#383838"
+    }else{
+        input.type = "password"
+        eye.style.color="#D8D8D8"
+    }
+}
+</script>
 
 </body>
 
