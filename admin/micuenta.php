@@ -159,9 +159,9 @@
      <i class="fa fa-eye" 
      style="color:#D8D8D8;
     position: absolute;
-    right: 40rem;
+    right: 37rem;
     transform: translate(0, -50%);
-    top: 30%;
+    top: 40%;
     cursor: pointer; 
     font-size:20px;
      " id="eye" ></i>
