@@ -26,8 +26,9 @@
             $_SESSION['actualizar_producto'] = 'registro';
             header("location: ../admin/productos.php");
         } else {
-            echo "<h2> Error al Actualizar <h2>";
+            session_start();
+            $_SESSION['actualizar_error'] = 'registro';
+            header("location: ../admin/productos.php");
         }
-        echo "<a href='consultaProveedor.php'>Regresar</a>";
     }
 ?>

@@ -12,9 +12,10 @@
 
     if ($agregar->execute()) {
         session_start();
-        $_SESSION['marca'] = 'registro';
+        $_SESSION['agregar'] = 'registro';
         header("location: ../admin/marca.php");
     } else {
-        echo '<script> alert("registro incorrecto")</script>';
-        header("location:marac.php");
+        session_start();
+        $_SESSION['error'] = 'registro';
+        header("location: ../admin/marca.php");
     }

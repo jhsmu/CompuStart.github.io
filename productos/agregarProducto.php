@@ -88,10 +88,11 @@
     $compra->bindParam(':total', $total);
 
     if ($compra->execute()) {
-        echo '<h2> Registro Correcto </h2>';
         session_start();
         $_SESSION["producto"]="Registro correcto";
         header("location:../admin/productos.php");
     } else {
-        echo '<h2> Registro incorrecto </h2>';
+        session_start();
+        $_SESSION["producto_error"]="Registro";
+        header("location:../admin/productos.php");
     }

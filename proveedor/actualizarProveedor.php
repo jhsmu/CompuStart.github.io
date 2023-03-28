@@ -23,8 +23,9 @@
             $_SESSION['actualizar'] = 'registro';
             header("location: ../admin/proveedor.php");
         } else {
-            echo "<h2> Error al Actualizar <h2>";
+            session_start();
+            $_SESSION['error_actualizar'] = 'actualizar';
+            header("location: ../admin/proveedor.php");
         }
-        echo "<a href='consultaProveedor.php'>Regresar</a>";
     }
 ?>

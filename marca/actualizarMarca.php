@@ -19,8 +19,8 @@
             $_SESSION['actualizar_marca'] = 'registro';
             header("location: ../admin/marca.php");
         } else {
-            echo "<h2> Error al Actualizar <h2>";
+            $_SESSION['actualizar_error'] = 'registro';
+            header("location: ../admin/marca.php");
         }
-        echo "<a href='../admin/actualizarMarca.php'>Regresar</a>";
     }
 ?>
