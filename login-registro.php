@@ -45,13 +45,13 @@ error_reporting(0);
                         placeholder="Nombres" required>
                     <input autocomplete="on" onchange="apellido1()" type="text" name="apellido" id="apellido"
                         placeholder="Apellidos" required>
-                    <select name="documento">
-                        <option value="">Selecionar Opción</option>
-                        <option value="">T.I</option>
-                        <option value="">C.C</option>
-                        <option value="">C.E</option>
+                    <select name="tipo_documento">
+                        <option>Selecionar Opción</option>
+                        <option value="Tarjeta de Identidad">T.I</option>
+                        <option value="Cédula de Ciudadanía">C.C</option>
+                        <option value="Cedula de Extranjería">C.E</option>
                     </select>
-                    <input type="text" name="documento" id="documento"
+                    <input type="text" name="numero_documento" id="numero_documento"
                         placeholder="Numero De Documento" required>
                     <input autocomplete="on" onchange="direccion1()" type="text" name="direccion" id="direccion"
                         placeholder="Dirección" required>
@@ -194,7 +194,7 @@ function mostrarinicio(){
 </script>
 
 <?php
-    if (isset($_SESSION["registro"])) {
+    if (isset($_SESSION["agregar"])) {
         echo ('<script>Swal.fire({
             title: "Registro exitoso",
             text: "Ahora puedes iniciar tu sesión",
@@ -208,16 +208,27 @@ function mostrarinicio(){
         echo ('<script>Swal.fire({
             title: "Datos incorrectos",
             text: "Los datos ingresados son incorrectos, por favor verifique",
-            icon: "error" 
+            icon: "info" 
         });
         </script>');
         session_destroy();
     }
+
+    if (isset($_SESSION["error"])) {
+        echo ('<script>Swal.fire({
+            title: "Datos incorrectos",
+            text: "Los datos ingresados son incorrectos, por favor verifique",
+            icon: "info" 
+        });
+        </script>');
+        session_destroy();
+    }
+
     if (isset($_SESSION["emailRepetido"])) {
         echo ('<script>Swal.fire({
             title: "Email repetido",
             text: "El email que intenta ingresar esta repetido",
-            icon: "error" 
+            icon: "info" 
         });
         </script>');
         session_destroy();
