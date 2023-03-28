@@ -194,6 +194,16 @@ function mostrarinicio(){
 </script>
 
 <?php
+if (isset($_SESSION["IngresoForsozo"])) {
+    echo ('<script>Swal.fire({
+            title: "Ingreso Forsozo",
+            text: "Por favor, para navegar en la página debe ingresar sesión o registrarse",
+            icon: "info" 
+        });
+        </>');
+    session_destroy();
+}
+
     if (isset($_SESSION["agregar"])) {
         echo ('<script>Swal.fire({
             title: "Registro exitoso",

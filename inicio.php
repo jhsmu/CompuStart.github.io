@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+    include './validaciones/sesionStarted.php';
 require_once './database/conexion.php';
 
 $consulta1 = $DB_con->prepare('SELECT * FROM producto ORDER BY id_producto DESC');
