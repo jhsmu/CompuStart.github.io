@@ -8,8 +8,8 @@
             <div class="box mt-5 pt-5">
         
                 <h2 style="text-align: center;">Sobre Nosotros</h2>
-                <p class="text">Techno Solution es una empresa de dedicada a la venta de de componentes electrónicos para sus equipos de computo desde gabinetes hasta procesadores, placas madres, etc. </p>
-                <p class="text">Techno Solution tiene componentes de muy buena calidad y precio ven y visítenos y veras de todos los componentes que tenemos para ti, no te quedes sin los tuyos </p>
+                <p class="text">Techno Solution es una empresa dedicada a la venta de componentes electrónicos para sus equipos de computo. Desde gabinetes hasta procesadores, placas madres, etc. </p>
+                <p class="text">Techno Solution tiene componentes de muy buena calidad y precio, ven, visítanos y verás todos los componentes que tenemos para ti, no te quedes sin los tuyos. </p>
             </div>
             <div class="box3">
                 <h2>Síguenos</h2>
