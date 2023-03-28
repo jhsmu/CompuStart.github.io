@@ -76,7 +76,7 @@ $imagenes = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                         <h5 class="card-title"><strong><?php echo $producto['producto'] ?></strong></h5>
                         <p style="text-align: justify;"><?php echo $producto['descripcion_breve'] ?></p>
                         <p name="precio" id="precio" style="margin-left: 13rem; color:grey">
-                            <?php echo '$ ' . $producto['precio'] ?></p>
+                            $ <?php echo number_format($producto['precio']) ?></p>
                         <a style="margin-left: 7rem;"
                             href="./categoriaDescripcion.php?id=<?php echo $producto['id_producto'] ?>"
                             class="btn btn-primary">Ver mas</a>
@@ -146,7 +146,7 @@ $imagenes = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                         <h5 class="card-title"><strong><?php echo $productos[$i]['producto'] ?></strong></h5>
                         <p style="text-align: justify;"><?php echo $productos[$i]['descripcion_breve'] ?></p>
                         <p name="precio" id="precio" style="margin-left: 13rem; color:grey">
-                            <?php echo '$ ' . $productos[$i]['precio'] ?></p>
+                            $ <?php echo number_format($productos[$i]['precio']) ?></p>
                         <a style="margin-left: 7rem;"
                             href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>"
                             class="btn btn-primary">Ver más</a>
@@ -205,7 +205,7 @@ $imagenes = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                         <h5 class="card-title"><strong><?php echo $productos[$i]['producto'] ?></strong></h5>
                         <p style="text-align: justify;"><?php echo $productos[$i]['descripcion_breve'] ?></p>
                         <p name="precio" id="precio" style="margin-left: 13rem; color:grey">
-                            <?php echo '$ ' . $productos[$i]['precio'] ?></p>
+                            $ <?php echo number_format($productos[$i]['precio']) ?></p>
                         <a style="margin-left: 7rem;"
                             href="./categoriaDescripcion.php?id=<?php echo $productos[$i]['id_producto'] ?>"
                             class="btn btn-primary">Ver mas</a>
