@@ -1,6 +1,5 @@
 <?php
 session_start();
-include './validaciones/sesionStarted.php';
 include("./editar/conexion.php");
 $id = $_SESSION["id_usuario"];
 error_reporting(0);
@@ -40,7 +39,6 @@ error_reporting(0);
     <?php
     if (isset($_POST['enviar'])) {
         //entra si le da el botón enviar
-        $id = $_POST['id'];
         $nombre = $_POST['nombre'];
         $apellido = $_POST['apellido'];
         $direccion = $_POST['direccion'];
@@ -76,13 +74,14 @@ error_reporting(0);
 
 
         //update
-        $sql = "update cliente set nombre='" . $nombre . "',
+        $sql = "update cliente set imagen='" . $userpic . "', 
+            nombre='" . $nombre . "',
             apellido='" . $apellido . "',
+            tipo_documento='".$td."',
             direccion='" . $direccion . "',
             telefono='" . $telefono . "',
             email='" . $email . "',
-            contrasenia='" . $contrasena . "',
-            imagen='" . $imgFile . "'
+            contrasenia='" . $contrasena . "'
             where id='" . $id . "'";
 
         $resultado = mysqli_query($conexion, $sql);

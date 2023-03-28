@@ -150,8 +150,8 @@ REFERENCES orden(id_orden);
 ALTER TABLE detalle_orden ADD FOREIGN KEY(id_producto)
 REFERENCES producto(id_producto);
 
-INSERT INTO cliente (nombre, apellido, tipo_documento, numero_documento, direccion, telefono, email, contrasenia, estado) VALUES
-('Usuario', 'Prueba', 'Cédula de Extranjeria', '258201201','Torre Norte SENA', 3001234567, 'usuario@gmail.com', 'Usuario12345', 1);
+INSERT INTO cliente (imagen, nombre, apellido, tipo_documento, numero_documento, direccion, telefono, email, contrasenia, estado) VALUES
+('gato.jpeg', 'Usuario', 'Prueba', 'Cédula de Extranjeria', '258201201','Torre Norte SENA', 3001234567, 'usuario@gmail.com', 'Usuario12345', 1);
 
 INSERT INTO administrador (nombre, apellido, email, contrasenia) VALUES
 ('Freymer', 'Sepulveda', 'administrador1@gmail.com', 'Administrador12345'),
