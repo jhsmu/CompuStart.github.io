@@ -1,6 +1,5 @@
 <?php
 session_start();
-include './validaciones/sesionStarted.php';
 include("./editar/conexion.php");
 $id = $_SESSION["id_usuario"];
 error_reporting(0);

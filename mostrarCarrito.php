@@ -1,6 +1,5 @@
 <?php
     include './carro/carrito.php';
-    include './validaciones/sesionStarted.php';
 ?>
 
 <!DOCTYPE html>

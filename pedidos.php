@@ -1,6 +1,5 @@
 <?php
     session_start();
-    include './validaciones/sesionStarted.php';
     require('./database/basededatos.php');
     error_reporting(0);
 

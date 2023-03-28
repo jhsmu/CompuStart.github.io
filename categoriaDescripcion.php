@@ -1,7 +1,6 @@
 <?php
 session_start();
     error_reporting( ~E_NOTICE ); // avoid notice
-    include './validaciones/sesionStarted.php';
     require_once './database/conexion.php';
     include './Carro/carrito.php';
 
