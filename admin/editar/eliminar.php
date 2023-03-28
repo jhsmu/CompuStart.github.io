@@ -10,9 +10,9 @@
         $_SESSION['eliminar_admi'] = 'registro';
         header("location: ../usuario.php");
     } else{
-        echo "<script languaje='JavaScript'>
-            alert('Los datos fueron NO se eliminaron');
-            location.assign('./usuario.php');</script>";
+        session_start();
+        $_SESSION['error_admi'] = 'eliminar';
+        header("location: ../usuario.php");
     }
 
 
