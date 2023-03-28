@@ -1,6 +1,6 @@
 <?php
     session_start();
-
-    session_destroy();
+    
+    $_SESSION["carritoSesion"]="no has iniciado sesion";
 
     header('location:../login-registro.php');

@@ -31,5 +31,5 @@
     if ($pagar->execute()){
         session_start();
         $_SESSION["comprobante"]="pagado";
-        header("location:../admin/idexadmin.php");
+        header("location:../admin/indexadmin.php");
     }

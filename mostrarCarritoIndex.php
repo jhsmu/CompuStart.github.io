@@ -44,6 +44,7 @@ include './CarroIndex/carritoIndex.php';
                 <?php
                 if (!empty($_SESSION['carritoIndex'])) {
                     $total = 0;
+                    $_SESSION["carritoSesion"]="no has iniciado sesion";
                     foreach ($_SESSION['carritoIndex'] as $indice => $producto) {
                 ?>
                         <tr>
@@ -80,10 +81,10 @@ include './CarroIndex/carritoIndex.php';
                     }
                     ?>
                     <tr>
-                        <td colspan="3" align="right">
+                        <td colspan="3" aling="right">
                             <h3>Total</h3>
                         </td>
-                        <td align="right">
+                        <td aling="right">
                             <h3>$<?php echo number_format($total, 2); ?></h3>
                         </td>
                     </tr>

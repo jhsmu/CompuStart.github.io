@@ -18,6 +18,8 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/validaciones.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Lista de usuarios </title>
 </head>
 
@@ -371,13 +373,13 @@
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
                                                     Nombre Administrador
                                                 </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="nombre" id="nombre" type="text" placeholder="Ingrese el nombre" required>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="nombre" id="nombre" type="text" onchange="nombre1()" placeholder="Ingrese el nombre" required>
                                             </div>
                                             <div class="w-full md:w-1/2 px-3">
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                     Apellido Administrador
                                                 </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="apellido" id="apellido" type="text" placeholder="Ingrese el apellido" required>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="apellido" id="apellido" type="text" onchange="apellido1()" placeholder="Ingrese el apellido" required>
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -385,19 +387,19 @@
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
                                                     Email Administrador
                                                 </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="email" id="email" type="text" placeholder="Ingrese el email" required>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="email" id="correo" type="text" placeholder="Ingrese el email" onchange="ValidacionCorreo()" required>
                                             </div>
                                             <div class="w-full md:w-1/2 px-3">
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                 Contraseña
                                                 </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="contrasena" id="contrasena" type="password" placeholder="Ingrese la contraseña" required>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="contrasena" id="clave" type="password" placeholder="Ingrese la contraseña" onchange="contraseña()" required>
                                             </div>
                                             <div class="w-full md:w-1/2 px-3">
                                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                    Confirmar contraseña
                                                 </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="apellido" id="apellido" type="password" placeholder="Contraseña" required>
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="apellido" id="clave_c" type="password" placeholder="Contraseña" onchange="verificarContraseña()" required>
                                             </div>
                                         </div>
                                         <div class="mt-8 ml-32">

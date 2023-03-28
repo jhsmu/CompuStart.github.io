@@ -2,9 +2,6 @@
 session_start();
 error_reporting(0);
 
-if(isset($_SESSION["Error al registrar"])){
-    echo "<h1>". $_SESSION["Error al registrar"]."</h1>";
-}
 ?>
 
 <!DOCTYPE html>
@@ -205,8 +202,6 @@ function mostrarinicio(){
         });
         </>');
         session_destroy();
-    } else {
-        session_destroy();
     }
 
     if (isset($_SESSION["Datos_incorrectos"])) {
@@ -217,10 +212,7 @@ function mostrarinicio(){
         });
         </script>');
         session_destroy();
-    } else {
-        session_destroy();
     }
-
     if (isset($_SESSION["emailRepetido"])) {
         echo ('<script>Swal.fire({
             title: "Email repetido",
@@ -228,8 +220,6 @@ function mostrarinicio(){
             icon: "error" 
         });
         </script>');
-        session_destroy();
-    } else {
         session_destroy();
     }
 
@@ -240,8 +230,6 @@ function mostrarinicio(){
             icon: "info" 
         });
         </script>');
-        session_destroy();
-    } else {
         session_destroy();
     }
 
@@ -254,4 +242,16 @@ function mostrarinicio(){
         </script>');
         session_destroy();
     }
+
+    if (isset($_SESSION["carritoSesion"])){
+        echo ('<script>Swal.fire({
+            title: "No has iniciado sesion",
+            text: "Para poder proceder con la compra tienes que inciar sesión",
+            icon: "info" 
+        });
+        </script>');
+        session_destroy();
+    }
+
+    session_destroy();
     ?>
