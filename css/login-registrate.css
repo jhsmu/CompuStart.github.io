@@ -58,7 +58,7 @@ form {
     text-align: center;
 }
 .sign-in form{
-    height: 90%;
+    height: 100%;
 }
 
 h1 {
@@ -230,7 +230,7 @@ span{
     position: absolute;
     right: 86px;
     transform: translate(0, -50%);
-    top: 53%;
+    top: 58%;
     cursor: pointer; 
 }
 .fa{
