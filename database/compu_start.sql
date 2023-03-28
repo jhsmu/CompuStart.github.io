@@ -8,9 +8,9 @@ CREATE TABLE cliente(
     id INT(11) PRIMARY KEY AUTO_INCREMENT,
     imagen VARCHAR(50) NULL,
     nombre VARCHAR(50) NOT NULL,
-    tipo_documento VARCHAR(25) NOT NULL,
-    numero INT(12) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
+    tipo_documento VARCHAR(50) NOT NULL,
+    numero_documento INT(12) NOT NULL,
     direccion VARCHAR(60) NOT NULL,
     telefono INT(12) NOT NULL,
     email VARCHAR(60) NOT NULL,
@@ -150,8 +150,8 @@ REFERENCES orden(id_orden);
 ALTER TABLE detalle_orden ADD FOREIGN KEY(id_producto)
 REFERENCES producto(id_producto);
 
-INSERT INTO cliente (nombre, apellido, direccion, telefono, email, contrasenia, estado) VALUES
-('Usuario', 'Prueba', 'Torre Norte SENA', 3001234567, 'usuario@gmail.com', 'Usuario12345', 1);
+INSERT INTO cliente (nombre, apellido, tipo_documento, numero_documento, direccion, telefono, email, contrasenia, estado) VALUES
+('Usuario', 'Prueba', 'Cédula de Extranjeria', '258201201','Torre Norte SENA', 3001234567, 'usuario@gmail.com', 'Usuario12345', 1);
 
 INSERT INTO administrador (nombre, apellido, email, contrasenia) VALUES
 ('Freymer', 'Sepulveda', 'administrador1@gmail.com', 'Administrador12345'),
