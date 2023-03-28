@@ -158,8 +158,11 @@ session_start();
                     </div>
                     <div class="input-box">
                         <label for="password">Contraseña</label>
-                        <input id="password" type="password" name="contrasena"value="<?php echo $contrasena;?>">
+                        <input id="password" type="password" name="contrasena" value="<?php echo $contrasena;?>">
                     </div>
+                    <span >
+                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye" ></i>
+                        </span>
 
                     <div class="input-box">
                         <label for="">Cambiar Avatar</label>
@@ -185,5 +188,23 @@ session_start();
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+<script>
+var eye = document.getElementById('eye');
+var input = document.getElementById('password');
+
+eye.addEventListener('click',mostrar);
+
+function mostrar(){
+    if(input.type == "password"){
+        input.type = "text"
+        eye.style.color="#383838"
+    }else{
+        input.type = "password"
+        eye.style.color="#D8D8D8"
+    }
+}
+</script>
+
 </body>
 </html>
