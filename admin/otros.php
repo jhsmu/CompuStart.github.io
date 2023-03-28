@@ -140,6 +140,16 @@ if (isset($_SESSION['Aprobado'])) {
     </script>";
     unset($_SESSION['Aprobado']);
 }
+if (isset($_SESSION['Esperando'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'info',
+        title: 'En espera',
+        text: 'Esta Orden está en espera'
+        });
+    </script>";
+    unset($_SESSION['Esperando']);
+}
 if (isset($_SESSION['errorDeAprobar'])) {
     echo "<script>
     Swal.fire({

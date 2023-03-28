@@ -59,4 +59,8 @@
             header("location: ./otros.php");
         }
         
+    } else{
+    session_start();
+    $_SESSION['Esperando'] = 'registro';
+    header("location: ./otros.php");
     }
