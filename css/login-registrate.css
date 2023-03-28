@@ -13,14 +13,14 @@ body {
     justify-content: center;
     flex-direction: column;
     min-height: 100%;
-    margin: 5px;
+    margin: 20px;
 }
 
 .container {
     position: relative;
-    width: 968px;
+    width: 978px;
     max-width: 100%;
-    min-height: 680px;
+    min-height: 780px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -53,20 +53,23 @@ form {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0 20px;
+    padding: 0 25px;
     height: 100%;
     text-align: center;
 }
 .sign-in form{
-    height: 90%;
+    height: 100%;
 }
 
 h1 {
+    top:15px;
     font-family: 'Shantell Sans', cursive;
     font-weight: bold;
-    margin: 35px;
+    margin: 5px;
 }
-
+.sign-up h1{
+    margin: 55px 0 15px;
+}
 p {
     font-size: 14px;
     font-weight: 100;
@@ -78,14 +81,23 @@ p {
 input {
     background: #eee;
     padding: 10px 10px;
-    margin: 3px 10px;
+    margin: 3px 8px;
     width: 75%;
     border-radius: 5px;
     border: solid #eee;
     outline: none;
     flex-direction: column;
 }
-
+select{
+    background: #eee;
+    padding: 10px 10px;
+    margin: 3px 10px;
+    width: 75%;
+    border-radius: 5px;
+    border: solid #eee;
+    outline: none;
+    flex-direction: column; 
+}
 a {
     color: #333;
     font-size: 14px;
@@ -199,6 +211,31 @@ button:active {
 
 .container.right-panel-active .overlay-right {
     transform: translateX(20%);
+}
+span{
+    position: absolute;
+    right: 85px;
+    transform: translate(0, -50%);
+    top: 75%;
+    cursor: pointer;
+}
+.eyes{
+    position: absolute;
+    right: 85px;
+    transform: translate(0, -50%);
+    top: 82%;
+    cursor: pointer;
+}
+.Eye{
+    position: absolute;
+    right: 86px;
+    transform: translate(0, -50%);
+    top: 58%;
+    cursor: pointer; 
+}
+.fa{
+    font-size: 20px;
+    color: #111;
 }
 
 .social-container a {

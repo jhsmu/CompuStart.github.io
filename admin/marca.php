@@ -77,7 +77,8 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                                     <thead>
                                         <tr>
                                             <th class="border w-1/1 px-4 py-2">Id</th>
-                                            <th class="border w-1/1 px-4 py-2">marca</th>
+                                            <th class="border w-1/1 px-4 py-2">Marca</th>
+                                            <th class="border w-1/1 px-4 py-2">Estado</th>
 
                                         </tr>
                                     </thead>
@@ -85,18 +86,25 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                                         
                                         <?php
                                         foreach ($marcas as $key => $marca) {
+                                            if ($marca['estado_marca'] == 1){
                                         ?>
                                     
                                             <tr>
                                                 <td class="border px-4 py-2"><?php echo $marca["id_marca"] . "<br>"; ?></td>
                                                 <td class="border px-4 py-2"><?php echo $marca["marca"] . "<br>"; ?></td>
+                                                <td class="border px-4 py-2"><?php if ($marca["estado_marca"]== 1 ){
+                                                    echo ("Activo");
+                                                }else{
+                                                    echo("Inactivo");
+                                                }  "<br>"; ?></td>
                                                 <td class="border px-4 py-2">
                                                     <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarMarca.php?id=<?php echo $marca["id_marca"]; ?>">
                                                         <i class="fas fa-edit"></i></a>
                                                 </td>
                                             </tr>
-                                           
                                         <?php
+                                            } else {
+                                            }
                                         }
                                         ?>
                                         
@@ -129,19 +137,19 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                     </div>
                 </div>
                 <!-- Modal content -->
-                <form class="w-full" action="../marca/guardarMarca.php" method="post">
+                <form class="w-full" action="../marca/agregarmarca.php" method="post">
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
                             marca
                             </label>
-                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="marca" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese una categoría nueva" required>
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="marca" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese una marca nueva" required>
                         </div>
                     </div>
                     <div class="mt-5">
                         <button class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'> Agregar</button>
                         <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
-                            Close
+                            Cerrar
                         </span>
                     </div>
                 </form>
@@ -170,7 +178,18 @@ if (isset($_SESSION['actualizar_marca'])) {
     unset($_SESSION['actualizar_marca']);
 }
 
-if (isset($_SESSION['marca'])) {
+if (isset($_SESSION['actualizar_error'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Marca no actualizada'
+        });
+    </script>";
+    unset($_SESSION['actualizar_error']);
+}
+
+if (isset($_SESSION['agregar'])) {
     echo "<script>
     Swal.fire({
         icon: 'success',
@@ -178,5 +197,16 @@ if (isset($_SESSION['marca'])) {
         text: 'Nueva Marca Creada'
         });
     </script>";
-    unset($_SESSION['marca']);
+    unset($_SESSION['agregar']);
+
+    if (isset($_SESSION['error'])) {
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Marca no agregada'
+            });
+        </script>";
+        unset($_SESSION['error']);
+    }
 }

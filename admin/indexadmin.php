@@ -31,11 +31,6 @@ $consulta5 = $connection->prepare("SELECT id_venta, CONCAT(CLIENTE.nombre, ' ', 
 $consulta5->execute(); //Ejecuto mi petición
 
 $ventas = $consulta5->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
-
-$consulta5 = $connection->prepare("SELECT id_detalle_venta, id_venta, PRODUCTO.producto AS NombreProducto, cantidad_venta, precio_producto, monto_total FROM DETALLE_VENTA INNER JOIN PRODUCTO ON DETALLE_VENTA.id_producto = PRODUCTO.id_producto"); // Traduzco mi petición
-$consulta5->execute(); //Ejecuto mi petición
-
-$detalles = $consulta5->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +89,7 @@ $detalles = $consulta5->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que ne
                                 $ <?php if ($total_ventas = $total[0] == null ) {
                                         echo "0";
                                     }else {
-                                        echo $total_ventas = $total[0]; 
+                                        echo number_format($total_ventas = $total[0],2); 
                                     } ?>
                                 </p>
                             </div>
@@ -109,7 +104,7 @@ $detalles = $consulta5->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que ne
                                 $ <?php if ($total_compras = $compras[0] == null ) {
                                         echo "0";
                                     }else {
-                                        echo $total_compras = $compras[0]; 
+                                        echo number_format($total_compras = $compras[0],2); 
                                     } ?>
                                 </p>
                             </div>
@@ -121,7 +116,11 @@ $detalles = $consulta5->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que ne
                                     Total de Usuarios:
                             </p>
                                 <p class="no-underline text-white text-2xl">
-                                <?php echo $total_usuarios = $usuarios[0]; ?>
+                                <?php if ($total_usuarios = $usuarios[0] == null ) {
+                                        echo "0";
+                                    }else {
+                                        echo $total_usuarios = $usuarios[0]; 
+                                    } ?>
                                 </p>
                             </div>
                         </div>
@@ -173,7 +172,7 @@ $detalles = $consulta5->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que ne
                                                 <?php echo $venta["nombre_cliente"] . "<br>"; ?>                                                
                                             </td>
                                             <td>
-                                                <?php echo $venta["total"] . "<br>"; ?></td>
+                                                <?php echo number_format($venta["total"],2) . "<br>"; ?></td>
                                             <td>
                                                 <?php echo $venta["fecha"] . "<br>"; ?>
                                             </td>
@@ -213,5 +212,30 @@ if (isset($_SESSION['actualizar_datos'])) {
         });
     </script>";
     unset($_SESSION['actualizar_datos']);
+}
+
+if (isset($_SESSION['error'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Datos Actualizados'
+        });
+    </script>";
+    unset($_SESSION['error']);
+}
+
+if (isset($_SESSION["comprobante"])) {
+    echo ('<script>Swal.fire({
+        title: "Compra exitosa",
+        text: "Tus productos estan en tu inventario",
+        icon: "success" 
+    });
+    </script>');
+    unset($_SESSION["comprobante"]);
+    unset($_SESSION["id_categoria"]);
+    unset($_SESSION["id_proveedor"]);
+    unset($_SESSION["id_producto"]);
+    unset($_SESSION["productos"]);
 }
 ?>

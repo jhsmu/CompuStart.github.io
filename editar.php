@@ -145,6 +145,19 @@ session_start();
                         <input  type="text" name="apellido" value="<?php echo $apellido;?>">
                     </div>
                     <div class="input-box">
+                        <label for="">Tipo de documento</label>
+                        <select name="" id="">
+                            <option value="">Seleccione Opción</option>
+                            <option value="">T.I</option>
+                            <option value="">C.C</option>
+                            <option value="">C.E</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="">Numero de documento</label>
+                        <input  type="text" name="apellido" value="<?php echo $apellido;?>">
+                    </div>
+                    <div class="input-box">
                         <label for="direccion">Dirección</label>
                         <input id="direccion" type="text" name="direccion" value="<?php echo $direccion;?>">
                     </div>                   
@@ -158,22 +171,23 @@ session_start();
                     </div>
                     <div class="input-box">
                         <label for="password">Contraseña</label>
-                        <input id="password" type="password" name="contrasena"value="<?php echo $contrasena;?>">
+                        <input id="password" type="password" name="contrasena" value="<?php echo $contrasena;?>">
                     </div>
+                    <span >
+                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye" ></i>
+                        </span>
+
                     <div class="input-box">
                         <label for="">Cambiar Avatar</label>
                         <input type="file" name="imagen">
                     </div>
-                    <input type="hidden" name="id" 
-                    value="<?php echo $id;?>">
-                    <input type="text" name="img" 
-                    value="<?php echo $imagen;?>">
                 </div>
 
                 <div class="continue-button">
                     <button type="submit" name="enviar" value="ACTUALIZAR">Actualizar</button>
-                    <?php echo "<button class='elimina'><a href='./editar/eliminar_cliente.php?id=".$fila['id']."' onclick='return confirmar()'>Eliminar cuenta</a></button>";?>
+                    <?php echo "<button class='elimina'><a href='./editar/eliminar_cliente.php?id=".$fila['id']."' onclick='return confirmar()'>Inhabilitar</a></button>";?>
                 </div>
+                
             </form>
         </div>
     </div>  
@@ -187,5 +201,23 @@ session_start();
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+<script>
+var eye = document.getElementById('eye');
+var input = document.getElementById('password');
+
+eye.addEventListener('click',mostrar);
+
+function mostrar(){
+    if(input.type == "password"){
+        input.type = "text"
+        eye.style.color="#383838"
+    }else{
+        input.type = "password"
+        eye.style.color="#D8D8D8"
+    }
+}
+</script>
+
 </body>
 </html>

@@ -2,25 +2,25 @@
 session_start();
 error_reporting(0);
 
-if(isset($_SESSION["Error al registrar"])){
-    echo "<h1>". $_SESSION["Error al registrar"]."</h1>";
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Link de iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <!-- link de bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <!-- estilos de login y registro -->
     <link rel="stylesheet" type="text/css" href="./css/login-registrate.css">
     <!-- validaciones de java script -->
     <script type='text/javascript' src=".\js\validaciones.js"></script>
+    <script type='text/javascript' src="./js/mostrar.js"></script>
     <!-- link de Sweetalert -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -41,20 +41,41 @@ if(isset($_SESSION["Error al registrar"])){
                         <a href="" class="social"><i class="fab fa-twitter"></i></a>
                     </div>
                     <p>Rellene todos los campos</p>
-                    <input autocomplete="on" onchange="nombre1()" type="text" name="nombre" id="nombre" placeholder="Nombres" required>
-                    <input autocomplete="on" onchange="apellido1()" type="text" name="apellido" id="apellido" placeholder="Apellidos" required>
-                    <input autocomplete="on" onchange="direccion1()" type="text" name="direccion" id="direccion" placeholder="Dirección" required>
-                    <input autocomplete="on" onchange="telefono1()" type="number" name="telefono" id="telefono" inputmode="tel" placeholder="Numero Telefónico" required>
-                    <input autocomplete="on" onchange="ValidacionCorreo()" type="email" name="email_registro" id="correo" placeholder="Correo" required>
-                    <input onchange="contraseña()" type="password" name="clave" id="clave" placeholder="Ingresar una clave clave mayor a 8 dígitos" required>
-                    <input onchange="verificarContraseña()" type="password" name="clave_c" id="clave_c" placeholder="Ingresar la clave nuevamente" required>
+                    <input autocomplete="on" onchange="nombre1()" type="text" name="nombre" id="nombre"
+                        placeholder="Nombres" required>
+                    <input autocomplete="on" onchange="apellido1()" type="text" name="apellido" id="apellido"
+                        placeholder="Apellidos" required>
+                    <select name="tipo_documento">
+                        <option>Selecionar Opción</option>
+                        <option value="Tarjeta de Identidad">T.I</option>
+                        <option value="Cédula de Ciudadanía">C.C</option>
+                        <option value="Cedula de Extranjería">C.E</option>
+                    </select>
+                    <input type="text" name="numero_documento" id="numero_documento"
+                        placeholder="Numero De Documento" required>
+                    <input autocomplete="on" onchange="direccion1()" type="text" name="direccion" id="direccion"
+                        placeholder="Dirección" required>
+                    <input autocomplete="on" onchange="telefono1()" type="number" name="telefono" id="telefono"
+                        inputmode="tel" placeholder="Numero Telefónico" required>
+                    <input autocomplete="on" onchange="ValidacionCorreo()" type="email" name="email_registro"
+                        id="correo" placeholder="Correo" required>
+                    <input onchange="contraseña()" type="password" name="clave" id="clave"
+                        placeholder="Ingresar su clave" required>
+                        <span>
+                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye" ></i>
+                        </span>
+                    <input onchange="verificarContraseña()" type="password" name="clave_c" id="clave_c"
+                        placeholder="Ingresar la clave nuevamente" required>
+                        <span class="eyes" >
+                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye_c"></i>
+                        </span>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                         <label class="form-check-label" for="flexCheckDefault">
                             Acepto Términos Y Condiciones
                         </label>
                     </div>
-                    <button name="crear" type="submit" onclick="comprobar1()">Crear</button>
+                    <button name="crear" type="submit" >Crear</button>
                     <br><br>
                 </form>
             </div>
@@ -71,13 +92,16 @@ if(isset($_SESSION["Error al registrar"])){
                     </div>
                     <p>Rellene todos los campos</p>
                     <input type="email" name="email" placeholder="Correo" required>
-                    <input type="password" name="clave_inicio" placeholder="Clave" required>
+                    <input type="password" name="clave_inicio" placeholder="Clave" id="clave_inicio" required>
+                    <span class="Eye">
+                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye_inicio" ></i>
+                    </span>
                     <button name="inicio" type="submit">Iniciar Sesión</button>
                     <div class="iniciar">
-                    <a href="./index.php" >Iniciar Sin Cuenta</a>
+                        <a href="./index.php">Iniciar Sin Cuenta</a>
                     </div>
                     <div class="olvidar">
-                    <a href="./recuperacion/cambio.php">¿Olvidaste tu contraseña?</a>
+                        <a href="./recuperacion/email.php">¿Olvidaste tu contraseña?</a>
                     </div>
                 </form>
             </div>
@@ -99,34 +123,84 @@ if(isset($_SESSION["Error al registrar"])){
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
     <script type="text/javascript">
-        const signUpButton = document.getElementById('signUp');
-        const signInButton = document.getElementById('signIn');
-        const main = document.getElementById('main');
-        signUpButton.addEventListener('click', () => {
-            main.classList.add("right-panel-active");
-        });
-        signInButton.addEventListener('click', () => {
-            main.classList.remove("right-panel-active");
-        });
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const main = document.getElementById('main');
+    signUpButton.addEventListener('click', () => {
+        main.classList.add("right-panel-active");
+    });
+    signInButton.addEventListener('click', () => {
+        main.classList.remove("right-panel-active");
+    });
     </script>
     <script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
 "></script>
 
+
 </body>
+
 </html>
+<script>
+var eye = document.getElementById('eye');
+var input = document.getElementById('clave');
+var eye_c = document.getElementById('eye_c');
+var input1 = document.getElementById('clave_c');
+
+
+eye.addEventListener('click',mostrarcontra);
+eye_c.addEventListener('click',mostrarcontraseña);
+
+
+function mostrarcontra(){
+    if(input.type == "password"){
+        input.type = "text"
+        eye.style.color="#383838"
+    }else{
+        input.type = "password"
+        eye.style.color="#D8D8D8"
+    }
+}
+function mostrarcontraseña(){
+    if(input1.type == "password"){
+        input1.type = "text"
+        eye_c.style.color="#383838"
+    }else{
+        input1.type = "password"
+        eye_c.style.color="#D8D8D8"
+    }
+}   
+
+</script>
+<script>
+var eye_inicio = document.getElementById('eye_inicio');
+var input2 = document.getElementById('clave_inicio');
+
+eye_inicio.addEventListener('click',mostrarinicio);
+
+function mostrarinicio(){
+    if(input2.type == "password"){
+        input2.type = "text"
+        eye_inicio.style.color="#383838"
+    }else{
+        input2.type = "password"
+        eye_inicio.style.color="#D8D8D8"
+    }
+}
+</script>
+
 <?php
-    if (isset($_SESSION["registro"])) {
+    if (isset($_SESSION["agregar"])) {
         echo ('<script>Swal.fire({
             title: "Registro exitoso",
             text: "Ahora puedes iniciar tu sesión",
             icon: "success" 
         });
-        </script>');
-        session_destroy();
-    } else {
+        </>');
         session_destroy();
     }
 
@@ -134,11 +208,19 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
         echo ('<script>Swal.fire({
             title: "Datos incorrectos",
             text: "Los datos ingresados son incorrectos, por favor verifique",
-            icon: "error" 
+            icon: "info" 
         });
         </script>');
         session_destroy();
-    } else {
+    }
+
+    if (isset($_SESSION["error"])) {
+        echo ('<script>Swal.fire({
+            title: "Datos incorrectos",
+            text: "Los datos ingresados son incorrectos, por favor verifique",
+            icon: "info" 
+        });
+        </script>');
         session_destroy();
     }
 
@@ -146,11 +228,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
         echo ('<script>Swal.fire({
             title: "Email repetido",
             text: "El email que intenta ingresar esta repetido",
-            icon: "error" 
+            icon: "info" 
         });
         </script>');
-        session_destroy();
-    } else {
         session_destroy();
     }
 
@@ -161,8 +241,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
             icon: "info" 
         });
         </script>');
-        session_destroy();
-    } else {
         session_destroy();
     }
 
@@ -175,4 +253,16 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
         </script>');
         session_destroy();
     }
+
+    if (isset($_SESSION["carritoSesion"])){
+        echo ('<script>Swal.fire({
+            title: "No has iniciado sesion",
+            text: "Para poder proceder con la compra tienes que inciar sesión",
+            icon: "info" 
+        });
+        </script>');
+        session_destroy();
+    }
+
+    session_destroy();
     ?>

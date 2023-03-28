@@ -28,7 +28,7 @@
                     <h1 class="text-white p-2">Compu Start</h1>
                 </div>
                 <div class="p-1 flex flex-row items-center">
-                    <a href="#" onclick="profileToggle()" class="text-white p-2 no-underline hidden md:block lg:block"><?php echo $_SESSION["admin"] ?></a>
+                <a href="#" onclick="profileToggle()" class="text-white p-2 no-underline hidden md:block lg:block"><?php echo $_SESSION["admin"] ?></a>
                     <img onclick="profileToggle()" class="inline-block h-8 w-8 rounded-full" src="../img/logo/avatar.png" alt="">
                     <div id="ProfileDropDown" class="rounded hidden shadow-md bg-white absolute pin-t mt-12 mr-1 pin-r">
                     </div>
@@ -43,13 +43,11 @@
             $id_administrador=$_POST['id'];
             $nombre=$_POST['nombre'];
             $apellido=$_POST['apellido'];
-            $email=$_POST['email'];
             $contrasena=$_POST['contrasena'];
 
             //update
             $sql="update administrador set nombre='".$nombre."',
             apellido='".$apellido."',
-            email='".$email."',
             contrasenia='".$contrasena."'
             where id_administrador='".$id_administrador."'";
 
@@ -64,7 +62,7 @@
             }else{
                 session_start();
                 $_SESSION['error'] = 'actualizar';
-                header("location: ./micuenta.php");
+                header("location: ./idexadmin.php");
                 error_reporting(0);
             }
             mysqli_close($conexion);
@@ -149,14 +147,6 @@
     </div>
 </div>
 <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
-            >
-            Email
-        </label>
-        <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
-        type="text" name="email" id="correo" onchange="ValidacionCorreo()" required value="<?php echo $email; ?>" placeholder="<?php echo $email; ?>">
-    </div>
     <div class="w-full md:w-1/2 px-3">
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
                for="grid-last-name">
@@ -165,6 +155,17 @@
         <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
         type="password" name="contrasena" id="clave" onchange="contraseña()" required value="<?php echo $contrasena; ?>" >
     </div>
+    <span >
+     <i class="fa fa-eye" 
+     style="color:#D8D8D8;
+    position: absolute;
+    right: 37rem;
+    transform: translate(0, -50%);
+    top: 40%;
+    cursor: pointer; 
+    font-size:20px;
+     " id="eye" ></i>
+     </span>
 
 </div>
 <div class="mt-5">
@@ -192,20 +193,23 @@
 <!-- VALIDACIONES Y ALERTAS -->
 <script src="../js/validaciones.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
+<script>
+var eye = document.getElementById('eye');
+var input = document.getElementById('clave');
 
+eye.addEventListener('click',mostrar);
+
+function mostrar(){
+    if(input.type == "password"){
+        input.type = "text"
+        eye.style.color="#383838"
+    }else{
+        input.type = "password"
+        eye.style.color="#D8D8D8"
+    }
+}
+</script>
 
 </body>
 
 </html>
-<?php
-if (isset($_SESSION['error'])) {
-    echo "<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Éxito',
-        text: 'Datos Actualizados'
-        });
-    </script>";
-    unset($_SESSION['error']);
-}
-?>

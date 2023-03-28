@@ -48,7 +48,7 @@ include("../editar/conexion.php");
         } else {
             session_start();
             $_SESSION['error'] = 'registro';
-            header("location: ./actualizarUsuario.php");
+            header("location: ./usuario.php");
         }
         mysqli_close($conexion);
     } else {

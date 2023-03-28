@@ -95,7 +95,7 @@ function telefono1() {
         Swal.fire({
           icon: "error",
           title: "Por Favor",
-          text: "Ingrese números de 10 o 7 dígitos",
+          text: "Ingrese números de 7 o 10 dígitos",
         });
         document.getElementById("telefono").value = "";
       }
@@ -113,8 +113,8 @@ function telefono1() {
 //correos en general : correo
 function ValidacionCorreo() {
   let correo = document.getElementById("correo").value;
-  let regex =/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
+/*   let regex =/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(.[a-zA-Z0-9-]+)*$/;
+ */  let regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/;
   
   if (regex.test(correo)) {
     if(correo.length <60 ){
@@ -199,12 +199,12 @@ function PaginaWeb(){
 function contraseña(){
     let contraseña = document.getElementById("clave").value;
 
-    if(8 > contraseña.length){
+    if(6 > contraseña.length){
         document.getElementById("clave").style.borderColor = "#FF0000";
         Swal.fire({
             icon: 'error',
             title: 'Por Favor',
-            text: 'La contraseña debe tener mas de 8 caracteres'
+            text: 'La contraseña debe tener mas de 6 caracteres'
             });
             document.getElementById("clave").value = "";
     } else if (/[A-Z]+/.test(contraseña) != true){
@@ -270,6 +270,14 @@ function Valores1234(){
             text: 'El precio debe tener un formato valido, para decimales usar "." '
             });
             document.getElementById("precio").value = "";
+  /* }else if(Math.sign(precio) == 1){
+    document.getElementById("precio").style.borderColor = "#FF0000";
+        Swal.fire({
+            icon: 'error',
+            title: 'Por Favor',
+            text: 'El precio no puede ser negativo'
+            });
+            document.getElementById("precio").value = ""; */
   }else{
     document.getElementById("precio").style.borderColor = "#008000";
   }
@@ -351,4 +359,27 @@ function Descripciones2(){
     });
     document.getElementById("descripcion_breve").value = "";
   }
+}
+
+function NIT123(){
+  regex = /[0-9]+$/;
+  numero = document.getElementById("nit").value;
+
+  if(regex.test(numero)){
+    if(numero.length == 10){
+      document.getElementById("nit").style.borderColor = "#008000";
+    }else{document.getElementById("nit").style.borderColor = "#FF0000";
+    Swal.fire({
+      icon: "error",
+      title: "Por Favor",
+      text: "El nit no tiene el tamaño correcto (10 dígitos)",
+    });
+    document.getElementById("nit").value = "";}
+  }else {
+    Swal.fire({
+    icon: "error",
+    title: "Por Favor",
+    text: "El nit solo acepta numeros",
+  });
+  document.getElementById("nit").value = "";}
 }

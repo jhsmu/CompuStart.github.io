@@ -12,17 +12,20 @@
         $correo = $_POST['correo'];
         $web = $_POST['direccion_web'];
         $direccion = $_POST['direccion'];
+        $nit= $_POST['nit'];
+        $estado=$_POST['estado_proveedor'];
 
-        $query = $connection->prepare("UPDATE proveedor SET proveedor=?, correo=?, direccion_web=?, direccion=? WHERE id_proveedor=?");// Traduzco mi petición
-        $actualizar = $query->execute([$proveedor, $correo, $web, $direccion, $id]); //Ejecuto mi petición
+        $query = $connection->prepare("UPDATE proveedor SET proveedor=?, nit=?, correo=?, direccion_web=?, direccion=?, estado_proveedor=? WHERE id_proveedor=?");// Traduzco mi petición
+        $actualizar = $query->execute([$proveedor, $nit, $correo, $web, $direccion, $estado, $id]); //Ejecuto mi petición
 
         if ($actualizar) {
             session_start();
             $_SESSION['actualizar'] = 'registro';
             header("location: ../admin/proveedor.php");
         } else {
-            echo "<h2> Error al Actualizar <h2>";
+            session_start();
+            $_SESSION['error_actualizar'] = 'actualizar';
+            header("location: ../admin/proveedor.php");
         }
-        echo "<a href='consultaProveedor.php'>Regresar</a>";
     }
 ?>

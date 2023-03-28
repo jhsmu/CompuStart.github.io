@@ -16,17 +16,19 @@
         $precio=$_POST["precio"]*0.6;
         $id_categoria=$_POST["categoria"];
         $id_marca=$_POST["marca"];
+        $estado=$_POST["estado"];
 
-        $query = $connection->prepare("UPDATE producto SET serial=?, producto=?, descripcion_breve=?, descripcion=?, cantidad=?, precio=?, id_categoria=?, id_marca=? WHERE id_producto=?");// Traduzco mi petición
-        $actualizar = $query->execute([$serial, $producto, $descripcion_breve, $descripcion, $cantidad, $precio, $id_categoria, $id_marca, $id ]); //Ejecuto mi petición
+        $query = $connection->prepare("UPDATE producto SET serial=?, producto=?, descripcion_breve=?, descripcion=?, cantidad=?, precio=?, id_categoria=?, id_marca=?, estado_producto=? WHERE id_producto=?");// Traduzco mi petición
+        $actualizar = $query->execute([$serial, $producto, $descripcion_breve, $descripcion, $cantidad, $precio, $id_categoria, $id_marca, $estado, $id ]); //Ejecuto mi petición
 
         if ($actualizar) {
             session_start();
             $_SESSION['actualizar_producto'] = 'registro';
             header("location: ../admin/productos.php");
         } else {
-            echo "<h2> Error al Actualizar <h2>";
+            session_start();
+            $_SESSION['actualizar_error'] = 'registro';
+            header("location: ../admin/productos.php");
         }
-        echo "<a href='consultaProveedor.php'>Regresar</a>";
     }
 ?>

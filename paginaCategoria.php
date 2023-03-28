@@ -81,7 +81,7 @@
                         <h5 class="card-title"><strong><?php echo $producto['producto'] ?></strong></h5>
                         <p style="text-align: justify;"><?php echo $producto['descripcion_breve'] ?></p>
                         <p name="precio" id="precio" style="margin-left: 13rem; color:grey">
-                            <?php echo '$ ' . $producto['precio'] ?></p>
+                            $ <?php echo number_format($producto['precio']) ?></p>
                         <a style="margin-left: 7rem;" href="./descripcion.php?id=<?php echo $producto['id_producto'] ?>"
                             class="btn btn-primary">Ver más</a>
                     </div>
@@ -146,7 +146,7 @@
                         <h5 class="card-title"><strong><?php echo $producto['producto'] ?></strong></h5>
                         <p style="text-align: justify;"><?php echo $producto['descripcion_breve'] ?></p>
                         <p name="precio" id="precio" style="margin-left: 13rem; color:grey">
-                            <?php echo '$ ' . $producto['precio'] ?></p>
+                            $ <?php echo number_format($producto['precio']) ?></p>
                         <a style="margin-left: 7rem;" href="./descripcion.php?id=<?php echo $producto['id_producto'] ?>"
                             class="btn btn-primary">Ver más</a>
                         <div class="col-md-6">

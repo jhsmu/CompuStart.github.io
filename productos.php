@@ -114,7 +114,6 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                         <tbody>
                                             <?php
                                             foreach ($productos as $key => $producto) {
-                                                if ($producto['estado_producto'] == 1){
                                             ?>
                                                 <tr>
                                                     <td class="border px-4 py-2" hidden>
@@ -145,8 +144,6 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                     </td>
                                                 </tr>
                                             <?php
-                                                } else{
-                                                }
                                             }
                                             ?>
                                         </tbody>
@@ -286,6 +283,18 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!--<div class="w-full md:w-1/2 px-3 mt-5">
+                                                <div class="relative">
+                                                    <button data-modal='centeredFormModal1' class='modal-trigger bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded w-full mt-5 h-12'>
+                                                        Agregar imagen</button>
+                                                </div>
+                                            </div>-->
+
+                                            
+
+                                            
+                                        
+
                                     </div>
 
                                     <div class="border-b p-2 pb-3 pt-0 mb-4">
@@ -306,7 +315,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 <button class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded' type="submit">
                                                     Agregar</button>
                                                 <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
-                                                    Cerrar
+                                                    Close
                                                 </span>
                                             </div>
                                     </div>
@@ -407,27 +416,5 @@ if (isset($_SESSION['actualizar_producto'])) {
         });
     </script>";
     unset($_SESSION['actualizar_producto']);
-}
-
-if (isset($_SESSION['actualizar_error'])) {
-    echo "<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Producto no actualizado'
-        });
-    </script>";
-    unset($_SESSION['actualizar_error']);
-}
-
-if (isset($_SESSION['producto_error'])) {
-    echo "<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Producto no agregado'
-        });
-    </script>";
-    unset($_SESSION['producto_error']);
 }
 ?>

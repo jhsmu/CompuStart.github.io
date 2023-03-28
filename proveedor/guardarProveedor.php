@@ -20,5 +20,7 @@
         header("location: ../admin/proveedor.php");
         
     } else {
-        echo "<script> alert 'Error al crear el proveedor' </script>";
+        session_start();
+        $_SESSION['proveedor_error'] = 'guardad';
+        header("location: ../admin/proveedor.php");
     }

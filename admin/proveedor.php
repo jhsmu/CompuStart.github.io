@@ -79,34 +79,42 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                 <table class="table-responsive w-full rounded">
                                     <thead>
                                         <tr>
-                                            <th class="border w-1/1 px-4 py-2">Id</th>
+                                            <th class="border w-1/1 px-4 py-2" hidden>Id</th>
                                             <th class="border w-1/1 px-4 py-2">Proveedor</th>
-                                            <th class="border w-1/1 px-4 py-1">Correo</th>
+                                            <th class="border w-1/1 px-4 py-2">NIT</th>
+                                            <th class="border w-1/1 px-2 py-1">Correo</th>
                                             <th class="border w-1/1 px-4 py-2">Web</th>
-                                            <th class="border w-1/1 px-4 py-2">Dirección</th>
+                                            <th class="border w-1/1 px-1 py-1">Dirección</th>
+                                            <th class="border w-1/1 px-4 py-2">Estado</th>
                                             <th class="border w-1/1 px-4 py-2">Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         foreach ($proveedores as $key => $proveedor) {
+                                            if ($proveedor['estado_proveedor'] == 1){
                                         ?>
                                             <tr>
-                                                <td class="border px-4 py-2"><?php echo $proveedor["id_proveedor"] . "<br>"; ?></td>
+                                                <td class="border px-4 py-2" hidden><?php echo $proveedor["id_proveedor"] . "<br>"; ?></td>
                                                 <td class="border px-4 py-2"><?php echo $proveedor["proveedor"] . "<br>"; ?></td>
-                                                <td class="border px-4 py-2"><?php echo $proveedor["correo"] . "<br>"; ?></td>
-                                                <td class="border  px-4 py-2"><?php echo $proveedor["direccion_web"] . "<br>"; ?></td>
+                                                <td class="border px-4 py-2"><?php echo $proveedor["nit"] . "<br>"; ?></td>
+                                                <td class="border  w-1/1 px-1 py-1"><?php echo $proveedor["correo"] . "<br>"; ?></td>
+                                                <td class="border w-1/1 px-4 py-2"><?php echo $proveedor["direccion_web"] . "<br>"; ?></td>
                                                 <td class="border w-1/6 px-4 py-2"><?php echo $proveedor["direccion"] . "<br>"; ?></td>
+                                                <td class="border  w-1/1 px-4 py-2"><?php if ($proveedor["estado_proveedor"]== 1 ){
+                                                    echo ("Activo");
+                                                }else{
+                                                    echo("Inactivo");
+                                                }  "<br>"; ?></td>
                                                 <td class="border px-4 py-2">
                                                     <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarProveedor.php?id=<?php echo $proveedor["id_proveedor"]; ?>">
                                                         <i class="fas fa-edit"></i></a>
-                                                    <a class="bg-red-800 cursor-pointer rounded p-1 mx-1 text-white" href="./editar/eliminarProveedor.php?id=<?php echo $proveedor["id_proveedor"]; ?>" onclick='return confirmar()'>
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php
-                                        }
+                                            } else{
+                                            }
+                                        }   
                                         ?>
                                     </tbody>
                                 </table>
@@ -170,7 +178,7 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                     <div class="mt-5">
                         <button class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'> Agregar</button>
                         <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
-                            Close
+                            Cerrar
                         </span>
                     </div>
                 </form>
@@ -210,14 +218,25 @@ if (isset($_SESSION['proveedor'])) {
     unset($_SESSION['proveedor']);
 }
 
-if (isset($_SESSION['eliminar_proveedor'])) {
+if (isset($_SESSION['error_actualizar'])) {
     echo "<script>
     Swal.fire({
-        icon: 'success',
-        title: 'Éxito',
-        text: 'Proveedor Eliminado'
+        icon: 'error',
+        title: 'Error',
+        text: 'Proveedor no actualizado'
         });
     </script>";
-    unset($_SESSION['eliminar_proveedor']);
+    unset($_SESSION['error_actualizar']);
+}
+
+if (isset($_SESSION['proveedor_error'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Proveedor no guardado'
+        });
+    </script>";
+    unset($_SESSION['proveedor_error']);
 }
 ?>

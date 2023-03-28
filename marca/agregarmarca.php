@@ -1,22 +1,21 @@
 <?php
-    //Para poder usar la clase Database y su función connect
-    require('../database/basededatos.php');
+    error_reporting( ~E_NOTICE ); // avoid notice
+	
+	require_once '../database/conexion.php';
 
-    //Creamos un objeto del tipo Database
-    $db = new Database();
-    $connection = $db->connect(); //Creamos la conexión a la BD
+    $marca=$_POST["marca"];
+    $estado = 1;
 
-    $marca = $_POST['marca'];
+    $agregar=$DB_con->prepare('INSERT INTO marca(marca,estado_marca) VALUES(:marca, :estado_marca)');
+    $agregar->bindParam(':marca', $marca);
+    $agregar->bindParam(':estado_marca', $estado);
 
-
-    $query = $connection->prepare("INSERT INTO marca(marca) VALUES(?)");// Traduzco mi petición
-    $guardar = $query->execute([$marca]); //Ejecuto mi petición
-
-    if ($guardar) {
+    if ($agregar->execute()) {
         session_start();
-        $_SESSION['marca'] = 'registro';
-        header("location: ../admin/actualizaciones.php");
-        
+        $_SESSION['agregar'] = 'registro';
+        header("location: ../admin/marca.php");
     } else {
-        echo "<script> alert 'Error al guardar la marca' </script>";
+        session_start();
+        $_SESSION['error'] = 'registro';
+        header("location: ../admin/marca.php");
     }

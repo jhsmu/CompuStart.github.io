@@ -44,6 +44,7 @@ include './CarroIndex/carritoIndex.php';
                 <?php
                 if (!empty($_SESSION['carritoIndex'])) {
                     $total = 0;
+                    $_SESSION["carritoSesion"]="no has iniciado sesion";
                     foreach ($_SESSION['carritoIndex'] as $indice => $producto) {
                 ?>
                         <tr>
@@ -80,10 +81,10 @@ include './CarroIndex/carritoIndex.php';
                     }
                     ?>
                     <tr>
-                        <td colspan="3" align="right">
+                        <td colspan="3" aling="right">
                             <h3>Total</h3>
                         </td>
-                        <td align="right">
+                        <td aling="right">
                             <h3>$<?php echo number_format($total, 2); ?></h3>
                         </td>
                     </tr>
@@ -91,15 +92,6 @@ include './CarroIndex/carritoIndex.php';
                         <td colspan="5">
 
                             <form action="" method="post">
-                                <div class="alert alert-success">
-                                    <div class="form-group">
-                                        <label for="persona">Cliente</label>
-                                        <input type="text" name="cliente" id="cliente" class="form-control" value="" disabled>
-                                    </div>
-                                    <small class="form-text text-muted">
-                                        Los productos se le venderán a este cliente
-                                    </small>
-                                </div>
                                 <button class="btn btn-primary btn-lg btn-block" type="submit" name="botonAdd" value="proceder">Comprar</button>
                             </form>
 

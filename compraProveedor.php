@@ -228,6 +228,16 @@ if (isset($_POST["producto"])) {
                                         </div>
                                 </div>
                                 </form>
+                                <div class="md:flex md:items-center">
+                                    <div class="md:w-1/3"></div>
+                                    <div class="md:w-2/3">
+                                        <button
+                                            class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                                            type="button">
+                                            Buscar
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!--/Horizontal form-->
@@ -268,7 +278,7 @@ if (isset($_POST["producto"])) {
                                                     value="<?php echo $product["id_producto"] ?>" hidden>
                                                 <input type="number" name="proveedorCompra" id=""
                                                     value="<?php echo $_SESSION["id_proveedor"] ?>" hidden>
-                                                <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold" name="comprar" class="rounded">Comprar</button>
+                                                <button name="comprar" class="rounded">comprar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -310,6 +320,21 @@ if (isset($_POST["producto"])) {
         document.getElementById("boton2").click();
     }
     </script>
+    <?php
+        if (isset($_SESSION["comprobante"])) {
+            echo ('<script>Swal.fire({
+                title: "Compra exitosa",
+                text: "Tus productos estan en tu inventario",
+                icon: "success" 
+            });
+            </script>');
+            unset($_SESSION["comprobante"]);
+            unset($_SESSION["id_categoria"]);
+            unset($_SESSION["id_proveedor"]);
+            unset($_SESSION["id_producto"]);
+            unset($_SESSION["productos"]);
+        }
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

@@ -1,17 +1,16 @@
 <?php
-session_start();
-require('../database/basededatos.php');
+    session_start();
+    require('../database/basededatos.php');
 
-//Creamos un objeto del tipo Database
-$db = new Database();
-$connection = $db->connect(); //Creamos la conexión a la BD
+    //Creamos un objeto del tipo Database
+    $db = new Database();
+    $connection = $db->connect(); //Creamos la conexión a la BD
 
-// Cuando la conexión está establecida...
-$query = $connection->prepare("SELECT * FROM categoria"); // Traduzco mi petición
-$query->execute(); //Ejecuto mi petición
+    // Cuando la conexión está establecida...
+    $query = $connection->prepare("SELECT * FROM categoria"); // Traduzco mi petición
+    $query->execute(); //Ejecuto mi petición
 
-$categorias = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
-
+    $categorias = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +26,7 @@ $categorias = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>lista de Categoría</title>
+    <title>Lista de Categoría</title>
 </head>
 
 <body>
@@ -62,14 +61,22 @@ $categorias = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
                         <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
                             <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
                                 Lista de Categoría
+                                <label  class="flex justify-end" for="">
+                                <button data-modal='centeredFormModal'
+                                                    class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
+                                                    href="">
+                                                    <i class="fa fa-user-plus"></i>
+                                                    </button>
+                                                    Agregar Categoría
+                                </label>
                             </div>
                             <div class="p-3">
                                 <table class="table-responsive w-full rounded">
                                     <thead>
                                         <tr>
                                             <th class="border w-1/1 px-4 py-2">Id</th>
-                                            <th class="border w-1/1 px-4 py-2">categoría</th>
-
+                                            <th class="border w-1/1 px-4 py-2">Categoría</th>
+                                            <th class="border w-1/1 px-4 py-2">Estado</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -79,13 +86,13 @@ $categorias = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
                                             <tr>
                                                 <td class="border px-4 py-2"><?php echo $categoria["id_categoria"] . "<br>"; ?></td>
                                                 <td class="border px-4 py-2"><?php echo $categoria["categoria"] . "<br>"; ?></td>
+                                                <td class="border px-4 py-2"><?php if ($categoria["estado_categoria"]== 1 ){
+                                                    echo ("Activo");
+                                                }else{
+                                                    echo("Inactivo");
+                                                }  "<br>"; ?></td>
                                                 <td class="border px-4 py-2">
-                                                    <button data-modal='centeredFormModal'
-                                                    class="modal-trigger bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white"
-                                                    href="">
-                                                    <i class="fa fa-user-plus"></i>
-                                                    </button>
-                                                    <a class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarCategoria.php?id=<?php echo $categoria["id_categoria"]; ?>">
+                                                    <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarCategoria.php?id=<?php echo $categoria["id_categoria"]; ?>">
                                                         <i class="fas fa-edit"></i></a>
                                                 </td>
                                             </tr>
@@ -120,7 +127,7 @@ $categorias = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
                     </div>
                 </div>
                 <!-- Modal content -->
-                <form class="w-full" action="../categoria/guardarCategoria.php" method="post">
+                <form class="w-full" action="../categorias/agregarCategoria.php" method="post">
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
@@ -132,7 +139,7 @@ $categorias = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
                     <div class="mt-5">
                         <button class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'> Agregar</button>
                         <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
-                            Close
+                            Cerrar
                         </span>
                     </div>
                 </form>

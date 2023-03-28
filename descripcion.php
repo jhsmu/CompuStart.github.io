@@ -1,30 +1,30 @@
 <?php
-    session_start();
+session_start();
 
-    error_reporting( ~E_NOTICE ); // avoid notice
-	
-    require_once './database/conexion.php';
-    include './CarroIndex/carritoIndex.php';
+error_reporting(~E_NOTICE); // avoid notice
 
-    if (isset($_GET['id'])) {
-        $consulta=$DB_con->prepare('SELECT * FROM producto WHERE id_producto=:producto');
-        $consulta->bindParam(':producto', $_GET['id']);
-        $consulta->execute();
+require_once './database/conexion.php';
+include './CarroIndex/carritoIndex.php';
 
-        $producto=$consulta->fetch(PDO::FETCH_ASSOC);
+if (isset($_GET['id'])) {
+    $consulta = $DB_con->prepare('SELECT * FROM producto WHERE id_producto=:producto');
+    $consulta->bindParam(':producto', $_GET['id']);
+    $consulta->execute();
 
-        $consulta2=$DB_con->prepare('SELECT * FROM marca WHERE id_marca=:marca');
-        $consulta2->bindParam(':marca', $producto['id_marca']);
-        $consulta2->execute();
+    $producto = $consulta->fetch(PDO::FETCH_ASSOC);
 
-        $marca=$consulta2->fetch(PDO::FETCH_ASSOC);
+    $consulta2 = $DB_con->prepare('SELECT * FROM marca WHERE id_marca=:marca');
+    $consulta2->bindParam(':marca', $producto['id_marca']);
+    $consulta2->execute();
 
-        $consulta3=$DB_con->prepare('SELECT * FROM imagenes WHERE producto_id=:producto');
-        $consulta3->bindParam('producto', $_GET['id']);
-        $consulta3->execute();
+    $marca = $consulta2->fetch(PDO::FETCH_ASSOC);
 
-        $imagenes=$consulta3->fetchAll(PDO::FETCH_ASSOC);
-    }
+    $consulta3 = $DB_con->prepare('SELECT * FROM imagenes WHERE producto_id=:producto');
+    $consulta3->bindParam('producto', $_GET['id']);
+    $consulta3->execute();
+
+    $imagenes = $consulta3->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="./css/style_cuerpo.css">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- link de Sweetalert -->
+    <!-- link de Sweetalert -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Compu_start</title>
@@ -52,9 +52,9 @@
 
 <body>
     <header>
-        <?php 
-      include("./componentes/headerindex.php"); 
-      ?>
+        <?php
+        include("./componentes/headerindex.php");
+        ?>
     </header>
     <div class="container">
 
@@ -65,26 +65,26 @@
                         <div class="carousel-inner">
                             <br> <br> <br> <br> <br>
                             <?php
-                $contador=1;
-                foreach ($imagenes as $key => $imagen) {
-                  if ($contador==1) {
-              ?>
+                            $contador = 1;
+                            foreach ($imagenes as $key => $imagen) {
+                                if ($contador == 1) {
+                            ?>
                             <div class="carousel-item active">
                                 <img src="./imagenes/<?php echo $imagen['url'] ?>" class="d-block w-100" alt=""
                                     width="600" height="350">
                             </div>
                             <?php
-                  }else{
-              ?>
+                                } else {
+                                ?>
                             <div class="carousel-item">
                                 <img src="./imagenes/<?php echo $imagen['url'] ?>" class="d-block w-100" alt=""
                                     width="600" height="350">
                             </div>
                             <?php
-                  }
-                $contador++;
-                }
-              ?>
+                                }
+                                $contador++;
+                            }
+                            ?>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
                             data-bs-slide="prev">
@@ -105,7 +105,7 @@
                         <h3>Marca </h3><?php echo $marca['marca'] ?></p>
                         <h3>Características</h3>
                         <p class="card-text" style="text-align: justify;"><?php echo $producto['descripcion'] ?></p>
-                        <h3 name="precio" id="precio"><?php echo '$'.$producto['precio'] ?></h3>
+                        <h3 name="precio" id="precio">$ <?php echo number_format($producto['precio']) ?></h3>
                         <br>
                         <form action="" method="post">
                             <input type="text" name="id" id="id" value="<?php echo $producto['id_producto'] ?>" hidden>
@@ -123,8 +123,8 @@
                                     </div>
 
                                     <?php
-                        if ($producto['cantidad']==0) {
-                      ?>
+                                    if ($producto['cantidad'] == 0) {
+                                    ?>
 
                                     <div class="col-auto">
                                         <button type="submit" name="botonAdd" value="agregar"
@@ -137,8 +137,8 @@
                                     </div>
 
                                     <?php
-                        } else {
-                      ?>
+                                    } else {
+                                    ?>
 
                                     <div class="col-auto">
                                         <button type="submit" name="botonAdd" value="agregar"
@@ -150,11 +150,12 @@
                                             ;>Atras</a>
                                     </div>
                                     <div class="col-auto">
-                                        <p style="color:gray;"><?php echo $producto['cantidad'] ?> Unidades disponibles</p>
+                                        <p style="color:gray;"><?php echo $producto['cantidad'] ?> Unidades disponibles
+                                        </p>
                                     </div>
                                     <?php
-                        }
-                      ?>
+                                    }
+                                    ?>
 
                                 </div>
                             </div>
