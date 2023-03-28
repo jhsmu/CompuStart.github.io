@@ -145,7 +145,13 @@
     font-weight: 500;
     color: #fff;
 }
-
+span{
+    position: absolute;
+    right: 62rem;
+    transform: translate(0, -50%);
+    top: 70%;
+    cursor: pointer; 
+}
 @media screen and (max-width: 1330px) {
     .form-image {
         display: none;
