@@ -26,37 +26,36 @@ if (isset($_POST["crear"])) {
             break;
         }else{
             $email = $_POST["email_registro"];
+            if (isset($contrasena) and isset($email)) {
+                $agregar = $DB_con->prepare('INSERT INTO cliente(apellido, nombre, tipo_documento, numero_documento, email, direccion, telefono, contrasenia, estado) VALUES(:apellido, :nombre, :tipo, :documento, :email, :direccion, :telefono, :contrasenia, :estado)');
+                $agregar->bindParam(':apellido', $apellido);
+                $agregar->bindParam(':nombre', $nombre);
+                $agregar->bindParam(':tipo', $tipo);
+                $agregar->bindParam(':documento', $documento);
+                $agregar->bindParam(':email', $email);
+                $agregar->bindParam(':direccion', $direccion);
+                $agregar->bindParam(':telefono', $telefono);
+                $agregar->bindParam(':contrasenia', $contrasena);
+                $agregar->bindParam(':estado', $estado);
+
+                try {
+                    if ($agregar->execute()) {
+                        session_start();
+                        $_SESSION["registro"] = "registro creado con exito";
+                        header("location:../login-registro.php");
+                    } else {
+                        echo '<script> alert("registro incorrecto")</script>';
+                        echo '<a href="../login-registro.php">Regresar al registro</a>';
+                    }
+                } catch (\Throwable $th) {
+                    echo '<script>alert("correo duplicado")</script>';
+                    echo '<a href="../login-registro.php">Regresar al registro</a>';
+                }
+            }
         }
     }
 
 
-    if (isset($contrasena) and isset($email)) {
-        $agregar = $DB_con->prepare('INSERT INTO cliente(apellido, nombre, tipo_documento, numero_documento, email, direccion, telefono, contrasenia, estado) VALUES(:apellido, :nombre, :tipo, :documento, :email, :direccion, :telefono, :contrasenia, :estado)');
-        $agregar->bindParam(':apellido', $apellido);
-        $agregar->bindParam(':nombre', $nombre);
-        $agregar->bindParam(':tipo', $tipo);
-        $agregar->bindParam(':documento', $documento);
-        $agregar->bindParam(':email', $email);
-        $agregar->bindParam(':direccion', $direccion);
-        $agregar->bindParam(':telefono', $telefono);
-        $agregar->bindParam(':contrasenia', $contrasena);
-        $agregar->bindParam(':estado', $estado);
-
-        try {
-            if ($agregar->execute()) {
-            session_start();
-            $_SESSION["registro"]="registro creado con exito";
-            header("location:../login-registro.php");
-        } else {
-            echo '<script> alert("registro incorrecto")</script>';
-            echo '<a href="../login-registro.php">Regresar al registro</a>';
-        }
-
-        } catch (\Throwable $th) {
-            echo '<script>alert("correo duplicado")</script>';
-            echo '<a href="../login-registro.php">Regresar al registro</a>';
-        }
-    }
 }/* else{
     session_start();
     $_SESSION["Error al registrar"] = "Error 1";
