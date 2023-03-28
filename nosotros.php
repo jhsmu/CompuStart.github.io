@@ -32,7 +32,7 @@
             <img src="./img/logo/images.png" height="200px" class="flex-shrink-0 me-3" alt="...">
             <div>
             <h1 style="text-align: center;">Techno Solution</h1>
-            <p style="text-align: justify;margin-right: 15px;" >La empresa TECNO SOLUTIONS tiene una empresa de ventas de componentes de computadores como lo son monitores,CPU,tarjetas graficas etc.Pero esta empresa los ultimos meses ha tenido un bajon en usu ventas asi que les propusimos crear una pagina wed para que asi puedan impulsar sus ventas.</p>
+            <p style="text-align: justify;margin-right: 15px;" >La empresa TECNO SOLUTIONS tiene una tienda de componentes computacionales como lo son: monitores, CPU, tarjetas graficas etc. Pero esta empresa los ultimos meses ha tenido un bajón en sus ventas así que se les propuso crear una página web para que asi puedan impulsar sus ventas.</p>
             </div>
             <div >
             <img src="./img/logo/jefe.jpg" height="200px" alt="">
@@ -47,7 +47,7 @@
         <div>
       <div class="card-body ">
         <h2 class="card-title" style="text-align: center;">Misión</h2>
-        <p class="card-text" style="text-align: justify;">La misión principal de este software es ayudar a esta empresa a ser mas reconocida y que sus ventas incrementen. Además, buscar un lugar en el mundo digital por medio de la realización de una pagina web, que facilite la interacción Usuario/Cliente con la empresa.</p>
+        <p class="card-text" style="text-align: justify;">La misión principal de este software es ayudar a dicha empresa a ser más reconocida para aumentar las posibilidades de que sus ventas incrementen. Además, buscar un lugar en el mundo digital por medio de la realización de una pagina web, que facilite la interacción Usuario/Cliente con la empresa.</p>
       </div>
     </div>
             </div>
@@ -56,7 +56,7 @@
         <div>
       <div class="card-body">
         <h2 class="card-title" style="text-align: center;">Visión</h2>
-        <p class="card-text" style="text-align: justify;">Visualizar el objetivo a largo plazo en el que la empresa Tecno Solutions sea más conocida con su primer software llamado Compu_Start para así posicionarse en el mercado como una de las empresas con más altos  estándares de calidad y eficacia a la hora  desarrollar el software propuesto por el cliente.</p>
+        <p class="card-text" style="text-align: justify;">Visualizar el objetivo a largo plazo en el que la empresa Tecno Solutions sea más conocida con su primer software llamado "Compu_Start", para así posicionarse en el mercado como una de las empresas con más altos  estándares de calidad y eficacia a la hora  desarrollar el software propuesto por el cliente.</p>
      
       </div>
     </div>
@@ -115,7 +115,7 @@
         </div>
         <div class="card_contenido">
           <span class="card_titulo">Desarrollador Backend</span>
-          <span class="card_nombre"> Freyme Sepulveda</span>
+          <span class="card_nombre"> Freymer Sepúlveda</span>
           <p class="card_texto">
           Estudiante de programación en el centro de servicio y gestión empresarial SENA
         </p>
@@ -161,18 +161,7 @@
         </div>
       </div>
       <!-- desarrollador 8 -->
-      <div class="card_cont swiper-slide">
-        <div class="card_image ">
-          <img src="./img/avatar.png" alt="">
-        </div>
-        <div class="card_contenido">
-          <span class="card_titulo">Gestor De Base de Datos</span>
-          <span class="card_nombre"> Miguel Angel Duque Cuervo</span>
-          <p class="card_texto">
-          Estudiante de programación en el centro de servicio y gestión empresarial SENA
-        </p>
-        </div>
-      </div>
+    
 
       </div>
         </section>
