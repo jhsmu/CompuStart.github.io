@@ -77,7 +77,7 @@ error_reporting(0);
         $sql = "update cliente set imagen='" . $userpic . "', 
             nombre='" . $nombre . "',
             apellido='" . $apellido . "',
-            tipo_documento='".$td."',
+            tipo_documento='" . $td . "',
             direccion='" . $direccion . "',
             telefono='" . $telefono . "',
             email='" . $email . "',
@@ -115,8 +115,8 @@ error_reporting(0);
         $telefono = $fila["telefono"];
         $contrasena = $fila["contrasenia"];
         $imagen = $fila["imagen"];
-        
-        $tipo_documento= array(
+
+        $tipo_documento = array(
             "T.I."  => "Tarjeta de Identidad",
             "C.C." => "Cédula de Ciudadanía",
             "C.E." => "Cédula de Extranjeria",
@@ -149,21 +149,21 @@ error_reporting(0);
                             <option value="">Seleccione Opción</option>
                             <?php
                                 foreach ($tipo_documento as $key => $TD) {
-                                    if ($TD==$tipo) {
-                            ?>
+                                    if ($TD == $tipo) {
+                                ?>
                             <option value="<?php echo $TD ?>" selected>
                                 <?php echo $key ?>
                             </option>
                             <?php
                                     } else {
-                            ?>
+                                    ?>
                             <option value="<?php echo $TD ?>">
                                 <?php echo $key ?>
                             </option>
                             <?php
                                     }
                                 }
-                            ?>
+                                ?>
                         </select>
                     </div>
                     <div class="input-box">
@@ -231,6 +231,15 @@ error_reporting(0);
             input.type = "password"
             eye.style.color = "#D8D8D8"
         }
+    }
+
+
+    function alerta() {
+        Swal.fire({
+            title: "Exito",
+            text: "Tus datos han sido actualizados",
+            icon: "success"
+        });
     }
     </script>
 

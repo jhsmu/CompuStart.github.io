@@ -45,7 +45,7 @@
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a href="./CarroIndex/destruyeSesion.php" class="social"><i class="fa fa-user"></i> Iniciar
+                        <a href="./login-registro.php" class="social"><i class="fa fa-user"></i> Iniciar
                             Sesión</a>
                     </li>
                 </ul>

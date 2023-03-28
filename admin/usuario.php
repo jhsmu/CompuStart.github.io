@@ -126,10 +126,9 @@
                                         <div class="">
                                             <div class="relative md:w-1/2 px-3 ">
                                                 <div class="flex">
-
                                                     <select
                                                         class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey "
-                                                        id="grid-state" name="rol">
+                                                        id="grid-state" name="rol" onchange="traer()">
                                                         <option value="" selected type="hidden">Selecciona un rol
                                                         </option>
                                                         <option value="administrador">Administradores</option>
@@ -138,21 +137,13 @@
                                                         <option value="cliente inhabilitado">Clientes inhabilitados
                                                         </option>
                                                     </select>
-
-                                                    <div
-                                                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker ">
-                                                        <svg class="fill-current h-4 w-4"
-                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                            <path
-                                                                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                        </svg>
-                                                    </div>
                                                     <div class="">
 
                                                     </div>
                                                     <div class="ml-16">
                                                         <button type="submit"
-                                                            class="rounded-full bg-blue-800 hover:bg-blue-500 w-32 h-8 text-white ">Traer</button>
+                                                            class="rounded-full bg-blue-800 hover:bg-blue-500 w-32 h-8 text-white "
+                                                            id="bot" hidden>Traer</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -313,8 +304,8 @@
                                                     class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
                                                     href="">
                                                     <i class="fa fa-user-plus"></i>
-                                                    </button>
-                                                    Agregar Administrador
+                                                </button>
+                                                Agregar Administrador
                                             </label>
                                             <script src="../js/main.js"></script>
                                             <table class="table-responsive w-full rounded">
@@ -357,61 +348,87 @@
                     </div>
                     <div id='centeredFormModal' class="modal-wrapper w-full md:w1/1">
                         <div class="overlay close-modal"></div>
-                            <div class="modal modal-centered">
-                                <div class="modal-content shadow-lg p-5">
-                                    <div class="border-b p-2 pb-3 pt-0 mb-4">
-                                        <div class="flex justify-between items-center">
-                                            Agregar Administrador
-                                            <span class='close-modal cursor-pointer px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200'>
-                                                <i class="fas fa-times text-gray-700"></i>
-                                            </span>
+                        <div class="modal modal-centered">
+                            <div class="modal-content shadow-lg p-5">
+                                <div class="border-b p-2 pb-3 pt-0 mb-4">
+                                    <div class="flex justify-between items-center">
+                                        Agregar Administrador
+                                        <span
+                                            class='close-modal cursor-pointer px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200'>
+                                            <i class="fas fa-times text-gray-700"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <form class="w-full" action="../admin/agregarAdministrador.php" method="post">
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                Nombre Administrador
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                                                name="nombre" id="nombre" type="text" onchange="nombre1()"
+                                                placeholder="Ingrese el nombre" required>
+                                        </div>
+                                        <div class="w-full md:w-1/2 px-3">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                for="grid-last-name">
+                                                Apellido Administrador
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                                                name="apellido" id="apellido" type="text" onchange="apellido1()"
+                                                placeholder="Ingrese el apellido" required>
                                         </div>
                                     </div>
-                                    <form class="w-full" action="../admin/agregarAdministrador.php" method="post">
-                                        <div class="flex flex-wrap -mx-3 mb-6">
-                                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
-                                                    Nombre Administrador
-                                                </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="nombre" id="nombre" type="text" onchange="nombre1()" placeholder="Ingrese el nombre" required>
-                                            </div>
-                                            <div class="w-full md:w-1/2 px-3">
-                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
-                                                    Apellido Administrador
-                                                </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="apellido" id="apellido" type="text" onchange="apellido1()" placeholder="Ingrese el apellido" required>
-                                            </div>
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                Email Administrador
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                                                name="email" id="correo" type="text" placeholder="Ingrese el email"
+                                                onchange="ValidacionCorreo()" required>
                                         </div>
-                                        <div class="flex flex-wrap -mx-3 mb-6">
-                                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
-                                                    Email Administrador
-                                                </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="email" id="correo" type="text" placeholder="Ingrese el email" onchange="ValidacionCorreo()" required>
-                                            </div>
-                                            <div class="w-full md:w-1/2 px-3">
-                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                        <div class="w-full md:w-1/2 px-3">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                for="grid-last-name">
                                                 Contraseña
-                                                </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="contrasena" id="clave" type="password" placeholder="Ingrese la contraseña" onchange="contraseña()" required>
-                                            </div>
-                                            <div class="w-full md:w-1/2 px-3">
-                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
-                                                   Confirmar contraseña
-                                                </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="apellido" id="clave_c" type="password" placeholder="Contraseña" onchange="verificarContraseña()" required>
-                                            </div>
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                                                name="contrasena" id="clave" type="password"
+                                                placeholder="Ingrese la contraseña" onchange="contraseña()" required>
                                         </div>
-                                        <div class="mt-8 ml-32">
-                                            <button class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'> 
-                                                Agregar</button>
-                                            <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
-                                                Cerrar
-                                            </span>
+                                        <div class="w-full md:w-1/2 px-3">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                for="grid-last-name">
+                                                Confirmar contraseña
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                                                name="apellido" id="clave_c" type="password" placeholder="Contraseña"
+                                                onchange="verificarContraseña()" required>
                                         </div>
-                                        
-                                       
-                                    </form>
+                                    </div>
+                                    <div class="mt-8 ml-32">
+                                        <button
+                                            class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'>
+                                            Agregar</button>
+                                        <span
+                                            class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
+                                            Cerrar
+                                        </span>
+                                    </div>
+
+
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -426,6 +443,11 @@
     </div>
 
     <script src="../js/main.js"></script>
+    <script>
+    function traer() {
+        document.getElementById("bot").click();
+    }
+    </script>
 
 </body>
 
