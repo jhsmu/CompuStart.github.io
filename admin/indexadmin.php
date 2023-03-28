@@ -161,7 +161,7 @@ $ventas = $consulta5->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
                                                 <th scope="col">Nombre del Cliente</th>
                                                 <th scope="col">Total</th>
                                                 <th scope="col">Fecha</th>
-                                                <th scope="col">Mas detalles</th>
+                                                <th scope="col">Más detalles</th>
                                             </tr>
                                         </thead>
                                         <tbody>
