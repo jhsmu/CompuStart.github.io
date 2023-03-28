@@ -23,6 +23,7 @@ if(isset($_SESSION["Error al registrar"])){
     <link rel="stylesheet" type="text/css" href="./css/login-registrate.css">
     <!-- validaciones de java script -->
     <script type='text/javascript' src=".\js\validaciones.js"></script>
+    <script type='text/javascript' src="./js/mostrar.js"></script>
     <!-- link de Sweetalert -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -47,6 +48,14 @@ if(isset($_SESSION["Error al registrar"])){
                         placeholder="Nombres" required>
                     <input autocomplete="on" onchange="apellido1()" type="text" name="apellido" id="apellido"
                         placeholder="Apellidos" required>
+                    <select name="documento">
+                        <option value="">Selecionar Opción</option>
+                        <option value="">T.I</option>
+                        <option value="">C.C</option>
+                        <option value="">C.E</option>
+                    </select>
+                    <input type="text" name="documento" id="documento"
+                        placeholder="Numero De Documento" required>
                     <input autocomplete="on" onchange="direccion1()" type="text" name="direccion" id="direccion"
                         placeholder="Dirección" required>
                     <input autocomplete="on" onchange="telefono1()" type="number" name="telefono" id="telefono"
@@ -54,9 +63,15 @@ if(isset($_SESSION["Error al registrar"])){
                     <input autocomplete="on" onchange="ValidacionCorreo()" type="email" name="email_registro"
                         id="correo" placeholder="Correo" required>
                     <input onchange="contraseña()" type="password" name="clave" id="clave"
-                        placeholder="Ingresar una clave clave mayor a 8 dígitos" required>
+                        placeholder="Ingresar su clave" required>
+                        <span>
+                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye" ></i>
+                        </span>
                     <input onchange="verificarContraseña()" type="password" name="clave_c" id="clave_c"
                         placeholder="Ingresar la clave nuevamente" required>
+                        <span class="eyes" >
+                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye_c"></i>
+                        </span>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                         <label class="form-check-label" for="flexCheckDefault">
@@ -80,7 +95,10 @@ if(isset($_SESSION["Error al registrar"])){
                     </div>
                     <p>Rellene todos los campos</p>
                     <input type="email" name="email" placeholder="Correo" required>
-                    <input type="password" name="clave_inicio" placeholder="Clave" required>
+                    <input type="password" name="clave_inicio" placeholder="Clave" id="clave_inicio" required>
+                    <span class="Eye">
+                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye_inicio" ></i>
+                    </span>
                     <button name="inicio" type="submit">Iniciar Sesión</button>
                     <div class="iniciar">
                         <a href="./index.php">Iniciar Sin Cuenta</a>
@@ -126,9 +144,58 @@ if(isset($_SESSION["Error al registrar"])){
 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
 "></script>
 
+
 </body>
 
 </html>
+<script>
+var eye = document.getElementById('eye');
+var input = document.getElementById('clave');
+var eye_c = document.getElementById('eye_c');
+var input1 = document.getElementById('clave_c');
+
+
+eye.addEventListener('click',mostrarcontra);
+eye_c.addEventListener('click',mostrarcontraseña);
+
+
+function mostrarcontra(){
+    if(input.type == "password"){
+        input.type = "text"
+        eye.style.color="#383838"
+    }else{
+        input.type = "password"
+        eye.style.color="#D8D8D8"
+    }
+}
+function mostrarcontraseña(){
+    if(input1.type == "password"){
+        input1.type = "text"
+        eye_c.style.color="#383838"
+    }else{
+        input1.type = "password"
+        eye_c.style.color="#D8D8D8"
+    }
+}   
+
+</script>
+<script>
+var eye_inicio = document.getElementById('eye_inicio');
+var input2 = document.getElementById('clave_inicio');
+
+eye_inicio.addEventListener('click',mostrarinicio);
+
+function mostrarinicio(){
+    if(input2.type == "password"){
+        input2.type = "text"
+        eye_inicio.style.color="#383838"
+    }else{
+        input2.type = "password"
+        eye_inicio.style.color="#D8D8D8"
+    }
+}
+</script>
+
 <?php
     if (isset($_SESSION["registro"])) {
         echo ('<script>Swal.fire({
@@ -136,7 +203,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
             text: "Ahora puedes iniciar tu sesión",
             icon: "success" 
         });
-        </script>');
+        </>');
         session_destroy();
     } else {
         session_destroy();
