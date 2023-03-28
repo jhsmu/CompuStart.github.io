@@ -110,7 +110,6 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                                                 }
                                             }
                                             ?>
-
                                         </tbody>
                                     </div>
                                 </table>

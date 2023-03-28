@@ -84,22 +84,25 @@ $categorias = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
                                     <tbody>
                                         <?php
                                         foreach ($categorias as $key => $categoria) {
+                                            if ($categoria['estado_categoria'] == 1) {
                                         ?>
-                                            <tr>
-                                                <td class="border px-4 py-2"><?php echo $categoria["id_categoria"] . "<br>"; ?></td>
-                                                <td class="border px-4 py-2"><?php echo $categoria["categoria"] . "<br>"; ?></td>
-                                                <td class="border px-4 py-2"><?php if ($categoria["estado_categoria"] == 1) {
-                                                                                    echo ("Activo");
-                                                                                } else {
-                                                                                    echo ("Inactivo");
-                                                                                }
-                                                                                "<br>"; ?></td>
-                                                <td class="border px-4 py-2">
-                                                    <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarCategoria.php?id=<?php echo $categoria["id_categoria"]; ?>">
-                                                        <i class="fas fa-edit"></i></a>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td class="border px-4 py-2"><?php echo $categoria["id_categoria"] . "<br>"; ?></td>
+                                                    <td class="border px-4 py-2"><?php echo $categoria["categoria"] . "<br>"; ?></td>
+                                                    <td class="border px-4 py-2"><?php if ($categoria["estado_categoria"] == 1) {
+                                                                                        echo ("Activo");
+                                                                                    } else {
+                                                                                        echo ("Inactivo");
+                                                                                    }
+                                                                                    "<br>"; ?></td>
+                                                    <td class="border px-4 py-2">
+                                                        <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarCategoria.php?id=<?php echo $categoria["id_categoria"]; ?>">
+                                                            <i class="fas fa-edit"></i></a>
+                                                    </td>
+                                                </tr>
                                         <?php
+                                            } else {
+                                            }
                                         }
                                         ?>
                                     </tbody>
