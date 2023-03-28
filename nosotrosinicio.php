@@ -1,6 +1,5 @@
 <?php
   session_start();
-  include './validaciones/sesionStarted.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

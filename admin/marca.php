@@ -28,6 +28,10 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>lista de Marcas</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js">
+    </script>
 </head>
 
 <body>
@@ -62,53 +66,52 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                         <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
                             <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
                                 Lista de Marcas
-                                <label  class="flex justify-end" for="">
-                                <button data-modal='centeredFormModal'
-                                                    class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
-                                                    href="">
-                                                    <i class="fa fa-user-plus"></i>
-                                                    </button>
-                                                    Agregar Marca
+                                <label class="flex justify-end" for="">
+                                    <button data-modal='centeredFormModal' class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="">
+                                        <i class="fa fa-user-plus"></i>
+                                    </button>
+                                    Agregar Marca
                                 </label>
                             </div>
                             <div class="p-3">
-                                <table class="table-responsive w-full rounded ">
+                                <table class="table-responsive w-full rounded " id="dataTable">
                                     <div class="flex justify-center">
-                                    <thead>
-                                        <tr>
-                                            <th class="border w-1/1 px-4 py-2">Id</th>
-                                            <th class="border w-1/1 px-4 py-2">Marca</th>
-                                            <th class="border w-1/1 px-4 py-2">Estado</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                        <?php
-                                        foreach ($marcas as $key => $marca) {
-                                            if ($marca['estado_marca'] == 1){
-                                        ?>
-                                    
+                                        <thead>
                                             <tr>
-                                                <td class="border px-4 py-2"><?php echo $marca["id_marca"] . "<br>"; ?></td>
-                                                <td class="border px-4 py-2"><?php echo $marca["marca"] . "<br>"; ?></td>
-                                                <td class="border px-4 py-2"><?php if ($marca["estado_marca"]== 1 ){
-                                                    echo ("Activo");
-                                                }else{
-                                                    echo("Inactivo");
-                                                }  "<br>"; ?></td>
-                                                <td class="border px-4 py-2">
-                                                    <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarMarca.php?id=<?php echo $marca["id_marca"]; ?>">
-                                                        <i class="fas fa-edit"></i></a>
-                                                </td>
+                                                <th class="border w-1/1 px-4 py-2">Id</th>
+                                                <th class="border w-1/1 px-4 py-2">Marca</th>
+                                                <th class="border w-1/1 px-4 py-2">Estado</th>
+
                                             </tr>
-                                        <?php
-                                            } else {
+                                        </thead>
+                                        <tbody>
+
+                                            <?php
+                                            foreach ($marcas as $key => $marca) {
+                                                if ($marca['estado_marca'] == 1) {
+                                            ?>
+
+                                                    <tr>
+                                                        <td class="border px-4 py-2"><?php echo $marca["id_marca"] . "<br>"; ?></td>
+                                                        <td class="border px-4 py-2"><?php echo $marca["marca"] . "<br>"; ?></td>
+                                                        <td class="border px-4 py-2"><?php if ($marca["estado_marca"] == 1) {
+                                                                                            echo ("Activo");
+                                                                                        } else {
+                                                                                            echo ("Inactivo");
+                                                                                        }
+                                                                                        "<br>"; ?></td>
+                                                        <td class="border px-4 py-2">
+                                                            <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarMarca.php?id=<?php echo $marca["id_marca"]; ?>">
+                                                                <i class="fas fa-edit"></i></a>
+                                                        </td>
+                                                    </tr>
+                                            <?php
+                                                } else {
+                                                }
                                             }
-                                        }
-                                        ?>
-                                        
-                                    </tbody>
+                                            ?>
+
+                                        </tbody>
                                     </div>
                                 </table>
                             </div>
@@ -123,8 +126,8 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
 
     </div>
 
- <!-- Centered With a Form Modal -->
- <div id='centeredFormModal' class="modal-wrapper">
+    <!-- Centered With a Form Modal -->
+    <div id='centeredFormModal' class="modal-wrapper">
         <div class="overlay close-modal"></div>
         <div class="modal modal-centered">
             <div class="modal-content shadow-lg p-5">
@@ -141,7 +144,7 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
-                            marca
+                                marca
                             </label>
                             <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="marca" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese una marca nueva" required>
                         </div>
@@ -164,6 +167,11 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
     </script>
 
 </body>
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script>
 
 </html>
 <?php
