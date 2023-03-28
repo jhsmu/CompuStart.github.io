@@ -53,10 +53,10 @@
                                 <a class="nav-link dropdown-item" href="./editar.php?id_cliente=<?php echo $_SESSION["id_usuario"];?>"><i class="fas fa-edit"></i>Editar Perfil</a>
                             </li>
                             <li class="nav-item"><a class="nav-link dropdown-item" href="./mostrarCarrito.php">
-                            <i class="fa-duotone fa-cart-shopping"></i>
+                            <i class="fa fa-cart-shopping"></i>
                             Mi Carrito(<?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']); ?>)</a></li>
                             <li class="nav-item"><a class="nav-link dropdown-item" href="./pedidos.php?id_cliente=<?php echo $_SESSION["id_usuario"];?>">
-                            <i class="fa-duotone fa-cart-shopping"></i>
+                            <i class="fa fa-bag-shopping"></i>
                             Mis Pedidos</a></li>
                             <li class="nav-item"><a class="nav-link dropdown-item" href="./validaciones/cerrarSesion.php"><i class="fa fa-door-open"></i>Cerrar sesión</a></li>
                         </ul>
