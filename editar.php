@@ -159,11 +159,10 @@ session_start();
                     <div class="input-box">
                         <label for="password">Contraseña</label>
                         <input id="password" type="password" name="contrasena" value="<?php echo $contrasena;?>">
-                    </div>
-                    <span >
-                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye" ></i>
+                        <span >
+                        <i class="fa fa-eye" style="color:#D8D8D8" id="eye" ></i>
                         </span>
-
+                    </div>
                     <div class="input-box">
                         <label for="">Cambiar Avatar</label>
                         <input type="file" name="imagen">
