@@ -73,7 +73,15 @@
     font-size: 0.8rem;
     width: 96%;
 }
-
+.input-box select{
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+    font-size: 0.8rem;
+    width: 96%;
+}
 .input-box input:hover {
     background-color: #eeeeee75;
 }
@@ -147,7 +155,7 @@
 }
 span{
     position: absolute;
-    right: 62rem;
+    right: 25rem;
     transform: translate(0, -50%);
     top: 70%;
     cursor: pointer; 
