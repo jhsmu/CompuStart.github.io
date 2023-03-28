@@ -137,13 +137,13 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                     </div>
                 </div>
                 <!-- Modal content -->
-                <form class="w-full" action="../marca/guardarMarca.php" method="post">
+                <form class="w-full" action="../marca/agregarmarca.php" method="post">
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
                             marca
                             </label>
-                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="marca" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese una categoría nueva" required>
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="marca" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese una marca nueva" required>
                         </div>
                     </div>
                     <div class="mt-5">
