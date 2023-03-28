@@ -147,7 +147,8 @@
                                         </div>
                                         <br>
                                         <div class="mr-16 ">
-                                            <button type="submit" class="rounded-full bg-blue-800 hover:bg-blue-500 w-32 h-8 text-white ">Traer</button>
+                                            <button type="submit" style=" position: relative;
+  top: -60px; left: 280px;"  class="rounded-full bg-blue-800 hover:bg-blue-500 w-32 h-8 text-white ">Traer</button>
                                         </div>
                                     </form>
 
