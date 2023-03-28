@@ -16,9 +16,8 @@
 
     if ($guardar) {
         session_start();
-        $_SESSION['id_administrador'] = 'id';
+        $_SESSION['agregado'] = 'id';
         header("location: ../admin/usuario.php");
-        
     } else {
         echo "<script> alert 'Error al crear nuevo administrador' </script>";
     }

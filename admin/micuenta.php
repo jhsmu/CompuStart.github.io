@@ -62,7 +62,7 @@
             }else{
                 session_start();
                 $_SESSION['error'] = 'actualizar';
-                header("location: ./micuenta.php");
+                header("location: ./idexadmin.php");
                 error_reporting(0);
             }
             mysqli_close($conexion);
@@ -213,15 +213,3 @@ function mostrar(){
 </body>
 
 </html>
-<?php
-if (isset($_SESSION['error'])) {
-    echo "<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Éxito',
-        text: 'Datos Actualizados'
-        });
-    </script>";
-    unset($_SESSION['error']);
-}
-?>

@@ -178,7 +178,18 @@ if (isset($_SESSION['actualizar_marca'])) {
     unset($_SESSION['actualizar_marca']);
 }
 
-if (isset($_SESSION['marca'])) {
+if (isset($_SESSION['actualizar_error'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Marca no actualizada'
+        });
+    </script>";
+    unset($_SESSION['actualizar_error']);
+}
+
+if (isset($_SESSION['agregar'])) {
     echo "<script>
     Swal.fire({
         icon: 'success',
@@ -186,5 +197,16 @@ if (isset($_SESSION['marca'])) {
         text: 'Nueva Marca Creada'
         });
     </script>";
-    unset($_SESSION['marca']);
+    unset($_SESSION['agregar']);
+
+    if (isset($_SESSION['error'])) {
+        echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Marca no agregada'
+            });
+        </script>";
+        unset($_SESSION['error']);
+    }
 }

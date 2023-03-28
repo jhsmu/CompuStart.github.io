@@ -451,6 +451,16 @@ if (isset($_SESSION['error'])) {
     unset($_SESSION['error']);
 }
 
+if (isset($_SESSION['agregado'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Administrador Agregado'
+        });
+    </script>";
+    unset($_SESSION['agregado']);
+}
 if (isset($_SESSION['eliminar_admi'])) {
     echo "<script>
     Swal.fire({
@@ -460,5 +470,15 @@ if (isset($_SESSION['eliminar_admi'])) {
         });
     </script>";
     unset($_SESSION['eliminar_admi']);
+}
+if (isset($_SESSION['error_admi'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Administrador no Eliminado'
+        });
+    </script>";
+    unset($_SESSION['error_admi']);
 }
 ?>

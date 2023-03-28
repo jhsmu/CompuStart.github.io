@@ -213,4 +213,29 @@ if (isset($_SESSION['actualizar_datos'])) {
     </script>";
     unset($_SESSION['actualizar_datos']);
 }
+
+if (isset($_SESSION['error'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Datos Actualizados'
+        });
+    </script>";
+    unset($_SESSION['error']);
+}
+
+if (isset($_SESSION["comprobante"])) {
+    echo ('<script>Swal.fire({
+        title: "Compra exitosa",
+        text: "Tus productos estan en tu inventario",
+        icon: "success" 
+    });
+    </script>');
+    unset($_SESSION["comprobante"]);
+    unset($_SESSION["id_categoria"]);
+    unset($_SESSION["id_proveedor"]);
+    unset($_SESSION["id_producto"]);
+    unset($_SESSION["productos"]);
+}
 ?>

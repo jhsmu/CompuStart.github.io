@@ -420,4 +420,26 @@ if (isset($_SESSION['actualizar_producto'])) {
     </script>";
     unset($_SESSION['actualizar_producto']);
 }
+
+if (isset($_SESSION['actualizar_error'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Producto no actualizado'
+        });
+    </script>";
+    unset($_SESSION['actualizar_error']);
+}
+
+if (isset($_SESSION['producto_error'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Producto no agregado'
+        });
+    </script>";
+    unset($_SESSION['producto_error']);
+}
 ?>

@@ -221,14 +221,25 @@ if (isset($_SESSION['proveedor'])) {
     unset($_SESSION['proveedor']);
 }
 
-if (isset($_SESSION['eliminar_proveedor'])) {
+if (isset($_SESSION['error_actualizar'])) {
     echo "<script>
     Swal.fire({
-        icon: 'success',
-        title: 'Éxito',
-        text: 'Proveedor Eliminado'
+        icon: 'error',
+        title: 'Error',
+        text: 'Proveedor no actualizado'
         });
     </script>";
-    unset($_SESSION['eliminar_proveedor']);
+    unset($_SESSION['error_actualizar']);
+}
+
+if (isset($_SESSION['proveedor_error'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Proveedor no guardado'
+        });
+    </script>";
+    unset($_SESSION['proveedor_error']);
 }
 ?>
