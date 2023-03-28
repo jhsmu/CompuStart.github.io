@@ -149,7 +149,7 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                     <div class="mt-5">
                         <button class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'> Agregar</button>
                         <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
-                            Close
+                            Cerrar
                         </span>
                     </div>
                 </form>

@@ -109,9 +109,6 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                                 <td class="border px-4 py-2">
                                                     <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarProveedor.php?id=<?php echo $proveedor["id_proveedor"]; ?>">
                                                         <i class="fas fa-edit"></i></a>
-                                                    <a class="bg-red-800 cursor-pointer rounded p-1 mx-1 text-white" href="./editar/eliminarProveedor.php?id=<?php echo $proveedor["id_proveedor"]; ?>" onclick='return confirmar()'>
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php
@@ -181,7 +178,7 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                     <div class="mt-5">
                         <button class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'> Agregar</button>
                         <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
-                            Close
+                            Cerrar
                         </span>
                     </div>
                 </form>
