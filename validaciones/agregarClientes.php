@@ -1,23 +1,20 @@
 <?php
 require_once '../database/conexion.php';
-require('../database/basededatos.php');
 
-    $db = new Database();
-    $connection = $db->connect(); //Creamos la conexión a la BD
 
-    $consulta=$DB_con->prepare('SELECT email FROM cliente');
-    $consulta->execute();
-    $emails=$consulta->fetchAll(PDO::FETCH_ASSOC);
+$consulta=$DB_con->prepare('SELECT email FROM cliente');
+$consulta->execute();
+$emails=$consulta->fetchAll(PDO::FETCH_ASSOC);
 
 
 if (isset($_POST["crear"])) {
     $nombre = $_POST["nombre"];
     $apellido = $_POST["apellido"];
-    $tipo = $_POST["tipo_documento"];
-    $documento = $_POST["numero_documento"];
     $direccion = htmlentities($_POST["direccion"]);
     $telefono = $_POST["telefono"];
     $estado=1;
+    $documento = $_POST["numero_documento"];
+    $tipo = $_POST["tipo_documento"];
     $contrasena = (htmlentities($_POST["clave"]));
 
     foreach ($emails as $key => $correo) {
@@ -34,41 +31,34 @@ if (isset($_POST["crear"])) {
 
 
     if (isset($contrasena) and isset($email)) {
-        $query = $connection->prepare("INSERT INTO cliente(nombre, apellido, tipo_documento, numero_documento, direccion, telefono, email, contrasenia, estado) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");// Traduzco mi petición
-        $guardar = $query->execute([$nombre, $apellido, $tipo, $documento, $direccion, $telefono, $email, $contrasena, $estado]); //Ejecuto mi petición
-    
-        if ($guardar) {
+        $agregar = $DB_con->prepare('INSERT INTO cliente(apellido, nombre, tipo_documento, numero_documento, email, direccion, telefono, contrasenia, estado) VALUES(:apellido, :nombre, :tipo, :documento, :email, :direccion, :telefono, :contrasenia, :estado)');
+        $agregar->bindParam(':apellido', $apellido);
+        $agregar->bindParam(':nombre', $nombre);
+        $agregar->bindParam(':tipo', $tipo);
+        $agregar->bindParam(':documento', $documento);
+        $agregar->bindParam(':email', $email);
+        $agregar->bindParam(':direccion', $direccion);
+        $agregar->bindParam(':telefono', $telefono);
+        $agregar->bindParam(':contrasenia', $contrasena);
+        $agregar->bindParam(':estado', $estado);
+
+        try {
+            if ($agregar->execute()) {
             session_start();
-            $_SESSION['agregar'] = 'registro';
-            header("location: ../login-registro.php");
+            $_SESSION["registro"]="registro creado con exito";
+            header("location:../login-registro.php");
         } else {
-            session_start();
-            $_SESSION['error'] = 'registro';
-            header("location: ../login-registro.php");
+            echo '<script> alert("registro incorrecto")</script>';
+            echo '<a href="../login-registro.php">Regresar al registro</a>';
+        }
+
+        } catch (\Throwable $th) {
+            echo '<script>alert("correo duplicado")</script>';
+            echo '<a href="../login-registro.php">Regresar al registro</a>';
         }
     }
-}
-
-    //     try {
-    //         if ($guardar) {
-    //         session_start();
-    //         $_SESSION["registro"]="registro creado con exito";
-    //         header("location:../login-registro.php");
-    //     } else {
-    //         session_start();
-    //         $_SESSION["error"]=" error registro";
-    //         header("location:../login-registro.php");
-    //     }
-
-    //     } catch (\Throwable $th) {
-    //         session_start();
-    //         $_SESSION["Error al registrar"] = "Error 1";
-    //         header('location:../login-registro.php');
-    //     }
-    // }
-/* else{
+}/* else{
     session_start();
     $_SESSION["Error al registrar"] = "Error 1";
     header('location:../login-registro.php');
-
 } */
