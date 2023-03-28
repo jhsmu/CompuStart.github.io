@@ -193,7 +193,15 @@
                                         <td class="border px-4 py-2"><?php echo $filas['direccion'] ?></td>
                                         <td class="border px-4 py-2"><?php echo $filas['email'] ?></td>
                                         <td class="border px-4 py-2"><?php echo $filas['telefono'] ?></td>
-                                        <td class="border px-4 py-2"><?php echo $filas['estado'] ?></td>
+                                        <td class="border px-4 py-2">
+                                            <?php   
+                                                if ($filas["estado"]=="1"){
+                                                    echo "Activo <br>";
+                                                } else {
+                                                    echo "Inactivo <br>";
+                                                }
+                                            ?>
+                                        </td>
                                         <td class="border px-4 py-2">
                                             <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
                                                 href="./actualizarUsuario.php?id=<?php echo $filas['id']; ?>">
@@ -233,7 +241,15 @@
                                         <td class="border px-4 py-2"><?php echo $filas['direccion'] ?></td>
                                         <td class="border px-4 py-2"><?php echo $filas['email'] ?></td>
                                         <td class="border px-4 py-2"><?php echo $filas['telefono'] ?></td>
-                                        <td class="border px-4 py-2"><?php echo $filas['estado'] ?></td>
+                                        <td class="border px-4 py-2">
+                                            <?php   
+                                                if ($filas["estado"]=="1"){
+                                                    echo "Activo <br>";
+                                                } else {
+                                                    echo "Inactivo <br>";
+                                                }
+                                            ?>
+                                        </td>
                                         <td class="border px-4 py-2">
                                             <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
                                                 href="./actualizarUsuario.php?id=<?php echo $filas['id']; ?>">
@@ -271,7 +287,15 @@
                                                 <td class="border px-4 py-2"><?php echo $filas['direccion'] ?></td>
                                                 <td class="border px-4 py-2"><?php echo $filas['email'] ?></td>
                                                 <td class="border px-4 py-2"><?php echo $filas['telefono'] ?></td>
-                                                <td class="border px-4 py-2"><?php echo $filas['estado'] ?></td>
+                                                <td class="border px-4 py-2">
+                                                    <?php   
+                                                        if ($filas["estado"]=="1"){
+                                                            echo "Activo <br>";
+                                                        } else {
+                                                            echo "Inactivo <br>";
+                                                        }
+                                                    ?>
+                                                </td>
                                                 <td class="border px-4 py-2">
                                                     <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
                                                         href="./actualizarUsuario.php?id=<?php echo $filas['id']; ?>">
