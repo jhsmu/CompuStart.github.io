@@ -29,6 +29,10 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
     <script src="../js/validaciones.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Proveedor</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js">
+    </script>
 </head>
 
 <body>
@@ -63,20 +67,18 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                         <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
                             <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
                                 Lista de proveedores
-                                <label class="flex justify-end"  for="">
-                                <button data-modal='centeredFormModal'
-                                                    class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white"
-                                                    href="">
-                                                    <i class="fa fa-user-plus"></i>
-                                </button>
+                                <label class="flex justify-end" for="">
+                                    <button data-modal='centeredFormModal' class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="">
+                                        <i class="fa fa-user-plus"></i>
+                                    </button>
                                     Agregar Proveedor
-                            </label>
+                                </label>
                             </div>
-                           
 
-                           
+
+
                             <div class="p-3">
-                                <table class="table-responsive w-full rounded">
+                                <table class="table-responsive w-full rounded" id="dataTable">
                                     <thead>
                                         <tr>
                                             <th class="border w-1/1 px-4 py-2" hidden>Id</th>
@@ -92,29 +94,30 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                     <tbody>
                                         <?php
                                         foreach ($proveedores as $key => $proveedor) {
-                                            if ($proveedor['estado_proveedor'] == 1){
+                                            if ($proveedor['estado_proveedor'] == 1) {
                                         ?>
-                                            <tr>
-                                                <td class="border px-4 py-2" hidden><?php echo $proveedor["id_proveedor"] . "<br>"; ?></td>
-                                                <td class="border px-4 py-2"><?php echo $proveedor["proveedor"] . "<br>"; ?></td>
-                                                <td class="border px-4 py-2"><?php echo $proveedor["nit"] . "<br>"; ?></td>
-                                                <td class="border  w-1/1 px-1 py-1"><?php echo $proveedor["correo"] . "<br>"; ?></td>
-                                                <td class="border w-1/1 px-4 py-2"><?php echo $proveedor["direccion_web"] . "<br>"; ?></td>
-                                                <td class="border w-1/6 px-4 py-2"><?php echo $proveedor["direccion"] . "<br>"; ?></td>
-                                                <td class="border  w-1/1 px-4 py-2"><?php if ($proveedor["estado_proveedor"]== 1 ){
-                                                    echo ("Activo");
-                                                }else{
-                                                    echo("Inactivo");
-                                                }  "<br>"; ?></td>
-                                                <td class="border px-4 py-2">
-                                                    <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarProveedor.php?id=<?php echo $proveedor["id_proveedor"]; ?>">
-                                                        <i class="fas fa-edit"></i></a>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td class="border px-4 py-2" hidden><?php echo $proveedor["id_proveedor"] . "<br>"; ?></td>
+                                                    <td class="border px-4 py-2"><?php echo $proveedor["proveedor"] . "<br>"; ?></td>
+                                                    <td class="border px-4 py-2"><?php echo $proveedor["nit"] . "<br>"; ?></td>
+                                                    <td class="border  w-1/1 px-1 py-1"><?php echo $proveedor["correo"] . "<br>"; ?></td>
+                                                    <td class="border w-1/1 px-4 py-2"><?php echo $proveedor["direccion_web"] . "<br>"; ?></td>
+                                                    <td class="border w-1/6 px-4 py-2"><?php echo $proveedor["direccion"] . "<br>"; ?></td>
+                                                    <td class="border  w-1/1 px-4 py-2"><?php if ($proveedor["estado_proveedor"] == 1) {
+                                                                                            echo ("Activo");
+                                                                                        } else {
+                                                                                            echo ("Inactivo");
+                                                                                        }
+                                                                                        "<br>"; ?></td>
+                                                    <td class="border px-4 py-2">
+                                                        <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./actualizarProveedor.php?id=<?php echo $proveedor["id_proveedor"]; ?>">
+                                                            <i class="fas fa-edit"></i></a>
+                                                    </td>
+                                                </tr>
                                         <?php
-                                            } else{
+                                            } else {
                                             }
-                                        }   
+                                        }
                                         ?>
                                     </tbody>
                                 </table>
@@ -130,8 +133,8 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
 
     </div>
 
-<!-- Centered With a Form Modal -->
-<div id='centeredFormModal' class="modal-wrapper">
+    <!-- Centered With a Form Modal -->
+    <div id='centeredFormModal' class="modal-wrapper">
         <div class="overlay close-modal"></div>
         <div class="modal modal-centered">
             <div class="modal-content shadow-lg p-5">
@@ -192,7 +195,13 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
         }
     </script>
 
+
 </body>
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script>
 
 </html>
 <?php

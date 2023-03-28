@@ -14,7 +14,4 @@
         $_SESSION['error_admi'] = 'eliminar';
         header("location: ../usuario.php");
     }
-
-
-    
 ?>
