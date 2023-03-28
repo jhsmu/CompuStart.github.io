@@ -92,6 +92,7 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                     <tbody>
                                         <?php
                                         foreach ($proveedores as $key => $proveedor) {
+                                            if ($proveedor['estado_proveedor'] == 1){
                                         ?>
                                             <tr>
                                                 <td class="border px-4 py-2" hidden><?php echo $proveedor["id_proveedor"] . "<br>"; ?></td>
@@ -114,7 +115,9 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                                 </td>
                                             </tr>
                                         <?php
-                                        }
+                                            } else{
+                                            }
+                                        }   
                                         ?>
                                     </tbody>
                                 </table>

@@ -280,16 +280,3 @@
 </body>
 
 </html>
-
-<?php 
-if (isset($_SESSION['errorDeAprobar'])) {
-    echo "<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Éxito',
-        text: 'Error al aceptar la orden'
-        });
-    </script>";
-    unset($_SESSION['errorDeAprobar']);
-}
-?>

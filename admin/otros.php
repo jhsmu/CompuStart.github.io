@@ -140,4 +140,14 @@ if (isset($_SESSION['Aprobado'])) {
     </script>";
     unset($_SESSION['Aprobado']);
 }
+if (isset($_SESSION['errorDeAprobar'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Éxito',
+        text: 'Error al aceptar la orden'
+        });
+    </script>";
+    unset($_SESSION['errorDeAprobar']);
+}
 ?>

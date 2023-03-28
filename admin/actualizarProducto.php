@@ -191,21 +191,13 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                                 <div class="relative">
                                                     <select class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey" id="grid-state" name="estado" required>
                                                         <option value="">Seleccione una opción</option>
-                                                        <?php
-                                                            if ($producto["estado_producto"]== 1){
-                                                        ?>
-                                                                <option value="<?php echo $producto["estado_producto"] ?>" selected>
-                                                                Habilitado</option>
-                                                                <option value="<?php echo $producto["estado_producto"] ?>">
-                                                                Inhabilitado</option>
-                                                        <?php
-                                                            } else {
-                                                        ?>
-                                                                <option value="<?php echo $producto["estado_producto"] ?>">
-                                                                Habilitado</option>
-                                                                <option value="<?php echo $producto["estado_producto"] ?>" selected>
-                                                                Inhabilitado</option>
-                                                        <?php
+                                                        <?php 
+                                                            if($producto["estado_producto"]== 1){
+                                                                echo('<option value="1" selected>Activo</option>');
+                                                                echo('<option value="0" >Inactivo</option>');
+                                                            }else{
+                                                                echo('<option value="1" >Activo</option>');
+                                                                echo('<option value="0" selected>Inactivo</option>');
                                                             }
                                                         ?>
                                                     </select>

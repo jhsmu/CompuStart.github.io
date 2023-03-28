@@ -86,6 +86,7 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                                         
                                         <?php
                                         foreach ($marcas as $key => $marca) {
+                                            if ($marca['estado_marca'] == 1){
                                         ?>
                                     
                                             <tr>
@@ -101,8 +102,9 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                                                         <i class="fas fa-edit"></i></a>
                                                 </td>
                                             </tr>
-                                           
                                         <?php
+                                            } else {
+                                            }
                                         }
                                         ?>
                                         
