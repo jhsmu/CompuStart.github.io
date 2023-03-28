@@ -8,6 +8,8 @@ CREATE TABLE cliente(
     id INT(11) PRIMARY KEY AUTO_INCREMENT,
     imagen VARCHAR(50) NULL,
     nombre VARCHAR(50) NOT NULL,
+    tipo_documento VARCHAR(25) NOT NULL,
+    numero INT(12) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     direccion VARCHAR(60) NOT NULL,
     telefono INT(12) NOT NULL,
