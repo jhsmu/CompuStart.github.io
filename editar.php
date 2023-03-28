@@ -145,6 +145,19 @@ session_start();
                         <input  type="text" name="apellido" value="<?php echo $apellido;?>">
                     </div>
                     <div class="input-box">
+                        <label for="">Tipo de documento</label>
+                        <select name="" id="">
+                            <option value="">Seleccione Opción</option>
+                            <option value="">T.I</option>
+                            <option value="">C.C</option>
+                            <option value="">C.E</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="">Numero de documento</label>
+                        <input  type="text" name="apellido" value="<?php echo $apellido;?>">
+                    </div>
+                    <div class="input-box">
                         <label for="direccion">Dirección</label>
                         <input id="direccion" type="text" name="direccion" value="<?php echo $direccion;?>">
                     </div>                   
@@ -159,10 +172,11 @@ session_start();
                     <div class="input-box">
                         <label for="password">Contraseña</label>
                         <input id="password" type="password" name="contrasena" value="<?php echo $contrasena;?>">
-                        <span >
-                        <i class="fa fa-eye" style="color:#D8D8D8" id="eye" ></i>
-                        </span>
                     </div>
+                    <span >
+                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye" ></i>
+                        </span>
+
                     <div class="input-box">
                         <label for="">Cambiar Avatar</label>
                         <input type="file" name="imagen">
