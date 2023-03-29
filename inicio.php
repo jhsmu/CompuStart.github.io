@@ -253,6 +253,16 @@ $imagenes = $consulta2->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
 
     <?php
+    if (isset($_SESSION["error_cambio"])) {
+        echo ('<script>Swal.fire({
+            title: "Error de inhabilitar",
+            text: "error al inhabilitar",
+            icon: "info" 
+        });
+        </>');
+        unset($_SESSION["error_cambio"]);
+    }
+    
     if (isset($_SESSION['compra'])) {
         if ($_SESSION['compra'] == true) {
             echo'<script>Swal.fire({

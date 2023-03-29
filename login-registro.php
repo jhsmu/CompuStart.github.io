@@ -61,21 +61,21 @@ error_reporting(0);
                         id="correo" placeholder="Correo" required>
                     <input onchange="contraseña()" type="password" name="clave" id="clave"
                         placeholder="Ingresar su clave" required>
-                        <span>
-                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye" ></i>
-                        </span>
+                    <span>
+                        <i class="fa fa-eye" style="color:#D8D8D8" id="eye"></i>
+                    </span>
                     <input onchange="verificarContraseña()" type="password" name="clave_c" id="clave_c"
-                        placeholder="Ingresar la clave nuevamente" required>
-                        <span class="eyes" >
-                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye_c"></i>
-                        </span>
+                        placeholder="Confirma su clave" required>
+                    <span class="eyes">
+                        <i class="fa fa-eye" style="color:#D8D8D8" id="eye_c"></i>
+                    </span>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                         <label class="form-check-label" for="flexCheckDefault">
                             Acepto Términos Y Condiciones
                         </label>
                     </div>
-                    <button name="crear" type="submit" >Crear</button>
+                    <button name="crear" type="submit">Crear</button>
                     <br><br>
                 </form>
             </div>
@@ -94,7 +94,7 @@ error_reporting(0);
                     <input type="email" name="email" placeholder="Correo" required>
                     <input type="password" name="clave_inicio" placeholder="Clave" id="clave_inicio" required>
                     <span class="Eye">
-                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye_inicio" ></i>
+                        <i class="fa fa-eye" style="color:#D8D8D8" id="eye_inicio"></i>
                     </span>
                     <button name="inicio" type="submit">Iniciar Sesión</button>
                     <div class="iniciar">
@@ -152,48 +152,58 @@ var eye_c = document.getElementById('eye_c');
 var input1 = document.getElementById('clave_c');
 
 
-eye.addEventListener('click',mostrarcontra);
-eye_c.addEventListener('click',mostrarcontraseña);
+eye.addEventListener('click', mostrarcontra);
+eye_c.addEventListener('click', mostrarcontraseña);
 
 
-function mostrarcontra(){
-    if(input.type == "password"){
+function mostrarcontra() {
+    if (input.type == "password") {
         input.type = "text"
-        eye.style.color="#383838"
-    }else{
+        eye.style.color = "#383838"
+    } else {
         input.type = "password"
-        eye.style.color="#D8D8D8"
+        eye.style.color = "#D8D8D8"
     }
 }
-function mostrarcontraseña(){
-    if(input1.type == "password"){
-        input1.type = "text"
-        eye_c.style.color="#383838"
-    }else{
-        input1.type = "password"
-        eye_c.style.color="#D8D8D8"
-    }
-}   
 
+function mostrarcontraseña() {
+    if (input1.type == "password") {
+        input1.type = "text"
+        eye_c.style.color = "#383838"
+    } else {
+        input1.type = "password"
+        eye_c.style.color = "#D8D8D8"
+    }
+}
 </script>
 <script>
 var eye_inicio = document.getElementById('eye_inicio');
 var input2 = document.getElementById('clave_inicio');
 
-eye_inicio.addEventListener('click',mostrarinicio);
+eye_inicio.addEventListener('click', mostrarinicio);
 
-function mostrarinicio(){
-    if(input2.type == "password"){
+function mostrarinicio() {
+    if (input2.type == "password") {
         input2.type = "text"
-        eye_inicio.style.color="#383838"
-    }else{
+        eye_inicio.style.color = "#383838"
+    } else {
         input2.type = "password"
-        eye_inicio.style.color="#D8D8D8"
+        eye_inicio.style.color = "#D8D8D8"
     }
 }
 </script>
 
 <?php
+if (isset($_SESSION["inhabilitado"])) {
+    echo ('<script>Swal.fire({
+            title: "Usuario Inhabilitado",
+            text: "Tu usuario fue inhabilitado.",
+            icon: "info" 
+        });
+        </>');
+    session_destroy();
+}
+
 if (isset($_SESSION["IngresoForsozo"])) {
     echo ('<script>Swal.fire({
             title: "Ingreso Forsozo",
