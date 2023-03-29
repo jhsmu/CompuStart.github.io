@@ -383,3 +383,29 @@ function NIT123(){
   });
   document.getElementById("nit").value = "";}
 }
+
+function cedula1(){
+  let cedula = document.getElementById("numero_documento").value;
+  let regex = /^[0-9]+$/g;
+  let tamaño = cedula.length;
+
+  if(regex.test(cedula)){
+    if (7 <= tamaño &&  tamaño <= 11){
+      document.getElementById("numero_documento").style.borderColor = "#008000";
+    }else{
+      document.getElementById("numero_documento").style.borderColor = "#FF0000";
+        Swal.fire({
+          icon: "error",
+          title: "Por Favor",
+          text: "La cedula acepta solo numeros entre 7 y 11 digitos",});
+          document.getElementById("numero_documento").value = "";
+    }
+  }else{
+    document.getElementById("numero_documento").style.borderColor = "#FF0000";
+      Swal.fire({
+        icon: "error",
+        title: "Por Favor",
+        text: "La cedula acepta solo numeros",});
+        document.getElementById("numero_documento").value = "";
+  }
+}

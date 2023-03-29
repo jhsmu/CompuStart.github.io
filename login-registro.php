@@ -45,13 +45,13 @@ error_reporting(0);
                         placeholder="Nombres" required>
                     <input autocomplete="on" onchange="apellido1()" type="text" name="apellido" id="apellido"
                         placeholder="Apellidos" required>
-                    <select name="tipo_documento">
+                    <select name="tipo_documento" required>
                         <option>Selecionar Opción</option>
                         <option value="Tarjeta de Identidad">T.I</option>
                         <option value="Cédula de Ciudadanía">C.C</option>
                         <option value="Cedula de Extranjería">C.E</option>
                     </select>
-                    <input type="text" name="numero_documento" id="numero_documento"
+                    <input type="text" name="numero_documento" id="numero_documento" onchange="cedula1()"
                         placeholder="Numero De Documento" required>
                     <input autocomplete="on" onchange="direccion1()" type="text" name="direccion" id="direccion"
                         placeholder="Dirección" required>
