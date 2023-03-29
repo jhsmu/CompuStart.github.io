@@ -86,9 +86,9 @@ error_reporting(0);
                     <h1>Compu start</h1>
                     <h3>Iniciar Sesión</h3>
                     <div class="div social-container">
-                        <a href="" class="social"><i class="fa fa-facebook"></i></a>
-                        <a href="" class="social"><i class="fa fa-instagram"></i></a>
-                        <a href="" class="social"><i class="fa fa-twitter"></i></a>
+                        <a href="https://es-la.facebook.com/" class="social"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/" class="social"><i class="fa fa-instagram"></i></a>
+                        <a href="https://twitter.com/?lang=es" class="social"><i class="fa fa-twitter"></i></a>
                     </div>
                     <p>Rellene todos los campos</p>
                     <input type="email" name="email" placeholder="Correo" required>
