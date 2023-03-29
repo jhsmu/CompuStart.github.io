@@ -7,12 +7,15 @@
     $connection = $db->connect(); //Creamos la conexión a la BD
 
     $proveedor = $_POST['proveedor'];
+    $nit = $_POST["nit"];
     $correo = $_POST['correo'];
+    $telefono = $_POST['telefono'];
     $web = $_POST['direccion_web'];
     $direccion = $_POST['direccion'];
+    $estado=1;
 
-    $query = $connection->prepare("INSERT INTO proveedor(proveedor, correo, direccion_web, direccion) VALUES(?, ?, ?, ?)");// Traduzco mi petición
-    $guardar = $query->execute([$proveedor, $correo, $web, $direccion]); //Ejecuto mi petición
+    $query = $connection->prepare("INSERT INTO proveedor(proveedor, nit, correo, telefono,  direccion_web, direccion, estado_proveedor) VALUES(?, ?, ?, ?, ?, ?, ?)");// Traduzco mi petición
+    $guardar = $query->execute([$proveedor, $nit, $correo, $telefono, $web, $direccion, $estado]); //Ejecuto mi petición
 
     if ($guardar) {
         session_start();

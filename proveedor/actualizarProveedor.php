@@ -10,13 +10,14 @@
         $id = $_POST['id'];
         $proveedor = $_POST['proveedor'];
         $correo = $_POST['correo'];
+        $telefono = $_POST['telefono'];
         $web = $_POST['direccion_web'];
         $direccion = $_POST['direccion'];
         $nit= $_POST['nit'];
         $estado=$_POST['estado_proveedor'];
 
-        $query = $connection->prepare("UPDATE proveedor SET proveedor=?, nit=?, correo=?, direccion_web=?, direccion=?, estado_proveedor=? WHERE id_proveedor=?");// Traduzco mi petición
-        $actualizar = $query->execute([$proveedor, $nit, $correo, $web, $direccion, $estado, $id]); //Ejecuto mi petición
+        $query = $connection->prepare("UPDATE proveedor SET proveedor=?, nit=?, correo=?, telefono=?, direccion_web=?, direccion=?, estado_proveedor=? WHERE id_proveedor=?");// Traduzco mi petición
+        $actualizar = $query->execute([$proveedor, $nit, $correo, $telefono, $web, $direccion, $estado, $id]); //Ejecuto mi petición
 
         if ($actualizar) {
             session_start();
