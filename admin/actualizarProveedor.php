@@ -29,7 +29,7 @@ $connection = $db->connect(); //Creamos la conexión a la BD
             <!-- iconos en fontawesome -->
             <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
-    <title>Productos</title>
+    <title>Actualizar Proveedor</title>
 </head>
 
 <body>
@@ -102,6 +102,16 @@ $connection = $db->connect(); //Creamos la conexión a la BD
                         </label>
                         <input onchange="ValidacionCorreo()" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="email"
                         name="correo" id="correo" value="<?php echo $prove['correo']; ?>" placeholder="<?php echo $prove['correo']; ?>"required>
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full px-3">
+                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
+                               for="grid-password">w
+                            Teléfono
+                        </label>
+                        <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text"
+                        name="telefono" id="telefono" value="<?php echo $prove['telefono']; ?>" placeholder="<?php echo $prove['telefono']; ?>"required>
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-2">

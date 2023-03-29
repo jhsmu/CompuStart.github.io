@@ -31,7 +31,7 @@ $detalles = $consulta5->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que ne
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Ventas</title>
+    <title>Detalle de Ventas</title>
 </head>
 
 <body>

@@ -85,6 +85,7 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                             <th class="border w-1/1 px-4 py-2">Proveedor</th>
                                             <th class="border w-1/1 px-4 py-2">NIT</th>
                                             <th class="border w-1/1 px-2 py-1">Correo</th>
+                                            <th class="border w-1/1 px-2 py-1">Teléfono</th>
                                             <th class="border w-1/1 px-4 py-2">Web</th>
                                             <th class="border w-1/1 px-1 py-1">Dirección</th>
                                             <th class="border w-1/1 px-4 py-2">Estado</th>
@@ -101,6 +102,7 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                                     <td class="border px-4 py-2"><?php echo $proveedor["proveedor"] . "<br>"; ?></td>
                                                     <td class="border px-4 py-2"><?php echo $proveedor["nit"] . "<br>"; ?></td>
                                                     <td class="border  w-1/1 px-1 py-1"><?php echo $proveedor["correo"] . "<br>"; ?></td>
+                                                    <td class="border  w-1/1 px-1 py-1"><?php echo $proveedor["telefono"] . "<br>"; ?></td>
                                                     <td class="border w-1/1 px-4 py-2"><?php echo $proveedor["direccion_web"] . "<br>"; ?></td>
                                                     <td class="border w-1/6 px-4 py-2"><?php echo $proveedor["direccion"] . "<br>"; ?></td>
                                                     <td class="border  w-1/1 px-4 py-2"><?php if ($proveedor["estado_proveedor"] == 1) {
@@ -160,6 +162,22 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                 Correo EElectrónico
                             </label>
                             <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="correo" id="correo" type="email" placeholder="Ingrese el Correo" onchange="ValidacionCorreo()" required>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
+                                NIT
+                            </label>
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="nit" id="nit" type="text" placeholder="Ingrese el nit" required>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
+                                Teléfono
+                            </label>
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="telefono" id="telefono" type="text" placeholder="Ingrese el telefono" required>
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
