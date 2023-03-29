@@ -12,7 +12,7 @@ CREATE TABLE cliente(
     tipo_documento VARCHAR(50) NOT NULL,
     numero_documento INT(12) NOT NULL,
     direccion VARCHAR(60) NOT NULL,
-    telefono INT(12) NOT NULL,
+    telefono INT(15) NOT NULL,
     email VARCHAR(60) NOT NULL,
     contrasenia VARCHAR(50) NOT NULL,
     token VARCHAR(45) NULL,
@@ -45,7 +45,7 @@ CREATE TABLE proveedor(
     proveedor VARCHAR(50) NOT NULL,
     nit INT(11) NOT NULL,
     correo VARCHAR(60) NOT NULL,
-    telefono INT(12) NOT NULL,
+    telefono INT(15) NOT NULL,
     direccion_web VARCHAR(60) NOT NULL,
     direccion VARCHAR(60) NOT NULL,
     estado_proveedor BOOLEAN NOT NULL

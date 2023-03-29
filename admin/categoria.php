@@ -153,6 +153,8 @@ $categorias = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
         </div>
     </div>
     <script src="../js/main.js"></script>
+    <script src="../js/validaciones.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
     <script type="text/javascript">
         function confirmar() {
             return confirm('¿Estas seguro?, se eliminarán los datos');

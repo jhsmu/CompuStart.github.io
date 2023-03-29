@@ -121,8 +121,8 @@ $connection = $db->connect(); //Creamos la conexión a la BD
 
 </div>
 
-<script src="../js/validaciones.js"></script>
 <script src="../js/main.js"></script>
+<script src="../js/validaciones.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
 
 </body>

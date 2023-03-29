@@ -85,10 +85,10 @@ function direccion1() {
 function telefono1() {
     let telefono = document.getElementById("telefono").value;
     let TelLen = telefono.length;
-    let RegEx = /^[0-9]+$/g; 
+    let RegEx = /^[+<0-9]+$/g; 
 
     if (RegEx.test(telefono)){
-      if ((TelLen == 7) || (TelLen == 10)) {
+      if ((TelLen == 7) || (TelLen == 10) || (TelLen == 13)) {
         document.getElementById("telefono").style.borderColor = "#008000";
       } else {
         document.getElementById("telefono").style.borderColor = "#FF0000";
@@ -368,14 +368,16 @@ function NIT123(){
   if(regex.test(numero)){
     if(numero.length == 10){
       document.getElementById("nit").style.borderColor = "#008000";
-    }else{document.getElementById("nit").style.borderColor = "#FF0000";
-    Swal.fire({
-      icon: "error",
-      title: "Por Favor",
-      text: "El nit no tiene el tamaño correcto (10 dígitos)",
-    });
+    }else{
+      document.getElementById("nit").style.borderColor = "#FF0000";
+      Swal.fire({
+        icon: "error",
+        title: "Por Favor",
+        text: "El nit no tiene el tamaño correcto (10 dígitos)",
+      });
     document.getElementById("nit").value = "";}
   }else {
+  document.getElementById("nit").style.borderColor = "#FF0000";
     Swal.fire({
     icon: "error",
     title: "Por Favor",

@@ -13,8 +13,7 @@ error_reporting(0);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- css bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <!-- iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <!-- css footer y el header -->
@@ -24,9 +23,9 @@ error_reporting(0);
     <link rel="stylesheet" href="./css/edit.css">
     <title>Actualizar</title>
     <script type="text/javascript">
-    function confirmar() {
-        return confirm('¿Estas seguro?, se eliminarán los datos');
-    }
+        function confirmar() {
+            return confirm('¿Estas seguro?, se eliminarán los datos');
+        }
     </script>
 </head>
 
@@ -126,84 +125,84 @@ error_reporting(0);
         error_reporting(0);
     ?>
 
-    <div class="container">
-        <div class="form">
-            <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post" enctype="multipart/form-data">
-                <div class="form-header">
-                    <div class="title">
-                        <h1>Editar Perfil</h1>
+        <div class="container">
+            <div class="form">
+                <form action="<?= $_SERVER["PHP_SELF"] ?>" method="post" enctype="multipart/form-data">
+                    <div class="form-header">
+                        <div class="title">
+                            <h1>Editar Perfil</h1>
+                        </div>
                     </div>
-                </div>
-                <div class="input-group">
-                    <div class="input-box">
-                        <label for="">Nombres</label>
-                        <input type="text" name="nombre" value="<?php echo $nombre; ?>">
-                    </div>
-                    <div class="input-box">
-                        <label for="">Apellidos</label>
-                        <input type="text" name="apellido" value="<?php echo $apellido; ?>">
-                    </div>
-                    <div class="input-box">
-                        <label for="">Tipo de documento</label>
-                        <select name="tipo" id="">
-                            <option value="">Seleccione Opción</option>
-                            <?php
+                    <div class="input-group">
+                        <div class="input-box">
+                            <label for="">Nombres</label>
+                            <input type="text" name="nombre" id="nombre" required onchange="nombre1()" value="<?php echo $nombre; ?>">
+                        </div>
+                        <div class="input-box">
+                            <label for="">Apellidos</label>
+                            <input type="text" name="apellido" id="apellido" value="<?php echo $apellido; ?>" required onchange="apellido1()">
+                        </div>
+                        <div class="input-box">
+                            <label for="">Tipo de documento</label>
+                            <select name="tipo" required id="">
+                                <option value="">Seleccione Opción</option>
+                                <?php
                                 foreach ($tipo_documento as $key => $TD) {
                                     if ($TD == $tipo) {
                                 ?>
-                            <option value="<?php echo $TD ?>" selected>
-                                <?php echo $key ?>
-                            </option>
-                            <?php
+                                        <option value="<?php echo $TD ?>" selected>
+                                            <?php echo $key ?>
+                                        </option>
+                                    <?php
                                     } else {
                                     ?>
-                            <option value="<?php echo $TD ?>">
-                                <?php echo $key ?>
-                            </option>
-                            <?php
+                                        <option value="<?php echo $TD ?>">
+                                            <?php echo $key ?>
+                                        </option>
+                                <?php
                                     }
                                 }
                                 ?>
-                        </select>
-                    </div>
-                    <div class="input-box">
-                        <label for="">Numero de documento</label>
-                        <input type="text" name="dni" value="<?php echo $dni ?>">
-                    </div>
-                    <div class="input-box">
-                        <label for="direccion">Dirección</label>
-                        <input id="direccion" type="text" name="direccion" value="<?php echo $direccion; ?>">
-                    </div>
-                    <div class="input-box">
-                        <label for="telefono">Teléfono</label>
-                        <input id="telefono" type="text" name="telefono" value="<?php echo $telefono; ?>">
-                    </div>
-                    <div class="input-box">
-                        <label for="email">Email</label>
-                        <input id="email" type="email" name="email" value="<?php echo $email; ?>"">
-                    </div>
-                    <div class=" input-box">
-                        <label for="password">Contraseña</label>
-                        <input id="password" type="password" name="contrasena" value="<?php echo $contrasena; ?>">
-                    </div>
-                    <span>
-                        <i class="fa fa-eye" style="color:#D8D8D8" id="eye"></i>
-                    </span>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <label for="">Numero de documento</label>
+                            <input type="text" name="dni" id="numero_documento" value="<?php echo $dni ?>" required onchange="cedula1()">
+                        </div>
+                        <div class="input-box">
+                            <label for="direccion">Dirección</label>
+                            <input id="direccion" type="text" name="direccion" value="<?php echo $direccion; ?>" required onchange="direccion1()">
+                        </div>
+                        <div class="input-box">
+                            <label for="telefono">Teléfono</label>
+                            <input id="telefono" type="text" name="telefono" value="<?php echo $telefono; ?>" required onchange="telefono1()">
+                        </div>
+                        <div class="input-box">
+                            <label for="email">Email</label>
+                            <input  type="email" name="email" id="correo" value="<?php echo $email; ?>" required onchange="ValidacionCorreo()">
+                        </div>
+                        <div class=" input-box">
+                            <label for="password">Contraseña</label>
+                            <input type="password" id="clave" name="contrasena" value="<?php echo $contrasena; ?>" required onchange="contraseña()">
+                        </div>
+                        <span>
+                            <i class="fa fa-eye" style="color:#D8D8D8" id="eye"></i>
+                        </span>
 
-                    <div class="input-box">
-                        <label for="">Cambiar Avatar</label>
-                        <input type="file" name="imagen">
+                        <div class="input-box">
+                            <label for="">Cambiar Avatar</label>
+                            <input type="file" name="imagen">
+                        </div>
                     </div>
-                </div>
 
-                <div class="continue-button">
-                    <button type="submit" name="enviar" value="ACTUALIZAR">Actualizar</button>
-                    <?php echo "<button class='elimina'><a href='./editar/eliminar_cliente.php?id=" . $fila['id'] . "' onclick='return confirmar()'>Inhabilitar</a></button>"; ?>
-                </div>
+                    <div class="continue-button">
+                        <button type="submit" name="enviar" value="ACTUALIZAR">Actualizar</button>
+                        <?php echo "<button class='elimina'><a href='./editar/eliminar_cliente.php?id=" . $fila['id'] . "' onclick='return confirmar()'>Inhabilitar</a></button>"; ?>
+                    </div>
 
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
 
     <?php
     }
@@ -213,35 +212,37 @@ error_reporting(0);
         <?php include("./componentes/footer.php") ?>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
 
     <script>
-    var eye = document.getElementById('eye');
-    var input = document.getElementById('password');
+        var eye = document.getElementById('eye');
+        var input = document.getElementById('password');
 
-    eye.addEventListener('click', mostrar);
+        eye.addEventListener('click', mostrar);
 
-    function mostrar() {
-        if (input.type == "password") {
-            input.type = "text"
-            eye.style.color = "#383838"
-        } else {
-            input.type = "password"
-            eye.style.color = "#D8D8D8"
+        function mostrar() {
+            if (input.type == "password") {
+                input.type = "text"
+                eye.style.color = "#383838"
+            } else {
+                input.type = "password"
+                eye.style.color = "#D8D8D8"
+            }
         }
-    }
 
 
-    function alerta() {
-        Swal.fire({
-            title: "Exito",
-            text: "Tus datos han sido actualizados",
-            icon: "success"
-        });
-    }
+        function alerta() {
+            Swal.fire({
+                title: "Exito",
+                text: "Tus datos han sido actualizados",
+                icon: "success"
+            });
+        }
     </script>
+
+    <script src="./js/validaciones.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
 
 </body>
 

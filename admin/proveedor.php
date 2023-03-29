@@ -169,7 +169,7 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                             <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
                                 NIT
                             </label>
-                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="nit" id="nit" type="text" placeholder="Ingrese el nit" required>
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="nit" id="nit" type="text" placeholder="Ingrese el nit" required onchange="NIT123()">
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -177,7 +177,7 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                             <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
                                 Teléfono
                             </label>
-                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="telefono" id="telefono" type="text" placeholder="Ingrese el telefono" required>
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="telefono" id="telefono" type="text" placeholder="Ingrese el telefono" required onchange="telefono1()">
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
