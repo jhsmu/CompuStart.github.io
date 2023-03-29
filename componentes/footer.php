@@ -14,9 +14,9 @@
             <div class="box3">
                 <h2>Síguenos</h2>
                 <div class="redes">
-                    <a href="" class="fab fa-facebook"></a>
-                    <a href="" class="fab fa-instagram"></a>
-                    <a href="" class="fab fa-twitter"></a>
+                    <a href="https://es-la.facebook.com/" class="fab fa-facebook"></a>
+                    <a href="https://www.instagram.com/" class="fab fa-instagram"></a>
+                    <a href="https://twitter.com/?lang=es" class="fab fa-twitter"></a>
                 </div>
             </div>
         </div>
