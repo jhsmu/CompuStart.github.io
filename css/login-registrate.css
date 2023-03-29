@@ -214,16 +214,16 @@ button:active {
 }
 span{
     position: absolute;
-    right: 85px;
+    right: 86px;
     transform: translate(0, -50%);
-    top: 75%;
+    top: 78%;
     cursor: pointer;
 }
 .eyes{
     position: absolute;
-    right: 85px;
+    right: 86px;
     transform: translate(0, -50%);
-    top: 82%;
+    top: 85%;
     cursor: pointer;
 }
 .Eye{
@@ -252,4 +252,3 @@ span{
 .social-container a:hover {
     background: #AAAAAA;
 }
-
