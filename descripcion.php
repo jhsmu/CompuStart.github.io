@@ -113,6 +113,7 @@ if (isset($_GET['id'])) {
                                 hidden>
                             <input type="text" name="precio" id="precio" value="<?php echo $producto['precio'] ?>"
                                 hidden>
+                            <input type="text" name="cantidad_max" id="" value="<?php echo $producto['cantidad'] ?>" hidden>
 
                             <div class="row">
                                 <div class="row g-3">

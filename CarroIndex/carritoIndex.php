@@ -30,12 +30,19 @@
                     $mensaje="La cantidad esta mal";
                 }
 
+                if(is_numeric($_POST['cantidad_max'])){
+                    $cantidadMax=$_POST['cantidad_max'];
+                } else{
+                    $mensaje="La cantidad esta mal";
+                }
+
                 if (!isset($_SESSION['carritoIndex'])) {
                     $carro_pro=array(
                         'id'=>$id_producto,
                         'producto'=>$nombre_producto,
                         'precio'=>$precio_producto,
-                        'cantidad'=>$cantidad
+                        'cantidad'=>$cantidad,
+                        'cantidad_max'=>$cantidadMax
                     );
                     $_SESSION['carritoIndex'][0]=$carro_pro;
                     $mensaje="Producto agregado al carrito";
@@ -44,7 +51,8 @@
                         'id'=>$id_producto,
                         'producto'=>$nombre_producto,
                         'precio'=>$precio_producto,
-                        'cantidad'=>$cantidad
+                        'cantidad'=>$cantidad,
+                        'cantidad_max'=>$cantidadMax
                     );
                     $idsProductos=array_column($_SESSION['carritoIndex'], 'id');
                     if (in_array($id_producto, $idsProductos)) {
@@ -59,7 +67,8 @@
                             'id'=>$id_producto,
                             'producto'=>$nombre_producto,
                             'precio'=>$precio_producto,
-                            'cantidad'=>$cantidad
+                            'cantidad'=>$cantidad,
+                            'cantidad_max'=>$cantidadMax
                         );
                         $_SESSION['carritoIndex'][$numero_productos]=$carro_pro;
                         $mensaje="Producto agregado al carrito";
@@ -86,8 +95,12 @@
                     $id_producto=$_POST['id'];
                     foreach ($_SESSION['carritoIndex'] as $indice => $producto) {
                         if ($producto['id']==$id_producto) {
-                            $_SESSION['carritoIndex'][$indice]['cantidad']++;
-                            break;
+                            if ($_SESSION['carritoIndex'][$indice]['cantidad']==$_SESSION['carritoIndex'][$indice]['cantidad_max']) {
+                                $_SESSION['carritoIndex'][$indice]['cantidad']=$_SESSION['carritoIndex'][$indice]['cantidad_max'];
+                            }else {
+                                $_SESSION['carritoIndex'][$indice]['cantidad']++; 
+                            }
+                            break;  
                         }
                     }
                 }else {

@@ -29,12 +29,19 @@
                     $mensaje="La cantidad esta mal";
                 }
 
+                if(is_numeric($_POST['cantidad_max'])){
+                    $cantidadMax=$_POST['cantidad_max'];
+                } else{
+                    $mensaje="La cantidad maxima esta mal";
+                }
+
                 if (!isset($_SESSION['carrito'])) {
                     $carro_pro=array(
                         'id'=>$id_producto,
                         'producto'=>$nombre_producto,
                         'precio'=>$precio_producto,
-                        'cantidad'=>$cantidad
+                        'cantidad'=>$cantidad,
+                        'cantidad_max'=>$cantidadMax
                     );
                     $_SESSION['carrito'][0]=$carro_pro;
                     $mensaje="Producto agregado al carrito";
@@ -43,7 +50,8 @@
                         'id'=>$id_producto,
                         'producto'=>$nombre_producto,
                         'precio'=>$precio_producto,
-                        'cantidad'=>$cantidad
+                        'cantidad'=>$cantidad,
+                        'cantidad_max'=>$cantidadMax
                     );
                     $idsProductos=array_column($_SESSION['carrito'], 'id');
                     if (in_array($id_producto, $idsProductos)) {
@@ -58,7 +66,8 @@
                             'id'=>$id_producto,
                             'producto'=>$nombre_producto,
                             'precio'=>$precio_producto,
-                            'cantidad'=>$cantidad
+                            'cantidad'=>$cantidad,
+                            'cantidad_max'=>$cantidadMax
                         );
                         $_SESSION['carrito'][$numero_productos]=$carro_pro;
                         $mensaje="Producto agregado al carrito";
@@ -85,12 +94,16 @@
                     $id_producto=$_POST['id'];
                     foreach ($_SESSION['carrito'] as $indice => $producto) {
                         if ($producto['id']==$id_producto) {
-                                $_SESSION['carrito'][$indice]['cantidad']++;                          
-                            break;
+                            if ($_SESSION['carrito'][$indice]['cantidad']==$_SESSION['carrito'][$indice]['cantidad_max']) {
+                                $_SESSION['carrito'][$indice]['cantidad']=$_SESSION['carrito'][$indice]['cantidad_max'];
+                            }else {
+                                $_SESSION['carrito'][$indice]['cantidad']++; 
+                            }
+                            break;  
                         }
                     }
                 }else {
-                    $mensaje="El aumento esta mal";
+                    $mensaje="El disminuir esta mal";
                 }
             break;
 
@@ -108,7 +121,7 @@
                         }
                     }
                 }else {
-                    $mensaje="El aumento esta mal";
+                    $mensaje="El disminuir esta mal";
                 }
             break;
         }
