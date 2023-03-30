@@ -115,7 +115,6 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                         <tbody>
                                             <?php
                                             foreach ($productos as $key => $producto) {
-                                                if ($producto['estado_producto'] == 1) {
                                             ?>
                                                     <tr>
                                                         <td class="border px-4 py-2" hidden>
@@ -146,9 +145,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                         </td>
                                                     </tr>
                                             <?php
-                                                } else {
                                                 }
-                                            }
                                             ?>
                                         </tbody>
                                     </table>

@@ -144,7 +144,6 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="contenido">
                                     <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
                                     <p><?php echo $productos[$i]['descripcion_breve'] ?></p>
-                                    <a href="">Agregar</a>
                                     <a href="" class="ver">Ver mas</a>
                                 </div>
                             </div>
@@ -203,7 +202,6 @@ $imagenes=$consulta2->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="contenido">
                                     <h5 class="card-title"><?php echo $productos[$i]['producto'] ?></h5>
                                     <p><?php echo $productos[$i]['descripcion_breve'] ?></p>
-                                    <a href="">Agregar</a>
                                     <a href="" class="ver">Ver mas</a>
                                 </div>
                             </div>

@@ -30,8 +30,7 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
     <title>lista de Marcas</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js">
-    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 </head>
 
 <body>
@@ -81,16 +80,14 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                                                 <th class="border w-1/1 px-4 py-2">Id</th>
                                                 <th class="border w-1/1 px-4 py-2">Marca</th>
                                                 <th class="border w-1/1 px-4 py-2">Estado</th>
-
+                                                <th class="border w-1/1 px-4 py-2">Acción</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
                                             <?php
                                             foreach ($marcas as $key => $marca) {
-                                                if ($marca['estado_marca'] == 1) {
                                             ?>
-
                                                     <tr>
                                                         <td class="border px-4 py-2"><?php echo $marca["id_marca"] . "<br>"; ?></td>
                                                         <td class="border px-4 py-2"><?php echo $marca["marca"] . "<br>"; ?></td>
@@ -106,9 +103,7 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                                                         </td>
                                                     </tr>
                                             <?php
-                                                } else {
                                                 }
-                                            }
                                             ?>
                                         </tbody>
                                     </div>

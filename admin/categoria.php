@@ -79,12 +79,12 @@ $categorias = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
                                             <th class="border w-1/1 px-4 py-2">Id</th>
                                             <th class="border w-1/1 px-4 py-2">Categoría</th>
                                             <th class="border w-1/1 px-4 py-2">Estado</th>
+                                            <th class="border w-1/1 px-4 py-2">Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         foreach ($categorias as $key => $categoria) {
-                                            if ($categoria['estado_categoria'] == 1) {
                                         ?>
                                                 <tr>
                                                     <td class="border px-4 py-2"><?php echo $categoria["id_categoria"] . "<br>"; ?></td>
@@ -101,9 +101,7 @@ $categorias = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
                                                     </td>
                                                 </tr>
                                         <?php
-                                            } else {
                                             }
-                                        }
                                         ?>
                                     </tbody>
                                 </table>
