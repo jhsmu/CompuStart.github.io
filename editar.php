@@ -47,19 +47,20 @@ error_reporting(0);
         $nro = $_POST['dni'];
         $email = $_POST['email'];
         $contrasena = $_POST['contrasena'];
+        $image = $_POST['imagen_actual']; //Esta variable contiene la imagen actual
 
-        $imgFile = $_FILES['imagen']['name'];
+        $imgFile = $_FILES['imagen']['name']; //FILES contiene la nueva imagen
         $tmp_dir = $_FILES['imagen']['tmp_name'];
         $imgSize = $_FILES['imagen']['size'];
 
-        if ($imgFile) {
+        if (!empty($imgFile)) { //Si la imagen es seleccionada 
             $upload_dir = 'imagenCliente/'; // upload directory	
             $imgExt = strtolower(pathinfo($imgFile, PATHINFO_EXTENSION)); // get image extension
             $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
             $userpic = $imgFile;
             if (in_array($imgExt, $valid_extensions)) {
                 if ($imgSize < 1000000) {
-                    unlink($upload_dir . $_POST['img']);
+                    unlink($upload_dir . $image);
                     move_uploaded_file($tmp_dir, $upload_dir . $userpic);
                 } else {
                     $errMSG = "Su archivo es demasiado grande mayor a 1MB";
@@ -68,7 +69,7 @@ error_reporting(0);
                 $errMSG = "Solo archivos JPG, JPEG, PNG & GIF .";
             }
         } else {
-            // if no image selected the old image remain as it is.
+            // Si la imagen no es seleccionada, se pondra de nuevo la vieja
             $userpic = $image; // old image from database
         }
 
@@ -196,6 +197,8 @@ error_reporting(0);
                     <span>
                         <i class="fa fa-eye" style="color:#D8D8D8" id="eye"></i>
                     </span>
+
+                    <input type="text" name="imagen_actual" value="<?php echo $imagen; ?>" hidden>
 
                     <div class="input-box">
                         <label for="">Cambiar Avatar</label>
