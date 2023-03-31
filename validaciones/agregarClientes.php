@@ -38,19 +38,24 @@ if (isset($_POST["crear"])) {
                 $agregar->bindParam(':contrasenia', $contrasena);
                 $agregar->bindParam(':estado', $estado);
 
+                
                 try {
                     if ($agregar->execute()) {
                         session_start();
                         $_SESSION["registro"] = "registro creado con exito";
                         header("location:../login-registro.php");
+                        break;
                     } else {
                         echo '<script> alert("registro incorrecto")</script>';
                         echo '<a href="../login-registro.php">Regresar al registro</a>';
+                        break;  
                     }
                 } catch (\Throwable $th) {
                     echo '<script>alert("correo duplicado")</script>';
                     echo '<a href="../login-registro.php">Regresar al registro</a>';
+                    break;
                 }
+                break;
             }
         }
     }
