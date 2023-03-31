@@ -270,14 +270,14 @@ function Valores1234(){
             text: 'El precio debe tener un formato valido, para decimales usar "." '
             });
             document.getElementById("precio").value = "";
-  /* }else if(Math.sign(precio) == 1){
+  }else if(precio == 0){
     document.getElementById("precio").style.borderColor = "#FF0000";
         Swal.fire({
             icon: 'error',
             title: 'Por Favor',
-            text: 'El precio no puede ser negativo'
+            text: 'El precio no puede ser 0'
             });
-            document.getElementById("precio").value = ""; */
+            document.getElementById("precio").value = "";
   }else{
     document.getElementById("precio").style.borderColor = "#008000";
   }
@@ -328,20 +328,28 @@ function Descripciones1(){
 }
 
 function Cantidad123(){
-  regex = /^[0-9]+$/g;
+  regex = /^[0-9]+$/g ;
   cantidad= document.getElementById("cantidad").value;
 
-  if (regex.test(cantidad)){
-    document.getElementById("cantidad").style.borderColor = "#008000";
-  }else{
-    document.getElementById("cantidad").style.borderColor = "#FF0000";
-    Swal.fire({
-      icon: "error",
-      title: "Por Favor",
-      text: "La cantidad solo acepta números",
-    });
-    document.getElementById("cantidad").value = "";
-  }
+   if (cantidad == 0) {
+     document.getElementById("cantidad").style.borderColor = "#FF0000";
+     Swal.fire({
+       icon: "error",
+       title: "Por Favor",
+       text: "La cantidad no puede ser 0",
+     });
+     document.getElementById("cantidad").value = "";
+   } else if (regex.test(cantidad)) {
+     document.getElementById("cantidad").style.borderColor = "#008000";
+   } else {
+     document.getElementById("cantidad").style.borderColor = "#FF0000";
+     Swal.fire({
+       icon: "error",
+       title: "Por Favor",
+       text: "La cantidad solo acepta números",
+     });
+     document.getElementById("cantidad").value = "";
+   }
 }
 
 function Descripciones2(){

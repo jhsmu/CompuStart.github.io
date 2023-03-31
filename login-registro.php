@@ -47,7 +47,7 @@ error_reporting(0);
                     <input autocomplete="on" onchange="apellido1()" type="text" name="apellido" id="apellido"
                         placeholder="Apellidos" required>
                     <select name="tipo_documento" required>
-                        <option>Selecionar Opción</option>
+                        <option value="">Selecionar Opción</option>
                         <option value="Tarjeta de Identidad">T.I</option>
                         <option value="Cédula de Ciudadanía">C.C</option>
                         <option value="Cedula de Extranjería">C.E</option>
