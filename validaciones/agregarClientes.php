@@ -17,9 +17,6 @@ if (isset($_POST["crear"])) {
     $tipo = $_POST["tipo_documento"];
     $contrasena = (htmlentities($_POST["clave"]));
 
-    if($tipo ) {
-
-    }
     foreach ($emails as $key => $correo) {
         $email = "";
         if ($_POST['email_registro'] === $correo['email']) {

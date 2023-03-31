@@ -107,7 +107,7 @@ if (isset($_POST["producto"])) {
                                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                                 <div class="relative md:w-1/1 ">
                                                     <label
-                                                        class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                        class="block tracking-wide text-gray-700 text-xs font-light mb-1"
                                                         for="grid-last-name">
                                                         Proveedores
                                                     </label>
@@ -145,7 +145,7 @@ if (isset($_POST["producto"])) {
                                             </div>
                                             <div class="w-full md:w-1/2 px-3">
                                                 <label
-                                                    class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                    class="block tracking-wide text-gray-700 text-xs font-light mb-1"
                                                     for="grid-last-name">
                                                     Categorias
                                                 </label>
@@ -189,7 +189,7 @@ if (isset($_POST["producto"])) {
                                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                             <div class="relative md:w-1/1 ">
                                                 <label
-                                                    class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                    class="block tracking-wide text-gray-700 text-xs font-light mb-1"
                                                     for="grid-last-name">
                                                     Productos
                                                 </label>

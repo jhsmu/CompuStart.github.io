@@ -105,7 +105,7 @@ include("../editar/conexion.php");
                                         <form class="w-full" action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
                                             <div class="flex flex-wrap -mx-3 mb-6">
                                                 <div class="w-full px-3" hidden>
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
+                                                    <label class="block tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
                                                         Id Cliente
                                                     </label>
                                                     <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="id" value="<?php echo $id; ?>">
@@ -113,13 +113,13 @@ include("../editar/conexion.php");
                                             </div>
                                             <div class="flex flex-wrap -mx-3 mb-6">
                                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                                                         Nombre(s)
                                                     </label>
                                                     <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="nombre" id="nombre" onchange="nombre1()" required value="<?php echo $nombre; ?>" placeholder="<?php echo $nombre; ?>">
                                                 </div>
                                                 <div class="w-full md:w-1/2 px-3">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                         Apellido(s)
                                                     </label>
                                                     <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="apellido" id="apellido" onchange="apellido1()" required value="<?php echo $apellido; ?>" placeholder="<?php echo $apellido; ?>">
@@ -127,13 +127,13 @@ include("../editar/conexion.php");
                                             </div>
                                             <div class="flex flex-wrap -mx-3 mb-6">
                                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                                                         Dirección
                                                     </label>
                                                     <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="direccion" id="direccion" onchange="direccion1()" required value="<?php echo $direccion; ?>" placeholder="<?php echo $direccion; ?>" blocked>
                                                 </div>
                                                 <div class="w-full md:w-1/2 px-3">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                         Número Telefónico
                                                     </label>
                                                     <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="telefono" id="telefono" onchange="telefono1()" required value="<?php echo $telefono; ?>" placeholder="<?php echo $telefono; ?>" blocked>
@@ -141,13 +141,13 @@ include("../editar/conexion.php");
                                             </div>
                                             <div class="flex flex-wrap -mx-3 mb-6">
                                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                                                         Email
                                                     </label>
                                                     <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="email" id="correo" onchange="ValidacionCorreo()" required value="<?php echo $email; ?>" placeholder="<?php echo $email; ?>" blocked>
                                                 </div>
                                                 <div class="w-full md:w-1/2 px-3">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                         Estado
                                                     </label>
                                                     <div class="relative">

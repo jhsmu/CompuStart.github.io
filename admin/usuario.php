@@ -368,8 +368,8 @@
                                     <div class="flex flex-wrap -mx-3 mb-6">
                                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                             <label
-                                                class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
-                                                Nombre Administrador
+                                                class="block tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                Nombre
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
@@ -378,9 +378,9 @@
                                         </div>
                                         <div class="w-full md:w-1/2 px-3">
                                             <label
-                                                class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                class="block tracking-wide text-gray-700 text-xs font-light mb-1"
                                                 for="grid-last-name">
-                                                Apellido Administrador
+                                                Apellido
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
@@ -391,8 +391,8 @@
                                     <div class="flex flex-wrap -mx-3 mb-6">
                                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                             <label
-                                                class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
-                                                Email Administrador
+                                                class="block tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                Email
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
@@ -401,24 +401,24 @@
                                         </div>
                                         <div class="w-full md:w-1/2 px-3">
                                             <label
-                                                class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                class="block tracking-wide text-gray-700 text-xs font-light mb-1"
                                                 for="grid-last-name">
                                                 Contraseña
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
                                                 name="contrasena" id="clave" type="password"
-                                                placeholder="Ingrese la contraseña" onchange="contraseña()" required>
+                                                placeholder="Mayus. Min 6 Dígitos" onchange="contraseña()" required>
                                         </div>
                                         <div class="w-full md:w-1/2 px-3">
                                             <label
-                                                class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                class="block tracking-wide text-gray-700 text-xs font-light mb-1"
                                                 for="grid-last-name">
                                                 Confirmar contraseña
                                             </label>
                                             <input
                                                 class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
-                                                name="apellido" id="clave_c" type="password" placeholder="Contraseña"
+                                                name="apellido" id="clave_c" type="password" placeholder="Confirmar contraseña"
                                                 onchange="verificarContraseña()" required>
                                         </div>
                                     </div>

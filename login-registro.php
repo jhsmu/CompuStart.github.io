@@ -101,9 +101,6 @@ error_reporting(0);
                     <div class="iniciar">
                         <a href="./index.php">Iniciar Sin Cuenta</a>
                     </div>
-                    <div class="olvidar">
-                        <a href="./recuperacion/email.php">¿Olvidaste tu contraseña?</a>
-                    </div>
                 </form>
             </div>
 

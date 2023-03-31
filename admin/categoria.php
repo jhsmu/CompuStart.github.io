@@ -136,7 +136,7 @@ $categorias = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
                 <form class="w-full" action="../categorias/agregarCategoria.php" method="post">
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                            <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                                 Categoría
                             </label>
                             <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="categoria" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese una categoría nueva" required>

@@ -346,7 +346,7 @@ function Cantidad123(){
      Swal.fire({
        icon: "error",
        title: "Por Favor",
-       text: "La cantidad solo acepta números",
+       text: "La cantidad solo acepta números enteros",
      });
      document.getElementById("cantidad").value = "";
    }
