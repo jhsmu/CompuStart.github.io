@@ -35,6 +35,9 @@
                     session_start();
                     $_SESSION["usuario"]=$verificacion["nombre"];
                     $_SESSION["id_usuario"]=$verificacion["id"];
+                    if (isset($_COOKIE["carrito"])){
+                        $_SESSION["carrito"]=$_COOKIE["carrito"];
+                    }
                     header("location: ../inicio.php");
                 }
             }

@@ -1,5 +1,7 @@
 <?php
     include './carro/carrito.php';
+
+
 ?>
 
 <!DOCTYPE html>
