@@ -1,2 +1,0 @@
-# Compu_Start
-
