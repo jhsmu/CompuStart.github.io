@@ -40,9 +40,10 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
     <!-- iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
-    <title>Actualizar Productos</title>
     <script src="../js/validaciones.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" type="image/x-icon" href="../img/logo/icono.png">
+    <title>Compu_Start: Actualizar Productos</title>  
 </head>
 
 <body>

@@ -49,11 +49,12 @@ $ventas = $consulta5->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Ventas</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js">
     </script>
+    <link rel="icon" type="image/x-icon" href="../img/logo/icono.png">
+    <title>Compu_Start: Ventas</title>  
 </head>
 
 <body>

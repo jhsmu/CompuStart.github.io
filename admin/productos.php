@@ -47,7 +47,6 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../css/all.css">
     <!-- iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
-    <title>Productos</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js">
@@ -55,6 +54,8 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
     <script src="../js/"></script>
     <script src="../js/validaciones.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" type="image/x-icon" href="../img/logo/icono.png">
+    <title>Compu_Start: Productos</title>
 </head>
 
 <body>

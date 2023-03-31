@@ -16,7 +16,6 @@ session_start();
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <!-- Sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <title>Proveedor</title>
 </head>
 

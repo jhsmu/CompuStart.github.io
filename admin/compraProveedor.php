@@ -62,7 +62,8 @@ if (isset($_POST["producto"])) {
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <!-- Sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Compras Proveedor</title>
+    <link rel="icon" type="image/x-icon" href="../img/logo/icono.png">
+    <title>Compu_Start: Compras a Proveedores</title>  
 </head>
 
 <body>

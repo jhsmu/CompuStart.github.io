@@ -28,10 +28,11 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>lista de Marcas</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <link rel="icon" type="image/x-icon" href="../img/logo/icono.png">
+    <title>lista de Marcas</title>
 </head>
 
 <body>
@@ -74,7 +75,7 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                                 </label>
                             </div>
                             <div class="p-3">
-                                <table class="table-responsive w-full rounded " id="dataTable" style="margin-left: 30rem;">
+                                <table class="table-responsive w-full rounded " id="dataTable" style="margin-left: 18rem;">
                                     <div class="flex justify-center">
                                         <thead>
                                             <tr>
