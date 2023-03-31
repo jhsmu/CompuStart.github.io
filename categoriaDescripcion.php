@@ -166,6 +166,7 @@ if (isset($_GET['id'])) {
                     icon: "error",
                 });
             } else if (cantidad == 0) {
+                document.getElementById('cantidadUsu').value = "";
                 Swal.fire({
                     title: "Advertencia:",
                     text: "La cantidad no puede estar vacia",

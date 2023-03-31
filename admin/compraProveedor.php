@@ -260,7 +260,7 @@ if (isset($_POST["producto"])) {
                                                     Marca:<?php echo " ".$product["nombre_marca"] ?></p>
                                                 <p class="text-gray-700 text-base">
                                                     Precio: $<?php echo number_format($product["precio"]*0.6) ?></p>
-                                                <input type="number" class="bg-gray-200" name="cantidadCompra"
+                                                <input type="number" class="bg-gray-200" name="cantidadCompra" id="cantidadUsu" required onchange="cantidad123()"
                                                     placeholder="Ingrese la cantidad">
                                                 <input type="number" name="precioCompra" id=""
                                                     value="<?php echo $product["precio"] ?>" hidden>
@@ -300,6 +300,35 @@ if (isset($_POST["producto"])) {
 
     </div>
 
+    <script>
+        function cantidad123() {
+            let cantidadRef = <?php echo $producto['cantidad'] ?>;
+            let cantidad = document.getElementById("cantidadUsu").value;
+
+            if (cantidad > cantidadRef) {
+                document.getElementById('cantidadUsu').value = "";
+                Swal.fire({
+                    title: "Advertencia:",
+                    text: "No puede superar el limite de productos",
+                    icon: "error",
+                });
+            } else if (cantidad == 0) {
+                document.getElementById('cantidadUsu').value = "";
+                Swal.fire({
+                    title: "Advertencia:",
+                    text: "La cantidad no puede estar vacia",
+                    icon: "error",
+                });
+            } else if (cantidad < 0) {
+                document.getElementById('cantidadUsu').value = "";
+                Swal.fire({
+                    title: "Advertencia:",
+                    text: "La cantidad no puede ser negativa",
+                    icon: "error",
+                });
+            }
+        }
+    </script>
     <script src="./js/main.js"></script>
     <script>
     function cambio() {

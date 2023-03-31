@@ -142,7 +142,7 @@ function ValidacionCorreo() {
 //Nombres con números incluidos : nombre
 function NombresNumeros(){
   let nombre = document.getElementById("nombre").value;
-  let RegEx = /^[0-9A-ZÑa-zñáéíóúÁÉÍÓÚ'° -]+$/g;
+  let RegEx = /^[A-ZÑa-zñáéíóúÁÉÍÓÚ].[0-9A-ZÑa-zñáéíóúÁÉÍÓÚ'° -]+$/g;
 
   if(nombre.length < 50)
     if (RegEx.test(nombre) == true) {
@@ -151,8 +151,8 @@ function NombresNumeros(){
       document.getElementById("nombre").style.borderColor = "#FF0000";
       Swal.fire({
         icon: 'error',
-        title: 'Por Favor',
-        text: 'Evite el uso de números y caracteres especiales(" , . ; { } [ ] ")',
+        title: 'El nombre',
+        text: 'Debe empezar con letras y no usar caracteres especiales (" , . ; { } [ ] ")',
         });
       document.getElementById("nombre").value = "";
       return false;
