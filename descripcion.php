@@ -108,7 +108,7 @@ if (isset($_GET['id'])) {
                         <p class="card-text" style="text-align: justify;"><?php echo $producto['descripcion'] ?></p>
                         <h3 name="precio" id="precio">$ <?php echo number_format($producto['precio']) ?></h3>
                         <br>
-                        <form action="" method="post">
+                        <form action="" method="get">
                             <input type="text" name="id" id="id" value="<?php echo $producto['id_producto'] ?>" hidden>
                             <input type="text" name="producto" id="producto" value="<?php echo $producto['producto'] ?>"
                                 hidden>

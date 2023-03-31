@@ -46,8 +46,8 @@ error_reporting(0);
                         placeholder="Nombres" required>
                     <input autocomplete="on" onchange="apellido1()" type="text" name="apellido" id="apellido"
                         placeholder="Apellidos" required>
-                    <select name="tipo_documento" required>
-                        <option>Selecionar Opción</option>
+                    <select name="tipo_documento" id="tipo" onchange="tipo()" required>
+                        <option  value="">Selecionar Opción</option>
                         <option value="Tarjeta de Identidad">T.I</option>
                         <option value="Cédula de Ciudadanía">C.C</option>
                         <option value="Cedula de Extranjería">C.E</option>
@@ -195,16 +195,6 @@ function mostrarinicio() {
 </script>
 
 <?php
-if (isset($_SESSION["carritoIndex"])){
-    foreach ($_SESSION["carritoIndex"] as $key => $producto) {
-        setcookie("carrito[".$key."][id]", $producto["id"], time()+3600);
-        setcookie("carrito[".$key."][producto]", $producto["producto"], time()+3600);
-        setcookie("carrito[".$key."][precio]", $producto["precio"], time()+3600);
-        setcookie("carrito[".$key."][cantidad]", $producto["cantidad"], time()+3600);
-        setcookie("carrito[".$key."][cantidad_max]", $producto["cantidad_max"], time()+3600);
-    }
-}
-
 if (isset($_SESSION["inhabilitado"])) {
     echo ('<script>Swal.fire({
             title: "Usuario Inhabilitado",
@@ -292,8 +282,5 @@ if (isset($_SESSION["IngresoForsozo"])) {
             icon: "info" 
         });
         </script>');
-        session_destroy();
     }
-
-    session_destroy();
     ?>

@@ -17,6 +17,9 @@ if (isset($_POST["crear"])) {
     $tipo = $_POST["tipo_documento"];
     $contrasena = (htmlentities($_POST["clave"]));
 
+    if($tipo ) {
+
+    }
     foreach ($emails as $key => $correo) {
         $email = "";
         if ($_POST['email_registro'] === $correo['email']) {
@@ -54,10 +57,4 @@ if (isset($_POST["crear"])) {
             }
         }
     }
-
-
-}/* else{
-    session_start();
-    $_SESSION["Error al registrar"] = "Error 1";
-    header('location:../login-registro.php');
-} */
+}
