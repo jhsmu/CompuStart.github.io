@@ -432,4 +432,15 @@ if (isset($_SESSION['producto_error'])) {
     </script>";
     unset($_SESSION['producto_error']);
 }
+
+if (isset($_SESSION['doafkoa'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Producto no agregado'
+        });
+    </script>";
+    unset($_SESSION['doafkoa']);
+}
 ?>
