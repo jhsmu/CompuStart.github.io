@@ -16,6 +16,7 @@ if (isset($_POST["crear"])) {
     $documento = $_POST["numero_documento"];
     $tipo = $_POST["tipo_documento"];
     $contrasena = (htmlentities($_POST["clave"]));
+    $upload_dir = 'avatar.png';
 
     foreach ($emails as $key => $correo) {
         $email = "";
@@ -27,7 +28,8 @@ if (isset($_POST["crear"])) {
         }else{
             $email = $_POST["email_registro"];
             if (isset($contrasena) and isset($email)) {
-                $agregar = $DB_con->prepare('INSERT INTO cliente(apellido, nombre, tipo_documento, numero_documento, email, direccion, telefono, contrasenia, estado) VALUES(:apellido, :nombre, :tipo, :documento, :email, :direccion, :telefono, :contrasenia, :estado)');
+                $agregar = $DB_con->prepare('INSERT INTO cliente(imagen, apellido, nombre, tipo_documento, numero_documento, email, direccion, telefono, contrasenia, estado) VALUES(:imagen, :apellido, :nombre, :tipo, :documento, :email, :direccion, :telefono, :contrasenia, :estado)');
+                $agregar->bindParam(':imagen', $upload_dir);
                 $agregar->bindParam(':apellido', $apellido);
                 $agregar->bindParam(':nombre', $nombre);
                 $agregar->bindParam(':tipo', $tipo);
