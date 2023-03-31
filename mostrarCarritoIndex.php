@@ -19,7 +19,8 @@ include './CarroIndex/carritoIndex.php';
     <link rel="stylesheet" href="./css/style_cuerpo.css">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="./img/logo/icono.png">
+    <title>Compu_Start: Carrito</title>
 </head>
 
 <body>

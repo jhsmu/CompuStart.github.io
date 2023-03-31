@@ -47,7 +47,8 @@ if (isset($_GET['id'])) {
     <!-- link de Sweetalert -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Compu_start</title>
+    <link rel="icon" type="image/x-icon" href="./img/logo/icono.png">
+    <title>Compu_Start: Descripción</title>
 </head>
 
 <body>

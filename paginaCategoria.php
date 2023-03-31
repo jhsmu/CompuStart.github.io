@@ -24,7 +24,8 @@
     @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital@1&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@500&family=PT+Sans:ital@1&family=Permanent+Marker&display=swap');
     </style>
-    <title>Compu Start</title>
+      <link rel="icon" type="image/x-icon" href="./img/logo/icono.png">
+    <title>Compu_Start: Categorías</title>
 
 <body>
 

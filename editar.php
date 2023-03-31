@@ -22,12 +22,14 @@ error_reporting(0);
     <!-- css cuerpo -->
     <link rel="stylesheet" href="./css/style_cuerpo.css">
     <link rel="stylesheet" href="./css/edit.css">
-    <title>Actualizar</title>
     <script type="text/javascript">
     function confirmar() {
         return confirm('¿Estas seguro de inhabilitar la cuenta?');
     }
     </script>
+    <link rel="icon" type="image/x-icon" href="./img/logo/icono.png">
+    <title>Compu_Start: Actualizar Datos</title>
+
 </head>
 
 <body>
