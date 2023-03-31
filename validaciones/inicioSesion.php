@@ -28,6 +28,7 @@
 
             if ($email_i==$verificacion["email"] and $contrasena==$verificacion["contrasenia"] ) {
                 if ($verificacion['estado']==0) {
+                    session_destroy();
                     session_start();
                     $_SESSION['alerta']="Alerta";
                     header('location:../login-registro.php');
@@ -45,7 +46,7 @@
                 session_start();
                 $_SESSION["Datos_incorrectos"] = "Datos incorrectos";
                 header("location:../login-registro.php");
-                echo '<script> alert("Inicio de sesión incorrecto, por favor verifique sus datos")</script>';
+                
         }  
         }
 

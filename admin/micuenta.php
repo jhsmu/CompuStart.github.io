@@ -138,7 +138,7 @@
     <form class="w-full" action="<?=$_SERVER["PHP_SELF"]?>" method="post">
 <div class="flex flex-wrap -mx-3 mb-6">
     <div class="w-full px-3" hidden>
-        <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1"
+        <label class="block tracking-wide text-grey-darker text-xs font-light mb-1"
                for="grid-password">
             Id Cliente
         </label>
@@ -148,7 +148,7 @@
 </div>
 <div class="flex flex-wrap -mx-3 mb-6">
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+        <label class="block tracking-wide text-gray-700 text-xs font-light mb-1"
             >
             Nombre(s)
         </label>
@@ -156,7 +156,7 @@
         type="text" name="nombre" id="nombre" onchange="nombre1()" required value="<?php echo $nombre; ?>" placeholder="<?php echo $nombre; ?>">
     </div>
     <div class="w-full md:w-1/2 px-3">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+        <label class="block tracking-wide text-gray-700 text-xs font-light mb-1"
                for="grid-last-name">
             Apellido(s)
         </label>
@@ -166,7 +166,7 @@
 </div>
 <div class="flex flex-wrap -mx-3 mb-6">
     <div class="w-full md:w-1/2 px-3">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+        <label class="block tracking-wide text-gray-700 text-xs font-light mb-1"
                for="grid-last-name">
             Contraseña
         </label>

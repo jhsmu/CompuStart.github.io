@@ -173,27 +173,27 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                         <div class="w-full">
                                             <div class="flex flex-wrap -mx-3 mb-6">
                                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                                                         Serial
                                                     </label>
                                                     <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="serial" id="serial" type="text" placeholder="Ingrese el serial" required onchange="Serial1()">
                                                 </div>
                                                 <div class="w-full md:w-1/2 px-3">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                         Nombre del Producto
                                                     </label>
-                                                    <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="producto" id="nombre" type="text" placeholder="Ingrese el nombre del producto" required onchange="NombresNumeros()">
+                                                    <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="producto" id="nombre" type="text" placeholder="Ingrese el nombre" required onchange="NombresNumeros()">
                                                 </div>
                                             </div>
                                             <div class="flex flex-wrap -mx-3 mb-6">
                                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                                                         Descripción Breve
                                                     </label>
                                                     <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="descripcion_breve" id="descripcion_breve" type="text" placeholder="Ingrese una descripción breve" required onchange="Descripciones2()">
                                                 </div>
                                                 <div class="w-full md:w-1/2 px-3">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                         Descripción
                                                     </label>
                                                     <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="descripcion" id="descripcion" type="text" placeholder="Ingrese una descripción" required onchange="Descripciones1()">
@@ -201,13 +201,13 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                             </div>
                                             <div class="flex flex-wrap -mx-3 mb-6">
                                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                                                         Cantidad
                                                     </label>
                                                     <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="cantidad" id="cantidad" type="number" placeholder="Ingrese la cantidad" required onchange="Cantidad123()">
                                                 </div>
                                                 <div class="w-full md:w-1/2 px-3">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                         Precio
                                                     </label>
                                                     <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="precio" id="precio" type="text" placeholder="Ingrese un precio" required onchange="Valores1234()">
@@ -215,7 +215,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                             </div>
                                             <div class="flex flex-wrap -mx-3 mb-6">
                                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                                                         Categoría
                                                     </label>
                                                     <div class="relative">
@@ -238,7 +238,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                     </div>
                                                 </div>
                                                 <div class="w-full md:w-1/2 px-3">
-                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                                    <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                         Marca
                                                     </label>
                                                     <div class="relative">
@@ -263,7 +263,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 </div>
 
                                                 <div class="w-full md:w-1/2 px-3 mt-5">
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-city">
+                                                    <label class="block tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-city">
                                                         Elige un Proveedor
                                                     </label>
                                                     <div class="relative">
@@ -431,5 +431,16 @@ if (isset($_SESSION['producto_error'])) {
         });
     </script>";
     unset($_SESSION['producto_error']);
+}
+
+if (isset($_SESSION['doafkoa'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Producto no agregado'
+        });
+    </script>";
+    unset($_SESSION['doafkoa']);
 }
 ?>

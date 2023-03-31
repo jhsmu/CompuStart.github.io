@@ -71,7 +71,7 @@ $connection = $db->connect(); //Creamos la conexión a la BD
                     <form class="w-full" action="../marca/actualizarMarca.php" method="post">
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0" hidden>
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                        <label class="block tracking-wide text-gray-700 text-xs font-light mb-1"
                             >
                             Id_Marca
                         </label>
@@ -79,7 +79,7 @@ $connection = $db->connect(); //Creamos la conexión a la BD
                         type="text" name="id" id="id" value="<?php echo $marca['id_marca']; ?>" >
                     </div>
                     <div class="w-full md:w-1/2 px-3">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                        <label class="block tracking-wide text-gray-700 text-xs font-light mb-1"
                                for="grid-last-name">
                                Marca
                         </label>
@@ -87,7 +87,7 @@ $connection = $db->connect(); //Creamos la conexión a la BD
                         type="text" name="marca" id="nombre" value="<?php echo $marca['marca']; ?>" placeholder="<?php echo $marca['marca']; ?>" required>
                     </div>
                     <div class="relative">
-                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="estado_marca">
+                        <label class="block tracking-wide text-grey-darker text-xs font-light mb-1" for="estado_marca">
                             Estado   
                         </label>
                         <select class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey" id="estado_marca" name="estado_marca" required>

@@ -101,9 +101,6 @@ error_reporting(0);
                     <div class="iniciar">
                         <a href="./index.php">Iniciar Sin Cuenta</a>
                     </div>
-                    <div class="olvidar">
-                        <a href="./recuperacion/email.php">¿Olvidaste tu contraseña?</a>
-                    </div>
                 </form>
             </div>
 
@@ -195,16 +192,6 @@ function mostrarinicio() {
 </script>
 
 <?php
-if (isset($_SESSION["carritoIndex"])){
-    foreach ($_SESSION["carritoIndex"] as $key => $producto) {
-        setcookie("carrito[".$key."][id]", $producto["id"], time()+3600);
-        setcookie("carrito[".$key."][producto]", $producto["producto"], time()+3600);
-        setcookie("carrito[".$key."][precio]", $producto["precio"], time()+3600);
-        setcookie("carrito[".$key."][cantidad]", $producto["cantidad"], time()+3600);
-        setcookie("carrito[".$key."][cantidad_max]", $producto["cantidad_max"], time()+3600);
-    }
-}
-
 if (isset($_SESSION["inhabilitado"])) {
     echo ('<script>Swal.fire({
             title: "Usuario Inhabilitado",
@@ -292,8 +279,5 @@ if (isset($_SESSION["IngresoForsozo"])) {
             icon: "info" 
         });
         </script>');
-        session_destroy();
     }
-
-    session_destroy();
     ?>

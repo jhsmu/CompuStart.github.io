@@ -71,14 +71,14 @@ $connection = $db->connect(); //Creamos la conexión a la BD
                     <form class="w-full" action="../categorias/actualizarCategoria.php" method="post">
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0" hidden>
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1">
+                        <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                             ID_Categoría
                         </label>
                         <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
                         type="text" name="id" id="id" value="<?php echo $categoria['id_categoria']; ?>" >
                     </div>
                     <div class="w-full md:w-1/2 px-3">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                        <label class="block tracking-wide text-gray-700 text-xs font-light mb-1"
                             for="grid-last-name">
                             Categoría
                         </label>
@@ -86,7 +86,7 @@ $connection = $db->connect(); //Creamos la conexión a la BD
                         type="text" name="categoria" id="nombre" value="<?php echo $categoria['categoria']; ?>" placeholder="<?php echo $categoria['categoria']; ?>" required>
                     </div>
                     <div class="relative">
-                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-light mb-1" for="estado_categoria">
+                        <label class="block tracking-wide text-grey-darker text-xs font-light mb-1" for="estado_categoria">
                             Estado   
                         </label>
                         <select class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey" id="estado_categoria" name="estado_categoria" required>

@@ -59,10 +59,4 @@ if (isset($_POST["crear"])) {
             }
         }
     }
-
-
-}/* else{
-    session_start();
-    $_SESSION["Error al registrar"] = "Error 1";
-    header('location:../login-registro.php');
-} */
+}

@@ -53,7 +53,7 @@ include './CarroIndex/carritoIndex.php';
                             <td width="15%" class="text-center"><?php echo number_format($producto['precio'], 2) ?></td>
                             <td width="20%" class="text-center">
 
-                                <form action="" method="post">
+                                <form action="" method="get">
                                     <input type="text" name="id" value="<?php echo $producto['id']; ?>" hidden>
                                     <div class="input-group mb-3" style="max-width: 120px;">
                                         <div class="input-group-prepend">
@@ -69,7 +69,7 @@ include './CarroIndex/carritoIndex.php';
                             </td>
                             <td width="20%" class="text-center">$ <?php echo number_format($producto['precio'] * $producto['cantidad'], 2) ?></td>
                             <td width="5%">
-                                <form action="" method="post">
+                                <form action="" method="get">
                                     <input type="text" name="id" value="<?php echo $producto['id']; ?>" hidden>
                                     <button class="btn btn-danger" type="submit" name="botonAdd" value="eliminar">
                                         Eliminar
@@ -92,7 +92,7 @@ include './CarroIndex/carritoIndex.php';
                     <tr>
                         <td colspan="5">
 
-                            <form action="" method="post">
+                            <form action="" method="get">
                                 <button class="btn btn-primary btn-lg btn-block" type="submit" name="botonAdd" value="proceder">Comprar</button>
                             </form>
 

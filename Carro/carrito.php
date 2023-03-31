@@ -1,36 +1,36 @@
 <?php
     session_start();
-    if (isset($_POST['botonAdd'])) {
-        switch ($_POST['botonAdd']) {
+    if (isset($_GET['botonAdd'])) {
+        switch ($_GET['botonAdd']) {
 
             //Esto es si la persona oprime el botón agregar al carrito
             case 'agregar':
-                if (is_numeric($_POST['id'])) {
-                    $id_producto=$_POST['id'];
+                if (is_numeric($_GET['id'])) {
+                    $id_producto=$_GET['id'];
                 }else {
                     $mensaje="El id esta mal";
                 }
 
-                if (is_string($_POST['producto'])) {
-                    $nombre_producto=$_POST['producto'];
+                if (is_string($_GET['producto'])) {
+                    $nombre_producto=$_GET['producto'];
                 }else {
                     $mensaje="El producto esta mal";
                 }
 
-                if (is_numeric($_POST['precio'])) {
-                    $precio_producto=$_POST['precio'];
+                if (is_numeric($_GET['precio'])) {
+                    $precio_producto=$_GET['precio'];
                 }else {
                     $mensaje="El precio esta mal";
                 }
 
-                if(is_numeric($_POST['cantidad'])){
-                    $cantidad=$_POST['cantidad'];
+                if(is_numeric($_GET['cantidad'])){
+                    $cantidad=(int)$_GET['cantidad'];
                 } else{
                     $mensaje="La cantidad esta mal";
                 }
 
-                if(is_numeric($_POST['cantidad_max'])){
-                    $cantidadMax=$_POST['cantidad_max'];
+                if(is_numeric($_GET['cantidad_max'])){
+                    $cantidadMax=$_GET['cantidad_max'];
                 } else{
                     $mensaje="La cantidad maxima esta mal";
                 }
@@ -55,9 +55,13 @@
                     );
                     $idsProductos=array_column($_SESSION['carrito'], 'id');
                     if (in_array($id_producto, $idsProductos)) {
-                        $carro_pro = array_replace($carro_pro, $carro_pro);
-                        $_SESSION['carrito'][0]=$carro_pro;
-                        $mensaje="Producto actualizado al carrito";
+                        foreach ($_SESSION["carrito"] as $key => $producto) {
+                            if($id_producto==$producto["id"]){
+                                $_SESSION['carrito'][$key]=$carro_pro;
+                            } else {
+                                continue;
+                            }
+                        }
                     }
                     else{
 
@@ -76,8 +80,8 @@
             break;
 
             case 'eliminar':
-                if (is_numeric($_POST['id'])) {
-                    $id_producto=$_POST['id'];
+                if (is_numeric($_GET['id'])) {
+                    $id_producto=$_GET['id'];
                     foreach ($_SESSION['carrito'] as $indice => $producto) {
                         if ($producto['id']==$id_producto) {
                             unset($_SESSION['carrito'][$indice]);
@@ -90,8 +94,8 @@
             break;
 
             case 'aumentar':
-                if (is_numeric($_POST['id'])) {
-                    $id_producto=$_POST['id'];
+                if (is_numeric($_GET['id'])) {
+                    $id_producto=$_GET['id'];
                     foreach ($_SESSION['carrito'] as $indice => $producto) {
                         if ($producto['id']==$id_producto) {
                             if ($_SESSION['carrito'][$indice]['cantidad']==$_SESSION['carrito'][$indice]['cantidad_max']) {
@@ -108,8 +112,8 @@
             break;
 
             case 'disminuir':
-                if (is_numeric($_POST['id'])) {
-                    $id_producto=$_POST['id'];
+                if (is_numeric($_GET['id'])) {
+                    $id_producto=$_GET['id'];
                     foreach ($_SESSION['carrito'] as $indice => $producto) {
                         if ($producto['id']==$id_producto) {
                             if ($_SESSION['carrito'][$indice]['cantidad']==1) {
