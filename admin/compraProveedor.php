@@ -109,11 +109,11 @@ if (isset($_POST["producto"])) {
                                                     <label
                                                         class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
                                                         for="grid-last-name">
-                                                        Provedores
+                                                        Proveedores
                                                     </label>
                                                     <select
                                                         class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                        id="grid-state" name="proveedor">
+                                                        id="grid-state" name="proveedor" required>
                                                         <option value="" selected type="hidden">Selecciona un proveedor
                                                         </option>
                                                         <?php
@@ -196,8 +196,7 @@ if (isset($_POST["producto"])) {
                                                 <select
                                                     class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
                                                     id="grid-state" name="producto" onchange="cambio2()">
-                                                    <option value="" selected type="hidden">Selecciona un producto
-                                                    </option>
+                                                    <option value="" selected type="hidden">Selecciona un producto</option>
                                                     <?php
                                                     foreach ($_SESSION["productos"] as $key => $producto) {
                                                         if (isset($_SESSION["id_producto"]) && $_SESSION["id_producto"]==$producto["id_producto"]){
@@ -302,17 +301,9 @@ if (isset($_POST["producto"])) {
 
     <script>
         function cantidad123() {
-            let cantidadRef = <?php echo $producto['cantidad'] ?>;
             let cantidad = document.getElementById("cantidadUsu").value;
 
-            if (cantidad > cantidadRef) {
-                document.getElementById('cantidadUsu').value = "";
-                Swal.fire({
-                    title: "Advertencia:",
-                    text: "No puede superar el limite de productos",
-                    icon: "error",
-                });
-            } else if (cantidad == 0) {
+            if (cantidad == 0) {
                 document.getElementById('cantidadUsu').value = "";
                 Swal.fire({
                     title: "Advertencia:",

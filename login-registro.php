@@ -46,8 +46,8 @@ error_reporting(0);
                         placeholder="Nombres" required>
                     <input autocomplete="on" onchange="apellido1()" type="text" name="apellido" id="apellido"
                         placeholder="Apellidos" required>
-                    <select name="tipo_documento" id="tipo" onchange="tipo()" required>
-                        <option  value="">Selecionar Opción</option>
+                    <select name="tipo_documento" required>
+                        <option value="">Selecionar Opción</option>
                         <option value="Tarjeta de Identidad">T.I</option>
                         <option value="Cédula de Ciudadanía">C.C</option>
                         <option value="Cedula de Extranjería">C.E</option>
