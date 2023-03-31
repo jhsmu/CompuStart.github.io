@@ -96,7 +96,11 @@ $ordenes = $consulta->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
 </body>
 <script>
     $(document).ready(function() {
-        $('#dataTable').DataTable();
+        $('#dataTable').DataTable({
+            "language": {
+            "url":"//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+        }
+        });
     });
 </script>
 

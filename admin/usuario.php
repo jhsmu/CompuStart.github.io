@@ -20,6 +20,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/validaciones.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js">
     <title>Lista de usuarios </title>
 </head>
 
@@ -159,7 +162,7 @@
                             if (!isset($rol) || $rol == 'cliente') {
                                 echo "Está visualizando el rol de clientes";
                             ?>
-                            <table class="table-responsive w-full rounded">
+                            <table class="table-responsive w-full rounded" id="dataTable">
                                 <thead>
                                     <tr>
                                         <th class="border w-1/7 px-4 py-2">Id</th>
@@ -207,7 +210,7 @@
                             } elseif ($rol == 'cliente habilitado') {
                                 echo "Está visualizando el rol de clientes habilitados"
                             ?>
-                            <table class="table-responsive w-full rounded">
+                            <table class="table-responsive w-full rounded" id="dataTable">
                                 <thead>
                                     <tr>
                                         <th class="border w-1/7 px-4 py-2">Id</th>
@@ -253,7 +256,7 @@
                                 } elseif ($rol == 'cliente inhabilitado') {
                                     echo "Está visualizando el rol de clientes inhabilitados"
                                     ?>
-                                    <table class="table-responsive w-full rounded">
+                                    <table class="table-responsive w-full rounded" id="dataTable">
                                         <thead>
                                             <tr>
                                                 <th class="border w-1/7 px-4 py-2">Id</th>
@@ -308,13 +311,14 @@
                                                 Agregar Administrador
                                             </label>
                                             <script src="../js/main.js"></script>
-                                            <table class="table-responsive w-full rounded">
+                                            <table class="table-responsive w-full rounded" id="dataTable">
                                                 <thead>
                                                     <tr>
                                                         <th class="border w-1/7 px-4 py-2">Id</th>
                                                         <th class="border w-1/6 px-4 py-2">Nombre</th>
                                                         <th class="border w-1/6 px-4 py-2">Apellido</th>
                                                         <th class="border w-1/7 px-4 py-2">Email</th>
+                                                        <th class="border w-1/7 px-4 py-2">Acción</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -450,6 +454,15 @@
     </script>
 
 </body>
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "language": {
+            "url":"//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+        }
+        });
+    });
+</script>
 
 </html>
 <?php

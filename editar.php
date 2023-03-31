@@ -229,7 +229,7 @@ error_reporting(0);
 
     <script>
     var eye = document.getElementById('eye');
-    var input = document.getElementById('password');
+    var input = document.getElementById('clave');
 
     eye.addEventListener('click', mostrar);
 

@@ -10,7 +10,7 @@
     $descripcion_breve=$_POST["descripcion_breve"];
     $descripcion=$_POST["descripcion"];
     $cantidad=$_POST["cantidad"];
-    $precio=$_POST["precio"]*0.6;
+    $precio=$_POST["precio"];
     $id_categoria=$_POST["categoria"];
     $id_marca=$_POST["marca"];
     $id_proveedor=$_POST["proveedor"];

@@ -353,8 +353,11 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
 
             < <script>
                 $(document).ready(function() {
-                $('#dataTable').DataTable();
-
+                    $('#dataTable').DataTable({
+                        "language": {
+                        "url":"//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+                    }
+                    });
                 });
 
                 $(function() {

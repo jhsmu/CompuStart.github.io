@@ -23,6 +23,7 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
     <!-- Css -->
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/all.css">
+    <link rel="stylesheet" href="./css/styleadmi.css">
     <!-- iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
@@ -73,7 +74,7 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
                                 </label>
                             </div>
                             <div class="p-3">
-                                <table class="table-responsive w-full rounded " id="dataTable">
+                                <table class="table-responsive w-full rounded " id="dataTable" style="margin-left: 30rem;">
                                     <div class="flex justify-center">
                                         <thead>
                                             <tr>
@@ -163,7 +164,11 @@ $marcas = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
 </body>
 <script>
     $(document).ready(function() {
-        $('#dataTable').DataTable();
+        $('#dataTable').DataTable({
+            "language": {
+            "url":"//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+        }
+        });
     });
 </script>
 
