@@ -7,7 +7,7 @@
 
     require_once './database/conexion.php';
 
-    $consulta1 = $DB_con->prepare('SELECT * FROM producto ORDER BY id_producto DESC');
+    $consulta1 = $DB_con->prepare('SELECT * FROM producto');
     $consulta1->execute();
     $productos = $consulta1->fetchAll(PDO::FETCH_ASSOC);
 
@@ -52,25 +52,27 @@
                 <!-- card 1 -->
                 <!-- Este foreach es para iterar y traer los productos de la base de datos -->
                 <?php
-                $ayudante = $productos[0]['id_producto'];
+                $limite = 6;
+                $principio = 3;
                 $numero = 1;
                 foreach ($productos as $key => $producto) {
+                    if ($producto["estado_producto"]==0) {
+                        $principio++;
+                        $limite++;
+                        continue;
+                    } else {
                 ?>
                 <div class="col-md-4">
                     <div class="card">
                         <figure>
                             <?php //Este script sirve para poner solo la primera imagen
-                                foreach ($imagenes as $key => $imagen) {
-                                    if (($producto['id_producto'] == $imagen['producto_id']) and ($producto['id_producto'] == $ayudante)) {
-                                        $ayudante--;
+                                $consulta2 = $DB_con->prepare('SELECT * FROM imagenes WHERE producto_id=:id');
+                                $consulta2->bindParam(":id", $producto["id_producto"]);
+                                $consulta2->execute();
+                                $imagenes = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                 ?>
-                            <img src="./imagenes/<?php echo $imagen['url'] ?>" height="200px" class="card-img-top"
+                            <img src="./imagenes/<?php echo $imagenes[0]['url'] ?>" height="200px" class="card-img-top"
                                 alt="...">
-                            <?php
-                                        break;
-                                    }
-                                }
-                                ?>
                         </figure>
 
                         <div class="card-body">
@@ -88,10 +90,11 @@
                 </div>
 
                 <?php
-                    if ($numero % 3 == 0) {
-                        break;
-                    } else {
-                        $numero++;
+                        if ($numero % 3 == 0) {
+                            break;
+                        } else {
+                            $numero++;
+                        }
                     }
                 }
                 ?>
@@ -124,24 +127,24 @@
 
                 <!-- card 3 -->
                 <?php
-                for ($i = 3; $i < 6; $i++) {
+                for ($i = $principio; $i < $limite; $i++) {
+                    if ($productos[$i]["estado_producto"]==0) {
+                        $limite++;
+                        continue;
+                    } else {
                 ?>
 
                 <div class="col-md-4">
                     <div class="card">
                         <figure>
                             <?php //Este script sirve para poner solo la primera imagen
-                                foreach ($imagenes as $key => $imagen) {
-                                    if (($productos[$i]['id_producto'] == $imagen['producto_id']) and ($productos[$i]['id_producto'] == $ayudante)) {
-                                        $ayudante--;
+                                $consulta2 = $DB_con->prepare('SELECT * FROM imagenes WHERE producto_id=:id');
+                                $consulta2->bindParam(":id", $productos[$i]["id_producto"]);
+                                $consulta2->execute();
+                                $imagenes = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                 ?>
-                            <img src="./imagenes/<?php echo $imagen['url'] ?>" height="200px" class="card-img-top"
+                            <img src="./imagenes/<?php echo $imagenes[0]['url'] ?>" height="200px" class="card-img-top"
                                 alt="...">
-                            <?php
-                                        break;
-                                    }
-                                }
-                                ?>
                         </figure>
                         <div class="card-body">
                             <h5 class="card-title"><strong><?php echo $productos[$i]['producto'] ?></strong></h5>
@@ -155,6 +158,7 @@
                     </div>
                 </div>
                 <?php
+                    }
                 }
                 ?>
             </div>
@@ -183,24 +187,25 @@
         <div class="container ">
             <div class="row mt-4 mb-4">
                 <?php
-                for ($i = 6; $i < 9; $i++) {
+                $limite2 = $limite + 3;
+                for ($i = $limite; $i < $limite2; $i++) {
+                    if ($productos[$i]["estado_producto"]==0) {
+                        $limite2++;
+                        continue;
+                    } else {
                 ?>
 
                 <div class="col-md-4">
                     <div class="card">
                         <figure>
                             <?php //Este script sirve para poner solo la primera imagen
-                                foreach ($imagenes as $key => $imagen) {
-                                    if (($productos[$i]['id_producto'] == $imagen['producto_id']) and ($productos[$i]['id_producto'] == $ayudante)) {
-                                        $ayudante--;
-                                ?>
-                            <img src="./imagenes/<?php echo $imagen['url'] ?>" height="200px" class="card-img-top"
+                                $consulta2 = $DB_con->prepare('SELECT * FROM imagenes WHERE producto_id=:id');
+                                $consulta2->bindParam(":id", $productos[$i]["id_producto"]);
+                                $consulta2->execute();
+                                $imagenes = $consulta2->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
+                            <img src="./imagenes/<?php echo $imagenes[0]['url'] ?>" height="200px" class="card-img-top"
                                 alt="...">
-                            <?php
-                                        break;
-                                    }
-                                }
-                                ?>
                         </figure>
                         <div class="card-body">
                             <h5 class="card-title"><strong><?php echo $productos[$i]['producto'] ?></strong></h5>
@@ -214,6 +219,7 @@
                     </div>
                 </div>
                 <?php
+                    }
                 }
                 ?>
             </div>
