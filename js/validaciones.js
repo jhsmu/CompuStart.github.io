@@ -144,7 +144,7 @@ function NombresNumeros(){
   let nombre = document.getElementById("nombre").value;
   let RegEx = /^[A-ZÑa-zñáéíóúÁÉÍÓÚ].[0-9A-ZÑa-zñáéíóúÁÉÍÓÚ'° -]+$/g;
 
-  if(nombre.length < 50)
+  if(nombre.length < 60)
     if (RegEx.test(nombre) == true) {
       document.getElementById("nombre").style.borderColor = "#008000";
     } else {

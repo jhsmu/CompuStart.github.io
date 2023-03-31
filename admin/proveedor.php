@@ -78,7 +78,7 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                 <table class="table-responsive w-full rounded" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th class="border w-1/1 px-4 py-2" hidden>Id</th>
+                                            <th class="border w-1/5 px-4 py-2" hidden>Id</th>
                                             <th class="border w-1/1 px-4 py-2">Proveedor</th>
                                             <th class="border w-1/1 px-4 py-2">NIT</th>
                                             <th class="border w-1/1 px-2 py-1">Correo</th>
@@ -94,13 +94,13 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                         foreach ($proveedores as $key => $proveedor) {
                                         ?>
                                                 <tr>
-                                                    <td class="border px-4 py-2" hidden><?php echo $proveedor["id_proveedor"] . "<br>"; ?></td>
+                                                    <td class="border w-1/2  px-4 py-2" hidden><?php echo $proveedor["id_proveedor"] . "<br>"; ?></td>
                                                     <td class="border px-4 py-2"><?php echo $proveedor["proveedor"] . "<br>"; ?></td>
                                                     <td class="border px-4 py-2"><?php echo $proveedor["nit"] . "<br>"; ?></td>
-                                                    <td class="border  w-1/1 px-1 py-1"><?php echo $proveedor["correo"] . "<br>"; ?></td>
+                                                    <td class="border  w-1/6 px-1 py-1"><?php echo $proveedor["correo"] . "<br>"; ?></td>
                                                     <td class="border  w-1/1 px-1 py-1"><?php echo $proveedor["telefono"] . "<br>"; ?></td>
-                                                    <td class="border w-1/1 px-4 py-2"><?php echo $proveedor["direccion_web"] . "<br>"; ?></td>
-                                                    <td class="border w-1/6 px-4 py-2"><?php echo $proveedor["direccion"] . "<br>"; ?></td>
+                                                    <td class="border w-1/6 px-4 py-2"><?php echo $proveedor["direccion_web"] . "<br>"; ?></td>
+                                                    <td class="border w-1/2 px-4 py-2"><?php echo $proveedor["direccion"] . "<br>"; ?></td>
                                                     <td class="border  w-1/1 px-4 py-2"><?php if ($proveedor["estado_proveedor"] == 1) {
                                                                                             echo ("Activo");
                                                                                         } else {

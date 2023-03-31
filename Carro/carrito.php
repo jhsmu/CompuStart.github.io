@@ -24,7 +24,7 @@
                 }
 
                 if(is_numeric($_GET['cantidad'])){
-                    $cantidad=$_GET['cantidad'];
+                    $cantidad=(int)$_GET['cantidad'];
                 } else{
                     $mensaje="La cantidad esta mal";
                 }
@@ -55,9 +55,13 @@
                     );
                     $idsProductos=array_column($_SESSION['carrito'], 'id');
                     if (in_array($id_producto, $idsProductos)) {
-                        $carro_pro = array_replace($carro_pro, $carro_pro);
-                        $_SESSION['carrito'][0]=$carro_pro;
-                        $mensaje="Producto actualizado al carrito";
+                        foreach ($_SESSION["carrito"] as $key => $producto) {
+                            if($id_producto==$producto["id"]){
+                                $_SESSION['carrito'][$key]=$carro_pro;
+                            } else {
+                                continue;
+                            }
+                        }
                     }
                     else{
 
