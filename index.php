@@ -10,10 +10,6 @@
     $consulta1 = $DB_con->prepare('SELECT * FROM producto');
     $consulta1->execute();
     $productos = $consulta1->fetchAll(PDO::FETCH_ASSOC);
-
-    $consulta2 = $DB_con->prepare('SELECT * FROM imagenes');
-    $consulta2->execute();
-    $imagenes = $consulta2->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>

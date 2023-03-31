@@ -5,10 +5,6 @@ require_once './database/conexion.php';
 $consulta1 = $DB_con->prepare('SELECT * FROM producto');
 $consulta1->execute();
 $productos = $consulta1->fetchAll(PDO::FETCH_ASSOC);
-
-$consulta2 = $DB_con->prepare('SELECT * FROM imagenes');
-$consulta2->execute();
-$imagenes = $consulta2->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,10 +52,10 @@ $imagenes = $consulta2->fetchAll(PDO::FETCH_ASSOC);
             $numero = 1;
             foreach ($productos as $key => $producto) {
                 if ($producto["estado_producto"]==0) {
-                        $principio++;
-                        $limite++;
-                        continue;
-                    } else {
+                    $principio++;
+                    $limite++;
+                    continue;
+                } else {
             ?>
             <div class="col-md-4">
                 <div class="card">
