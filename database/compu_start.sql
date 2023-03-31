@@ -12,7 +12,7 @@ CREATE TABLE cliente(
     tipo_documento VARCHAR(50) NOT NULL,
     numero_documento INT(12) NOT NULL,
     direccion VARCHAR(60) NOT NULL,
-    telefono INT(15) NOT NULL,
+    telefono VARCHAR(15) NOT NULL,
     email VARCHAR(60) NOT NULL,
     contrasenia VARCHAR(50) NOT NULL,
     token VARCHAR(45) NULL,
@@ -30,7 +30,7 @@ CREATE TABLE administrador(
 CREATE TABLE producto(
     id_producto INT(11) PRIMARY KEY AUTO_INCREMENT,
     serial VARCHAR(12) NOT NULL,
-    producto VARCHAR(50) NOT NULL,
+    producto VARCHAR(100) NOT NULL,
     descripcion_breve TEXT NOT NULL,
     descripcion TEXT NOT NULL,
     cantidad INT(11) NOT NULL,
@@ -43,11 +43,11 @@ CREATE TABLE producto(
 CREATE TABLE proveedor(
     id_proveedor INT(11) PRIMARY KEY AUTO_INCREMENT,
     proveedor VARCHAR(50) NOT NULL,
-    nit INT(11) NOT NULL,
+    nit VARCHAR(11) NOT NULL,
     correo VARCHAR(60) NOT NULL,
-    telefono INT(15) NOT NULL,
+    telefono VARCHAR(15) NOT NULL,
     direccion_web VARCHAR(60) NOT NULL,
-    direccion VARCHAR(60) NOT NULL,
+    direccion VARCHAR(100) NOT NULL,
     estado_proveedor BOOLEAN NOT NULL
 );
 
@@ -151,7 +151,7 @@ ALTER TABLE detalle_orden ADD FOREIGN KEY(id_producto)
 REFERENCES producto(id_producto);
 
 INSERT INTO cliente (imagen, nombre, apellido, tipo_documento, numero_documento, direccion, telefono, email, contrasenia, estado) VALUES
-('gato.jpeg', 'Usuario', 'Prueba', 'Cédula de Extranjeria', '258201201','Torre Norte SENA', 3001234567, 'usuario@gmail.com', 'Usuario12345', 1);
+('gato.jpeg', 'Usuario', 'Prueba', 'Cédula de Extranjeria', '258201201','Torre Norte SENA', +573024650490, 'usuario@gmail.com', 'Usuario12345', 1);
 
 INSERT INTO administrador (nombre, apellido, email, contrasenia) VALUES
 ('Freymer', 'Sepulveda', 'administrador1@gmail.com', 'Administrador12345'),
