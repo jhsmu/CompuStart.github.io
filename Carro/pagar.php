@@ -10,10 +10,11 @@
             $total+=$producto['precio']*$producto['cantidad'];
         } 
 
-        $insertar=$DB_con->prepare('INSERT INTO orden(cliente,total,estado) VALUES(:cliente, :total, :estado) ');
+        $insertar=$DB_con->prepare('INSERT INTO orden(cliente,total,estado,condicion) VALUES(:cliente, :total, :estado, :condicion) ');
         $insertar->bindParam(':cliente', $_SESSION["id_usuario"]);
         $insertar->bindParam(':total', $total);
         $insertar->bindParam(':estado', $estado);
+        $insertar->bindParam(':condicion', $estado2);
         $insertar->execute();
 
         $idOrden=$DB_con->lastInsertId();

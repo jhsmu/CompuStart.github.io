@@ -7,7 +7,7 @@
     $connection = $db->connect(); //Creamos la conexión a la BD
 
     // Cuando la conexión está establecida...
-    $consulta = $connection->prepare("SELECT id_orden, CONCAT(cliente.nombre, ' ', cliente.apellido) AS nombre, total, orden.estado FROM orden INNER JOIN cliente ON orden.cliente = cliente.id"); // Traduzco mi petición
+    $consulta = $connection->prepare("SELECT id_orden, CONCAT(cliente.nombre, ' ', cliente.apellido) AS nombre, total, orden.estado, condicion FROM orden INNER JOIN cliente ON orden.cliente = cliente.id"); // Traduzco mi petición
     $consulta->execute(); //Ejecuto mi petición
 
     $ordenes = $consulta->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
@@ -85,6 +85,15 @@
                                                 $ <?php echo number_format($orden["total"],2) . "<br>"; ?>
                                             </td>
                                             <td class="text-align: center">
+                                            <?php
+                                                if ($orden['estado'] == 1 and $orden['condicion'] == 0) {
+                                                    echo "En Proceso";
+                                                } elseif ($orden['estado'] == 0 and $orden['condicion'] == 0) {
+                                                    echo "Comprado";
+                                                } elseif ($orden['condicion'] == 1) {
+                                                    echo "Orden Cancelada";
+                                                }
+                                            ?>
                                             </td>
                                             <td class="text-center">
                                                 <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./detalleOrden.php?id=<?php echo $orden["id_orden"]; ?>">

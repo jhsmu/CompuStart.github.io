@@ -100,6 +100,7 @@ CREATE TABLE orden(
     cliente INT(11) NOT NULL,
     total FLOAT(12,2) NOT NULL,
     estado BOOLEAN NOT NULL,
+    condicion BOOLEAN NOT NULL,
     fecha timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 );
 
