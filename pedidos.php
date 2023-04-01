@@ -9,7 +9,7 @@ $connection = $db->connect(); //Creamos la conexión a la BD
 $id = $_SESSION["id_usuario"];
 
 // Cuando la conexión está establecida...
-$consulta = $connection->prepare("SELECT cliente, id_orden, producto.producto AS producto, cantidad_venta, precio_producto, monto_total, detalle_orden.estado FROM detalle_orden INNER JOIN producto ON detalle_orden.id_producto = producto.id_producto WHERE cliente=:id_usuario"); // Traduzco mi petición
+$consulta = $connection->prepare("SELECT cliente, id_orden, producto.producto AS producto, cantidad_venta, precio_producto, monto_total, detalle_orden.estado, extra FROM detalle_orden INNER JOIN producto ON detalle_orden.id_producto = producto.id_producto WHERE cliente=:id_usuario"); // Traduzco mi petición
 $consulta->execute(['id_usuario' => $id]); //Ejecuto mi petición
 
 $ordenes = $consulta->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
@@ -72,25 +72,28 @@ $ordenes = $consulta->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nece
                             <td width="20%" class="text-center">$ <?php echo number_format($orden['monto_total'], 2) ?></td>
                             <td width="30%" class="text-center">
                                 <?php
-                                if ($orden['estado'] == 1) {
-                                    echo "En Proceso de aprobación";
-                                } else {
-                                    echo "Comprado";
-                                }
+                                    if ($orden['estado'] == 1 and $orden['extra'] == 0) {
+                                        echo "En Proceso de aprobación";
+                                    } elseif ($orden['estado'] == 0 and $orden['extra'] == 0) {
+                                        echo "Comprado";
+                                    } elseif ($orden['extra'] == 1) {
+                                        echo "Cancelado";
+                                    }
                                 ?>
                             </td>
-                        <?php
+                        </tr>
+                <?php
                     }
                 } else {
-                        ?>
-                        <tr>
-                            <td colspan="5">
-                                <div class="alert alert-success">No hay pedidos pendientes</div>
-                            </td>
-                        </tr>
-                    <?php
+                ?>
+                    <tr>
+                        <td colspan="5">
+                            <div class="alert alert-success">No has creado un pedido, te inivitamos a que compres.</div>
+                        </td>
+                    </tr>
+                <?php
                 }
-                    ?>
+                ?>
             </tbody>
         </table>
     </div>
