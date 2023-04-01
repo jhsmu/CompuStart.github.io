@@ -73,7 +73,7 @@
                                     <table class="table-responsive w-full rounded" id="dataTable">
                                         <thead>
                                             <tr>
-                                                <th class="border w-1/1 px-4 py-2">Id</th>
+                                                <th class="border w-1/1 px-4 py-2"># de Compra</th>
                                                 <th class="border w-1/1 px-4 py-2">Proveedor</th>
                                                 <th class="border w-1/1 px-4 py-2">Producto</th>
                                                 <th class="border w-1/1 px-4 py-2">Cantidad</th>
