@@ -145,7 +145,7 @@ if (isset($_SESSION['Cancelado'])) {
     echo "<script>
     Swal.fire({
         icon: 'info',
-        title: 'En espera',
+        title: 'Orden Cancelada',
         text: 'Esta Orden fue cancelada'
         });
     </script>";
@@ -156,7 +156,7 @@ if (isset($_SESSION['errorDeAprobar'])) {
     Swal.fire({
         icon: 'error',
         title: 'Éxito',
-        text: 'Error al aceptar la orden'
+        text: 'Error con el cambio de estado de la orden'
         });
     </script>";
     unset($_SESSION['errorDeAprobar']);
