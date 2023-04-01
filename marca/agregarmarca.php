@@ -22,7 +22,7 @@
                 $agregar=$DB_con->prepare('INSERT INTO marca(marca,estado_marca) VALUES(:marca, :estado_marca)');
                 $agregar->bindParam(':marca', $marca);
                 $agregar->bindParam(':estado_marca', $estado);
-    
+
                 try {
                     if ($agregar->execute()) {
                         session_start();

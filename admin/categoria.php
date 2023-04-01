@@ -195,3 +195,14 @@ if (isset($_SESSION['categoria'])) {
     </script>";
     unset($_SESSION['categoria']);
 }
+
+if (isset($_SESSION['categoriaRepetida'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Esta Categoría ya existe'
+        });
+    </script>";
+    unset($_SESSION['categoriaRepetida']);
+}
