@@ -64,9 +64,18 @@ include './Carro/carrito.php';
         <div class="row ">
             <!-- card 1 -->
             <?php
-      $ayudante = 0;
-      foreach ($productos as $key => $producto) {
-        if ($key < 3) {
+        $ayudante = 0;
+        $limite=3;
+        foreach ($productos as $key => $producto) {
+        $consultaM = $DB_con->prepare('SELECT * FROM marca WHERE id_marca=:id');
+        $consultaM->bindParam(":id", $producto["id_marca"]);
+        $consultaM->execute();
+        $marca = $consultaM->fetch(PDO::FETCH_ASSOC);
+        if($producto["estado_producto"]==0 || $marca["estado_marca"]==0){
+            $limite++;
+            continue;
+        }else {
+            if ($key < $limite) {
       ?>
             <div class="col-md-4 mt-md-4 mb-md-4">
                 <div class="card">
@@ -94,9 +103,10 @@ include './Carro/carrito.php';
                 </div>
             </div>
             <?php
-        }
-      }
-      ?>
+                }
+            }
+            }
+            ?>
             <!-- carusel -->
 
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
@@ -128,7 +138,14 @@ include './Carro/carrito.php';
             <!-- card 6 -->
             <?php
       foreach ($productos as $key => $producto) {
-        if ($key >= 3) {
+        $consultaM = $DB_con->prepare('SELECT * FROM marca WHERE id_marca=:id');
+        $consultaM->bindParam(":id", $producto["id_marca"]);
+        $consultaM->execute();
+        $marca = $consultaM->fetch(PDO::FETCH_ASSOC);
+        if ($producto["estado_producto"]==0 || $marca["estado_marca"]==0){
+            continue;
+        }else {
+        if ($key >= $limite) {
 
       ?>
             <div class="col-md-4 mt-md-4 mb-md-4">
@@ -162,9 +179,10 @@ include './Carro/carrito.php';
                 </div>
             </div>
             <?php
-        }
-      }
-      ?>
+                }
+            }
+            }
+            ?>
         </div>
     </div>
 

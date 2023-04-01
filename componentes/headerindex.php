@@ -25,6 +25,7 @@
                             <div class="dropdown-menu">
                                 <?php
                                 foreach ($categorias as $key => $categoria) {
+                                    if ($categoria["estado_categoria"]==1){
                             ?>
                                 <ul>
                                     <li><a class="dropdown-item"
@@ -32,8 +33,11 @@
                                     </li>
                                 </ul>
                                 <?php
+                                    } else {
+                                        continue;
+                                    }
                                 }
-                            ?>
+                                ?>
 
                             </div>
                         </div>

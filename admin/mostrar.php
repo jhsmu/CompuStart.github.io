@@ -2,7 +2,7 @@
 session_start();
 require_once '../database/conexion.php';
 
-$consulta1=$DB_con->prepare('SELECT * FROM producto ORDER BY id_producto DESC'); 
+$consulta1=$DB_con->prepare('SELECT * FROM producto'); 
 $consulta1->execute();
 $productos=$consulta1->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -55,11 +55,15 @@ $productos=$consulta1->fetchAll(PDO::FETCH_ASSOC);
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
                         <div class="container">
                             <?php
-                                $imite = 6;
+                                $limite = 6;
                                 $principio = 3;
                                 $numero=1;
                                 foreach ($productos as $key => $producto) {
-                                    if ($producto["estado_producto"]==0) {
+                                    $consultaM = $DB_con->prepare('SELECT * FROM marca WHERE id_marca=:id');
+                                    $consultaM->bindParam(":id", $producto["id_marca"]);
+                                    $consultaM->execute();
+                                    $marca = $consultaM->fetch(PDO::FETCH_ASSOC);
+                                    if ($producto["estado_producto"]==0 || $marca["estado_marca"]==0) {
                                         $principio++;
                                         $limite++;
                                         continue;
@@ -125,7 +129,11 @@ $productos=$consulta1->fetchAll(PDO::FETCH_ASSOC);
                         <div class="container">
                         <?php
                         for ($i = $principio; $i < $limite; $i++) {
-                            if ($productos[$i]["estado_producto"]==0) {
+                            $consultaM = $DB_con->prepare('SELECT * FROM marca WHERE id_marca=:id');
+                            $consultaM->bindParam(":id", $productos[$i]["id_marca"]);
+                            $consultaM->execute();
+                            $marca = $consultaM->fetch(PDO::FETCH_ASSOC);
+                            if ($productos[$i]["estado_producto"]==0 || $marca["estado_marca"]==0) {
                                 $limite++;
                                 continue;
                             } else {
@@ -185,7 +193,11 @@ $productos=$consulta1->fetchAll(PDO::FETCH_ASSOC);
                         <?php
                         $limite2 = $limite + 3;
                         for ($i = $limite; $i < $limite2; $i++) {
-                            if ($productos[$i]["estado_producto"]==0) {
+                            $consultaM = $DB_con->prepare('SELECT * FROM marca WHERE id_marca=:id');
+                            $consultaM->bindParam(":id", $productos[$i]["id_marca"]);
+                            $consultaM->execute();
+                            $marca = $consultaM->fetch(PDO::FETCH_ASSOC);
+                            if ($productos[$i]["estado_producto"]==0 || $marca["estado_marca"]==0) {
                                 $limite2++;
                                 continue;
                             } else {

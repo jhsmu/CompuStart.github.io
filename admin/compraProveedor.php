@@ -118,6 +118,7 @@ if (isset($_POST["producto"])) {
                                                         </option>
                                                         <?php
                                                     foreach ($proveedores as $key => $proveedor) {
+                                                        if ($proveedor["estado_proveedor"]==1) {
                                                         if (isset($_SESSION["id_proveedor"]) && $_SESSION["id_proveedor"]==$proveedor["id_proveedor"]){
                                                 ?>
                                                         <option value="<?php echo $proveedor["id_proveedor"] ?>"
@@ -129,7 +130,10 @@ if (isset($_POST["producto"])) {
                                                             <?php echo $proveedor["proveedor"] ?></option>
                                                         <?php
                                                     }
+                                                    } else {
+                                                        continue;
                                                     }
+                                                }
                                                 ?>
                                                     </select>
                                                     <div
@@ -157,6 +161,7 @@ if (isset($_POST["producto"])) {
                                                         </option>
                                                         <?php
                                                     foreach ($categorias as $key => $categoria) {
+                                                        if ($categoria["estado_categoria"]==1){
                                                         if (isset($_SESSION["id_categoria"]) && $_SESSION["id_categoria"]==$categoria["id_categoria"]){
                                                             ?>
                                                         <option value="<?php echo $categoria["id_categoria"] ?>"
@@ -168,7 +173,10 @@ if (isset($_POST["producto"])) {
                                                             <?php echo $categoria["categoria"] ?></option>
                                                         <?php
                                                                 }
+                                                                } else {
+                                                                    continue;
                                                                 }
+                                                            }
                                                             ?>
                                                     </select>
                                                     <button type="submit" id="boton" hidden>enviar</button>
@@ -199,16 +207,24 @@ if (isset($_POST["producto"])) {
                                                     <option value="" selected type="hidden">Selecciona un producto</option>
                                                     <?php
                                                     foreach ($_SESSION["productos"] as $key => $producto) {
-                                                        if (isset($_SESSION["id_producto"]) && $_SESSION["id_producto"]==$producto["id_producto"]){
+                                                        $query = $connection->prepare("SELECT * FROM marca WHERE id_marca=:id"); 
+                                                        $query->bindParam(":id", $producto["id_marca"]);
+                                                        $query->execute();
+                                                        $marca = $query->fetch(PDO::FETCH_ASSOC);
+                                                        if ($producto["estado_producto"]==0 || $marca["estado_marca"]==0) {
+                                                            continue;
+                                                        }else{
+                                                            if (isset($_SESSION["id_producto"]) && $_SESSION["id_producto"]==$producto["id_producto"]){
                                                 ?>
                                                     <option value="<?php echo $producto["id_producto"] ?>" selected>
                                                         <?php echo $producto["producto"] ?></option>
                                                     <?php
-                                                        } else {
+                                                            } else {
                                                 ?>
                                                     <option value="<?php echo $producto["id_producto"] ?>">
                                                         <?php echo $producto["producto"] ?></option>
                                                     <?php
+                                                            }
                                                         }
                                                     }
                                                 ?>
