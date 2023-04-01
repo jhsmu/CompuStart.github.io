@@ -218,3 +218,25 @@ if (isset($_SESSION['agregar'])) {
         unset($_SESSION['error']);
     }
 }
+
+if (isset($_SESSION['marcarepetida'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Marca Existente, ingrese una nueva'
+        });
+    </script>";
+    unset($_SESSION['marcarepetida']);
+}
+
+if (isset($_SESSION['marcarepetidaActualizar'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Marca Existente al actualizar, por favor ingrese una que no exista actualmente.'
+        });
+    </script>";
+    unset($_SESSION['marcarepetidaActualizar']);
+}

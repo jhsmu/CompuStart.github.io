@@ -7,7 +7,7 @@
     $connection = $db->connect(); //Creamos la conexión a la BD
 
     // Cuando la conexión está establecida...
-    $consulta = $connection->prepare("SELECT * FROM compra"); // Traduzco mi petición
+    $consulta = $connection->prepare("SELECT *, PROVEEDOR.proveedor AS NombreProveedor, PRODUCTO.producto AS NombreProducto FROM compra INNER JOIN PRODUCTO ON compra.id_producto = PRODUCTO.id_producto INNER JOIN PROVEEDOR ON compra.id_proveedor = PROVEEDOR.id_proveedor"); // Traduzco mi petición
     $consulta->execute(); //Ejecuto mi petición
 
     $compras = $consulta->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
@@ -24,11 +24,14 @@
     <!-- Css -->
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/all.css">
-            <!-- iconos en fontawesome -->
-            <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
+    <!-- iconos en fontawesome -->
+    <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
+    <script src="../js/validaciones.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
     <link rel="icon" type="image/x-icon" href="../img/logo/icono.png">
     <title>Compu_Start: Total Compras</title>
 </head>
@@ -58,74 +61,55 @@
             <!--Main-->
             <main class="bg-white-300 flex-1 p-3 overflow-hidden">
 
+            <div class="flex flex-col">
+                        <!--Grid Form-->
 
-
-                    <!-- /Stats Row Ends Here -->
-
-                    <!-- Card Section Starts Here -->
-                    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
-
-                        <!-- card -->
-
-                        <div class="rounded overflow-hidden shadow bg-white mx-2 w-full">
-                            <div class="px-6 py-2 border-b border-light-grey">
-                                <div class="font-bold text-xl">Total compras</div>
-                            </div>
-                            <div class="rounded overflow-hidden shadow bg-white mx-2 w-full">
-                                <div class="px-6 py-2 border-b border-light-grey">
-                                    <div class="font-bold text-xl">Compras</div>
+                        <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                            <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                                <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+                                    Lista de Compras
                                 </div>
-                                <div class="table-responsive">
-                                    <table class="table text-grey-darkest" id="dataTable">
-                                        <thead class="bg-grey-dark text-white text-normal">
+                                <div class="p-3">
+                                    <table class="table-responsive w-full rounded" id="dataTable">
+                                        <thead>
                                             <tr>
-                                                <th scope="col">Id compra</th>
-                                                <th scope="col">Id proveedor</th>
-                                                <th scope="col">Producto</th>
-                                                <th scope="col">Cantidad</th>
-                                                <th scope="col">Precio</th>
-                                                <th scope="col">Total</th>
-                                                <th scope="col">Fecha</th>
+                                                <th class="border w-1/1 px-4 py-2"># de Compra</th>
+                                                <th class="border w-1/1 px-4 py-2">Proveedor</th>
+                                                <th class="border w-1/1 px-4 py-2">Producto</th>
+                                                <th class="border w-1/1 px-4 py-2">Cantidad</th>
+                                                <th class="border w-1/1 px-4 py-2">Precio</th>
+                                                <th class="border w-1/1 px-4 py-2">Total</th>
+                                                <th class="border w-1/1 px-4 py-2">Fecha</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            foreach ($compras as $key => $compras) {
+                                                foreach ($compras as $key => $compras) {
                                             ?>
-                                                <tr>
-                                                    <td scope="row">
-                                                        <?php echo $compras["id_compra"] . "<br>"; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $compras["id_proveedor"] . "<br>"; ?>
-                                                    </td>
-                                                    <td>
-                                                        poner un inner join para llamar el nombre del producto a partir de la id
-                                                        <?php echo $compras["id_producto"] . "<br>"; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $compras["cantidad"] . "<br>"; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $compras["precio"] . "<br>"; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $compras["total"] . "<br>"; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $compras["fecha"] . "<br>"; ?>
-                                                    </td>
-                                                    
-                                                </tr>
+                                                    <tr>
+                                                        <td class="border px-4 py-2">
+                                                            <?php echo $compras["id_compra"] . "<br>"; ?></td>
+                                                        <td class="border px-4 py-2">
+                                                            <?php echo $compras["NombreProveedor"] . "<br>"; ?></td>
+                                                        <td class="border  px-4 py-2">
+                                                            <?php echo $compras["NombreProducto"] . "<br>"; ?></td>
+                                                        <td class="border w-1/6 px-4 py-2">
+                                                            <?php echo $compras["cantidad"] . "<br>"; ?></td>
+                                                            <td class="border w-1/6 px-4 py-2">
+                                                            $ <?php echo number_format($compras["precio"]) . "<br>"; ?></td>
+                                                            <td class="border w-1/6 px-4 py-2">
+                                                            $ <?php echo number_format($compras["total"]) . "<br>"; ?></td>
+                                                        <td class="border w-1/6 px-4 py-2">
+                                                            <?php echo $compras["fecha"] . "<br>"; ?></td>
+                                                    </tr>
                                             <?php
-                                            }
+                                                }
                                             ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                    </div>
-                </div>
+                        </div>
             </main>
             <!--/Main-->
         </div>
@@ -134,5 +118,14 @@
 </div>
 <script src="../js/main.js"></script>
 </body>
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "language": {
+            "url":"//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+        }
+        });
+    });
+</script>
 
 </html>
