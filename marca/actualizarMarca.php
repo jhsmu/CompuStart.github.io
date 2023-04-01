@@ -1,15 +1,11 @@
 <?php
-    //Para poder usar la clase Database y su función connect
-    require('../database/basededatos.php');
+    error_reporting( ~E_NOTICE ); // avoid notice
+	
+	require_once '../database/conexion.php';
 
-    //Creamos un objeto del tipo Database
-    $db = new Database();
-    $connection = $db->connect(); //Creamos la conexión a la BD
-
-    $consulta = $connection->prepare("SELECT marca FROM marca"); // Traduzco mi petición
-    $consulta->execute(); //Ejecuto mi petición
-
-    $marcas = $consulta->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
+    $consulta=$DB_con->prepare('SELECT marca FROM marca');
+    $consulta->execute();
+    $marcas=$consulta->fetchAll(PDO::FETCH_ASSOC);
 
     if (isset($_POST['id'])) {
         $id = $_POST['id'];
@@ -26,11 +22,12 @@
             } else {
                 $marca = $_POST['marca'];
                 if (isset($marca)){
-                    $query = $connection->prepare("UPDATE marca SET marca=?, estado_marca=? WHERE id_marca=?");// Traduzco mi petición
-                    $actualizar = $query->execute([$marca, $estado, $id]); //Ejecuto mi petición
+                    $actualizar=$DB_con->prepare('UPDATE marca SET marca=:marca WHERE id_marca=:id');
+                    $actualizar->bindParam(':marca', $marca);
+                    $actualizar->bindParam(':id', $id);
 
                     try {
-                        if ($actualizar) {
+                        if ($actualizar->execute()) {
                             session_start();
                             $_SESSION['actualizar_marca'] = 'registro';
                             header("location: ../admin/marca.php");

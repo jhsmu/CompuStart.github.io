@@ -185,6 +185,17 @@ if (isset($_SESSION['actualizar_categoria'])) {
     unset($_SESSION['actualizar_categoria']);
 }
 
+if (isset($_SESSION['actualizar_error'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Categoría no Actualizada'
+        });
+    </script>";
+    unset($_SESSION['actualizar_error']);
+}
+
 if (isset($_SESSION['categoria'])) {
     echo "<script>
     Swal.fire({
@@ -199,10 +210,21 @@ if (isset($_SESSION['categoria'])) {
 if (isset($_SESSION['categoriaRepetida'])) {
     echo "<script>
     Swal.fire({
-        icon: 'success',
-        title: 'Éxito',
+        icon: 'error',
+        title: 'Error',
         text: 'Esta Categoría ya existe'
         });
     </script>";
     unset($_SESSION['categoriaRepetida']);
+}
+
+if (isset($_SESSION['error'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Error al crear esta Categoría.'
+        });
+    </script>";
+    unset($_SESSION['error']);
 }

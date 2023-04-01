@@ -1,26 +1,51 @@
 <?php
-    //Para poder usar la clase Database y su función connect
-    require('../database/basededatos.php');
+    error_reporting( ~E_NOTICE ); // avoid notice
 
-    //Creamos un objeto del tipo Database
-    $db = new Database();
-    $connection = $db->connect(); //Creamos la conexión a la BD
+    require_once '../database/conexion.php';
+
+    $consulta=$DB_con->prepare('SELECT categoria FROM categoria');
+    $consulta->execute();
+    $categorias=$consulta->fetchAll(PDO::FETCH_ASSOC);
 
     if (isset($_POST['id'])) {
         $id = $_POST['id'];
-        $categoria = $_POST['categoria'];
+
         $estado = $_POST["estado_categoria"];
 
-        $query = $connection->prepare("UPDATE categoria SET categoria=?, estado_categoria=? WHERE id_categoria=?");// Traduzco mi petición
-        $actualizar = $query->execute([$categoria, $estado, $id]); //Ejecuto mi petición
-
-        if ($actualizar) {
+        foreach ($categorias as $key => $a) {
+            $categoria = "";
+            if ($_POST['categoria'] === $a['categoria']) {
             session_start();
-            $_SESSION['actualizar_categoria'] = 'registro';
-            header("location: ../admin/categoria.php");
-        } else {
-            echo "<h2> Error al Actualizar <h2>";
+            $_SESSION["categoriaRepetida"] = "categoriarepetida";
+            header('location:../admin/categoria.php');
+            break;
+            } else {
+                $categoria = $_POST['categoria'];
+                if (isset($categoria)){
+                    $actualizar=$DB_con->prepare('UPDATE categoria SET categoria=:categoria WHERE id_categoria=:id');
+                    $actualizar->bindParam(':categoria', $categoria);
+                    $actualizar->bindParam(':id', $id);
+
+                    try {
+                        if ($actualizar->execute()) {
+                            session_start();
+                            $_SESSION['actualizar_categoria'] = 'registro';
+                            header("location: ../admin/categoria.php");
+                            break;
+                        } else {
+                            session_start();
+                            $_SESSION['error'] = 'registro';
+                            header("location: ../admin/categoria.php");
+                            break;  
+                        }
+                    } catch (\Throwable $thd) {
+                        session_start();
+                        $_SESSION['actualizar_error'] = 'registro';
+                        header("location: ../admin/categoria.php");
+                        break;
+                    }
+                    break;
+                    }
+            }
         }
-        echo "<a href='../admin/categoria.php'>Regresar</a>";
     }
-?>

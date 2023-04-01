@@ -1,6 +1,6 @@
 <?php
     error_reporting( ~E_NOTICE ); // avoid notice
-
+	
 	require_once '../database/conexion.php';
 
     $consulta=$DB_con->prepare('SELECT categoria FROM categoria');
@@ -9,15 +9,15 @@
 
     $estado = 1;
 
-    foreach ($categorias as $key => $nombre) {
+    foreach ($categorias as $key => $a) {
         $categoria = "";
-        if ($_POST['categoria'] === $nombre['categoria']) {
+        if ($_POST['categoria'] === $a['categoria']) {
             session_start();
             $_SESSION["categoriaRepetida"] = "categoria repetida";
             header('location:../admin/categoria.php');
             break;
-        } else {
-            $categoria =$_POST["categoria"];
+        } else{
+            $categoria = $_POST['categoria'];
             if (isset($categoria)){
                 $agregar=$DB_con->prepare('INSERT INTO categoria(categoria,estado_categoria) VALUES(:categoria, :estado_categoria)');
                 $agregar->bindParam(':categoria', $categoria);
@@ -32,27 +32,16 @@
                     } else {
                         session_start();
                         $_SESSION['error'] = 'registro';
-                        header("location: ../admin/marca.php");
+                        header("location: ../admin/categoria.php");
                         break;  
                     }
-                } catch (\Throwable $th) {
+                } catch (\Throwable $thd) {
                     session_start();
-                    $_SESSION["marcarepetida"] = "marca repetida";
-                    header('location:../admin/marca.php');
+                    $_SESSION["categoriaRepetida"] = "categoria repetida";
+                    header('location:../admin/categoria.php');
                     break;
                 }
                 break;
             }
         }
-    }
-
-
-
-    if ($agregar->execute()) {
-        session_start();
-        $_SESSION['categoria'] = 'registro';
-        header("location: ../admin/categoria.php");
-    } else {
-        echo '<script> alert("registro incorrecto")</script>';
-        header("location:categoria.php");
     }
