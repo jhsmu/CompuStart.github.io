@@ -67,7 +67,7 @@
                                             <th scope="col" class="text-align: center">Nombre del Cliente</th>
                                             <th scope="col" class="text-align: center">Valor Total</th>
                                             <th scope="col" class="text-align: center">Estado</th>
-                                            <th scope="col" class="text-align: center">Acción</th>
+                                            <th scope="col" class="text-align: center">Detalles</th>
                                         </tr>
                                     </thead>
                                     <?php
@@ -97,7 +97,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./detalleOrden.php?id=<?php echo $orden["id_orden"]; ?>">
-                                                        <i class="fas fa-edit"></i></a>
+                                                    <i class="fas fa-edit"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>

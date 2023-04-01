@@ -16,7 +16,7 @@
     $detalles = $consulta->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
 
     // Cuando la conexión está establecida...
-    $consulta2 = $connection->prepare("SELECT id_orden, cliente, CONCAT(cliente.nombre, ' ', cliente.apellido) AS nombre, total, orden.estado FROM orden INNER JOIN cliente ON orden.cliente = cliente.id WHERE id_orden=:id");// Traduzco mi petición
+    $consulta2 = $connection->prepare("SELECT id_orden, cliente, CONCAT(cliente.nombre, ' ', cliente.apellido) AS nombre, cliente.direccion AS direccion,  cliente.telefono AS telefono, total, orden.estado FROM orden INNER JOIN cliente ON orden.cliente = cliente.id WHERE id_orden=:id");// Traduzco mi petición
     $consulta2->execute(['id' => $id]); //Ejecuto mi petición
 
     $orden = $consulta2->fetch(PDO::FETCH_ASSOC);
@@ -26,6 +26,11 @@
     $consulta3->execute(['id' => $id]); //Ejecuto mi petición
 
     $informacion = $consulta3->fetchALL(PDO::FETCH_ASSOC);
+
+    $consulta4 = $connection->prepare("SELECT orden.estado, condicion FROM orden WHERE id_orden=:id"); // Traduzco mi petición
+    $consulta4->execute(['id' => $id]); //Ejecuto mi petición
+
+    $boton = $consulta4->fetch(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +82,7 @@
                     <!-- información -->
                     <div class="flex flex-col">
                         <div class="rounded overflow-hidden shadow bg-white mx-2 w-full">
-                            <div class="px-6 py-2 border-b border-light-grey">
+                            <div class="px-2 py-3 border-b border-light-grey">
                                 <div class="font-bold text-xl">Detalle de la venta del Cliente</div>
                             </div>
                             <div class="table-responsive">
@@ -113,6 +118,44 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                        <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                            <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+                                Información
+                            </div>
+                                <div class="p-3">
+                                    <div class="flex flex-wrap -mx-3 mb-2">
+                                        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                                            <div class="relative">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="grid-last-name">
+                                                    Nombre
+                                                </label>
+                                            </div>
+                                            <div class="px-6 py-2 border-b border-light-grey">
+                                                <div class="font-bold"><?php echo $orden['nombre']?></div>
+                                            </div>
+                                            <div class="relative">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="grid-last-name">
+                                                    Dirección
+                                                </label>
+                                            </div>
+                                            <div class="px-6 py-2 border-b border-light-grey">
+                                                <div class="font-bold"><?php echo $orden['direccion']?></div>
+                                            </div>
+                                            <div class="relative">
+                                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="grid-last-name">
+                                                    Teléfono
+                                                </label>
+                                            </div>
+                                            <div class="px-6 py-2 border-b border-light-grey">
+                                                <div class="font-bold"><?php echo $orden['telefono']?></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     <br>
@@ -235,39 +278,68 @@
                                 ?>-->
                                     <div class="flex flex-wrap -mx-3 mb-2">
                                         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                                            <label
-                                                class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
-                                                for="grid-last-name">
-                                                Estado
-                                            </label>
+                                            <div class="px-6 py-2 border-b border-light-grey">
+                                                <div class="font-bold text-xl">Estado</div>
+                                            </div>
                                             <div class="relative">
-                                                <select name="estado"
-                                                    class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                    id="grid-state" required>
-                                                    <option selected>Seleccione un estado</option>
-                                                    <?php
-                                                        if ($orden["estado"]==1) {
-                                                    ?>
-                                                    <option value="0">Seleccione una opción</option>
-                                                    <option value="0">Aprobado</option>
-                                                    <option value="1" selected>Esperando</option>
-                                                    <?php
-                                                        }
-                                                    ?>
-                                                </select>
+                                            <?php
+                                                if ($boton['estado'] == 1 and $boton['condicion'] == 0){
+                                            ?>
+                                                    <select name="estado" class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey" id="grid-state" required>
+                                                        <option value="" selected>Seleccione una opción</option>
+                                                        <option value="0">Aprobado</option>
+                                                        <option value="1">Cancelar</option>
+                                                    </select>
+                                            <?php
+                                                }elseif ($boton['estado'] == 0 and $boton['condicion'] == 0) {
+                                            ?>
+                                                    <label
+                                                        class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                        for="grid-last-name">
+                                                        Comprado
+                                                    </label>
+                                            <?php
+                                                }elseif ($boton['condicion'] == 1) {
+                                            ?>
+                                                    <label
+                                                        class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                                                        for="grid-last-name">
+                                                        Cancelado
+                                                    </label>
+                                            <?php
+                                                }
+                                            ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mt-5">
-                                        <input type="text" name="id_orden" id=""
-                                            value="<?php echo $orden["id_orden"] ?>" hidden>
-                                        <button
-                                            class='bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-4 rounded'>
-                                            Actualizar</button>
-                                        <button
-                                            class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'
-                                            type="button"> <a href="./otros.php">Volver</a>
-                                        </button>
+                                        <?php
+                                            if ($boton['estado'] == 1 and $boton['condicion'] == 0){
+                                        ?>
+                                            <input type="text" name="id_orden" id="" value="<?php echo $orden["id_orden"] ?>" hidden>
+                                            <button
+                                                class='bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-4 rounded'>Actualizar</button>
+                                            <button
+                                                class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'
+                                                type="button"> <a href="./otros.php">Volver</a>
+                                            </button>
+                                        <?php
+                                            }elseif ($boton['estado'] == 0 and $boton['condicion'] == 0) {
+                                        ?>
+                                                <button
+                                                    class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'
+                                                    type="button"> <a href="./otros.php">Volver</a>
+                                                </button>
+                                        <?php
+                                            }elseif ($boton['condicion'] == 1) {
+                                        ?>
+                                                <button
+                                                    class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'
+                                                    type="button"> <a href="./otros.php">Volver</a>
+                                                </button>
+                                        <?php
+                                            }
+                                        ?>
                                     </div>
                                 </form>
                             </div>
