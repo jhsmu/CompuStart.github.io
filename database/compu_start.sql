@@ -9,11 +9,11 @@ CREATE TABLE cliente(
     imagen VARCHAR(50) NULL,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
-    tipo_documento VARCHAR(50) NOT NULL,
-    numero_documento INT(12) NOT NULL,
+    tipo_documento VARCHAR(50) NOT NULL UNIQUE,
+    numero_documento INT(12) NOT NULL UNIQUE,
     direccion VARCHAR(60) NOT NULL,
-    telefono VARCHAR(15) NOT NULL,
-    email VARCHAR(60) NOT NULL,
+    telefono VARCHAR(15) NOT NULL UNIQUE,
+    email VARCHAR(60) NOT NULL UNIQUE,
     contrasenia VARCHAR(50) NOT NULL,
     token VARCHAR(45) NULL,
     estado BOOLEAN NOT NULL
@@ -23,14 +23,14 @@ CREATE TABLE administrador(
     id_administrador INT(11) PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
-    email VARCHAR(60) NOT NULL,
+    email VARCHAR(60) NOT NULL UNIQUE,
     contrasenia VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE producto(
     id_producto INT(11) PRIMARY KEY AUTO_INCREMENT,
-    serial VARCHAR(12) NOT NULL,
-    producto VARCHAR(100) NOT NULL,
+    serial VARCHAR(12) NOT NULL UNIQUE,
+    producto VARCHAR(100) NOT NULL UNIQUE,
     descripcion_breve TEXT NOT NULL,
     descripcion TEXT NOT NULL,
     cantidad INT(11) NOT NULL,
@@ -42,11 +42,11 @@ CREATE TABLE producto(
 
 CREATE TABLE proveedor(
     id_proveedor INT(11) PRIMARY KEY AUTO_INCREMENT,
-    proveedor VARCHAR(50) NOT NULL,
-    nit VARCHAR(11) NOT NULL,
-    correo VARCHAR(60) NOT NULL,
-    telefono VARCHAR(15) NOT NULL,
-    direccion_web VARCHAR(60) NOT NULL,
+    proveedor VARCHAR(50) NOT NULL UNIQUE,
+    nit VARCHAR(11) NOT NULL UNIQUE,
+    correo VARCHAR(60) NOT NULL UNIQUE,
+    telefono VARCHAR(15) NOT NULL UNIQUE,
+    direccion_web VARCHAR(60) NOT NULL UNIQUE,
     direccion VARCHAR(100) NOT NULL,
     estado_proveedor BOOLEAN NOT NULL
 );
@@ -59,13 +59,13 @@ CREATE TABLE imagenes(
 
 CREATE TABLE categoria(
     id_categoria INT(11) PRIMARY KEY AUTO_INCREMENT,
-    categoria VARCHAR(50) NOT NULL,
+    categoria VARCHAR(50) NOT NULL UNIQUE,
     estado_categoria BOOLEAN NOT NULL
 );
 
 CREATE TABLE marca(
     id_marca INT(11) PRIMARY KEY AUTO_INCREMENT,
-    marca VARCHAR(50) NOT NULL,
+    marca VARCHAR(50) NOT NULL UNIQUE,
     estado_marca BOOLEAN NOT NULL
 );
 
