@@ -43,6 +43,7 @@
             $cambio->bindParam(':estado', $estado);
             $cambio->bindParam(':detalle', $detalle['id_detalle_orden']);
             $cambio->execute();
+
         }
         
         $cambiar = $DB_con->prepare('UPDATE orden SET estado=:estado WHERE id_orden=:orden');
@@ -61,6 +62,6 @@
         
     } else{
     session_start();
-    $_SESSION['Esperando'] = 'registro';
+    $_SESSION['Cancelado'] = 'registro';
     header("location: ./otros.php");
     }

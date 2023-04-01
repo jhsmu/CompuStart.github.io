@@ -132,15 +132,15 @@ if (isset($_SESSION['Aprobado'])) {
     </script>";
     unset($_SESSION['Aprobado']);
 }
-if (isset($_SESSION['Esperando'])) {
+if (isset($_SESSION['Cancelado'])) {
     echo "<script>
     Swal.fire({
         icon: 'info',
         title: 'En espera',
-        text: 'Esta Orden está en espera'
+        text: 'Esta Orden fue cancelada'
         });
     </script>";
-    unset($_SESSION['Esperando']);
+    unset($_SESSION['Cancelado']);
 }
 if (isset($_SESSION['errorDeAprobar'])) {
     echo "<script>
