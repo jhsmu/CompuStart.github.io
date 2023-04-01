@@ -299,12 +299,12 @@ if (isset($_POST["producto"])) {
                         <!--/Underline form-->
                     </div>
                     <!-- /Cards Section Ends Here -->
-
-
             </div>
             </main>
             <!--/Main-->
         </div>
+    </div>
+</div>
         <!--Footer-->
         <footer class="bg-grey-darkest text-white p-2">
             <div class="flex flex-1 mx-auto">&copy; My Design</div>
