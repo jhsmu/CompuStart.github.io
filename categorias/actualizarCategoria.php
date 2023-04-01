@@ -22,8 +22,9 @@
             } else {
                 $categoria = $_POST['categoria'];
                 if (isset($categoria)){
-                    $actualizar=$DB_con->prepare('UPDATE categoria SET categoria=:categoria WHERE id_categoria=:id');
+                    $actualizar=$DB_con->prepare('UPDATE categoria SET categoria=:categoria, estado_categoria=:estado_categoria WHERE id_categoria=:id');
                     $actualizar->bindParam(':categoria', $categoria);
+                    $actualizar->bindParam(':estado_categoria', $estado);
                     $actualizar->bindParam(':id', $id);
 
                     try {
@@ -38,7 +39,7 @@
                             header("location: ../admin/categoria.php");
                             break;  
                         }
-                    } catch (\Throwable $thd) {
+                    } catch (\Throwable $th) {
                         session_start();
                         $_SESSION['actualizar_error'] = 'registro';
                         header("location: ../admin/categoria.php");

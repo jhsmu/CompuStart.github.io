@@ -35,7 +35,7 @@
                         header("location: ../admin/categoria.php");
                         break;  
                     }
-                } catch (\Throwable $thd) {
+                } catch (\Throwable $th) {
                     session_start();
                     $_SESSION["categoriaRepetida"] = "categoria repetida";
                     header('location:../admin/categoria.php');

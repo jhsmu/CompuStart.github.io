@@ -22,8 +22,9 @@
             } else {
                 $marca = $_POST['marca'];
                 if (isset($marca)){
-                    $actualizar=$DB_con->prepare('UPDATE marca SET marca=:marca WHERE id_marca=:id');
+                    $actualizar=$DB_con->prepare('UPDATE marca SET marca=:marca, estado_marca=:estado_marca WHERE id_marca=:id');
                     $actualizar->bindParam(':marca', $marca);
+                    $actualizar->bindParam(':estado_marca', $estado);
                     $actualizar->bindParam(':id', $id);
 
                     try {
