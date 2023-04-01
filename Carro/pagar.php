@@ -5,6 +5,7 @@
     if ($_POST) {
         $total=0;
         $estado=1;
+        $estado2=0;
         foreach ($_SESSION['carrito'] as $indice => $producto) {
             $total+=$producto['precio']*$producto['cantidad'];
         } 
@@ -19,8 +20,8 @@
 
         foreach ($_SESSION['carrito'] as $indice => $producto) {
             $total_producto=$producto['precio']*$producto['cantidad'];
-            $insertar=$DB_con->prepare('INSERT INTO detalle_orden(cliente,id_orden,id_producto,cantidad_venta,precio_producto,monto_total,estado)
-                                        VALUES(:cliente, :id_orden, :id_producto, :cantidad, :precio, :total, :estado)');
+            $insertar=$DB_con->prepare('INSERT INTO detalle_orden(cliente,id_orden,id_producto,cantidad_venta,precio_producto,monto_total,estado,extra)
+                                        VALUES(:cliente, :id_orden, :id_producto, :cantidad, :precio, :total, :estado, :extra)');
             $insertar->bindParam(':cliente', $_SESSION["id_usuario"]);
             $insertar->bindParam(':id_orden', $idOrden);
             $insertar->bindParam(':id_producto', $producto['id']);
@@ -28,6 +29,7 @@
             $insertar->bindParam(':precio', $producto['precio']);
             $insertar->bindParam(':total', $total_producto);
             $insertar->bindParam(':estado', $estado);
+            $insertar->bindParam(':extra', $estado2);
             $insertar->execute();
 
             $consulta=$DB_con->prepare('SELECT * FROM producto WHERE id_producto=:id');

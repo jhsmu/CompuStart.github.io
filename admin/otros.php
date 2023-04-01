@@ -17,24 +17,25 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter template,free template,admin templates, admin template, admin dashboard, free tailwind templates, tailwind example">
     <!-- Css -->
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/all.css">
-            <!-- iconos en fontawesome -->
-            <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styleadmi.css">
+    <!-- iconos en fontawesome -->
+    <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
     <link rel="icon" type="image/x-icon" href="../img/logo/icono.png">
     <title>Compu_Start: Pedidos</title>
 </head>
 
 <body>
-    
 <!--Container -->
 <div class="mx-auto bg-grey-400">
     <!--Screen-->
@@ -43,8 +44,6 @@
         <header class="bg-nav">
             <?php include("../componentes/headerAdmin.php") ?>
         </header>
-        <!--/Header-->
-
         <div class="flex flex-1">
             <!--Sidebar-->
             <aside id="sidebar" class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
@@ -53,26 +52,15 @@
                     <?php include("../componentes/barralateralAdmin.php") ?>
                 </ul>
             </aside>
-
-            <!--/Sidebar-->
             <!--Main-->
             <main class="bg-white-300 flex-1 p-3 overflow-hidden">
-
-
-
-                    <!-- /Stats Row Ends Here -->
-
-                    <!-- Card Section Starts Here -->
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
-
-                        <!-- card -->
-
                         <div class="rounded overflow-hidden shadow bg-white mx-2 w-full">
                             <div class="px-6 py-2 border-b border-light-grey">
                                 <div class="font-bold text-xl">Pedidos</div>
                             </div>
                             <div class="table-responsive">
-                            <table class="table text-grey-darkest">
+                            <table class="table text-grey-darkest" id="dataTable">
                                     <thead class="bg-grey-dark text-white text-normal">
                                         <tr>
                                             <th scope="col" class="text-align: center"># de Orden</th>
@@ -83,8 +71,7 @@
                                         </tr>
                                     </thead>
                                     <?php
-                                        foreach ($ordenes as $key => $orden) {
-                                            if ($orden['estado'] == 1){
+                                        foreach ($ordenes as $key => $orden){
                                     ?>
                                     <tbody>
                                         <tr>
@@ -98,11 +85,6 @@
                                                 $ <?php echo number_format($orden["total"],2) . "<br>"; ?>
                                             </td>
                                             <td class="text-align: center">
-                                                <?php 
-                                                    if ($orden['estado'] == 1){
-                                                        echo "En proceso <br>"; 
-                                                    }
-                                                ?>
                                             </td>
                                             <td class="text-center">
                                                 <a class="bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="./detalleOrden.php?id=<?php echo $orden["id_orden"]; ?>">
@@ -111,10 +93,8 @@
                                         </tr>
                                     </tbody>
                                     <?php
-                                        } else{
-                                        }
-                                    }
-                                ?>
+                                                }
+                                            ?>
                                 </table>
                             </div>
                         </div>
@@ -126,8 +106,19 @@
     </div>
 
 </div>
-<script src="../js/main.js"></script>
+<script src="../js/main.js">
+    
+</script>
 </body>
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "language": {
+            "url":"//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+        }
+        });
+    });
+</script>
 
 </html>
 <?php 

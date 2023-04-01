@@ -243,11 +243,12 @@
                                             <div class="relative">
                                                 <select name="estado"
                                                     class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
-                                                    id="grid-state">
+                                                    id="grid-state" required>
                                                     <option selected>Seleccione un estado</option>
                                                     <?php
                                                         if ($orden["estado"]==1) {
                                                     ?>
+                                                    <option value="0">Seleccione una opción</option>
                                                     <option value="0">Aprobado</option>
                                                     <option value="1" selected>Esperando</option>
                                                     <?php
