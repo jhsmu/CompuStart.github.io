@@ -32,11 +32,7 @@ include("../editar/conexion.php");
         $estado = $_POST['estado'];
 
         //update
-        $sql = "update cliente set nombre='" . $nombre . "',
-            apellido='" . $apellido . "',
-            direccion='" . $direccion . "',
-            email='" . $email . "',
-            telefono='" . $telefono . "',
+        $sql = "update cliente set
             estado='" . $estado . "'
             where id='" . $id . "'";
 
@@ -99,7 +95,7 @@ include("../editar/conexion.php");
                             <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
                                 <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
                                     <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
-                                        Editar perfil del usuario
+                                        Información del usuario
                                     </div>
                                     <div class="p-3">
                                         <form class="w-full" action="<?= $_SERVER["PHP_SELF"] ?>" method="post">
@@ -116,13 +112,15 @@ include("../editar/conexion.php");
                                                     <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                                                         Nombre(s)
                                                     </label>
-                                                    <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="nombre" id="nombre" onchange="nombre1()" required value="<?php echo $nombre; ?>" placeholder="<?php echo $nombre; ?>">
+                                                    <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"  disabled type="text"  onchange="nombre1()" required value="<?php echo $nombre; ?>" placeholder="<?php echo $nombre; ?>">
+                                                    <input type="text" name="nombre" id="nombre" hidden value="<?php echo $nombre; ?>">
                                                 </div>
                                                 <div class="w-full md:w-1/2 px-3">
                                                     <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                         Apellido(s)
                                                     </label>
-                                                    <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="apellido" id="apellido" onchange="apellido1()" required value="<?php echo $apellido; ?>" placeholder="<?php echo $apellido; ?>">
+                                                    <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" disabled type="text"  onchange="apellido1()" required value="<?php echo $apellido; ?>" placeholder="<?php echo $apellido; ?>">
+                                                    <input type="text" name="apellido " id="apellido" hidden value="<?php echo $apellido; ?>">
                                                 </div>
                                             </div>
                                             <div class="flex flex-wrap -mx-3 mb-6">
@@ -130,13 +128,13 @@ include("../editar/conexion.php");
                                                     <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                                                         Dirección
                                                     </label>
-                                                    <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="direccion" id="direccion" onchange="direccion1()" required value="<?php echo $direccion; ?>" placeholder="<?php echo $direccion; ?>" blocked>
+                                                    <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" disabled type="text" name="direccion" id="direccion" onchange="direccion1()" required value="<?php echo $direccion; ?>" placeholder="<?php echo $direccion; ?>" blocked>
                                                 </div>
                                                 <div class="w-full md:w-1/2 px-3">
                                                     <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                         Número Telefónico
                                                     </label>
-                                                    <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="telefono" id="telefono" onchange="telefono1()" required value="<?php echo $telefono; ?>" placeholder="<?php echo $telefono; ?>" blocked>
+                                                    <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" disabled type="text" name="telefono" id="telefono" onchange="telefono1()" required value="<?php echo $telefono; ?>" placeholder="<?php echo $telefono; ?>" blocked>
                                                 </div>
                                             </div>
                                             <div class="flex flex-wrap -mx-3 mb-6">
@@ -144,7 +142,7 @@ include("../editar/conexion.php");
                                                     <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                                                         Email
                                                     </label>
-                                                    <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="email" id="correo" onchange="ValidacionCorreo()" required value="<?php echo $email; ?>" placeholder="<?php echo $email; ?>" blocked>
+                                                    <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" disabled type="text" name="email" id="correo" onchange="ValidacionCorreo()" required value="<?php echo $email; ?>" placeholder="<?php echo $email; ?>" blocked>
                                                 </div>
                                                 <div class="w-full md:w-1/2 px-3">
                                                     <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
