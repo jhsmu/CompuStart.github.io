@@ -150,13 +150,27 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                             <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                                 Proveedor
                             </label>
-                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="proveedor" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese el nombre del proveedor" required>
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="proveedor" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese el nombre de la empresa" required>
                         </div>
                         <div class="w-full md:w-1/2 px-3">
                             <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
-                                Correo EElectrónico
+                                Correo Electrónico
                             </label>
                             <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="correo" id="correo" type="email" placeholder="Ingrese el Correo" onchange="ValidacionCorreo()" required>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                            <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
+                                Nombre
+                            </label>
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="nombre" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese el nombre" required>
+                        </div>
+                        <div class="w-full md:w-1/2 px-3">
+                            <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                Apellido
+                            </label>
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="apellido" id="nombre" type="text" placeholder="Ingrese el apellido" onchange="NombresNumeros()" required>
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -188,7 +202,7 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                             <label class="block tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
                                 Dirección
                             </label>
-                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="nit" id="nit" type="text" placeholder="Ingrese el nit" required onchange="Dirección()">
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="direccion" id="direccion" type="text" placeholder="Ingrese el nit" required onchange="Dirección()">
                         </div>
                     </div>
                     <div class="mt-5">
