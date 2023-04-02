@@ -1,6 +1,11 @@
 <?php
 session_start();
 include("./editar/conexion.php");
+
+$consulta=$DB_con->prepare('SELECT email FROM cliente');
+$consulta->execute();
+$emails=$consulta->fetchAll(PDO::FETCH_ASSOC);
+
 $id = $_SESSION["id_usuario"];
 error_reporting(0);
 
@@ -22,6 +27,8 @@ error_reporting(0);
     <!-- css cuerpo -->
     <link rel="stylesheet" href="./css/style_cuerpo.css">
     <link rel="stylesheet" href="./css/edit.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
     function confirmar() {
         return confirm('¿Estas seguro de inhabilitar la cuenta?');
@@ -47,13 +54,24 @@ error_reporting(0);
         $telefono = $_POST['telefono'];
         $td = $_POST['tipo'];
         $nro = $_POST['dni'];
-        $email = $_POST['email'];
         $contrasena = $_POST['contrasena'];
         $image = $_POST['imagen_actual']; //Esta variable contiene la imagen actual
 
         $imgFile = $_FILES['imagen']['name']; //FILES contiene la nueva imagen
         $tmp_dir = $_FILES['imagen']['tmp_name'];
         $imgSize = $_FILES['imagen']['size'];
+
+    foreach ($emails as $key => $correo) {
+        $email = "";
+        if ($_POST['email'] === $correo['email']) {
+            echo "<script language='JavaScript'>
+            alert('El correo que está tratando de ingresar ya está en uso, intente con uno nuevo');
+            location.assign('./editar.php');</script>";
+            break;
+        } else{
+             $email = $_POST["email"];
+        }
+    }
 
         if (!empty($imgFile)) { //Si la imagen es seleccionada 
             $upload_dir = 'imagenCliente/'; // upload directory	
@@ -91,8 +109,9 @@ error_reporting(0);
 
         if ($resultado) {
             echo "<script language='JavaScript'>
-                alert('Los datos se actualizaron correctamente');
-                location.assign('./inicio.php');</script>";
+            alert('Los datos se actualizaron correctamente');
+            location.assign('./inicio.php');</script>";
+            
             error_reporting(0);
         } else {
             echo "<script language='JavaScript'>
@@ -149,31 +168,8 @@ error_reporting(0);
                             onchange="apellido1()">
                     </div>
                     <div class="input-box">
-                        <label for="">Tipo de documento</label>
-                        <select name="tipo" required id="">
-                            <option value="">Seleccione Opción</option>
-                            <?php
-                                foreach ($tipo_documento as $key => $TD) {
-                                    if ($TD == $tipo) {
-                                ?>
-                            <option value="<?php echo $TD ?>" selected>
-                                <?php echo $key ?>
-                            </option>
-                            <?php
-                                    } else {
-                                    ?>
-                            <option value="<?php echo $TD ?>">
-                                <?php echo $key ?>
-                            </option>
-                            <?php
-                                    }
-                                }
-                                ?>
-                        </select>
-                    </div>
-                    <div class="input-box">
                         <label for="">Numero de documento</label>
-                        <input type="text" name="dni" id="numero_documento" value="<?php echo $dni ?>" required
+                        <input disabled type="text" name="dni" id="numero_documento" value="<?php echo $dni ?>"
                             onchange="cedula1()">
                     </div>
                     <div class="input-box">
@@ -188,7 +184,7 @@ error_reporting(0);
                     </div>
                     <div class="input-box">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="correo" value="<?php echo $email; ?>" required
+                        <input type="email" name="email" id="correo" value="<?php echo $email; ?>"
                             onchange="ValidacionCorreo()">
                     </div>
                     <div class=" input-box">
