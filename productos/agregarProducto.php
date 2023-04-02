@@ -3,6 +3,48 @@
 	
 	include '../database/conexion.php';
 
+    //Validación de archivos
+    foreach ($_FILES['imagen']['tmp_name'] as $key => $value) { 
+	
+        $imgFile = $_FILES['imagen']['name'][$key];
+        $tmp_dir = $_FILES['imagen']['tmp_name'][$key];
+        $imgSize = $_FILES['imagen']['size'][$key];
+
+        if(empty($imgFile)){
+            header("location:../admin/productos.php?error=Archivo vacio");
+            die();
+        }
+        else
+        {
+            $upload_dir = '../imagenes/'; // upload directory
+    
+            $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
+        
+            // valid image extensions
+            $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'webp'); // valid extensions
+        
+            // rename uploading image
+            $userpic = $imgFile;
+                
+            // allow valid image file formats
+            if(in_array($imgExt, $valid_extensions)){			
+                // Check file size '1MB'
+                if($imgSize < 1500000)				{
+                    continue;
+                }
+                else{
+                    header("location:../admin/productos.php?error=Su archivo es muy grande.");
+                    die();
+                }
+            }
+            else{
+                header("location:../admin/productos.php?alerta=Solo archivos JPG, JPEG, PNG, GIF & WEBP son permitidos.");
+                die();		
+            }
+        }
+        
+    }
+
     //Definimos las variables
     $estado=1;
     $serial=$_POST["serial"];

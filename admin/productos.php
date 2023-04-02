@@ -92,7 +92,7 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
                                     Lista de Productos
                                     <label class="flex justify-end">
-                                        <button data-modal='centeredFormModal' class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="">
+                                        <button id="mas" data-modal='centeredFormModal' class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="">
                                             <i class="fa fa-user-plus"></i>
                                         </button>
                                         Agregar Producto
@@ -223,10 +223,14 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                             <option value="">Seleccione una opción</option>
                                                             <?php
                                                             foreach ($categorias as $key => $categoria) { //Agregamos las categorias a la lista desplegable
+                                                                if ($categoria["estado_categoria"]==0) {
+                                                                    continue;
+                                                                } else {
                                                             ?>
                                                                 <option value="<?php echo $categoria["id_categoria"] ?>">
                                                                     <?php echo $categoria["categoria"] ?></option>
                                                             <?php
+                                                                }
                                                             }
                                                             ?>
                                                         </select>
@@ -246,10 +250,14 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                             <option value="">Seleccione una opción</option>
                                                             <?php
                                                             foreach ($marcas as $key => $marca) {
+                                                                if ($marca["estado_marca"]==0) {
+                                                                    continue;
+                                                                } else {
                                                             ?>
                                                                 <option value="<?php echo $marca["id_marca"] ?>">
                                                                     <?php echo $marca["marca"] ?></option>
                                                             <?php
+                                                                }
                                                             }
                                                             ?>
                                                         </select>
@@ -271,10 +279,14 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                             <option value="">Seleccione una opción</option>
                                                             <?php
                                                             foreach ($proveedores as $key => $proveedor) {
+                                                                if ($proveedor["estado_proveedor"]==0) {
+                                                                    continue;
+                                                                } else {
                                                             ?>
                                                                 <option value="<?php echo $proveedor["id_proveedor"] ?>">
                                                                     <?php echo $proveedor["proveedor"] ?></option>
                                                             <?php
+                                                                }
                                                             }
                                                             ?>
                                                         </select>
@@ -384,6 +396,13 @@ $proveedores = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                 });
                 </script>
                 <script src="../js/main.js"></script>
+                <script>
+                
+                function mas() {
+                    document.getElementById("mas").click();
+                }
+    
+                </script>
 
 </body>
 
@@ -442,5 +461,26 @@ if (isset($_SESSION['doafkoa'])) {
         });
     </script>";
     unset($_SESSION['doafkoa']);
+}
+
+if (isset($_GET["alerta"])){
+    echo "<script>mas()</script>";
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Solo archivos JPG, JPEG, PNG, GIF & WEBP son permitidos.'
+        });
+    </script>";
+}
+if (isset($_GET["error"])){
+    echo "<script>mas()</script>";
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Uno de sus archivos es muy grande.'
+        });
+    </script>";
 }
 ?>
