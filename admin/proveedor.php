@@ -7,7 +7,7 @@ $db = new Database();
 $connection = $db->connect(); //Creamos la conexión a la BD
 
 // Cuando la conexión está establecida...
-$query = $connection->prepare("SELECT * FROM proveedor"); // Traduzco mi petición
+$query = $connection->prepare("SELECT *, CONCAT(nombre, ' ', apellido) AS fullname FROM proveedor"); // Traduzco mi petición
 $query->execute(); //Ejecuto mi petición
 
 $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
@@ -61,25 +61,27 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                 <!--Main-->
                 <!--Main-->
                 <main class="bg-white-500 flex-1 p-3 overflow-hidden">
-                    <!--Grid Form-->
+                <div class="flex flex-col">
+                        <!--Grid Form-->
 
-                    <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
-                        <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
-                            <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
-                                Lista de proveedores
-                                <label class="flex justify-end" for="">
-                                    <button data-modal='centeredFormModal' class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="">
-                                        <i class="fa fa-user-plus"></i>
-                                    </button>
-                                    Agregar Proveedor
-                                </label>
-                            </div>
-                            <div class="p-3">
+                        <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                            <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                                <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+                                    Lista de Proveedores
+                                    <label class="flex justify-end">
+                                        <button data-modal='centeredFormModal' class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="">
+                                            <i class="fa fa-user-plus"></i>
+                                        </button>
+                                        Agregar Proveedor
+                                    </label>
+                                </div>
+                                <div class="p-3">
                                 <table class="table-responsive w-full rounded" id="dataTable">
                                     <thead>
                                         <tr>
                                             <th class="border w-1/5 px-4 py-2" hidden>Id</th>
                                             <th class="border w-1/1 px-4 py-2">Proveedor</th>
+                                            <th class="border w-1/1 px-4 py-2">Nombre Completo</th>
                                             <th class="border w-1/1 px-4 py-2">NIT</th>
                                             <th class="border w-1/1 px-2 py-1">Correo</th>
                                             <th class="border w-1/1 px-2 py-1">Teléfono</th>
@@ -96,6 +98,7 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                                 <tr>
                                                     <td class="border w-1/2  px-4 py-2" hidden><?php echo $proveedor["id_proveedor"] . "<br>"; ?></td>
                                                     <td class="border px-4 py-2"><?php echo $proveedor["proveedor"] . "<br>"; ?></td>
+                                                    <td class="border px-4 py-2"><?php echo $proveedor["fullname"] . "<br>"; ?></td>
                                                     <td class="border px-4 py-2"><?php echo $proveedor["nit"] . "<br>"; ?></td>
                                                     <td class="border  w-1/6 px-1 py-1"><?php echo $proveedor["correo"] . "<br>"; ?></td>
                                                     <td class="border  w-1/1 px-1 py-1"><?php echo $proveedor["telefono"] . "<br>"; ?></td>
@@ -117,14 +120,12 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                         ?>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--/Grid Form-->
+                </main>
             </div>
-            </main>
         </div>
-
     </div>
 
     </div>
@@ -149,13 +150,27 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                             <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
                                 Proveedor
                             </label>
-                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="proveedor" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese el nombre del proveedor" required>
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="proveedor" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese el nombre de la empresa" required>
                         </div>
                         <div class="w-full md:w-1/2 px-3">
                             <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
-                                Correo EElectrónico
+                                Correo Electrónico
                             </label>
                             <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="correo" id="correo" type="email" placeholder="Ingrese el Correo" onchange="ValidacionCorreo()" required>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                            <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
+                                Nombre
+                            </label>
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="nombre" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese el nombre" required>
+                        </div>
+                        <div class="w-full md:w-1/2 px-3">
+                            <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                Apellido
+                            </label>
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="apellido" id="nombre" type="text" placeholder="Ingrese el apellido" onchange="NombresNumeros()" required>
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -187,7 +202,7 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                             <label class="block tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
                                 Dirección
                             </label>
-                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="nit" id="nit" type="text" placeholder="Ingrese el nit" required onchange="Dirección()">
+                            <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="direccion" id="direccion" type="text" placeholder="Ingrese el nit" required onchange="Dirección()">
                         </div>
                     </div>
                     <div class="mt-5">
