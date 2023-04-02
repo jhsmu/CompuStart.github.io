@@ -463,7 +463,7 @@ if (isset($_SESSION['doafkoa'])) {
     unset($_SESSION['doafkoa']);
 }
 
-if (isset($_GET["alerta"])){
+if (isset($_SESSION["alerta"])){
     echo "<script>mas()</script>";
     echo "<script>
     Swal.fire({
@@ -472,8 +472,9 @@ if (isset($_GET["alerta"])){
         text: 'Solo archivos JPG, JPEG, PNG, GIF & WEBP son permitidos.'
         });
     </script>";
+    unset($_SESSION['alerta']);
 }
-if (isset($_GET["error"])){
+if (isset($_SESSION["error"])){
     echo "<script>mas()</script>";
     echo "<script>
     Swal.fire({
@@ -482,5 +483,17 @@ if (isset($_GET["error"])){
         text: 'Uno de sus archivos es muy grande.'
         });
     </script>";
+    unset($_SESSION['error']);
+}
+if (isset($_SESSION["error2"])){
+    echo "<script>mas()</script>";
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Producto Existente',
+        text: 'Por favor, verifique que el serial y nombre del producto no existan.'
+        });
+    </script>";
+    unset($_SESSION['error2']);
 }
 ?>

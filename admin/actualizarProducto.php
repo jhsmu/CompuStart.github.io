@@ -272,4 +272,14 @@ if (isset($_GET["error2"])){
         });
     </script>";
 }
+if (isset($_SESSION["error3"])){
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Producto existente',
+        text: 'Por favor, ingrese un nombre nuevo.'
+        });
+    </script>";
+    unset($_SESSION["error3"]);
+}
 ?>

@@ -33,12 +33,16 @@
                     continue;
                 }
                 else{
-                    header("location:../admin/productos.php?error=Su archivo es muy grande.");
+                    session_start();
+                    $_SESSION["error"]="Su archivo es muy grande.";
+                    header("location:../admin/productos.php");
                     die();
                 }
             }
             else{
-                header("location:../admin/productos.php?alerta=Solo archivos JPG, JPEG, PNG, GIF & WEBP son permitidos.");
+                session_start();
+                $_SESSION["alerta"]="Solo archivos JPG, JPEG, PNG, GIF & WEBP son permitidos.";
+                header("location:../admin/productos.php");
                 die();		
             }
         }
@@ -58,18 +62,26 @@
     $id_proveedor=$_POST["proveedor"];
     $total=$cantidad*$precio;
 
-    //Primero agregamos el producto en la tabla producto
-    $agregar=$DB_con->prepare('INSERT INTO producto(serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca, estado_producto) VALUES(:serial, :producto, :descripcion_breve, :descripcion, :cantidad, :precio, :categoria, :marca, :estado_producto)');
-    $agregar->bindParam(':serial', $serial);
-    $agregar->bindParam(':producto', $producto);
-    $agregar->bindParam(':descripcion_breve', $descripcion_breve);
-    $agregar->bindParam(':descripcion', $descripcion);
-    $agregar->bindParam(':cantidad', $cantidad);
-    $agregar->bindParam(':precio', $precio);
-    $agregar->bindParam(':categoria', $id_categoria);
-    $agregar->bindParam(':marca', $id_marca);
-    $agregar->bindParam(':estado_producto', $estado);
-    $agregar->execute();
+    try {
+        //Primero agregamos el producto en la tabla producto
+        $agregar=$DB_con->prepare('INSERT INTO producto(serial, producto, descripcion_breve, descripcion, cantidad, precio, id_categoria, id_marca, estado_producto) VALUES(:serial, :producto, :descripcion_breve, :descripcion, :cantidad, :precio, :categoria, :marca, :estado_producto)');
+        $agregar->bindParam(':serial', $serial);
+        $agregar->bindParam(':producto', $producto);
+        $agregar->bindParam(':descripcion_breve', $descripcion_breve);
+        $agregar->bindParam(':descripcion', $descripcion);
+        $agregar->bindParam(':cantidad', $cantidad);
+        $agregar->bindParam(':precio', $precio);
+        $agregar->bindParam(':categoria', $id_categoria);
+        $agregar->bindParam(':marca', $id_marca);
+        $agregar->bindParam(':estado_producto', $estado);
+        $agregar->execute(); 
+    } catch (\Throwable $th) {
+        session_start();
+        $_SESSION["error2"]="Producto existente";
+        header("location:../admin/productos.php");
+        die();
+    }
+    
 
     $idProducto=$DB_con->lastInsertId();
 

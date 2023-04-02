@@ -68,13 +68,20 @@
         $descripcion_breve=$_POST["descripcion_breve"];
         $descripcion=$_POST["descripcion"];
         $cantidad=$_POST["cantidad"];
-        $precio=$_POST["precio"]*0.6;
+        $precio=$_POST["precio"];
         $id_categoria=$_POST["categoria"];
         $id_marca=$_POST["marca"];
         $estado=$_POST["estado"];
-
-        $query = $connection->prepare("UPDATE producto SET serial=?, producto=?, descripcion_breve=?, descripcion=?, cantidad=?, precio=?, id_categoria=?, id_marca=?, estado_producto=? WHERE id_producto=?");// Traduzco mi petición
-        $actualizar = $query->execute([$serial, $producto, $descripcion_breve, $descripcion, $cantidad, $precio, $id_categoria, $id_marca, $estado, $id ]); //Ejecuto mi petición
+        
+        try {
+            $query = $connection->prepare("UPDATE producto SET serial=?, producto=?, descripcion_breve=?, descripcion=?, cantidad=?, precio=?, id_categoria=?, id_marca=?, estado_producto=? WHERE id_producto=?");// Traduzco mi petición
+            $actualizar = $query->execute([$serial, $producto, $descripcion_breve, $descripcion, $cantidad, $precio, $id_categoria, $id_marca, $estado, $id ]); //Ejecuto mi petición
+        } catch (\Throwable $th) {
+            session_start();
+            $_SESSION["error3"]="Producto existente";
+            header("location: ../admin/actualizarProducto.php?id=".$id."");
+            die();
+        }
 
         if ($actualizar) {
             session_start();
