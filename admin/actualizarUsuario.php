@@ -176,7 +176,6 @@ include("../editar/conexion.php");
                                                 <div class="mt-5">
                                                     <button class='bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-4 rounded' type="submit" name="enviar" value="ACTUALIZAR"> Actualizar</button>
                                                     <button class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded' type="button"> <a href="./usuario.php">Volver</a>
-
                                                     </button>
                                                 </div>
                                             </div>
