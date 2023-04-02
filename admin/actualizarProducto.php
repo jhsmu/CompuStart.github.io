@@ -25,6 +25,12 @@ $consulta2 = $DB_con->prepare('SELECT * FROM marca');
 $consulta2->execute();
 $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
 
+//Consultamos para obtener las imagenes
+$consulta3 = $DB_con->prepare('SELECT * FROM imagenes WHERE producto_id=:producto');
+$consulta3->bindParam(":producto", $id);
+$consulta3->execute();
+$imagenes = $consulta3->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +87,7 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                     Actualizar Producto
                                 </div>
                                 <div class="p-3">
-                                    <form class="w-full" action="../productos/actualizarProducto.php" method="post">
+                                    <form class="w-full" action="../productos/actualizarProducto.php" method="post" enctype="multipart/form-data">
                                         <div class="flex flex-wrap -mx-3 mb-6">
                                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0" hidden>
                                                 <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
@@ -205,6 +211,21 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
                                                 </div>
                                             </div>
                                         </div>
+                                        
+                                        <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+                                            Imagenes
+                                        </div>
+                                        <?php
+                                            foreach ($imagenes as $key => $imagen) {
+                                        ?>
+                                        <div>
+                                            <img src="../imagenes/<?php echo $imagen["url"] ?>" alt="">
+                                            <input type="file" name="imagen[]" multiple accept="image/*">
+                                        </div>
+                                        <?php
+                                            }
+                                        ?>
+                                        
                                         <div class="mt-5">
                                             <button class='bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-4 rounded'> Actualizar</button>
                                             <button class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded' type="button"> <a href="./productos.php">Volver</a>
@@ -227,7 +248,28 @@ $marcas = $consulta2->fetchAll(PDO::FETCH_ASSOC);
     <script src="../js/validaciones.js"></script>
     <script src="../js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
+    
 
 </body>
 
 </html>
+<?php
+if (isset($_GET["alerta2"])){
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Solo archivos JPG, JPEG, PNG, GIF & WEBP son permitidos.'
+        });
+    </script>";
+}
+if (isset($_GET["error2"])){
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Su archivo es muy grande.'
+        });
+    </script>";
+}
+?>
