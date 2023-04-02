@@ -247,7 +247,7 @@ if (isset($_SESSION['actualizar'])) {
     unset($_SESSION['actualizar']);
 }
 
-if (isset($_SESSION['proveedor'])) {
+if (isset($_SESSION['proveedorExitoso'])) {
     echo "<script>
     Swal.fire({
         icon: 'success',
@@ -255,7 +255,7 @@ if (isset($_SESSION['proveedor'])) {
         text: 'Proveedor agregado'
         });
     </script>";
-    unset($_SESSION['proveedor']);
+    unset($_SESSION['proveedorExitoso']);
 }
 
 if (isset($_SESSION['error_actualizar'])) {
@@ -278,5 +278,71 @@ if (isset($_SESSION['proveedor_error'])) {
         });
     </script>";
     unset($_SESSION['proveedor_error']);
+}
+
+if (isset($_SESSION['proveedorRepetido'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'info',
+        title: 'Proveedor',
+        text: 'Proveedor Repetido'
+        });
+    </script>";
+    unset($_SESSION['proveedorRepetido']);
+}
+
+if (isset($_SESSION['nombreproveedor'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'info',
+        title: 'Proveedor',
+        text: 'Proveedor ya existe'
+        });
+    </script>";
+    unset($_SESSION['nombreproveedor']);
+}
+
+if (isset($_SESSION['nitRepetido'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'info',
+        title: 'NIT',
+        text: 'Nit Repetido'
+        });
+    </script>";
+    unset($_SESSION['nitRepetido']);
+}
+
+if (isset($_SESSION['correotRepetido'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'info',
+        title: 'Correo',
+        text: 'Correo Repetido'
+        });
+    </script>";
+    unset($_SESSION['correotRepetido']);
+}
+
+if (isset($_SESSION['telefonotRepetido'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'info',
+        title: 'Proveedor',
+        text: 'Proveedor Repetido'
+        });
+    </script>";
+    unset($_SESSION['telefonotRepetido']);
+}
+
+if (isset($_SESSION['correotRepetido'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'info',
+        title: 'Proveedor',
+        text: 'Proveedor Repetido'
+        });
+    </script>";
+    unset($_SESSION['correotRepetido']);
 }
 ?>
