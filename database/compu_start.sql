@@ -43,6 +43,8 @@ CREATE TABLE producto(
 CREATE TABLE proveedor(
     id_proveedor INT(11) PRIMARY KEY AUTO_INCREMENT,
     proveedor VARCHAR(50) NOT NULL UNIQUE,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
     nit VARCHAR(11) NOT NULL UNIQUE,
     correo VARCHAR(60) NOT NULL UNIQUE,
     telefono VARCHAR(15) NOT NULL UNIQUE,
@@ -165,10 +167,10 @@ INSERT INTO administrador (nombre, apellido, email, contrasenia) VALUES
 ('Oswaldo', 'Natera', 'administrador6@gmail.com', 'Administrador12345'),
 ('Diego', 'Montoya', 'administrador8@gmail.com', 'Administrador12345');
 
-INSERT INTO proveedor (proveedor, nit, correo, telefono, direccion_web, direccion, estado_proveedor) VALUES
-('Intel®', '9010914222', 'investor.relations@intel.com', '6042991366', 'https://www.intel.la/', 'Calle 6 Sur 70-215 AP 803 Antioquia, Medellín', '1'),
-('AMD', '9011344702', 'contactanos@compumax.info', '3202429095', 'https://www.amd.com/', 'Carrera 106 N 15-25 Bodega 99 Manzana 15 - Bogotá,Cundinamarca', '1'),
-('NVIDIA GeForce', '901055239', 'contacto@clonesyperifericos.com', '3044544169', 'https://www.nvidia.com/', 'Calle 35 #80D-65 Edf. INTEL', '1');
+INSERT INTO proveedor (proveedor, nombre, apellido, nit, correo, telefono, direccion_web, direccion, estado_proveedor) VALUES
+('Intel®', 'Oscar', 'González', '9010914222', 'investor.relations@intel.com', '6042991366', 'https://www.intel.la/', 'Calle 6 Sur 70-215 AP 803 Antioquia, Medellín', '1'),
+('AMD', 'Mauricio', 'Pineda', '9011344702', 'contactanos@compumax.info', '3202429095', 'https://www.amd.com/', 'Carrera 106 N 15-25 Bodega 99 Manzana 15 - Bogotá,Cundinamarca', '1'),
+('NVIDIA GeForce', 'Santiago', 'Buenaventura', '901055239', 'contacto@clonesyperifericos.com', '3044544169', 'https://www.nvidia.com/', 'Calle 35 #80D-65 Edf. INTEL', '1');
 
 INSERT INTO marca (marca, estado_marca) VALUES
 ('LG', '1'), 

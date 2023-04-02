@@ -51,18 +51,19 @@ if (isset($_POST["producto"])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Css -->
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/all.css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styleadmi.css">
     <!-- iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
-    <!-- Sweetalert -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Compras Proveedor</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="../img/logo/icono.png">
+    <title>Compu_Start: Compras Proveedor</title>
 </head>
 
 <body>
@@ -72,8 +73,8 @@ if (isset($_POST["producto"])) {
         <div class="min-h-screen flex flex-col">
             <!--Header Section Starts Here-->
             <header class="bg-nav">
-                <?php include("../componentes/headerAdmin.php") ?>
-            </header>
+            <?php include("../componentes/headerAdmin.php") ?>
+        </header>
             <!--/Header-->
 
             <div class="flex flex-1">
@@ -346,9 +347,6 @@ if (isset($_POST["producto"])) {
         document.getElementById("boton2").click();
     }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </body>
 
 </html>

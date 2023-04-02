@@ -7,7 +7,7 @@ $db = new Database();
 $connection = $db->connect(); //Creamos la conexión a la BD
 
 // Cuando la conexión está establecida...
-$query = $connection->prepare("SELECT * FROM proveedor"); // Traduzco mi petición
+$query = $connection->prepare("SELECT *, CONCAT(nombre, ' ', apellido) AS fullname FROM proveedor"); // Traduzco mi petición
 $query->execute(); //Ejecuto mi petición
 
 $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
@@ -61,25 +61,27 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                 <!--Main-->
                 <!--Main-->
                 <main class="bg-white-500 flex-1 p-3 overflow-hidden">
-                    <!--Grid Form-->
+                <div class="flex flex-col">
+                        <!--Grid Form-->
 
-                    <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
-                        <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
-                            <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
-                                Lista de proveedores
-                                <label class="flex justify-end" for="">
-                                    <button data-modal='centeredFormModal' class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="">
-                                        <i class="fa fa-user-plus"></i>
-                                    </button>
-                                    Agregar Proveedor
-                                </label>
-                            </div>
-                            <div class="p-3">
+                        <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                            <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                                <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+                                    Lista de Proveedores
+                                    <label class="flex justify-end">
+                                        <button data-modal='centeredFormModal' class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="">
+                                            <i class="fa fa-user-plus"></i>
+                                        </button>
+                                        Agregar Proveedor
+                                    </label>
+                                </div>
+                                <div class="p-3">
                                 <table class="table-responsive w-full rounded" id="dataTable">
                                     <thead>
                                         <tr>
                                             <th class="border w-1/5 px-4 py-2" hidden>Id</th>
                                             <th class="border w-1/1 px-4 py-2">Proveedor</th>
+                                            <th class="border w-1/1 px-4 py-2">Nombre Completo</th>
                                             <th class="border w-1/1 px-4 py-2">NIT</th>
                                             <th class="border w-1/1 px-2 py-1">Correo</th>
                                             <th class="border w-1/1 px-2 py-1">Teléfono</th>
@@ -96,6 +98,7 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                                 <tr>
                                                     <td class="border w-1/2  px-4 py-2" hidden><?php echo $proveedor["id_proveedor"] . "<br>"; ?></td>
                                                     <td class="border px-4 py-2"><?php echo $proveedor["proveedor"] . "<br>"; ?></td>
+                                                    <td class="border px-4 py-2"><?php echo $proveedor["fullname"] . "<br>"; ?></td>
                                                     <td class="border px-4 py-2"><?php echo $proveedor["nit"] . "<br>"; ?></td>
                                                     <td class="border  w-1/6 px-1 py-1"><?php echo $proveedor["correo"] . "<br>"; ?></td>
                                                     <td class="border  w-1/1 px-1 py-1"><?php echo $proveedor["telefono"] . "<br>"; ?></td>
@@ -117,14 +120,12 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                         ?>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--/Grid Form-->
+                </main>
             </div>
-            </main>
         </div>
-
     </div>
 
     </div>
