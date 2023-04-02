@@ -74,8 +74,8 @@
         $estado=$_POST["estado"];
         
         try {
-            $query = $connection->prepare("UPDATE producto SET serial=?, producto=?, descripcion_breve=?, descripcion=?, cantidad=?, precio=?, id_categoria=?, id_marca=?, estado_producto=? WHERE id_producto=?");// Traduzco mi petición
-            $actualizar = $query->execute([$serial, $producto, $descripcion_breve, $descripcion, $cantidad, $precio, $id_categoria, $id_marca, $estado, $id ]); //Ejecuto mi petición
+            $query = $connection->prepare("UPDATE producto SET producto=?, descripcion_breve=?, descripcion=?, cantidad=?, precio=?, id_categoria=?, id_marca=?, estado_producto=? WHERE id_producto=?");// Traduzco mi petición
+            $actualizar = $query->execute([$producto, $descripcion_breve, $descripcion, $cantidad, $precio, $id_categoria, $id_marca, $estado, $id ]); //Ejecuto mi petición
         } catch (\Throwable $th) {
             session_start();
             $_SESSION["error3"]="Producto existente";

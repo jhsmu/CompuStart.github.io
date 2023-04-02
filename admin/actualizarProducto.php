@@ -82,12 +82,12 @@ $imagenes = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                         <!--Grid Form-->
 
                         <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
-                            <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                            <div class="mb-2 border-solid border-grey-light rounded border shadow-sm w-full md:w-1/2 lg:w-1/2">
                                 <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
                                     Actualizar Producto
                                 </div>
                                 <div class="p-3">
-                                    <form class="w-full" action="../productos/actualizarProducto.php" method="post" enctype="multipart/form-data">
+                        <form class="w-full" action="../productos/actualizarProducto.php" method="post" enctype="multipart/form-data">
                                         <div class="flex flex-wrap -mx-3 mb-6">
                                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0" hidden>
                                                 <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
@@ -99,7 +99,7 @@ $imagenes = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                     Serial
                                                 </label>
-                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="serial" id="serial" value="<?php echo $producto['serial']; ?>" placeholder="<?php echo $producto['serial']; ?>" required onchange="Serial1()">
+                                                <input class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="serial" id="serial" disabled value="<?php echo $producto['serial']; ?>" placeholder="<?php echo $producto['serial']; ?>" required onchange="Serial1()">
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -211,32 +211,43 @@ $imagenes = $consulta3->fetchAll(PDO::FETCH_ASSOC);
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
-                                            Imagenes
-                                        </div>
-                                        <?php
-                                            foreach ($imagenes as $key => $imagen) {
-                                        ?>
-                                        <div>
-                                            <img src="../imagenes/<?php echo $imagen["url"] ?>" alt="">
-                                            <input type="file" name="imagen[]" multiple accept="image/*">
-                                        </div>
-                                        <?php
-                                            }
-                                        ?>
-                                        
                                         <div class="mt-5">
                                             <button class='bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-4 rounded'> Actualizar</button>
                                             <button class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded' type="button"> <a href="./productos.php">Volver</a>
                                             </button>
                                         </div>
-                                    </form>
                                 </div>
                             </div>
+
+                            <div class="mb-2 md:mx-2 lg:mx-2 border-solid border-gray-200 rounded border shadow-sm w-full md:w-1/2 lg:w-1/2">
+                            <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+                            Imagenes
+                            </div>
+                            <div class="p-3">
+                        
+                                            
+                                    <?php
+                                            foreach ($imagenes as $key => $imagen) {
+                                        ?>
+                                        <div class="max-w-screen-lg w-full lg:flex mx-5">
+                                        <div>
+                                            <img src="../imagenes/<?php echo $imagen["url"] ?>" style="height: 150px; width: 120px;" alt="">
+                                        </div>
+                                        <div class="mt-16 ml-5">
+                                        <input type="file" name="imagen[]" multiple accept="image/*">
+                                        </div>
+                                        </div>
+                                        <?php
+                                            }
+                                        ?>
+
+                        </form>
+                            </div>
+                        </div>
+                    </div>
                         </div>
                         <!--/Grid Form-->
-                    </div>
+
                 </main>
                 <!--/Main-->
             </div>
@@ -271,15 +282,5 @@ if (isset($_GET["error2"])){
         text: 'Su archivo es muy grande.'
         });
     </script>";
-}
-if (isset($_SESSION["error3"])){
-    echo "<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Producto existente',
-        text: 'Por favor, ingrese un nombre nuevo.'
-        });
-    </script>";
-    unset($_SESSION["error3"]);
 }
 ?>
