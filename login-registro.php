@@ -251,6 +251,25 @@ if (isset($_SESSION["IngresoForsozo"])) {
         </script>');
         session_destroy();
     }
+    if (isset($_SESSION["cedulaRepetida"])) {
+        echo ('<script>Swal.fire({
+            title: "Cédula repetida",
+            text: "La cedula que intenta ingresar esta repetido",
+            icon: "info" 
+        });
+        </script>');
+        session_destroy();
+    }
+
+    if (isset($_SESSION["telefonoRepetido"])) {
+        echo ('<script>Swal.fire({
+            title: "Télefono repetido",
+            text: "El télefono que intenta ingresar esta repetido",
+            icon: "info" 
+        });
+        </script>');
+        session_destroy();
+    }
 
     if (isset($_SESSION["Sesion_no_ini"])) {
         echo ('<script>Swal.fire({
@@ -276,6 +295,14 @@ if (isset($_SESSION["IngresoForsozo"])) {
         echo ('<script>Swal.fire({
             title: "No has iniciado sesion",
             text: "Para poder proceder con la compra tienes que inciar sesión",
+            icon: "info" 
+        });
+        </script>');
+    }
+    if (isset($_SESSION["registro"])) {
+        echo ('<script>Swal.fire({
+            title: "Exito!",
+            text: "Ya puede iniciar sesión",
             icon: "info" 
         });
         </script>');
