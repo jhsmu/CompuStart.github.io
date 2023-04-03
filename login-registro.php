@@ -34,6 +34,57 @@ error_reporting(0);
         <div class="container" id="main">
             <!-- registrar -->
             <div class="sign-up">
+                <?php
+                    if (isset($_GET["nombre"])) {
+                ?>
+                <form action="./validaciones/agregarClientes.php" method="post">
+                    <h1>Crear Una Cuenta</h1>
+                    <div class="social-container">
+                        <a href="" class="social"><i class="fab fa-facebook"></i></a>
+                        <a href="" class="social"><i class="fab fa-instagram"></i></a>
+                        <a href="" class="social"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    <p>Rellene todos los campos</p>
+                    <input value="<?php echo $_GET["nombre"] ?>" autocomplete="on" onchange="nombre1()" type="text" name="nombre" id="nombre"
+                        placeholder="Nombres" required>
+                    <input value="<?php echo $_GET["apellido"] ?>" autocomplete="on" onchange="apellido1()" type="text" name="apellido" id="apellido"
+                        placeholder="Apellidos" required>
+                    <select name="tipo_documento" required>
+                        <option value="">Selecionar Opción</option>
+                        <option value="Tarjeta de Identidad">T.I</option>
+                        <option value="Cédula de Ciudadanía">C.C</option>
+                        <option value="Cedula de Extranjería">C.E</option>
+                    </select>
+                    <input value="<?php echo $_GET["documento"] ?>" type="text" name="numero_documento" id="numero_documento" onchange="cedula1()"
+                        placeholder="Numero De Documento" required>
+                    <input value="<?php echo $_GET["direccion"] ?>" autocomplete="on" onchange="direccion1()" type="text" name="direccion" id="direccion"
+                        placeholder="Dirección" required>
+                    <input value="<?php echo $_GET["tel"] ?>" autocomplete="on" onchange="telefono1()" type="number" name="telefono" id="telefono"
+                        inputmode="tel" placeholder="Numero Telefónico" required>
+                    <input value="<?php echo $_GET["correo"] ?>" autocomplete="on" onchange="ValidacionCorreo()" type="email" name="email_registro"
+                        id="correo" placeholder="Correo" required>
+                    <input value="<?php echo $_GET["contrasena"] ?>" onchange="contraseña()" type="password" name="clave" id="clave"
+                        placeholder="Ingresar su clave" required>
+                    <span>
+                        <i class="fa fa-eye" style="color:#D8D8D8" id="eye"></i>
+                    </span>
+                    <input value="<?php echo $_GET["contrasena"] ?>" onchange="verificarContraseña()" type="password" name="clave_c" id="clave_c"
+                        placeholder="Confirma su clave" required>
+                    <span class="eyes">
+                        <i class="fa fa-eye" style="color:#D8D8D8" id="eye_c"></i>
+                    </span>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Acepto Términos Y Condiciones
+                        </label>
+                    </div>
+                    <button name="crear" type="submit">Crear</button>
+                    <br><br>
+                </form>
+                <?php
+                    } else {
+                ?>
                 <form action="./validaciones/agregarClientes.php" method="post">
                     <h1>Crear Una Cuenta</h1>
                     <div class="social-container">
@@ -79,6 +130,9 @@ error_reporting(0);
                     <button name="crear" type="submit">Crear</button>
                     <br><br>
                 </form>
+                <?php
+                    }
+                ?>
             </div>
 
             <!-- iniciar sesión -->
@@ -189,6 +243,10 @@ function mostrarinicio() {
         eye_inicio.style.color = "#D8D8D8"
     }
 }
+
+function click() {
+    document.getElementById("signUp").click();
+}
 </script>
 
 <?php
@@ -243,6 +301,7 @@ if (isset($_SESSION["IngresoForsozo"])) {
     }
 
     if (isset($_SESSION["emailRepetido"])) {
+        echo "<script>click()</script>";
         echo ('<script>Swal.fire({
             title: "Email repetido",
             text: "El email que intenta ingresar esta repetido",
@@ -252,6 +311,7 @@ if (isset($_SESSION["IngresoForsozo"])) {
         session_destroy();
     }
     if (isset($_SESSION["cedulaRepetida"])) {
+        echo "<script>click()</script>";
         echo ('<script>Swal.fire({
             title: "Cédula repetida",
             text: "La cedula que intenta ingresar esta repetido",
@@ -262,6 +322,7 @@ if (isset($_SESSION["IngresoForsozo"])) {
     }
 
     if (isset($_SESSION["telefonoRepetido"])) {
+        echo "<script>click()</script>";
         echo ('<script>Swal.fire({
             title: "Télefono repetido",
             text: "El télefono que intenta ingresar esta repetido",
@@ -303,7 +364,7 @@ if (isset($_SESSION["IngresoForsozo"])) {
         echo ('<script>Swal.fire({
             title: "Exito!",
             text: "Ya puede iniciar sesión",
-            icon: "info" 
+            icon: "success" 
         });
         </script>');
         session_destroy();

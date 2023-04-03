@@ -34,15 +34,15 @@ if (isset($_POST["crear"])) {
           if($validando->rowCount() > 0){
             session_start();
             $_SESSION["emailRepetido"] = "registro creado con exito";
-            header("location:../login-registro.php");
+            header("location:../login-registro.php?nombre=".$nombre."&apellido=".$apellido."&correo=".$email."&direccion=".$direccion."&tel=".$telefono."&documento=".$documento."&contrasena=".$contrasena);
           } else if($validando1->rowCount() > 0){
             session_start();
             $_SESSION["cedulaRepetida"] = "registro creado con exito";
-            header("location:../login-registro.php");
+            header("location:../login-registro.php?nombre=".$nombre."&apellido=".$apellido."&correo=".$email."&direccion=".$direccion."&tel=".$telefono."&documento=".$documento."&contrasena=".$contrasena);
           } else if($validando2->rowCount() > 0){
             session_start();
             $_SESSION["telefonoRepetido"] = "registro creado con exito";
-            header("location:../login-registro.php");
+            header("location:../login-registro.php?nombre=".$nombre."&apellido=".$apellido."&correo=".$email."&direccion=".$direccion."&tel=".$telefono."&documento=".$documento."&contrasena=".$contrasena);
           }else{
 
             if (isset($contrasena) and isset($email)) {
