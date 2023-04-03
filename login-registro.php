@@ -111,7 +111,7 @@ error_reporting(0);
                         inputmode="tel" placeholder="Numero Telefónico" required>
                     <input autocomplete="on" onchange="ValidacionCorreo()" type="email" name="email_registro"
                         id="correo" placeholder="Correo" required>
-                    <input onchange="contraseña()" type="password" name="clave" id="clave"
+                    <input data-bs-toggle="popover" data-bs-placement="left" data-bs-trigger="hover focus" data-bs-content="La contraseña debe tener: Una mayuscula, una minuscula, un número y 7 o mas caracteres de longitud" onchange="contraseña()" type="password" name="clave" id="clave"
                         placeholder="Ingresar su clave" required>
                     <span>
                         <i class="fa fa-eye" style="color:#D8D8D8" id="eye"></i>
@@ -197,6 +197,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
 </body>
 
 </html>
+<script>
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+</script>
 <script>
 var eye = document.getElementById('eye');
 var input = document.getElementById('clave');
