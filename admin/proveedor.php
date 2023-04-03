@@ -359,8 +359,8 @@ if (isset($_SESSION['proveedorRepetido'])) {
     echo "<script>
     Swal.fire({
         icon: 'info',
-        title: 'Proveedor Existente',
-        text: 'Por favor, verifique si el proveedor no existe'
+        title: 'Proveedor existente',
+        text: 'Por favor, verifique si el proveedor no existe.'
         });
     </script>";
     unset($_SESSION['proveedorRepetido']);
@@ -379,46 +379,50 @@ if (isset($_SESSION['nombreProveedor'])) {
 }
 
 if (isset($_SESSION['nitRepetido'])) {
+    echo "<script>mas()</script>";
     echo "<script>
     Swal.fire({
         icon: 'info',
-        title: 'NIT',
-        text: 'Nit Repetido'
+        title: 'NIT existente',
+        text: 'Por favor, verifique ingrese otro NIT.'
         });
     </script>";
     unset($_SESSION['nitRepetido']);
 }
 
 if (isset($_SESSION['correotRepetido'])) {
+    echo "<script>mas()</script>";
     echo "<script>
     Swal.fire({
         icon: 'info',
-        title: 'Correo',
-        text: 'Correo Repetido'
+        title: 'Correo existente',
+        text: 'Por favor, ingrese otro correo.'
         });
     </script>";
     unset($_SESSION['correotRepetido']);
 }
 
 if (isset($_SESSION['telefonotRepetido'])) {
+    echo "<script>mas()</script>";
     echo "<script>
     Swal.fire({
         icon: 'info',
-        title: 'Proveedor',
-        text: 'Proveedor Repetido'
+        title: 'Teléfono existente',
+        text: 'Por favor, ingrese otro teléfono.'
         });
     </script>";
     unset($_SESSION['telefonotRepetido']);
 }
 
-if (isset($_SESSION['correotRepetido'])) {
+if (isset($_SESSION['webRepetido'])) {
+    echo "<script>mas()</script>";
     echo "<script>
     Swal.fire({
         icon: 'info',
-        title: 'Proveedor',
-        text: 'Proveedor Repetido'
+        title: 'Sitio web existente',
+        text: 'Por favor, ingrese otro sitio web.'
         });
     </script>";
-    unset($_SESSION['correotRepetido']);
+    unset($_SESSION['webRepetido']);
 }
 ?>
