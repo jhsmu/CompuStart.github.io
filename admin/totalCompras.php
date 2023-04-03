@@ -7,7 +7,7 @@
     $connection = $db->connect(); //Creamos la conexión a la BD
 
     // Cuando la conexión está establecida...
-    $consulta = $connection->prepare("SELECT *, PROVEEDOR.proveedor AS NombreProveedor, PRODUCTO.producto AS NombreProducto FROM compra INNER JOIN PRODUCTO ON compra.id_producto = PRODUCTO.id_producto INNER JOIN PROVEEDOR ON compra.id_proveedor = PROVEEDOR.id_proveedor"); // Traduzco mi petición
+    $consulta = $connection->prepare("SELECT id_compra, PROVEEDOR.proveedor AS NombreProveedor, PRODUCTO.producto AS NombreProducto, compra.cantidad, compra.precio, compra.total, compra.fecha FROM compra INNER JOIN PRODUCTO ON compra.id_producto = PRODUCTO.id_producto INNER JOIN PROVEEDOR ON compra.id_proveedor = PROVEEDOR.id_proveedor"); // Traduzco mi petición
     $consulta->execute(); //Ejecuto mi petición
 
     $compras = $consulta->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que necesito
