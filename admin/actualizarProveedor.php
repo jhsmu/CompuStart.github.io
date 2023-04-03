@@ -80,13 +80,13 @@ $prove = $consulta->fetch(PDO::FETCH_ASSOC);
                                                 <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
                                                     Proveedor
                                                 </label>
-                                                <input onchange="NombresNumeros()" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="proveedor" id="nombre" value="<?php echo $prove['proveedor']; ?>" placeholder="<?php echo $prove['proveedor']; ?>" required>
+                                                <input disabled onchange="NombresNumeros()" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="proveedor" id="nombre" value="<?php echo $prove['proveedor']; ?>" placeholder="<?php echo $prove['proveedor']; ?>" required>
                                             </div>
                                             <div class="w-full md:w-1/2 px-3">
                                                 <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="nit">
                                                     NIT
                                                 </label>
-                                                <input onchange="NIT123()" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="nit" id="nit" value="<?php echo $prove['nit']; ?>" placeholder="<?php echo $prove['nit']; ?>" required>
+                                                <input disabled onchange="NIT123()" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="text" name="nit" id="nit" value="<?php echo $prove['nit']; ?>" placeholder="<?php echo $prove['nit']; ?>" required>
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -108,7 +108,7 @@ $prove = $consulta->fetch(PDO::FETCH_ASSOC);
                                                 <label class="block tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
                                                     Correo Electrónico
                                                 </label>
-                                                <input onchange="ValidacionCorreo()" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="email" name="correo" id="correo" value="<?php echo $prove['correo']; ?>" placeholder="<?php echo $prove['correo']; ?>" required>
+                                                <input disabled onchange="ValidacionCorreo()" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" type="email" name="correo" id="correo" value="<?php echo $prove['correo']; ?>" placeholder="<?php echo $prove['correo']; ?>" required>
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -124,7 +124,7 @@ $prove = $consulta->fetch(PDO::FETCH_ASSOC);
                                                 <label class="block tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-city">
                                                     Dirección Web
                                                 </label>
-                                                <input onchange="PaginaWeb()" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" type="text" name="direccion_web" id="direccion_web" value="<?php echo $prove['direccion_web']; ?>" placeholder="<?php echo $prove['direccion_web']; ?>" required>
+                                                <input disabled onchange="PaginaWeb()" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" type="text" name="direccion_web" id="direccion_web" value="<?php echo $prove['direccion_web']; ?>" placeholder="<?php echo $prove['direccion_web']; ?>" required>
                                             </div>
                                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                                 <label class="block tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-city">
@@ -175,3 +175,16 @@ $prove = $consulta->fetch(PDO::FETCH_ASSOC);
 </body>
 
 </html>
+
+<?php
+    if (isset($_SESSION["tel"])) {
+        echo "<script>
+        Swal.fire({
+            icon: 'info',
+            title: 'Teléfono Registrado',
+            text: 'Por favor, ingrese otro número.'
+            });
+        </script>";
+        unset($_SESSION['tel']);
+    }
+?>

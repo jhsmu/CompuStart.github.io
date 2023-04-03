@@ -69,7 +69,7 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                 <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
                                     Lista de Proveedores
                                     <label class="flex justify-end">
-                                        <button data-modal='centeredFormModal' class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="">
+                                        <button data-modal='centeredFormModal' id="add" class="modal-trigger bg-blue-800 cursor-pointer rounded p-1 mx-1 text-white" href="">
                                             <i class="fa fa-user-plus"></i>
                                         </button>
                                         Agregar Proveedor
@@ -84,9 +84,6 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                             <th class="border w-1/1 px-4 py-2">Nombre Completo</th>
                                             <th class="border w-1/1 px-4 py-2">NIT</th>
                                             <th class="border w-1/1 px-2 py-1">Correo</th>
-                                            <th class="border w-1/1 px-2 py-1">Teléfono</th>
-                                            <th class="border w-1/1 px-4 py-2">Web</th>
-                                            <th class="border w-1/1 px-1 py-1">Dirección</th>
                                             <th class="border w-1/1 px-4 py-2">Estado</th>
                                             <th class="border w-1/1 px-4 py-2">Acción</th>
                                         </tr>
@@ -101,9 +98,6 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                                                     <td class="border px-4 py-2"><?php echo $proveedor["fullname"] . "<br>"; ?></td>
                                                     <td class="border px-4 py-2"><?php echo $proveedor["nit"] . "<br>"; ?></td>
                                                     <td class="border  w-1/6 px-1 py-1"><?php echo $proveedor["correo"] . "<br>"; ?></td>
-                                                    <td class="border  w-1/1 px-1 py-1"><?php echo $proveedor["telefono"] . "<br>"; ?></td>
-                                                    <td class="border w-1/6 px-4 py-2"><?php echo $proveedor["direccion_web"] . "<br>"; ?></td>
-                                                    <td class="border w-1/2 px-4 py-2"><?php echo $proveedor["direccion"] . "<br>"; ?></td>
                                                     <td class="border  w-1/1 px-4 py-2"><?php if ($proveedor["estado_proveedor"] == 1) {
                                                                                             echo ("Activo");
                                                                                         } else {
@@ -144,6 +138,80 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                     </div>
                 </div>
                 <!-- Modal content -->
+                <?php
+                    if (isset($_GET["nombre"])) {
+                ?>
+                <form class="w-full" action="../proveedor/guardarProveedor.php" method="post">
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                            <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
+                                Proveedor
+                            </label>
+                            <input value="<?php echo $_GET["proveedor"] ?>" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="proveedor" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese el nombre de la empresa" required>
+                        </div>
+                        <div class="w-full md:w-1/2 px-3">
+                            <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                Correo Electrónico
+                            </label>
+                            <input value="<?php echo $_GET["correo"] ?>" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="correo" id="correo" type="email" placeholder="Ingrese el Correo" onchange="ValidacionCorreo()" required>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                            <label class="block tracking-wide text-gray-700 text-xs font-light mb-1">
+                                Nombre
+                            </label>
+                            <input value="<?php echo $_GET["nombre"] ?>" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="nombre" id="nombre" onchange="NombresNumeros()" type="text" placeholder="Ingrese el nombre" required>
+                        </div>
+                        <div class="w-full md:w-1/2 px-3">
+                            <label class="block tracking-wide text-gray-700 text-xs font-light mb-1" for="grid-last-name">
+                                Apellido
+                            </label>
+                            <input value="<?php echo $_GET["apellido"] ?>" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="apellido" id="nombre" type="text" placeholder="Ingrese el apellido" onchange="NombresNumeros()" required>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <label class="block tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
+                                NIT
+                            </label>
+                            <input value="<?php echo $_GET["nit"] ?>" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="nit" id="nit" type="text" placeholder="Ingrese el nit" required onchange="NIT123()">
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <label class="block tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
+                                Teléfono
+                            </label>
+                            <input value="<?php echo $_GET["tel"] ?>" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="telefono" id="telefono" type="text" placeholder="Ingrese el telefono" required onchange="telefono1()">
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <label class="block tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
+                                Sitio Web
+                            </label>
+                            <input value="<?php echo $_GET["web"] ?>" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="direccion_web" id="direccion_web" onchange="PaginaWeb()" type="text" placeholder="Ingrese el sitio web" required>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <label class="block tracking-wide text-grey-darker text-xs font-light mb-1" for="grid-password">
+                                Dirección
+                            </label>
+                            <input value="<?php echo $_GET["direccion"] ?>" class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600" name="direccion" id="direccion" type="text" placeholder="Ingrese el nit" required onchange="Dirección()">
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <button class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'> Agregar</button>
+                        <span class='close-modal cursor-pointer bg-red-200 hover:bg-red-500 text-red-900 font-bold py-2 px-4 rounded'>
+                            Cerrar
+                        </span>
+                    </div>
+                </form>
+                <?php
+                    } else {
+                ?>
                 <form class="w-full" action="../proveedor/guardarProveedor.php" method="post">
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -212,6 +280,9 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
                         </span>
                     </div>
                 </form>
+                <?php
+                    }
+                ?>
             </div>
         </div>
     </div>
@@ -219,6 +290,9 @@ $proveedores = $query->fetchAll(PDO::FETCH_ASSOC); //Me traigo los datos que nec
     <script type="text/javascript">
         function confirmar() {
             return confirm('¿Estas seguro?, se eliminarán los datos');
+        }
+        function mas() {
+            document.getElementById("add").click();
         }
     </script>
 
@@ -281,17 +355,19 @@ if (isset($_SESSION['proveedor_error'])) {
 }
 
 if (isset($_SESSION['proveedorRepetido'])) {
+    echo "<script>mas()</script>";
     echo "<script>
     Swal.fire({
         icon: 'info',
-        title: 'Proveedor',
-        text: 'Proveedor Repetido'
+        title: 'Proveedor Existente',
+        text: 'Por favor, verifique si el proveedor no existe'
         });
     </script>";
     unset($_SESSION['proveedorRepetido']);
 }
 
-if (isset($_SESSION['nombreproveedor'])) {
+if (isset($_SESSION['nombreProveedor'])) {
+    echo "<script>mas()</script>";
     echo "<script>
     Swal.fire({
         icon: 'info',
@@ -299,7 +375,7 @@ if (isset($_SESSION['nombreproveedor'])) {
         text: 'Proveedor ya existe'
         });
     </script>";
-    unset($_SESSION['nombreproveedor']);
+    unset($_SESSION['nombreProveedor']);
 }
 
 if (isset($_SESSION['nitRepetido'])) {
