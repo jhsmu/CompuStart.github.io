@@ -13,6 +13,7 @@
     }
     </script>
     <link rel="stylesheet" href="../css/all.css">
+    <link rel="stylesheet" type="text/css" href="./css/styleAdminAGG.css">
     <!-- iconos en fontawesome -->
     <script src="https://kit.fontawesome.com/4b93f520b2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
@@ -409,6 +410,9 @@
                                                 class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
                                                 name="contrasena" id="clave" type="password"
                                                 placeholder="Mayus. Min 6 Dígitos" onchange="contraseña()" required>
+                                                <span>
+                                                    <i class="fa fa-eye" style="color:#D8D8D8" id="eye"></i>
+                                                </span>
                                         </div>
                                         <div class="w-full md:w-1/2 px-3">
                                             <label
@@ -420,10 +424,13 @@
                                                 class="appearance-none block w-full bg-grey-200 text-grey-darker border border-grey-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
                                                 name="apellido" id="clave_c" type="password" placeholder="Confirmar contraseña"
                                                 onchange="verificarContraseña()" required>
+                                            <span class="eyes">
+                                                <i class="fa fa-eye" style="color:#D8D8D8" id="eye_c"></i>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="mt-8 ml-32">
-                                        <button
+                                        <button name="crear"
                                             class='bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'>
                                             Agregar</button>
                                         <span
@@ -431,8 +438,6 @@
                                             Cerrar
                                         </span>
                                     </div>
-
-
                                 </form>
                             </div>
                         </div>
@@ -463,6 +468,37 @@
         }
         });
     });
+</script>
+<script>
+var eye = document.getElementById('eye');
+var input = document.getElementById('clave');
+var eye_c = document.getElementById('eye_c');
+var input1 = document.getElementById('clave_c');
+
+
+eye.addEventListener('click', mostrarcontra);
+eye_c.addEventListener('click', mostrarcontraseña);
+
+
+function mostrarcontra() {
+    if (input.type == "password") {
+        input.type = "text"
+        eye.style.color = "#383838"
+    } else {
+        input.type = "password"
+        eye.style.color = "#D8D8D8"
+    }
+}
+
+function mostrarcontraseña() {
+    if (input1.type == "password") {
+        input1.type = "text"
+        eye_c.style.color = "#383838"
+    } else {
+        input1.type = "password"
+        eye_c.style.color = "#D8D8D8"
+    }
+}
 </script>
 
 </html>
@@ -518,5 +554,35 @@ if (isset($_SESSION['error_admi'])) {
         });
     </script>";
     unset($_SESSION['error_admi']);
+}
+if (isset($_SESSION['emailRepetido'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Email del Administrador ya existente'
+        });
+    </script>";
+    unset($_SESSION['emailRepetido']);
+}
+if (isset($_SESSION['ERROR'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No se guardo correctamente el Administrador'
+        });
+    </script>";
+    unset($_SESSION['ERROR']);
+}
+if (isset($_SESSION['AdmiRepetido'])) {
+    echo "<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Este Administrador ya existe'
+        });
+    </script>";
+    unset($_SESSION['AdmiRepetido']);
 }
 ?>

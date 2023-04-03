@@ -1,0 +1,14 @@
+.eye{
+    position: absolute;
+    right: 75px;
+    transform: translate(0, -50%);
+    top: 85%;
+    cursor: pointer;
+}
+.eye_c{
+    position: absolute;
+    right: 70px;
+    transform: translate(0, -50%);
+    top: 80%;
+    cursor: pointer; 
+}
