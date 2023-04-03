@@ -75,7 +75,7 @@ CREATE TABLE compra(
     id_compra INT(11) PRIMARY KEY AUTO_INCREMENT,
     id_proveedor INT(11) NOT NULL,
     id_producto INT(11) NOT NULL,
-    cantidad FLOAT(12,2) NOT NULL,
+    cantidad FLOAT(12) NOT NULL,
     precio FLOAT(12,2) NOT NULL,
     total FLOAT(12,2) NOT NULL,
     fecha timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
