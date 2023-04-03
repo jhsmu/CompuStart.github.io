@@ -43,7 +43,9 @@
                         'cantidad'=>$cantidad,
                         'cantidad_max'=>$cantidadMax
                     );
-                    $_SESSION['carrito'][0]=$carro_pro;
+                    $_SESSION["indice2"]=0;
+                    $_SESSION['carrito'][$_SESSION["indice2"]]=$carro_pro;
+                    $_SESSION["indice2"]++;
                     $mensaje="Producto agregado al carrito";
                 }else {
                     $carro_pro=array(
@@ -73,7 +75,8 @@
                             'cantidad'=>$cantidad,
                             'cantidad_max'=>$cantidadMax
                         );
-                        $_SESSION['carrito'][$numero_productos]=$carro_pro;
+                        $_SESSION['carrito'][$_SESSION["indice2"]]=$carro_pro;
+                        $_SESSION["indice2"]++;
                         $mensaje="Producto agregado al carrito";
                     }
                 }

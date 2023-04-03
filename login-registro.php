@@ -279,5 +279,6 @@ if (isset($_SESSION["IngresoForsozo"])) {
             icon: "info" 
         });
         </script>');
+        session_destroy();
     }
     ?>

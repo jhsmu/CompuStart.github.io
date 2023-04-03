@@ -38,6 +38,7 @@
                     $_SESSION["id_usuario"]=$verificacion["id"];
                     if (isset($_COOKIE["carrito"])){
                         $_SESSION["carrito"]=$_COOKIE["carrito"];
+                        $_SESSION["indice2"]=$_COOKIE["indice"];
                     }
                     header("location: ../inicio.php");
                 }

@@ -44,13 +44,17 @@
                         'cantidad'=>$cantidad,
                         'cantidad_max'=>$cantidadMax
                     );
-                    $_SESSION['carritoIndex'][0]=$carro_pro;
+                    $_SESSION["indice"]=0;
+                    setcookie("indice", $_SESSION["indice"], time()+3600);
+                    $_SESSION['carritoIndex'][$_SESSION["indice"]]=$carro_pro;
 
-                    setcookie("carrito[0][id]", $carro_pro["id"], time()+3600);
-                    setcookie("carrito[0][producto]", $carro_pro["producto"], time()+3600);
-                    setcookie("carrito[0][precio]", $carro_pro["precio"], time()+3600);
-                    setcookie("carrito[0][cantidad]", $carro_pro["cantidad"], time()+3600);
-                    setcookie("carrito[0][cantidad_max]", $carro_pro["cantidad_max"], time()+3600);
+                    setcookie("carrito[".$_SESSION["indice"]."][id]", $carro_pro["id"], time()+3600);
+                    setcookie("carrito[".$_SESSION["indice"]."][producto]", $carro_pro["producto"], time()+3600);
+                    setcookie("carrito[".$_SESSION["indice"]."][precio]", $carro_pro["precio"], time()+3600);
+                    setcookie("carrito[".$_SESSION["indice"]."][cantidad]", $carro_pro["cantidad"], time()+3600);
+                    setcookie("carrito[".$_SESSION["indice"]."][cantidad_max]", $carro_pro["cantidad_max"], time()+3600);
+                    $_SESSION["indice"]++;
+                    setcookie("indice", $_SESSION["indice"], time()+3600);
 
                     $mensaje="Producto agregado al carrito";
                 } else {
@@ -72,8 +76,6 @@
                         }
                     }
                     else{
-
-                        $numero_productos=count($_SESSION['carritoIndex']);
                         $carro_pro=array(
                             'id'=>$id_producto,
                             'producto'=>$nombre_producto,
@@ -81,13 +83,15 @@
                             'cantidad'=>$cantidad,
                             'cantidad_max'=>$cantidadMax
                         );
-                        $_SESSION['carritoIndex'][$numero_productos]=$carro_pro;
+                        $_SESSION['carritoIndex'][$_SESSION["indice"]]=$carro_pro;
 
-                        setcookie("carrito[".$numero_productos."][id]", $carro_pro["id"], time()+3600);
-                        setcookie("carrito[".$numero_productos."][producto]", $carro_pro["producto"], time()+3600);
-                        setcookie("carrito[".$numero_productos."][precio]", $carro_pro["precio"], time()+3600);
-                        setcookie("carrito[".$numero_productos."][cantidad]", $carro_pro["cantidad"], time()+3600);
-                        setcookie("carrito[".$numero_productos."][cantidad_max]", $carro_pro["cantidad_max"], time()+3600);
+                        setcookie("carrito[".$_SESSION["indice"]."][id]", $carro_pro["id"], time()+3600);
+                        setcookie("carrito[".$_SESSION["indice"]."][producto]", $carro_pro["producto"], time()+3600);
+                        setcookie("carrito[".$_SESSION["indice"]."][precio]", $carro_pro["precio"], time()+3600);
+                        setcookie("carrito[".$_SESSION["indice"]."][cantidad]", $carro_pro["cantidad"], time()+3600);
+                        setcookie("carrito[".$_SESSION["indice"]."][cantidad_max]", $carro_pro["cantidad_max"], time()+3600);
+                        $_SESSION["indice"]++;
+                        setcookie("indice", $_SESSION["indice"], time()+3600);
 
                         $mensaje="Producto agregado al carrito";
                     }
