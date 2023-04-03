@@ -51,7 +51,6 @@ error_reporting(0);
         $nombre = $_POST['nombre'];
         $apellido = $_POST['apellido'];
         $direccion = $_POST['direccion'];
-        $telefono = $_POST['telefono'];
         $td = $_POST['tipo'];
         $nro = $_POST['dni'];
         $contrasena = $_POST['contrasena'];
@@ -61,17 +60,7 @@ error_reporting(0);
         $tmp_dir = $_FILES['imagen']['tmp_name'];
         $imgSize = $_FILES['imagen']['size'];
 
-    foreach ($emails as $key => $correo) {
-        $email = "";
-        if ($_POST['email'] === $correo['email']) {
-            echo "<script language='JavaScript'>
-            alert('El correo que está tratando de ingresar ya está en uso, intente con uno nuevo');
-            location.assign('./editar.php');</script>";
-            break;
-        } else{
-             $email = $_POST["email"];
-        }
-    }
+        
 
         if (!empty($imgFile)) { //Si la imagen es seleccionada 
             $upload_dir = 'imagenCliente/'; // upload directory	
@@ -100,8 +89,6 @@ error_reporting(0);
             apellido='" . $apellido . "',
             tipo_documento='" . $td . "',
             direccion='" . $direccion . "',
-            telefono='" . $telefono . "',
-            email='" . $email . "',
             contrasenia='" . $contrasena . "'
             where id='" . $id . "'";
 
@@ -179,12 +166,12 @@ error_reporting(0);
                     </div>
                     <div class="input-box">
                         <label for="telefono">Teléfono</label>
-                        <input id="telefono" type="text" name="telefono" value="<?php echo $telefono; ?>" required
+                        <input id="telefono" disabled type="text" name="telefono" value="<?php echo $telefono; ?>"
                             onchange="telefono1()">
                     </div>
                     <div class="input-box">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="correo" value="<?php echo $email; ?>"
+                        <input disabled type="email" name="email" id="correo" value="<?php echo $email; ?>"
                             onchange="ValidacionCorreo()">
                     </div>
                     <div class=" input-box">
